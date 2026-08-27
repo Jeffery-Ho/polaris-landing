@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeffery-ho.github.io/polaris-landing/sitemap.xml

@@ -3,10 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Support the continued development of Polaris.">
+    <meta name="description" content="Polaris AI Navigator is a Chrome extension for navigating long AI answers with section markers and one-click jumps.">
     <link rel="canonical" href="https://jeffery-ho.github.io/polaris-landing/">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png">
-    <title>Support Polaris</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Polaris AI">
+    <meta property="og:title" content="Polaris AI — AI Chat Navigator for Long Answers">
+    <meta property="og:description" content="Navigate long AI answers with section markers and one-click jumps in Chrome.">
+    <meta property="og:url" content="https://jeffery-ho.github.io/polaris-landing/">
+    <meta property="og:image" content="https://jeffery-ho.github.io/polaris-landing/assets/polaris-introduction-thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Polaris AI — AI Chat Navigator for Long Answers">
+    <meta name="twitter:description" content="Navigate long AI answers with section markers and one-click jumps in Chrome.">
+    <meta name="twitter:image" content="https://jeffery-ho.github.io/polaris-landing/assets/polaris-introduction-thumbnail.jpg">
+    <title>Polaris AI — AI Chat Navigator for Long Answers</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://jeffery-ho.github.io/polaris-landing/#organization",
+            "name": "Polaris AI",
+            "url": "https://jeffery-ho.github.io/polaris-landing/",
+            "logo": "https://jeffery-ho.github.io/polaris-landing/icons/gpt-voyager-icon-96.png",
+            "sameAs": [
+              "https://github.com/Jeffery-Ho/Polaris-for-Web"
+            ]
+          },
+          {
+            "@type": ["SoftwareApplication", "WebApplication"],
+            "@id": "https://jeffery-ho.github.io/polaris-landing/#application",
+            "name": "Polaris AI Navigator",
+            "alternateName": "Polaris AI",
+            "applicationCategory": "BrowserApplication",
+            "operatingSystem": "Chrome",
+            "description": "A Chrome extension that adds section markers and one-click navigation to long AI answers.",
+            "url": "https://jeffery-ho.github.io/polaris-landing/",
+            "downloadUrl": "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb",
+            "image": "https://jeffery-ho.github.io/polaris-landing/assets/polaris-introduction-thumbnail.jpg",
+            "publisher": {
+              "@id": "https://jeffery-ho.github.io/polaris-landing/#organization"
+            }
+          }
+        ]
+      }
+    </script>
     <script>
       if (/^Win/i.test(navigator.userAgentData?.platform || navigator.platform || "")) {
         document.documentElement.dataset.platform = "windows";
