@@ -23,7 +23,7 @@ Final result: passed.
 - A translucent highlight, white edge, inset reflection, blue shadow, and backdrop blur retain a high-contrast glass CTA surface.
 - In supported Chromium browsers, the Header, video play control, and CTA use local SVG displacement refraction; Safari, Firefox, reduced-transparency, high-contrast, and reduced-motion modes retain the CSS frosted-glass fallback.
 - The page-level ambient gradients, translucent surfaces, and stronger per-component displacement scales make the Header, play button, and CTA visibly refractive rather than merely blurred.
-- The play button uses a translucent white glass surface with a navy icon, keeping it readable over the video thumbnail.
+- The play button uses a translucent white glass surface with a near-black icon, keeping it readable over the video thumbnail.
 
 ## Video loading and analytics consent
 
