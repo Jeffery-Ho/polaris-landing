@@ -11,3 +11,9 @@ Final result: passed.
 
 - Desktop: the header is centered and capped at 840px with a full-pill radius; it remains part of normal page flow.
 - Mobile: the stacked header remains within the viewport without horizontal overflow.
+
+## Video loading and analytics consent
+
+- Before the video has fully buffered, the thumbnail keeps its 16:9 frame and the centered play control remains reachable.
+- Selecting the play control changes the live status text to “Video is loading. Please wait…”.
+- The consent card is visible for a new visitor. GA4 is configured only after “Allow analytics” with automatic page views disabled; declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.

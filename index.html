@@ -185,6 +185,46 @@
         display: none;
       }
 
+      .video-play-button {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        width: 68px;
+        height: 68px;
+        place-items: center;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 50%;
+        background: rgba(6, 24, 61, 0.74);
+        box-shadow: 0 12px 30px rgba(6, 24, 61, 0.28), inset 0 1px rgba(255, 255, 255, 0.32);
+        -webkit-backdrop-filter: blur(16px) saturate(145%);
+        backdrop-filter: blur(16px) saturate(145%);
+        color: #ffffff;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+
+      .video-play-button:hover,
+      .video-play-button:focus-visible {
+        background: rgba(31, 80, 177, 0.86);
+        box-shadow: 0 16px 34px rgba(6, 24, 61, 0.34), inset 0 1px rgba(255, 255, 255, 0.44);
+        transform: translate(-50%, calc(-50% - 2px));
+      }
+
+      .video-play-button svg {
+        width: 26px;
+        height: 26px;
+        margin-left: 3px;
+        fill: currentColor;
+      }
+
+      .video-play-button[hidden] {
+        display: none;
+      }
+
       .support-button {
         justify-content: center;
         width: fit-content;
@@ -244,6 +284,98 @@
         text-decoration: underline;
         text-decoration-color: rgba(21, 43, 88, 0.3);
         text-underline-offset: 3px;
+      }
+
+      .footer-separator {
+        color: #94a0b8;
+      }
+
+      .privacy-link,
+      .analytics-settings-button {
+        color: #4d5e7e;
+        font: inherit;
+        text-decoration: underline;
+        text-decoration-color: rgba(77, 94, 126, 0.34);
+        text-underline-offset: 3px;
+      }
+
+      .analytics-settings-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .privacy-link:hover,
+      .privacy-link:focus-visible,
+      .analytics-settings-button:hover,
+      .analytics-settings-button:focus-visible {
+        color: #2450c7;
+      }
+
+      .analytics-consent {
+        position: fixed;
+        z-index: 10;
+        right: max(18px, env(safe-area-inset-right));
+        bottom: max(18px, env(safe-area-inset-bottom));
+        width: min(390px, calc(100% - 36px));
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.84);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 18px 45px rgba(24, 42, 82, 0.18), inset 0 1px rgba(255, 255, 255, 0.94);
+        -webkit-backdrop-filter: blur(22px) saturate(145%);
+        backdrop-filter: blur(22px) saturate(145%);
+        text-align: left;
+      }
+
+      .analytics-consent[hidden] {
+        display: none;
+      }
+
+      .analytics-consent-title,
+      .analytics-consent-copy {
+        margin: 0;
+      }
+
+      .analytics-consent-title {
+        color: #081b43;
+        font-size: 17px;
+        font-weight: 760;
+        letter-spacing: -0.035em;
+      }
+
+      .analytics-consent-copy {
+        margin-top: 8px;
+        color: #4d5e7e;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .analytics-consent-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .analytics-consent-button {
+        min-height: 38px;
+        padding: 8px 13px;
+        border: 1px solid rgba(8, 27, 67, 0.12);
+        border-radius: 12px;
+        background: rgba(237, 240, 251, 0.92);
+        color: #152b58;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .analytics-consent-button--allow {
+        border-color: rgba(0, 103, 222, 0.4);
+        background: #007aff;
+        color: #ffffff;
       }
 
       .sr-only {
@@ -310,7 +442,14 @@
         }
 
         .footer-copy {
+          flex-wrap: wrap;
           font-size: 14px;
+        }
+
+        .analytics-consent {
+          right: 14px;
+          bottom: 14px;
+          width: calc(100% - 28px);
         }
       }
     </style>
@@ -342,6 +481,9 @@
           <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
           <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
           <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
+          <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          </button>
           <p class="video-status" data-video-status role="status" aria-live="polite">Preparing full video…</p>
         </section>
 
@@ -349,9 +491,18 @@
       </main>
 
       <footer class="site-footer">
-        <p class="footer-copy">Made with <span class="heart" aria-label="love">❤️</span> by <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a></p>
+        <p class="footer-copy">Made with <span class="heart" aria-label="love">❤️</span> by <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button">Analytics settings</button></p>
       </footer>
     </div>
+
+    <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
+      <p class="analytics-consent-title" id="analytics-consent-title">Help improve Polaris</p>
+      <p class="analytics-consent-copy" id="analytics-consent-copy">Allow Google Analytics to measure only support-page interactions. You can change this anytime.</p>
+      <div class="analytics-consent-actions">
+        <button class="analytics-consent-button analytics-consent-button--allow" data-analytics-accept type="button">Allow analytics</button>
+        <button class="analytics-consent-button" data-analytics-decline type="button">Not now</button>
+      </div>
+    </section>
 
     <script type="module">
       import { supportConfig } from "./support-config.js";
@@ -360,7 +511,87 @@
       const videoThumbnail = document.querySelector("[data-video-thumbnail]");
       const placeholder = document.querySelector("[data-video-placeholder]");
       const videoStatus = document.querySelector("[data-video-status]");
+      const videoPlayButton = document.querySelector("[data-video-play-button]");
       const paypalLink = document.querySelector("[data-paypal-link]");
+      const analyticsConsent = document.querySelector("[data-analytics-consent]");
+      const analyticsAccept = document.querySelector("[data-analytics-accept]");
+      const analyticsDecline = document.querySelector("[data-analytics-decline]");
+      const analyticsSettings = document.querySelector("[data-analytics-settings]");
+      const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
+      let analyticsEnabled = false;
+      let analyticsInitialized = false;
+
+      function trackEvent(name, parameters) {
+        if (analyticsEnabled && typeof window.gtag === "function") {
+          window.gtag("event", name, parameters);
+        }
+      }
+
+      function trackSupportEntry() {
+        const query = new URLSearchParams(window.location.search);
+
+        if (query.get("utm_source") === "polaris_extension" && query.get("utm_medium") === "support_entry") {
+          trackEvent("support_entry_opened", { source: "polaris_extension" });
+        }
+      }
+
+      function loadGoogleAnalytics() {
+        const measurementId = supportConfig.googleAnalyticsMeasurementId;
+
+        if (!measurementId || analyticsEnabled) {
+          return;
+        }
+
+        if (!analyticsInitialized) {
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag() {
+            window.dataLayer.push(arguments);
+          };
+          window.gtag("js", new Date());
+          window.gtag("config", measurementId, { send_page_view: false });
+
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+          document.head.appendChild(script);
+          analyticsInitialized = true;
+        } else {
+          window.gtag("consent", "update", { analytics_storage: "granted" });
+        }
+
+        analyticsEnabled = true;
+        trackSupportEntry();
+      }
+
+      function setAnalyticsConsent(value) {
+        window.localStorage.setItem(analyticsConsentStorageKey, value);
+        analyticsConsent.hidden = true;
+
+        if (value === "granted") {
+          loadGoogleAnalytics();
+        } else {
+          analyticsEnabled = false;
+
+          if (analyticsInitialized && typeof window.gtag === "function") {
+            window.gtag("consent", "update", { analytics_storage: "denied" });
+          }
+        }
+      }
+
+      const savedAnalyticsConsent = window.localStorage.getItem(analyticsConsentStorageKey);
+
+      if (savedAnalyticsConsent === "granted") {
+        loadGoogleAnalytics();
+      } else if (savedAnalyticsConsent !== "denied") {
+        analyticsConsent.hidden = false;
+      }
+
+      analyticsAccept.addEventListener("click", () => setAnalyticsConsent("granted"));
+      analyticsDecline.addEventListener("click", () => setAnalyticsConsent("denied"));
+      analyticsSettings.addEventListener("click", () => {
+        analyticsConsent.hidden = false;
+        analyticsAccept.focus();
+      });
 
       function showVideoStatus(message) {
         videoStatus.textContent = message;
@@ -373,6 +604,7 @@
         if (playback) {
           playback.catch(() => {
             video.controls = true;
+            videoPlayButton.hidden = false;
             showVideoStatus("Video is ready. Tap to play.");
           });
         }
@@ -403,8 +635,20 @@
 
         video.hidden = false;
         videoThumbnail.hidden = true;
+        videoPlayButton.hidden = true;
         startVideoPlayback();
       }
+
+      videoPlayButton.addEventListener("click", () => {
+        trackEvent("video_play_button_clicked", { surface: "video_loading_overlay" });
+
+        if (video.hidden) {
+          showVideoStatus("Video is loading. Please wait…");
+          return;
+        }
+
+        startVideoPlayback();
+      });
 
       if (supportConfig.videoSource) {
         video.muted = true;
@@ -418,12 +662,22 @@
         video.addEventListener("playing", () => {
           placeholder.hidden = true;
           videoStatus.hidden = true;
+          videoPlayButton.hidden = true;
         });
         video.addEventListener("waiting", () => {
-          if (!video.hidden) showVideoStatus("Buffering video…");
+          if (!video.hidden) {
+            videoPlayButton.hidden = false;
+            showVideoStatus("Buffering video…");
+          }
         });
-        video.addEventListener("stalled", () => showVideoStatus("Buffering video…"));
-        video.addEventListener("error", () => showVideoStatus("Video could not load. Please refresh the page."));
+        video.addEventListener("stalled", () => {
+          videoPlayButton.hidden = false;
+          showVideoStatus("Buffering video…");
+        });
+        video.addEventListener("error", () => {
+          videoPlayButton.hidden = true;
+          showVideoStatus("Video could not load. Please refresh the page.");
+        });
         video.load();
       }
 
