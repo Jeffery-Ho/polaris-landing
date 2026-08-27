@@ -12,6 +12,11 @@ Final result: passed.
 - Desktop: the header is centered and capped at 780px with a full-pill radius; it remains part of normal page flow.
 - Mobile: the stacked header remains within the viewport without horizontal overflow.
 
+## PayPal CTA glass refinement
+
+- The CTA base is Polaris blue `rgb(65, 107, 240)`, matching the supporting sentence.
+- A translucent highlight, white edge, inset reflection, blue shadow, and backdrop blur retain a high-contrast glass CTA surface.
+
 ## Video loading and analytics consent
 
 - Before the video has fully buffered, the thumbnail keeps its 16:9 frame and the centered play control remains reachable.

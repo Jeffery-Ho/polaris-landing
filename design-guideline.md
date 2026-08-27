@@ -11,6 +11,11 @@
 - On desktop, the Header is a centered floating glass capsule with `width: min(780px, calc(100% - 32px))`, 76px height, and a full-pill radius.
 - On mobile, preserve the stacked navigation layout and its smaller rounded corners to keep the links readable.
 
+## PayPal CTA
+
+- Use the same `#416bf0` Polaris blue as the supporting sentence.
+- Keep the CTA visually prominent through a translucent gradient layer, white glass edge, inset highlight, soft blue shadow, and backdrop blur rather than switching to an unrelated blue.
+
 ## Video loading and analytics consent
 
 - Keep the thumbnail visible while the full video buffers; place a centered glass play button above it.
