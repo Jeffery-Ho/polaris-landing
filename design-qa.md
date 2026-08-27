@@ -9,7 +9,7 @@ Final result: passed.
 
 ## Floating capsule header
 
-- Desktop: the header is centered and capped at 840px with a full-pill radius; it remains part of normal page flow.
+- Desktop: the header is centered and capped at 780px with a full-pill radius; it remains part of normal page flow.
 - Mobile: the stacked header remains within the viewport without horizontal overflow.
 
 ## Video loading and analytics consent

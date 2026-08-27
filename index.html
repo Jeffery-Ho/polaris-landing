@@ -38,13 +38,13 @@
 
       .site-header {
         display: flex;
-        width: min(840px, 100%);
+        width: min(780px, calc(100% - 32px));
         align-items: center;
         justify-content: space-between;
-        gap: 32px;
-        min-height: 88px;
-        margin: 0 auto;
-        padding: 16px 26px;
+        gap: 24px;
+        min-height: 76px;
+        margin: 4px auto 0;
+        padding: 12px 22px;
         border: 1px solid rgba(255, 255, 255, 0.84);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.6);
@@ -65,7 +65,7 @@
       .brand {
         min-width: 0;
         gap: 14px;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 750;
         letter-spacing: -0.045em;
         text-decoration: none;
@@ -73,15 +73,15 @@
       }
 
       .brand-icon {
-        width: 46px;
-        height: 46px;
+        width: 42px;
+        height: 42px;
         flex: none;
       }
 
       .header-links {
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 28px;
+        gap: 20px;
       }
 
       .header-link {
@@ -406,7 +406,9 @@
           flex-direction: column;
           gap: 18px;
           min-height: 0;
-          padding: 18px;
+        width: 100%;
+        margin-top: 0;
+        padding: 18px;
           border-radius: 22px;
         }
 

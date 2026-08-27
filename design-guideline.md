@@ -8,7 +8,7 @@
 
 ## Header
 
-- On desktop, the Header is a centered floating glass capsule with `width: min(840px, 100%)` and a full-pill radius.
+- On desktop, the Header is a centered floating glass capsule with `width: min(780px, calc(100% - 32px))`, 76px height, and a full-pill radius.
 - On mobile, preserve the stacked navigation layout and its smaller rounded corners to keep the links readable.
 
 ## Video loading and analytics consent
