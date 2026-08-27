@@ -566,7 +566,7 @@
           <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
           <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
           <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
-          <button class="video-play-button liquid-glass" data-liquid-glass="play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video">
+          <button class="video-play-button liquid-glass" data-liquid-glass="play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
           </button>
         </section>
@@ -692,27 +692,31 @@
 
         if (playback) {
           playback.catch(() => {
-            video.controls = true;
-            videoPlayButton.hidden = false;
+            showVideoPlayButton();
           });
         }
       }
 
-      function revealPlayableVideo() {
-        if (video.hidden === false) {
-          return;
-        }
-
+      function showVideoPlayButton() {
         video.hidden = false;
         videoThumbnail.hidden = true;
-        videoPlayButton.hidden = true;
+        videoPlayButton.hidden = false;
+      }
+
+      function revealPlayableVideo() {
+        if (video.hidden) {
+          video.hidden = false;
+          videoThumbnail.hidden = true;
+        }
+
         startVideoPlayback();
       }
 
       videoPlayButton.addEventListener("click", () => {
         trackEvent("video_play_button_clicked", { surface: "video_loading_overlay" });
 
-        if (video.hidden) {
+        if (video.error) {
+          video.load();
           return;
         }
 
@@ -731,14 +735,14 @@
         });
         video.addEventListener("waiting", () => {
           if (!video.hidden) {
-            videoPlayButton.hidden = false;
+            showVideoPlayButton();
           }
         });
         video.addEventListener("stalled", () => {
-          videoPlayButton.hidden = false;
+          showVideoPlayButton();
         });
         video.addEventListener("error", () => {
-          videoPlayButton.hidden = false;
+          showVideoPlayButton();
         });
         video.load();
       }

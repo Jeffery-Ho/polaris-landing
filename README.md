@@ -22,7 +22,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 ## Analytics and privacy
 
 - The page does not load Google Analytics until a visitor explicitly chooses “Allow analytics”.
-- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video loading play button; automatic page views are disabled. It never receives AI conversation content, extension settings, or PayPal payment details.
+- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. It never receives AI conversation content, extension settings, or PayPal payment details.
 - Visitors can change this choice from “Analytics settings” in the footer. The full disclosure is available at [privacy.html](privacy.html).
 
 ## Design
@@ -31,4 +31,4 @@ Hero typography rules are recorded in [design-guideline.md](design-guideline.md)
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- Header, video play control, and PayPal CTA use real liquid-glass refraction in supported Chromium browsers and retain CSS frosted-glass fallbacks elsewhere.
+- Header, failure-recovery video play control, and PayPal CTA use real liquid-glass refraction in supported Chromium browsers and retain CSS frosted-glass fallbacks elsewhere.
