@@ -19,8 +19,8 @@ Final result: passed.
 
 ## PayPal CTA glass refinement
 
-- The CTA base is Polaris blue `rgb(65, 107, 240)`, matching the supporting sentence.
-- A translucent highlight, white edge, inset reflection, blue shadow, and backdrop blur retain a high-contrast glass CTA surface.
+- The CTA base is ecommerce orange `rgb(255, 122, 0)`, clearly separating the PayPal action from product-navigation accents.
+- A translucent highlight, white edge, inset reflection, orange shadow, and backdrop blur retain a high-contrast glass CTA surface.
 - In supported Chromium browsers, the Header, video play control, and CTA use local SVG displacement refraction; Safari, Firefox, reduced-transparency, high-contrast, and reduced-motion modes retain the CSS frosted-glass fallback.
 - The page-level ambient gradients, translucent surfaces, and stronger per-component displacement scales make the Header, play button, and CTA visibly refractive rather than merely blurred.
 - The play button uses a translucent white glass surface with a near-black icon, keeping it readable over the video thumbnail.

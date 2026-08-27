@@ -19,8 +19,8 @@
 
 ## PayPal CTA
 
-- Use the same `#416bf0` Polaris blue as the supporting sentence.
-- Keep the CTA visually prominent through a translucent gradient layer, white glass edge, inset highlight, soft blue shadow, and backdrop blur rather than switching to an unrelated blue.
+- Use ecommerce orange `#ff7a00` as the CTA base; it distinguishes the support action from the Polaris-blue product accents.
+- Keep the CTA visually prominent through a translucent gradient layer, white glass edge, inset highlight, soft orange shadow, and backdrop blur.
 - Use `scale: -76` with a translucent Polaris-blue base, stronger white highlight, and soft blue elevation so refraction remains visible without compromising white-text contrast.
 
 ## Video loading and analytics consent
