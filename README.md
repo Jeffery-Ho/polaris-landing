@@ -6,8 +6,8 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 ## Assets
 
-- `assets/polaris-introduction.mp4` is the muted autoplay video.
-- `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered the complete video.
+- `assets/polaris-introduction.mp4` is a 1440×916, 30fps H.264 muted autoplay video with a fast-start MP4 index.
+- `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
 - `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, PayPal URL, and GA4 Measurement ID.

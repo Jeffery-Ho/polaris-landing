@@ -27,6 +27,6 @@ Final result: passed.
 
 ## Video loading and analytics consent
 
-- Before the video has fully buffered, the thumbnail keeps its 16:9 frame and the centered play control remains reachable without any loading text.
+- Before the video can play its first segment, the thumbnail keeps its 16:9 frame and the centered play control remains reachable without any loading text.
 - Buffering, playback failures, and manual play attempts do not display state text; the play control remains or becomes reachable when playback cannot proceed.
 - The consent card is visible for a new visitor. GA4 is configured only after “Allow analytics” with automatic page views disabled; declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.

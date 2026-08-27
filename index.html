@@ -698,26 +698,8 @@
         }
       }
 
-      function isVideoFullyBuffered() {
-        if (!Number.isFinite(video.duration) || video.duration <= 0 || video.buffered.length === 0) {
-          return false;
-        }
-
-        let bufferedEnd = 0;
-
-        for (let index = 0; index < video.buffered.length; index += 1) {
-          if (video.buffered.start(index) > bufferedEnd + 0.1) {
-            return false;
-          }
-
-          bufferedEnd = video.buffered.end(index);
-        }
-
-        return bufferedEnd >= video.duration - 0.1;
-      }
-
-      function revealFullyBufferedVideo() {
-        if (!isVideoFullyBuffered() || !video.hidden) {
+      function revealPlayableVideo() {
+        if (video.hidden === false) {
           return;
         }
 
@@ -742,9 +724,7 @@
         video.defaultMuted = true;
         video.playsInline = true;
         video.src = supportConfig.videoSource;
-        video.addEventListener("loadedmetadata", revealFullyBufferedVideo);
-        video.addEventListener("progress", revealFullyBufferedVideo);
-        video.addEventListener("canplaythrough", revealFullyBufferedVideo);
+        video.addEventListener("canplay", revealPlayableVideo);
         video.addEventListener("playing", () => {
           placeholder.hidden = true;
           videoPlayButton.hidden = true;

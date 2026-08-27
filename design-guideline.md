@@ -25,6 +25,6 @@
 
 ## Video loading and analytics consent
 
-- Keep the thumbnail visible while the full video buffers; place a centered liquid-glass play button above it. Use `scale: -62`, a translucent white base, and a modern near-black play icon so the thumbnail is visibly refracted beneath it.
+- Keep the thumbnail visible until the video can play its first segment; place a centered liquid-glass play button above it. Use `scale: -62`, a translucent white base, and a modern near-black play icon so the thumbnail is visibly refracted beneath it.
 - Do not display loading, buffering, playback-failure, or other video state text. Keep or restore the play button when playback cannot proceed.
 - The consent prompt is a compact glass card fixed to the lower edge. It must clearly state that analytics is optional, keep the decline action equally reachable, and allow a later withdrawal from the footer.
