@@ -5,6 +5,11 @@
 - Desktop, 1280 × 720: the category eyebrow is absent; headline renders at 58.88px; the supporting sentence renders as `rgb(65, 107, 240)`.
 - Mobile, 390 × 844: the category eyebrow remains absent; the 40px minimum headline size and blue supporting sentence fit without horizontal overflow.
 
+## Cross-platform typography
+
+- macOS keeps the native system font stack and does not select the self-hosted Windows font face.
+- With `data-platform="windows"`, the homepage and privacy page use the variable `Polaris Sans` face for text weights from 400 through 800; unavailable font data falls back to `Segoe UI` without horizontal overflow.
+
 Final result: passed.
 
 ## Floating capsule header

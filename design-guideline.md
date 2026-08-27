@@ -6,6 +6,11 @@
 - Keep the headline compact with `font-size: clamp(40px, 4.6vw, 64px)`.
 - Use `#416bf0` for the supporting sentence so it matches Polaris's blue accent.
 
+## Typography
+
+- On macOS, use the native system font stack beginning with `-apple-system` and `BlinkMacSystemFont`.
+- On Windows, use the self-hosted `Polaris Sans` face (Roboto Flex) with `Segoe UI` as its fallback. Apply this through the document's `data-platform="windows"` marker.
+
 ## Header
 
 - On desktop, the Header is a centered floating glass capsule with `width: min(780px, calc(100% - 32px))`, 76px height, and a full-pill radius.

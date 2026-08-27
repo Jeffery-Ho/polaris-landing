@@ -8,6 +8,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 - `assets/polaris-introduction.mp4` is the muted autoplay video.
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered the complete video.
+- `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `support-config.js` contains the video URL, PayPal URL, and GA4 Measurement ID.
 
 ## Analytics and privacy
@@ -19,3 +20,6 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 ## Design
 
 Hero typography rules are recorded in [design-guideline.md](design-guideline.md).
+
+- macOS uses the browser's native system font stack.
+- Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
