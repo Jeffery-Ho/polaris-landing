@@ -21,9 +21,10 @@ Final result: passed.
 
 - The CTA base is Polaris blue `rgb(65, 107, 240)`, matching the supporting sentence.
 - A translucent highlight, white edge, inset reflection, blue shadow, and backdrop blur retain a high-contrast glass CTA surface.
+- In supported Chromium browsers, the Header, video play control, and CTA use local SVG displacement refraction; Safari, Firefox, reduced-transparency, high-contrast, and reduced-motion modes retain the CSS frosted-glass fallback.
 
 ## Video loading and analytics consent
 
-- Before the video has fully buffered, the thumbnail keeps its 16:9 frame and the centered play control remains reachable.
-- Selecting the play control changes the live status text to “Video is loading. Please wait…”.
+- Before the video has fully buffered, the thumbnail keeps its 16:9 frame and the centered play control remains reachable without any loading text.
+- Buffering, playback failures, and manual play attempts do not display state text; the play control remains or becomes reachable when playback cannot proceed.
 - The consent card is visible for a new visitor. GA4 is configured only after “Allow analytics” with automatic page views disabled; declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.

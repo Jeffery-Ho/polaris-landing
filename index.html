@@ -71,6 +71,11 @@
         backdrop-filter: blur(22px) saturate(130%);
       }
 
+      .site-header.liquid-glass {
+        --lg-blur: 7px;
+        --lg-saturate: 1.35;
+      }
+
       .brand,
       .header-links,
       .header-link,
@@ -164,8 +169,7 @@
 
       .support-video,
       .video-thumbnail,
-      .video-placeholder,
-      .video-status {
+      .video-placeholder {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -183,24 +187,6 @@
 
       .video-placeholder {
         background: #edf0fb;
-      }
-
-      .video-status {
-        z-index: 2;
-        display: grid;
-        place-items: end center;
-        padding: 24px;
-        background: linear-gradient(transparent 58%, rgba(8, 27, 67, 0.66));
-        color: #ffffff;
-        font-size: clamp(14px, 1.6vw, 18px);
-        font-weight: 650;
-        letter-spacing: -0.025em;
-        pointer-events: none;
-        text-align: center;
-      }
-
-      .video-status[hidden] {
-        display: none;
       }
 
       .video-play-button {
@@ -223,6 +209,11 @@
         cursor: pointer;
         transform: translate(-50%, -50%);
         transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+
+      .video-play-button.liquid-glass {
+        --lg-blur: 3px;
+        --lg-saturate: 1.45;
       }
 
       .video-play-button:hover,
@@ -265,6 +256,11 @@
         transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
       }
 
+      .support-button.liquid-glass {
+        --lg-blur: 5px;
+        --lg-saturate: 1.55;
+      }
+
       .support-button:hover,
       .support-button:focus-visible {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06) 45%, rgba(6, 24, 61, 0.12)), rgba(65, 107, 240, 0.94);
@@ -276,6 +272,28 @@
         cursor: not-allowed;
         opacity: 0.48;
         pointer-events: none;
+      }
+
+      .liquid-glass[data-lg-active] {
+        -webkit-backdrop-filter: var(--lg-filter-url) blur(var(--lg-blur, 4px)) saturate(var(--lg-saturate, 1.4));
+        backdrop-filter: var(--lg-filter-url) blur(var(--lg-blur, 4px)) saturate(var(--lg-saturate, 1.4));
+      }
+
+      @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), (prefers-reduced-motion: reduce) {
+        .site-header.liquid-glass[data-lg-active] {
+          -webkit-backdrop-filter: blur(22px) saturate(130%);
+          backdrop-filter: blur(22px) saturate(130%);
+        }
+
+        .video-play-button.liquid-glass[data-lg-active] {
+          -webkit-backdrop-filter: blur(16px) saturate(145%);
+          backdrop-filter: blur(16px) saturate(145%);
+        }
+
+        .support-button.liquid-glass[data-lg-active] {
+          -webkit-backdrop-filter: blur(24px) saturate(165%);
+          backdrop-filter: blur(24px) saturate(165%);
+        }
       }
 
       .site-footer {
@@ -476,7 +494,7 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header">
+      <header class="site-header liquid-glass" data-liquid-glass="header">
         <a class="brand" href="./" aria-label="Polaris home">
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
           <span>Polaris</span>
@@ -501,13 +519,12 @@
           <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
           <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
           <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
-          <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video">
+          <button class="video-play-button liquid-glass" data-liquid-glass="play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
           </button>
-          <p class="video-status" data-video-status role="status" aria-live="polite">Preparing full video…</p>
         </section>
 
-        <a class="support-button" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal">Support on PayPal</a>
+        <a class="support-button liquid-glass" data-liquid-glass="paypal" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal">Support on PayPal</a>
       </main>
 
       <footer class="site-footer">
@@ -526,11 +543,11 @@
 
     <script type="module">
       import { supportConfig } from "./support-config.js";
+      import { liquidGlass } from "./vendor/liquid-glass-0.1.0.js";
 
       const video = document.querySelector("[data-support-video]");
       const videoThumbnail = document.querySelector("[data-video-thumbnail]");
       const placeholder = document.querySelector("[data-video-placeholder]");
-      const videoStatus = document.querySelector("[data-video-status]");
       const videoPlayButton = document.querySelector("[data-video-play-button]");
       const paypalLink = document.querySelector("[data-paypal-link]");
       const analyticsConsent = document.querySelector("[data-analytics-consent]");
@@ -613,10 +630,15 @@
         analyticsAccept.focus();
       });
 
-      function showVideoStatus(message) {
-        videoStatus.textContent = message;
-        videoStatus.hidden = false;
-      }
+      const liquidGlassInstances = [
+        liquidGlass(document.querySelector('[data-liquid-glass="header"]'), { scale: -52, chroma: 2.5, mapBlur: 10 }),
+        liquidGlass(document.querySelector('[data-liquid-glass="play-button"]'), { scale: -40, chroma: 1.8, mapBlur: 8 }),
+        liquidGlass(document.querySelector('[data-liquid-glass="paypal"]'), { scale: -56, chroma: 2.2, mapBlur: 10 })
+      ];
+
+      window.addEventListener("pagehide", () => {
+        liquidGlassInstances.forEach((instance) => instance.destroy());
+      }, { once: true });
 
       function startVideoPlayback() {
         const playback = video.play();
@@ -625,7 +647,6 @@
           playback.catch(() => {
             video.controls = true;
             videoPlayButton.hidden = false;
-            showVideoStatus("Video is ready. Tap to play.");
           });
         }
       }
@@ -663,7 +684,6 @@
         trackEvent("video_play_button_clicked", { surface: "video_loading_overlay" });
 
         if (video.hidden) {
-          showVideoStatus("Video is loading. Please wait…");
           return;
         }
 
@@ -675,28 +695,23 @@
         video.defaultMuted = true;
         video.playsInline = true;
         video.src = supportConfig.videoSource;
-        showVideoStatus("Preparing full video…");
         video.addEventListener("loadedmetadata", revealFullyBufferedVideo);
         video.addEventListener("progress", revealFullyBufferedVideo);
         video.addEventListener("canplaythrough", revealFullyBufferedVideo);
         video.addEventListener("playing", () => {
           placeholder.hidden = true;
-          videoStatus.hidden = true;
           videoPlayButton.hidden = true;
         });
         video.addEventListener("waiting", () => {
           if (!video.hidden) {
             videoPlayButton.hidden = false;
-            showVideoStatus("Buffering video…");
           }
         });
         video.addEventListener("stalled", () => {
           videoPlayButton.hidden = false;
-          showVideoStatus("Buffering video…");
         });
         video.addEventListener("error", () => {
-          videoPlayButton.hidden = true;
-          showVideoStatus("Video could not load. Please refresh the page.");
+          videoPlayButton.hidden = false;
         });
         video.load();
       }
