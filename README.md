@@ -29,11 +29,11 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 ## Design
 
-The homepage follows a restrained black-and-white visual system inspired by Vercel's dark minimal information hierarchy. Its content sequence is product value, introduction video, verified capabilities, installation choices, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows a restrained black-and-white visual system inspired by Vercel's dark minimal information hierarchy. Its split hero pairs the product value with the introduction video, followed by grid-based capabilities, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- The transparent header keeps Install as the primary action. The failure-recovery video play control is minimal, while the PayPal support link uses a high-contrast orange CTA.
+- The compact header keeps Install as the primary action. The hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
 
 ## Installation and localization
 
