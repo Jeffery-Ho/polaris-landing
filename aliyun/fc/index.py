@@ -1,10 +1,6 @@
 import json
 import os
-
-from alibabacloud_credentials.client import Client as CredentialClient
-from alibabacloud_sts20150401 import models as sts_models
-from alibabacloud_sts20150401.client import Client as StsClient
-from alibabacloud_tea_openapi.models import Config
+from datetime import datetime, timedelta, timezone
 
 
 def _response(status_code, body, origin):
@@ -15,10 +11,12 @@ def _response(status_code, body, origin):
         "Vary": "Origin",
     }
 
+    if allowed_origin:
+        headers["Access-Control-Allow-Origin"] = allowed_origin
+
     if origin and origin == allowed_origin:
         headers.update(
             {
-                "Access-Control-Allow-Origin": allowed_origin,
                 "Access-Control-Allow-Methods": "GET, OPTIONS",
                 "Access-Control-Allow-Headers": "Accept",
                 "Access-Control-Max-Age": "3600",
@@ -61,6 +59,23 @@ def _credential_value(credentials, *names):
     return ""
 
 
+def _runtime_credentials():
+    access_key_id = os.environ.get("ALIBABA_CLOUD_ACCESS_KEY_ID", "").strip()
+    access_key_secret = os.environ.get("ALIBABA_CLOUD_ACCESS_KEY_SECRET", "").strip()
+    security_token = os.environ.get("ALIBABA_CLOUD_SECURITY_TOKEN", "").strip()
+
+    if not access_key_id or not access_key_secret or not security_token:
+        return None
+
+    expiration = datetime.now(timezone.utc) + timedelta(minutes=55)
+    return {
+        "AccessKeyId": access_key_id,
+        "AccessKeySecret": access_key_secret,
+        "SecurityToken": security_token,
+        "Expiration": expiration.isoformat().replace("+00:00", "Z"),
+    }
+
+
 def handler(event, context):
     try:
         request = json.loads(event.decode("utf-8") if isinstance(event, bytes) else event)
@@ -88,6 +103,11 @@ def handler(event, context):
     if not role_arn or not project or not logstore:
         return _response(500, {"error": "server is not configured"}, origin)
 
+    runtime_credentials = _runtime_credentials()
+
+    if runtime_credentials:
+        return _response(200, runtime_credentials, origin)
+
     policy = {
         "Version": "1",
         "Statement": [
@@ -100,6 +120,11 @@ def handler(event, context):
     }
 
     try:
+        from alibabacloud_credentials.client import Client as CredentialClient
+        from alibabacloud_sts20150401 import models as sts_models
+        from alibabacloud_sts20150401.client import Client as StsClient
+        from alibabacloud_tea_openapi.models import Config
+
         sts_client = StsClient(
             Config(
                 region_id=region_id,

@@ -3,9 +3,9 @@ export const supportConfig = Object.freeze({
   paypalUrl: "https://paypal.me/jefferyhoHK",
   googleAnalyticsMeasurementId: "G-ERMV08R4XQ",
   sls: Object.freeze({
-    host: "",
-    project: "",
-    logstore: "",
-    stsTokenUrl: ""
+    host: "cn-hangzhou.log.aliyuncs.com",
+    project: "polaris-ai-download",
+    logstore: "web-events",
+    stsTokenUrl: "https://get-sts-token-ezksivojtu.cn-hangzhou.fcapp.run/get_sts_token"
   })
 });

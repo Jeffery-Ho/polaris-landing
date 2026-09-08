@@ -9,16 +9,33 @@ The landing page sends two SLS events after the visitor allows analytics:
 
 The current UTM context is copied to the ZIP event so download conversion can be queried without joining browser identifiers. Empty UTM fields are omitted. Values are limited to the six supported UTM keys and truncated to 256 characters. Full URLs, AI conversation content, account information, and payment information are not sent.
 
+## Production deployment
+
+The production resources are deployed in `cn-hangzhou`:
+
+- Project: `polaris-ai-download`
+- Logstore: `web-events` (standard, 30-day retention, WebTracking enabled)
+- Indexed fields: `eventType`, `utm_source`, `utm_medium`, `asset`
+- RAM role: `sls-web-tracking`
+- FC function: `get-sts-token` (Python 3.12, handler `index.handler`)
+- HTTP trigger: `get-sts-token-http`, public HTTPS, anonymous access
+
+The FC 3.0 console exposes the trigger method as `GET`; the public endpoint also passed an `OPTIONS` request through to the function and returned the CORS preflight response. The endpoint currently uses the FC-generated public domain because no custom domain was provided:
+
+`https://get-sts-token-ezksivojtu.cn-hangzhou.fcapp.run/get_sts_token`
+
+The function uses the `sls-web-tracking` execution role. FC injects short-lived runtime credentials through `ALIBABA_CLOUD_ACCESS_KEY_ID`, `ALIBABA_CLOUD_ACCESS_KEY_SECRET`, and `ALIBABA_CLOUD_SECURITY_TOKEN`; no long-lived AccessKey is stored in the function environment, repository, or browser.
+
 ## Frontend configuration
 
-Set these values in `support-config.js` after the SLS resources and STS endpoint are deployed:
+The deployed values in `support-config.js` are:
 
 ```js
 sls: Object.freeze({
   host: "cn-hangzhou.log.aliyuncs.com",
-  project: "polaris-landing-analytics",
+  project: "polaris-ai-download",
   logstore: "web-events",
-  stsTokenUrl: "https://<fc-domain>/get_sts_token"
+  stsTokenUrl: "https://get-sts-token-ezksivojtu.cn-hangzhou.fcapp.run/get_sts_token"
 })
 ```
 
@@ -47,9 +64,9 @@ After enabling field indexes for the event fields, these queries can be used in 
 1. Create the Project and `web-events` Logstore in the selected region.
 2. Enable WebTracking on the Logstore and create indexes for `eventType`, `utm_source`, `utm_medium`, and `asset`.
 3. Create a RAM role restricted to `log:PostLogStoreLogs` and `log:PutLogs` for this Logstore.
-4. Deploy `aliyun/fc/index.py` as an FC Python function with handler `index.handler` and install `aliyun/fc/requirements.txt`.
-5. Set the FC environment variables `ALIBABA_CLOUD_ACCESS_KEY_ID`, `ALIBABA_CLOUD_ACCESS_KEY_SECRET`, `SLS_ROLE_ARN`, `SLS_REGION`, `SLS_PROJECT`, `SLS_LOGSTORE`, and `ALLOWED_ORIGIN`.
-6. Add an HTTP trigger supporting `GET` and `OPTIONS`, configure HTTPS and CORS for the landing-page origin, then copy the endpoint into `support-config.js`.
+4. Deploy `aliyun/fc/index.py` as an FC Python function with handler `index.handler`.
+5. Bind the RAM role as the FC execution role and set `SLS_ROLE_ARN`, `SLS_REGION`, `SLS_PROJECT`, `SLS_LOGSTORE`, and `ALLOWED_ORIGIN`. The runtime credential variables are injected by FC and must not be manually populated.
+6. Add a public HTTPS HTTP trigger, allow anonymous access, verify `GET` and `OPTIONS`, then copy the endpoint into `support-config.js`.
 
 The FC source returns only short-lived STS credentials. Never commit its AccessKey environment values or a generated endpoint containing secrets.
 

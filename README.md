@@ -11,7 +11,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 - `assets/Polaris-for-Web-0.48.3-build-196.zip` is the current unpacked-extension bundle for local installation; its archive root contains the generated extension files and `manifest.json` reports `0.48.3(196)`.
 - `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
-- `support-config.js` contains the video URL, PayPal URL, GA4 Measurement ID, and SLS endpoint placeholders.
+- `support-config.js` contains the video URL, PayPal URL, GA4 Measurement ID, and deployed SLS endpoint configuration.
 
 ## SEO
 
