@@ -24,6 +24,7 @@
 - Use equal glass cards on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
+- After the local ZIP action is clicked, show a short loading state with a spinner and ignore repeat clicks while the browser starts the native download; restore the normal label automatically because native downloads do not expose completion to the page.
 
 ## Localization
 

@@ -425,6 +425,7 @@
         min-height: 48px;
         align-items: center;
         justify-content: center;
+        gap: 10px;
         margin-top: 22px;
         padding: 11px 18px;
         border: 1px solid rgba(65, 107, 240, 0.34);
@@ -444,6 +445,45 @@
         background: #2450c7;
         box-shadow: 0 15px 26px rgba(65, 107, 240, 0.3), inset 0 1px rgba(255, 255, 255, 0.6);
         transform: translateY(-2px);
+      }
+
+      .install-card-button[data-download-loading="true"] {
+        cursor: wait;
+        pointer-events: none;
+        background: #2450c7;
+        box-shadow: 0 12px 22px rgba(65, 107, 240, 0.24), inset 0 1px rgba(255, 255, 255, 0.5);
+        transform: none;
+      }
+
+      .install-card-button-label--loading,
+      .install-card-button-spinner {
+        display: none;
+      }
+
+      .install-card-button[data-download-loading="true"] .install-card-button-label--default,
+      .install-card-button[data-download-loading="true"] .install-card-button-label--loading {
+        display: none;
+      }
+
+      .install-card-button[data-download-loading="true"] .install-card-button-label--loading,
+      .install-card-button[data-download-loading="true"] .install-card-button-spinner {
+        display: inline-flex;
+      }
+
+      .install-card-button-spinner {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        border: 2px solid rgba(255, 255, 255, 0.42);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: install-download-spin 760ms linear infinite;
+      }
+
+      @keyframes install-download-spin {
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .install-steps {
@@ -481,6 +521,12 @@
         .support-button.liquid-glass[data-lg-active] {
           -webkit-backdrop-filter: blur(24px) saturate(165%);
           backdrop-filter: blur(24px) saturate(165%);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .install-card-button-spinner {
+          animation: none;
         }
       }
 
@@ -734,7 +780,11 @@
             <article class="install-card install-card--local">
               <h3 class="install-card-title" data-i18n="install.local.title">Local installation</h3>
               <p class="install-card-copy" data-i18n="install.local.copy">Download the ZIP, unzip it, then load the folder in Chrome extensions.</p>
-              <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-i18n="install.local.download" data-analytics-event="zip_download">Download ZIP</a>
+              <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-analytics-event="zip_download">
+                <span class="install-card-button-label install-card-button-label--default" data-download-label data-i18n="install.local.download" aria-hidden="false">Download ZIP</span>
+                <span class="install-card-button-label install-card-button-label--loading" data-download-loading-label data-i18n="install.local.download.loading" aria-hidden="true">Downloading…</span>
+                <span class="install-card-button-spinner" aria-hidden="true"></span>
+              </a>
               <ol class="install-steps">
                 <li data-i18n="install.local.step1">Download and unzip the offline ZIP package.</li>
                 <li data-i18n="install.local.step2">Open <code>chrome://extensions</code> and turn on Developer mode.</li>
@@ -810,6 +860,7 @@
           "install.local.title": "Local installation",
           "install.local.copy": "Download the ZIP, unzip it, then load the folder in Chrome extensions.",
           "install.local.download": "Download ZIP",
+          "install.local.download.loading": "Downloading…",
           "install.local.step1": "Download and unzip the offline ZIP package.",
           "install.local.step2": "Open <code>chrome://extensions</code> and turn on Developer mode.",
           "install.local.step3": "Click Load unpacked and select the unzipped Polaris folder.",
@@ -847,6 +898,7 @@
           "install.local.title": "本地安装浏览器插件",
           "install.local.copy": "下载 ZIP，解压后在 Chrome 扩展程序中加载文件夹。",
           "install.local.download": "下载 ZIP 安装包",
+          "install.local.download.loading": "下载中…",
           "install.local.step1": "下载并解压离线 ZIP 安装包。",
           "install.local.step2": "打开 <code>chrome://extensions</code>，开启“开发者模式”。",
           "install.local.step3": "点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹。",
@@ -1104,7 +1156,31 @@
         analyticsConsent.hidden = false;
         analyticsAccept.focus();
       });
+      let zipDownloadLoadingTimer = null;
+
+      function setZipDownloadLoading(isLoading) {
+        if (zipDownloadLoadingTimer !== null) {
+          window.clearTimeout(zipDownloadLoadingTimer);
+          zipDownloadLoadingTimer = null;
+        }
+
+        localZipLink.dataset.downloadLoading = isLoading ? "true" : "false";
+        localZipLink.setAttribute("aria-busy", String(isLoading));
+        localZipLink.setAttribute("aria-disabled", String(isLoading));
+        localZipLink.querySelector("[data-download-label]")?.setAttribute("aria-hidden", String(isLoading));
+        localZipLink.querySelector("[data-download-loading-label]")?.setAttribute("aria-hidden", String(!isLoading));
+
+        if (isLoading) {
+          zipDownloadLoadingTimer = window.setTimeout(() => setZipDownloadLoading(false), 1800);
+        }
+      }
+
       localZipLink.addEventListener("click", () => {
+        if (localZipLink.dataset.downloadLoading === "true") {
+          return;
+        }
+
+        setZipDownloadLoading(true);
         trackSlsEvent("zip_download", {
           ...readSlsUtmParameters(),
           asset: "Polaris-for-Web-0.48.3-build-196.zip",
