@@ -32,13 +32,16 @@
       <a class="back" href="./">Back to Polaris AI</a>
       <h1>Privacy</h1>
       <h2>Support-page analytics</h2>
-      <p>Only after you choose “Allow analytics” on the Polaris support page, the page loads Google Analytics 4 to measure two support-page interactions: visits arriving through the Polaris extension support link and clicks on the video recovery play button. Automatic page views are disabled.</p>
-      <p>We do not send AI conversation content, extension settings, or PayPal payment details to Google Analytics. Your choice is saved locally in your browser and can be changed from “Analytics settings” in the support-page footer.</p>
+      <p>Only after you choose “Allow analytics” on the Polaris support page, the page initializes and sends data through Google Analytics 4 and the Aliyun SLS WebTracking SDK. The SDK files may be loaded by the page, but no analytics event is initialized or sent before consent. Automatic page views are disabled.</p>
+      <p>Google Analytics measures visits arriving through the Polaris extension support link and clicks on the video recovery play button. SLS records supported UTM values when you arrive at the landing page and records clicks on the local ZIP download action. The current UTM values are included with the download event to support source-to-download analysis.</p>
+      <p>We do not send AI conversation content, extension settings, account information, or PayPal payment details to either analytics service. Your choice is saved locally in your browser and can be changed from “Analytics settings” in the support-page footer.</p>
       <h2>Payments and external links</h2>
       <p>The PayPal button opens PayPal in a new tab. Any payment information you provide is handled by PayPal under its own privacy terms.</p>
       <h2>Google Analytics</h2>
       <p>Google may process information according to its <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>. You can decline analytics and continue using the support page.</p>
-      <p class="updated">Last updated: August 27, 2026.</p>
+      <h2>Aliyun SLS</h2>
+      <p>Aliyun may process the SLS event data according to its <a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html" target="_blank" rel="noreferrer">third-party SDK privacy description</a>. The landing page uses temporary STS credentials for browser-side log delivery.</p>
+      <p class="updated">Last updated: September 8, 2026.</p>
     </main>
   </body>
 </html>

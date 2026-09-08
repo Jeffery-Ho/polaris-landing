@@ -11,7 +11,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 - `assets/Polaris-for-Web-0.48.3-build-196.zip` is the current unpacked-extension bundle for local installation; its archive root contains the generated extension files and `manifest.json` reports `0.48.3(196)`.
 - `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
-- `support-config.js` contains the video URL, PayPal URL, and GA4 Measurement ID.
+- `support-config.js` contains the video URL, PayPal URL, GA4 Measurement ID, and SLS endpoint placeholders.
 
 ## SEO
 
@@ -22,9 +22,10 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 ## Analytics and privacy
 
-- The page does not load Google Analytics until a visitor explicitly chooses “Allow analytics”.
-- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. It never receives AI conversation content, extension settings, or PayPal payment details.
+- The page does not initialize or send analytics through Google Analytics or SLS until a visitor explicitly chooses “Allow analytics”.
+- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. SLS records UTM-tagged landing-page arrivals and local ZIP download clicks. Neither service receives AI conversation content, extension settings, or PayPal payment details.
 - Visitors can change this choice from “Analytics settings” in the footer. The full disclosure is available at [privacy.html](privacy.html).
+- SLS event definitions, query examples, and the Aliyun deployment checklist are documented in [Doc/sls-analytics.md](Doc/sls-analytics.md).
 
 ## Design
 
@@ -37,5 +38,5 @@ Hero typography rules are recorded in [design-guideline.md](design-guideline.md)
 ## Installation and localization
 
 - The homepage header links to an installation section with local ZIP installation and Chrome Web Store installation options.
-- The local option explains how to load the unzipped extension from `chrome://extensions` with Developer mode enabled.
+- The local option explains the shortest path: download and unzip the package, then load the folder from `chrome://extensions` with Developer mode enabled.
 - The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.

@@ -351,7 +351,7 @@
       .install-section {
         max-width: 1040px;
         margin: clamp(88px, 10vw, 136px) auto 0;
-        scroll-margin-top: 24px;
+        scroll-margin-top: 32px;
         text-align: left;
       }
 
@@ -733,15 +733,13 @@
           <div class="install-options">
             <article class="install-card install-card--local">
               <h3 class="install-card-title" data-i18n="install.local.title">Local installation</h3>
-              <p class="install-card-copy" data-i18n="install.local.copy">Recommended for offline installation or restricted network environments.</p>
-              <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-i18n="install.local.download">Download ZIP</a>
+              <p class="install-card-copy" data-i18n="install.local.copy">Download the ZIP, unzip it, then load the folder in Chrome extensions.</p>
+              <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-i18n="install.local.download" data-analytics-event="zip_download">Download ZIP</a>
               <ol class="install-steps">
-                <li data-i18n="install.local.step1">Download the offline package: Polaris-for-Web-0.48.3-build-196.zip.</li>
-                <li data-i18n="install.local.step2">Enter <code>chrome://extensions</code> in the browser address bar.</li>
-                <li data-i18n="install.local.step3">Turn on Developer mode in the top-right corner.</li>
-                <li data-i18n="install.local.step4">Unzip the downloaded file and note the extracted folder path.</li>
-                <li data-i18n="install.local.step5">Click Load unpacked in the top-left corner and select the extracted folder.</li>
-                <li data-i18n="install.local.step6">After installation, refresh the AI chat page where you want to use Polaris.</li>
+                <li data-i18n="install.local.step1">Download and unzip the offline ZIP package.</li>
+                <li data-i18n="install.local.step2">Open <code>chrome://extensions</code> and turn on Developer mode.</li>
+                <li data-i18n="install.local.step3">Click Load unpacked and select the unzipped Polaris folder.</li>
+                <li data-i18n="install.local.step4">Refresh the AI chat page to start using Polaris.</li>
               </ol>
             </article>
 
@@ -771,6 +769,8 @@
       </div>
     </section>
 
+    <script src="./vendor/aliyun-sls-web-track-browser-0.3.9.js"></script>
+    <script src="./vendor/aliyun-sls-web-sts-plugin-0.3.9.js"></script>
     <script type="module">
       import { supportConfig } from "./support-config.js";
       import { liquidGlass } from "./vendor/liquid-glass-0.1.0.js";
@@ -785,6 +785,9 @@
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
       const analyticsSettings = document.querySelector("[data-analytics-settings]");
       const languageToggle = document.querySelector("[data-language-toggle]");
+      const installNavigationLink = document.querySelector('a[href="#install"]');
+      const installSection = document.querySelector("#install");
+      const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
@@ -805,14 +808,12 @@
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
-          "install.local.copy": "Recommended for offline installation or restricted network environments.",
+          "install.local.copy": "Download the ZIP, unzip it, then load the folder in Chrome extensions.",
           "install.local.download": "Download ZIP",
-          "install.local.step1": "Download the offline package: Polaris-for-Web-0.48.3-build-196.zip.",
-          "install.local.step2": "Enter <code>chrome://extensions</code> in the browser address bar.",
-          "install.local.step3": "Turn on Developer mode in the top-right corner.",
-          "install.local.step4": "Unzip the downloaded file and note the extracted folder path.",
-          "install.local.step5": "Click Load unpacked in the top-left corner and select the extracted folder.",
-          "install.local.step6": "After installation, refresh the AI chat page where you want to use Polaris.",
+          "install.local.step1": "Download and unzip the offline ZIP package.",
+          "install.local.step2": "Open <code>chrome://extensions</code> and turn on Developer mode.",
+          "install.local.step3": "Click Load unpacked and select the unzipped Polaris folder.",
+          "install.local.step4": "Refresh the AI chat page to start using Polaris.",
           "install.store.title": "Chrome Web Store",
           "install.store.copy": "Requires access to the Google Chrome Web Store. Install Polaris with one click.",
           "install.store.button": "Install from Chrome Web Store",
@@ -844,14 +845,12 @@
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
-          "install.local.copy": "适合无法访问谷歌商店或需要离线安装的情况。",
+          "install.local.copy": "下载 ZIP，解压后在 Chrome 扩展程序中加载文件夹。",
           "install.local.download": "下载 ZIP 安装包",
-          "install.local.step1": "下载离线安装包：Polaris-for-Web-0.48.3-build-196.zip。",
-          "install.local.step2": "在浏览器地址栏输入 <code>chrome://extensions</code>，进入扩展程序管理界面。",
-          "install.local.step3": "打开右上角的“开发者模式”。",
-          "install.local.step4": "解压下载好的 ZIP 文件，并记下解压后的文件夹路径。",
-          "install.local.step5": "点击左上角的“加载已解压的扩展程序”，选择解压后的文件夹。",
-          "install.local.step6": "安装完成后，刷新你要使用 Polaris 的 AI 对话页面。",
+          "install.local.step1": "下载并解压离线 ZIP 安装包。",
+          "install.local.step2": "打开 <code>chrome://extensions</code>，开启“开发者模式”。",
+          "install.local.step3": "点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹。",
+          "install.local.step4": "刷新 AI 对话页面即可使用 Polaris。",
           "install.store.title": "谷歌商店安装",
           "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
           "install.store.button": "从谷歌商店安装",
@@ -872,6 +871,8 @@
       let currentLocale = "en";
       let analyticsEnabled = false;
       let analyticsInitialized = false;
+      let slsTracker = null;
+      let slsArrivalTracked = false;
 
       function setLanguage(locale, persist = true) {
         const dictionary = translations[locale] || translations.en;
@@ -920,11 +921,119 @@
       languageToggle.addEventListener("click", () => {
         setLanguage(currentLocale === "en" ? "zh-CN" : "en");
       });
+      installNavigationLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        installSection.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start"
+        });
+        window.history.replaceState(null, "", "#install");
+      });
 
       function trackEvent(name, parameters) {
         if (analyticsEnabled && typeof window.gtag === "function") {
           window.gtag("event", name, parameters);
         }
+      }
+
+      function readSlsUtmParameters() {
+        const query = new URLSearchParams(window.location.search);
+        const parameters = {};
+
+        ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id"].forEach((key) => {
+          const value = query.get(key)?.trim();
+
+          if (value) {
+            parameters[key] = value.slice(0, 256);
+          }
+        });
+
+        return parameters;
+      }
+
+      function hasSlsConfiguration() {
+        const slsConfig = supportConfig.sls;
+
+        return Boolean(slsConfig && [
+          slsConfig.host,
+          slsConfig.project,
+          slsConfig.logstore,
+          slsConfig.stsTokenUrl
+        ].every((value) => typeof value === "string" && value.trim()));
+      }
+
+      function loadSlsTracker() {
+        if (slsTracker || !hasSlsConfiguration() || typeof window.SLS_Tracker !== "function" || typeof window.stsPlugin !== "function") {
+          return;
+        }
+
+        const slsConfig = supportConfig.sls;
+        const stsOptions = {
+          accessKeyId: "",
+          accessKeySecret: "",
+          securityToken: "",
+          refreshSTSToken: async () => {
+            const response = await window.fetch(slsConfig.stsTokenUrl, {
+              method: "GET",
+              headers: { Accept: "application/json" },
+              credentials: "omit",
+              cache: "no-store"
+            });
+
+            if (!response.ok) {
+              throw new Error(`STS token request failed: ${response.status}`);
+            }
+
+            const credential = await response.json();
+
+            if (!["AccessKeyId", "AccessKeySecret", "SecurityToken"].every((key) => typeof credential[key] === "string" && credential[key])) {
+              throw new Error("STS token response is incomplete");
+            }
+
+            stsOptions.accessKeyId = credential.AccessKeyId;
+            stsOptions.accessKeySecret = credential.AccessKeySecret;
+            stsOptions.securityToken = credential.SecurityToken;
+          }
+        };
+        const tracker = new window.SLS_Tracker({
+          host: slsConfig.host,
+          project: slsConfig.project,
+          logstore: slsConfig.logstore,
+          time: 10,
+          count: 10,
+          topic: "polaris-landing",
+          source: "github-pages"
+        });
+
+        tracker.useStsPlugin(window.stsPlugin(stsOptions));
+        slsTracker = tracker;
+      }
+
+      function trackSlsEvent(eventType, parameters) {
+        if (!analyticsEnabled || !slsTracker || typeof slsTracker.sendImmediate !== "function") {
+          return;
+        }
+
+        try {
+          slsTracker.sendImmediate({ eventType, ...parameters });
+        } catch (error) {
+          console.warn("SLS analytics event could not be sent", error);
+        }
+      }
+
+      function trackLandingPageArrival() {
+        const utmParameters = readSlsUtmParameters();
+
+        if (slsArrivalTracked || Object.keys(utmParameters).length === 0) {
+          return;
+        }
+
+        slsArrivalTracked = true;
+        trackSlsEvent("landing_page_arrival", {
+          ...utmParameters,
+          locale: currentLocale,
+          page: window.location.pathname || "/"
+        });
       }
 
       function trackSupportEntry() {
@@ -938,11 +1047,11 @@
       function loadGoogleAnalytics() {
         const measurementId = supportConfig.googleAnalyticsMeasurementId;
 
-        if (!measurementId || analyticsEnabled) {
+        if (analyticsEnabled) {
           return;
         }
 
-        if (!analyticsInitialized) {
+        if (measurementId && !analyticsInitialized) {
           window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag() {
             window.dataLayer.push(arguments);
@@ -955,12 +1064,14 @@
           script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
           document.head.appendChild(script);
           analyticsInitialized = true;
-        } else {
+        } else if (measurementId && typeof window.gtag === "function") {
           window.gtag("consent", "update", { analytics_storage: "granted" });
         }
 
         analyticsEnabled = true;
+        loadSlsTracker();
         trackSupportEntry();
+        trackLandingPageArrival();
       }
 
       function setAnalyticsConsent(value) {
@@ -971,6 +1082,7 @@
           loadGoogleAnalytics();
         } else {
           analyticsEnabled = false;
+          slsTracker = null;
 
           if (analyticsInitialized && typeof window.gtag === "function") {
             window.gtag("consent", "update", { analytics_storage: "denied" });
@@ -991,6 +1103,14 @@
       analyticsSettings.addEventListener("click", () => {
         analyticsConsent.hidden = false;
         analyticsAccept.focus();
+      });
+      localZipLink.addEventListener("click", () => {
+        trackSlsEvent("zip_download", {
+          ...readSlsUtmParameters(),
+          asset: "Polaris-for-Web-0.48.3-build-196.zip",
+          locale: currentLocale,
+          page: window.location.pathname || "/"
+        });
       });
 
       const liquidGlassInstances = [

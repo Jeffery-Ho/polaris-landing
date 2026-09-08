@@ -1,5 +1,11 @@
 export const supportConfig = Object.freeze({
   videoSource: "assets/polaris-introduction.mp4",
   paypalUrl: "https://paypal.me/jefferyhoHK",
-  googleAnalyticsMeasurementId: "G-ERMV08R4XQ"
+  googleAnalyticsMeasurementId: "G-ERMV08R4XQ",
+  sls: Object.freeze({
+    host: "",
+    project: "",
+    logstore: "",
+    stsTokenUrl: ""
+  })
 });

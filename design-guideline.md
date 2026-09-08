@@ -20,10 +20,10 @@
 
 ## Installation section
 
-- Place a two-option installation section below the introduction video and target it from the header Download link.
+- Place a two-option installation section below the introduction video; the header Download link smoothly scrolls to it without an abrupt jump.
 - Use equal glass cards on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
-- The local ZIP action must use a same-site relative asset path; the Chrome Web Store action opens the verified store listing in a new tab.
+- The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
 
 ## Localization
 
