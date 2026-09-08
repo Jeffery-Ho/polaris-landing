@@ -13,9 +13,22 @@
 
 ## Header
 
-- On desktop, the Header is a centered floating glass capsule with `width: min(780px, calc(100% - 32px))`, 76px height, and a full-pill radius.
-- On mobile, preserve the stacked navigation layout and its smaller rounded corners to keep the links readable.
-- Use the liquid-glass engine for supported Chromium browsers with stronger `scale: -88`, light chroma, environmental background gradients, and the existing frosted-glass CSS fallback. The Header surface must remain translucent enough for refraction to read clearly.
+- On desktop, use a wide, transparent header with `width: min(1200px, 100%)`, a 64px minimum height, and the brand aligned left with navigation aligned right.
+- Make Download the only filled primary action; keep Chrome Web Store, GitHub Issues, and the language toggle as lightweight secondary controls.
+- On mobile, preserve the stacked navigation layout and its readable spacing without a surrounding capsule.
+- Keep the header in normal page flow so the installation anchor remains predictable; do not apply the liquid-glass displacement filter to this surface.
+
+## Installation section
+
+- Place a two-option installation section below the introduction video and target it from the header Download link.
+- Use equal glass cards on desktop and a single-column stack on mobile.
+- Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
+- The local ZIP action must use a same-site relative asset path; the Chrome Web Store action opens the verified store listing in a new tab.
+
+## Localization
+
+- Support English and Simplified Chinese through a small page-local translation dictionary.
+- Follow the browser language only on first visit; persist a manual choice locally and update the document language, title, description, and control labels together.
 
 ## PayPal CTA
 

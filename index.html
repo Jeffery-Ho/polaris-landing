@@ -93,6 +93,14 @@
         color: inherit;
       }
 
+      code {
+        padding: 2px 5px;
+        border-radius: 6px;
+        background: rgba(65, 107, 240, 0.1);
+        color: #2450c7;
+        font-size: 0.92em;
+      }
+
       .page-shell {
         width: min(1440px, calc(100% - 48px));
         min-height: 100svh;
@@ -102,24 +110,13 @@
 
       .site-header {
         display: flex;
-        width: min(780px, calc(100% - 32px));
+        width: min(1200px, 100%);
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
-        min-height: 76px;
-        margin: 4px auto 0;
-        padding: 12px 22px;
-        border: 1px solid rgba(255, 255, 255, 0.84);
-        border-radius: 999px;
-        background: linear-gradient(120deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42) 52%, rgba(222, 231, 255, 0.5));
-        box-shadow: 0 20px 42px rgba(21, 22, 26, 0.13), inset 0 1px rgba(255, 255, 255, 0.96), inset 0 -1px rgba(116, 143, 212, 0.12);
-        -webkit-backdrop-filter: blur(22px) saturate(130%);
-        backdrop-filter: blur(22px) saturate(130%);
-      }
-
-      .site-header.liquid-glass {
-        --lg-blur: 7px;
-        --lg-saturate: 1.35;
+        gap: 32px;
+        min-height: 64px;
+        margin: 0 auto;
+        padding: 4px 0;
       }
 
       .brand,
@@ -150,15 +147,25 @@
       .header-links {
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 20px;
+        gap: 4px 8px;
       }
 
       .header-link {
-        gap: 9px;
-        font-size: 16px;
+        min-height: 40px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: #4d5e7e;
+        font-size: 15px;
         font-weight: 650;
         letter-spacing: -0.025em;
         text-decoration: none;
+      }
+
+      .header-link--primary {
+        padding: 9px 18px;
+        background: #416bf0;
+        color: #ffffff;
+        box-shadow: 0 10px 20px rgba(65, 107, 240, 0.2), inset 0 1px rgba(255, 255, 255, 0.4);
       }
 
       .header-link:hover,
@@ -168,10 +175,30 @@
         color: #2450c7;
       }
 
-      .external-icon {
-        width: 24px;
-        height: 24px;
-        flex: none;
+      .header-link--primary:hover,
+      .header-link--primary:focus-visible {
+        background: #2450c7;
+        color: #ffffff;
+      }
+
+      .language-toggle {
+        min-height: 36px;
+        padding: 7px 12px;
+        border: 1px solid rgba(21, 22, 26, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.54);
+        color: #15161a;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .language-toggle:hover,
+      .language-toggle:focus-visible {
+        border-color: rgba(65, 107, 240, 0.42);
+        background: rgba(255, 255, 255, 0.82);
+        color: #2450c7;
       }
 
       main {
@@ -321,17 +348,131 @@
         pointer-events: none;
       }
 
+      .install-section {
+        max-width: 1040px;
+        margin: clamp(88px, 10vw, 136px) auto 0;
+        scroll-margin-top: 24px;
+        text-align: left;
+      }
+
+      .install-heading,
+      .install-intro,
+      .install-card-title,
+      .install-card-copy,
+      .install-steps {
+        margin: 0;
+      }
+
+      .install-heading {
+        color: #15161a;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 780;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .install-intro {
+        max-width: 650px;
+        margin: 18px auto 0;
+        color: #4d5e7e;
+        font-size: clamp(17px, 2vw, 21px);
+        letter-spacing: -0.03em;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      .install-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 34px;
+      }
+
+      .install-card {
+        min-width: 0;
+        padding: clamp(24px, 3vw, 34px);
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.58);
+        box-shadow: 0 20px 42px rgba(32, 53, 104, 0.1), inset 0 1px rgba(255, 255, 255, 0.94);
+        -webkit-backdrop-filter: blur(18px) saturate(125%);
+        backdrop-filter: blur(18px) saturate(125%);
+      }
+
+      .install-card--store {
+        background: linear-gradient(135deg, rgba(235, 242, 255, 0.76), rgba(255, 255, 255, 0.5));
+      }
+
+      .install-card-title {
+        color: #15161a;
+        font-size: clamp(24px, 2.7vw, 32px);
+        font-weight: 760;
+        letter-spacing: -0.055em;
+        line-height: 1.05;
+      }
+
+      .install-card-copy {
+        min-height: 50px;
+        margin-top: 14px;
+        color: #4d5e7e;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .install-card-button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 22px;
+        padding: 11px 18px;
+        border: 1px solid rgba(65, 107, 240, 0.34);
+        border-radius: 16px;
+        background: #416bf0;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 750;
+        letter-spacing: -0.025em;
+        text-decoration: none;
+        box-shadow: 0 12px 22px rgba(65, 107, 240, 0.24), inset 0 1px rgba(255, 255, 255, 0.5);
+        transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      }
+
+      .install-card-button:hover,
+      .install-card-button:focus-visible {
+        background: #2450c7;
+        box-shadow: 0 15px 26px rgba(65, 107, 240, 0.3), inset 0 1px rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .install-steps {
+        display: grid;
+        gap: 10px;
+        margin-top: 24px;
+        padding-left: 24px;
+        color: #252833;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .install-steps a {
+        color: #416bf0;
+      }
+
+      .install-note {
+        margin: 24px 0 0;
+        color: #4d5e7e;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
       .liquid-glass[data-lg-active] {
         -webkit-backdrop-filter: var(--lg-filter-url) blur(var(--lg-blur, 4px)) saturate(var(--lg-saturate, 1.4));
         backdrop-filter: var(--lg-filter-url) blur(var(--lg-blur, 4px)) saturate(var(--lg-saturate, 1.4));
       }
 
       @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), (prefers-reduced-motion: reduce) {
-        .site-header.liquid-glass[data-lg-active] {
-          -webkit-backdrop-filter: blur(22px) saturate(130%);
-          backdrop-filter: blur(22px) saturate(130%);
-        }
-
         .video-play-button.liquid-glass[data-lg-active] {
           -webkit-backdrop-filter: blur(16px) saturate(145%);
           backdrop-filter: blur(16px) saturate(145%);
@@ -487,26 +628,26 @@
         .site-header {
           align-items: flex-start;
           flex-direction: column;
-          gap: 18px;
+          gap: 10px;
           min-height: 0;
-        width: 100%;
-        margin-top: 0;
-        padding: 18px;
-          border-radius: 22px;
+          width: 100%;
+          padding: 8px 0 0;
         }
 
         .header-links {
+          width: 100%;
           justify-content: flex-start;
-          gap: 18px;
+          gap: 4px;
         }
 
         .header-link {
+          padding-right: 10px;
+          padding-left: 10px;
           font-size: 14px;
         }
 
-        .external-icon {
-          width: 20px;
-          height: 20px;
+        .language-toggle {
+          font-size: 13px;
         }
 
         main {
@@ -519,6 +660,19 @@
 
         .video-frame {
           margin-top: 38px;
+        }
+
+        .install-section {
+          margin-top: 78px;
+        }
+
+        .install-options {
+          grid-template-columns: 1fr;
+          margin-top: 28px;
+        }
+
+        .install-card-copy {
+          min-height: 0;
         }
 
         .support-button {
@@ -541,26 +695,28 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header liquid-glass" data-liquid-glass="header">
+      <header class="site-header">
         <a class="brand" href="./" aria-label="Polaris home">
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
           <span>Polaris</span>
         </a>
         <nav class="header-links" aria-label="Polaris links">
+          <a class="header-link header-link--primary" href="#install">
+            <span data-i18n="nav.download">Download</span>
+          </a>
           <a class="header-link" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer">
-            <img class="external-icon" src="https://cdn.simpleicons.org/googlechrome/111214" alt="">
-            <span>Chrome Web Store</span>
+            <span data-i18n="nav.chromeStore">Chrome Web Store</span>
           </a>
           <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
-            <img class="external-icon" src="https://cdn.simpleicons.org/github/111214" alt="">
-            <span>GitHub Issues</span>
+            <span data-i18n="nav.issues">GitHub Issues</span>
           </a>
+          <button class="language-toggle" data-language-toggle type="button">中文</button>
         </nav>
       </header>
 
       <main>
-        <h1>Polaris AI Navigator</h1>
-        <p class="intro">Your long AI conversations just got easier to navigate.</p>
+        <h1 data-i18n="hero.title">Polaris AI Navigator</h1>
+        <p class="intro" data-i18n="hero.intro">Your long AI conversations just got easier to navigate.</p>
 
         <section class="video-frame" aria-label="Polaris introduction video">
           <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
@@ -571,20 +727,47 @@
           </button>
         </section>
 
-        <a class="support-button liquid-glass" data-liquid-glass="paypal" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal">Support on PayPal</a>
+        <section class="install-section" id="install" aria-labelledby="install-title">
+          <h2 class="install-heading" id="install-title" data-i18n="install.title">Install Polaris AI</h2>
+          <p class="install-intro" data-i18n="install.intro">Choose the installation method that works best for you.</p>
+          <div class="install-options">
+            <article class="install-card install-card--local">
+              <h3 class="install-card-title" data-i18n="install.local.title">Local installation</h3>
+              <p class="install-card-copy" data-i18n="install.local.copy">Recommended for offline installation or restricted network environments.</p>
+              <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-i18n="install.local.download">Download ZIP</a>
+              <ol class="install-steps">
+                <li data-i18n="install.local.step1">Download the offline package: Polaris-for-Web-0.48.3-build-196.zip.</li>
+                <li data-i18n="install.local.step2">Enter <code>chrome://extensions</code> in the browser address bar.</li>
+                <li data-i18n="install.local.step3">Turn on Developer mode in the top-right corner.</li>
+                <li data-i18n="install.local.step4">Unzip the downloaded file and note the extracted folder path.</li>
+                <li data-i18n="install.local.step5">Click Load unpacked in the top-left corner and select the extracted folder.</li>
+                <li data-i18n="install.local.step6">After installation, refresh the AI chat page where you want to use Polaris.</li>
+              </ol>
+            </article>
+
+            <article class="install-card install-card--store">
+              <h3 class="install-card-title" data-i18n="install.store.title">Chrome Web Store</h3>
+              <p class="install-card-copy" data-i18n="install.store.copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>
+              <a class="install-card-button" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer" data-i18n="install.store.button">Install from Chrome Web Store</a>
+              <p class="install-note" data-i18n="install.store.note">The extension will be added to Chrome after you confirm the installation in the store.</p>
+            </article>
+          </div>
+        </section>
+
+        <a class="support-button liquid-glass" data-liquid-glass="paypal" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal" data-i18n="support.button">Support on PayPal</a>
       </main>
 
       <footer class="site-footer">
-        <p class="footer-copy">Made with <span class="heart" aria-label="love">❤️</span> by <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button">Analytics settings</button></p>
+        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
       </footer>
     </div>
 
     <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
-      <p class="analytics-consent-title" id="analytics-consent-title">Help improve Polaris</p>
-      <p class="analytics-consent-copy" id="analytics-consent-copy">Allow Google Analytics to measure only support-page interactions. You can change this anytime.</p>
+      <p class="analytics-consent-title" id="analytics-consent-title" data-i18n="analytics.title">Help improve Polaris</p>
+      <p class="analytics-consent-copy" id="analytics-consent-copy" data-i18n="analytics.copy">Allow Google Analytics to measure only support-page interactions. You can change this anytime.</p>
       <div class="analytics-consent-actions">
-        <button class="analytics-consent-button analytics-consent-button--allow" data-analytics-accept type="button">Allow analytics</button>
-        <button class="analytics-consent-button" data-analytics-decline type="button">Not now</button>
+        <button class="analytics-consent-button analytics-consent-button--allow" data-analytics-accept type="button" data-i18n="analytics.allow">Allow analytics</button>
+        <button class="analytics-consent-button" data-analytics-decline type="button" data-i18n="analytics.decline">Not now</button>
       </div>
     </section>
 
@@ -601,9 +784,142 @@
       const analyticsAccept = document.querySelector("[data-analytics-accept]");
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
       const analyticsSettings = document.querySelector("[data-analytics-settings]");
+      const languageToggle = document.querySelector("[data-language-toggle]");
+      const translatableElements = document.querySelectorAll("[data-i18n]");
+      const structuredData = document.querySelector('script[type="application/ld+json"]');
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
+      const localeStorageKey = "polaris-landing-locale";
+      const translations = Object.freeze({
+        en: Object.freeze({
+          "nav.download": "Download",
+          "nav.chromeStore": "Chrome Web Store",
+          "nav.issues": "GitHub Issues",
+          "locale.toggle": "中文",
+          "locale.toggleAria": "Switch to Simplified Chinese",
+          "aria.home": "Polaris home",
+          "aria.love": "love",
+          "hero.title": "Polaris AI Navigator",
+          "hero.intro": "Your long AI conversations just got easier to navigate.",
+          "video.label": "Polaris introduction video",
+          "video.playAria": "Play Polaris introduction video",
+          "install.title": "Install Polaris AI",
+          "install.intro": "Choose the installation method that works best for you.",
+          "install.local.title": "Local installation",
+          "install.local.copy": "Recommended for offline installation or restricted network environments.",
+          "install.local.download": "Download ZIP",
+          "install.local.step1": "Download the offline package: Polaris-for-Web-0.48.3-build-196.zip.",
+          "install.local.step2": "Enter <code>chrome://extensions</code> in the browser address bar.",
+          "install.local.step3": "Turn on Developer mode in the top-right corner.",
+          "install.local.step4": "Unzip the downloaded file and note the extracted folder path.",
+          "install.local.step5": "Click Load unpacked in the top-left corner and select the extracted folder.",
+          "install.local.step6": "After installation, refresh the AI chat page where you want to use Polaris.",
+          "install.store.title": "Chrome Web Store",
+          "install.store.copy": "Requires access to the Google Chrome Web Store. Install Polaris with one click.",
+          "install.store.button": "Install from Chrome Web Store",
+          "install.store.note": "The extension will be added to Chrome after you confirm the installation in the store.",
+          "support.button": "Support on PayPal",
+          "footer.made": "Made with",
+          "footer.by": "by",
+          "footer.privacy": "Privacy",
+          "footer.analytics": "Analytics settings",
+          "analytics.title": "Help improve Polaris",
+          "analytics.copy": "Allow Google Analytics to measure only support-page interactions. You can change this anytime.",
+          "analytics.allow": "Allow analytics",
+          "analytics.decline": "Not now",
+          "meta.title": "Polaris AI — AI Chat Navigator for Long Answers",
+          "meta.description": "Navigate long AI answers with section markers and one-click jumps in Chrome."
+        }),
+        "zh-CN": Object.freeze({
+          "nav.download": "下载",
+          "nav.chromeStore": "谷歌商店",
+          "nav.issues": "GitHub 问题反馈",
+          "locale.toggle": "English",
+          "locale.toggleAria": "切换到英语",
+          "aria.home": "Polaris 首页",
+          "aria.love": "喜爱",
+          "hero.title": "Polaris AI 导航助手",
+          "hero.intro": "让长篇 AI 对话更容易阅读和跳转。",
+          "video.label": "Polaris 介绍视频",
+          "video.playAria": "播放 Polaris 介绍视频",
+          "install.title": "安装 Polaris AI",
+          "install.intro": "选择适合你的安装方式。",
+          "install.local.title": "本地安装浏览器插件",
+          "install.local.copy": "适合无法访问谷歌商店或需要离线安装的情况。",
+          "install.local.download": "下载 ZIP 安装包",
+          "install.local.step1": "下载离线安装包：Polaris-for-Web-0.48.3-build-196.zip。",
+          "install.local.step2": "在浏览器地址栏输入 <code>chrome://extensions</code>，进入扩展程序管理界面。",
+          "install.local.step3": "打开右上角的“开发者模式”。",
+          "install.local.step4": "解压下载好的 ZIP 文件，并记下解压后的文件夹路径。",
+          "install.local.step5": "点击左上角的“加载已解压的扩展程序”，选择解压后的文件夹。",
+          "install.local.step6": "安装完成后，刷新你要使用 Polaris 的 AI 对话页面。",
+          "install.store.title": "谷歌商店安装",
+          "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
+          "install.store.button": "从谷歌商店安装",
+          "install.store.note": "在商店确认安装后，插件会自动添加到 Chrome。",
+          "support.button": "通过 PayPal 支持",
+          "footer.made": "用心制作",
+          "footer.by": "作者",
+          "footer.privacy": "隐私政策",
+          "footer.analytics": "分析设置",
+          "analytics.title": "帮助改进 Polaris",
+          "analytics.copy": "允许 Google Analytics 仅统计支持页面的互动数据。你可以随时修改此选择。",
+          "analytics.allow": "允许分析",
+          "analytics.decline": "暂不允许",
+          "meta.title": "Polaris AI — 长篇 AI 对话导航助手",
+          "meta.description": "使用章节标记和一键跳转，更轻松地浏览 Chrome 中的长篇 AI 回答。"
+        })
+      });
+      let currentLocale = "en";
       let analyticsEnabled = false;
       let analyticsInitialized = false;
+
+      function setLanguage(locale, persist = true) {
+        const dictionary = translations[locale] || translations.en;
+        currentLocale = locale in translations ? locale : "en";
+
+        translatableElements.forEach((element) => {
+          const value = dictionary[element.dataset.i18n];
+
+          if (value !== undefined) {
+            element.innerHTML = value;
+          }
+        });
+
+        document.documentElement.lang = currentLocale;
+        document.title = dictionary["meta.title"];
+        document.querySelector('meta[name="description"]').content = dictionary["meta.description"];
+        document.querySelector('meta[property="og:title"]').content = dictionary["meta.title"];
+        document.querySelector('meta[property="og:description"]').content = dictionary["meta.description"];
+        document.querySelector('meta[name="twitter:title"]').content = dictionary["meta.title"];
+        document.querySelector('meta[name="twitter:description"]').content = dictionary["meta.description"];
+        if (structuredData) {
+          const data = JSON.parse(structuredData.textContent);
+          const application = data["@graph"]?.find((entry) => entry["@id"]?.endsWith("/#application"));
+          if (application) {
+            application.description = dictionary["meta.description"];
+            structuredData.textContent = JSON.stringify(data);
+          }
+        }
+        document.querySelector(".brand").setAttribute("aria-label", dictionary["aria.home"]);
+        document.querySelector(".heart").setAttribute("aria-label", dictionary["aria.love"]);
+        document.querySelector(".header-links").setAttribute("aria-label", currentLocale === "zh-CN" ? "Polaris 链接" : "Polaris links");
+        document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
+        document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
+        document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
+        languageToggle.textContent = dictionary["locale.toggle"];
+        languageToggle.setAttribute("aria-label", dictionary["locale.toggleAria"]);
+
+        if (persist) {
+          window.localStorage.setItem(localeStorageKey, currentLocale);
+        }
+      }
+
+      const savedLocale = window.localStorage.getItem(localeStorageKey);
+      const browserLocale = /^zh(?:-|$)/i.test(navigator.language || "") ? "zh-CN" : "en";
+      setLanguage(savedLocale === "zh-CN" || savedLocale === "en" ? savedLocale : browserLocale, false);
+      languageToggle.addEventListener("click", () => {
+        setLanguage(currentLocale === "en" ? "zh-CN" : "en");
+      });
 
       function trackEvent(name, parameters) {
         if (analyticsEnabled && typeof window.gtag === "function") {
@@ -678,7 +994,6 @@
       });
 
       const liquidGlassInstances = [
-        liquidGlass(document.querySelector('[data-liquid-glass="header"]'), { scale: -88, chroma: 4, mapBlur: 7 }),
         liquidGlass(document.querySelector('[data-liquid-glass="play-button"]'), { scale: -62, chroma: 3.5, mapBlur: 6 }),
         liquidGlass(document.querySelector('[data-liquid-glass="paypal"]'), { scale: -76, chroma: 3.5, mapBlur: 7 })
       ];

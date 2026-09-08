@@ -12,10 +12,11 @@
 
 Final result: passed.
 
-## Floating capsule header
+## Header navigation
 
-- Desktop: the header is centered and capped at 780px with a full-pill radius; it remains part of normal page flow.
-- Mobile: the stacked header remains within the viewport without horizontal overflow.
+- Desktop: the header uses a wide transparent layout with the brand on the left, Download as the primary action, and secondary links on the right.
+- Mobile: the header stacks its brand and navigation without a surrounding capsule or horizontal overflow.
+- The header Download link reaches the installation section and the language toggle remains keyboard accessible.
 
 ## PayPal CTA glass refinement
 
@@ -30,3 +31,12 @@ Final result: passed.
 - Before the video can play its first segment, the thumbnail keeps its 16:9 frame without a centered play control or loading text.
 - Buffering and playback failures do not display state text; the play control becomes reachable only when playback cannot proceed.
 - The consent card is visible for a new visitor. GA4 is configured only after “Allow analytics” with automatic page views disabled; declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.
+
+## Installation and localization
+
+- Desktop: the header Download link reaches the two-card installation section while retaining the wide transparent header treatment.
+- Mobile: the two installation cards stack vertically, and the six local-installation steps do not create horizontal overflow.
+- The ZIP action downloads the current `Polaris-for-Web-0.48.3-build-196.zip` asset; the archive contains a root `manifest.json` with version name `0.48.3(196)`.
+- The first visit follows the browser language (`zh-*` uses Simplified Chinese and other languages use English); switching languages updates all homepage copy and persists after refresh.
+
+Verification: passed on the local static server at desktop and mobile viewport sizes; language switching, persistence, anchor navigation, and ZIP download were verified.

@@ -8,6 +8,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 - `assets/polaris-introduction.mp4` is a 1440×916, 30fps H.264 muted autoplay video with a fast-start MP4 index.
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
+- `assets/Polaris-for-Web-0.48.3-build-196.zip` is the current unpacked-extension bundle for local installation; its archive root contains the generated extension files and `manifest.json` reports `0.48.3(196)`.
 - `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, PayPal URL, and GA4 Measurement ID.
@@ -31,4 +32,10 @@ Hero typography rules are recorded in [design-guideline.md](design-guideline.md)
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- Header, failure-recovery video play control, and PayPal CTA use real liquid-glass refraction in supported Chromium browsers and retain CSS frosted-glass fallbacks elsewhere.
+- The transparent header keeps Download as the primary action; the failure-recovery video play control and PayPal CTA use real liquid-glass refraction in supported Chromium browsers and retain CSS frosted-glass fallbacks elsewhere.
+
+## Installation and localization
+
+- The homepage header links to an installation section with local ZIP installation and Chrome Web Store installation options.
+- The local option explains how to load the unzipped extension from `chrome://extensions` with Developer mode enabled.
+- The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.
