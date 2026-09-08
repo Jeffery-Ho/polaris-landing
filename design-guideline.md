@@ -27,7 +27,7 @@
 - Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` only for accent text, capability indexes, and interactive states; keep surfaces and primary CTAs solid.
 - Use white for the primary installation action and a dark outlined treatment for local ZIP installation.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
-- Provide compact pill-style language and theme switches outside the navigation. Default to the system preference and persist explicit choices locally.
+- Provide a compact language dropdown and pill-style theme switch outside the navigation. Default to the system preference and persist explicit choices locally.
 
 ## Installation section
 

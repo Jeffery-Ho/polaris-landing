@@ -1687,50 +1687,146 @@
         gap: 6px;
       }
 
-      .preference-switch {
+      .language-control {
+        position: relative;
+      }
+
+      .language-toggle {
         display: inline-flex;
         min-height: 34px;
         align-items: center;
-        gap: 1px;
+        gap: 7px;
+        padding: 7px 8px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .language-toggle:hover,
+      .language-toggle:focus-visible {
+        background: var(--panel-bg-raised);
+        color: var(--logo-accent);
+      }
+
+      .language-toggle-icon,
+      .language-toggle-chevron {
+        flex: none;
+      }
+
+      .language-toggle-icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .language-toggle-chevron {
+        width: 14px;
+        height: 14px;
+        transition: transform var(--transition);
+      }
+
+      .language-toggle[aria-expanded="true"] .language-toggle-chevron {
+        transform: rotate(180deg);
+      }
+
+      .language-menu {
+        position: absolute;
+        z-index: 10;
+        top: calc(100% + 10px);
+        right: 0;
+        display: grid;
+        min-width: 180px;
+        gap: 2px;
+        padding: 8px;
+        border: 1px solid var(--line-strong);
+        border-radius: 14px;
+        background: var(--panel-bg-raised);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-6px);
+        visibility: hidden;
+        transition: opacity var(--transition), transform var(--transition), visibility 0s linear var(--transition);
+      }
+
+      .language-menu[data-menu-open="true"] {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+        visibility: visible;
+        transition-delay: 0s;
+      }
+
+      .language-option {
+        min-height: 42px;
+        padding: 9px 12px;
+        border: 0;
+        border-radius: 9px;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+        text-align: left;
+      }
+
+      .language-option[aria-selected="true"] {
+        color: var(--text-primary);
+        font-weight: 650;
+      }
+
+      .language-option:hover,
+      .language-option:focus-visible {
+        background: var(--panel-bg);
+        color: var(--text-primary);
+      }
+
+      .theme-toggle {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        gap: 2px;
         padding: 3px;
         border: 1px solid var(--line);
         border-radius: 999px;
         background: var(--panel-bg-raised);
       }
 
-      .preference-option {
-        min-width: 30px;
-        min-height: 26px;
-        padding: 5px 8px;
+      .theme-option {
+        display: grid;
+        width: 28px;
+        height: 26px;
+        place-items: center;
+        padding: 0;
         border: 0;
         border-radius: 999px;
         background: transparent;
         color: var(--text-muted);
         cursor: pointer;
-        font: inherit;
-        font-size: 12px;
-        font-weight: 650;
-        line-height: 1;
-        transition: background-color var(--transition), color var(--transition);
       }
 
-      .preference-option[aria-pressed="true"] {
+      .theme-option svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .theme-option[aria-pressed="true"] {
         background: var(--text-primary);
         color: var(--page-bg);
       }
 
-      .preference-option:hover,
-      .preference-option:focus-visible {
+      .theme-option:hover,
+      .theme-option:focus-visible {
         color: var(--logo-accent);
       }
 
-      .preference-option[aria-pressed="true"]:hover,
-      .preference-option[aria-pressed="true"]:focus-visible {
+      .theme-option[aria-pressed="true"]:hover,
+      .theme-option[aria-pressed="true"]:focus-visible {
         color: var(--page-bg);
-      }
-
-      .preference-divider {
-        display: none;
       }
 
       .header-link {
@@ -1767,15 +1863,12 @@
         color: #000000;
       }
 
-      .language-toggle,
       .theme-toggle {
         border-color: var(--line);
         background: var(--panel-bg-raised);
         color: var(--text-secondary);
       }
 
-      .language-toggle:hover,
-      .language-toggle:focus-visible,
       .theme-toggle:hover,
       .theme-toggle:focus-visible {
         border-color: var(--logo-accent);
@@ -1785,10 +1878,6 @@
 
       .header-link:not(.header-link--primary):hover,
       .header-link:not(.header-link--primary):focus-visible,
-      .language-toggle:hover,
-      .language-toggle:focus-visible,
-      .theme-toggle:hover,
-      .theme-toggle:focus-visible,
       .creator-link:hover,
       .creator-link:focus-visible,
       .hero-link:not(.hero-link--primary):hover,
@@ -2283,13 +2372,18 @@
           gap: 4px;
         }
 
-        .preference-switch {
+        .language-toggle,
+        .theme-toggle {
           min-height: 38px;
         }
 
-        .preference-option {
-          min-height: 30px;
-          padding: 6px 8px;
+        .language-toggle {
+          padding: 8px;
+        }
+
+        .theme-option {
+          width: 30px;
+          height: 30px;
         }
 
         .header-link--primary {
@@ -2299,14 +2393,8 @@
         }
 
         .header-links .header-link,
-        .header-links .language-toggle,
-        .header-links .theme-toggle,
         .header-links .header-link:hover,
         .header-links .header-link:focus-visible,
-        .header-links .language-toggle:hover,
-        .header-links .language-toggle:focus-visible,
-        .header-links .theme-toggle:hover,
-        .header-links .theme-toggle:focus-visible,
         .header-links .header-link--primary:hover,
         .header-links .header-link--primary:focus-visible {
           border-color: transparent;
@@ -2315,10 +2403,6 @@
 
         .header-links .header-link:hover,
         .header-links .header-link:focus-visible,
-        .header-links .language-toggle:hover,
-        .header-links .language-toggle:focus-visible,
-        .header-links .theme-toggle:hover,
-        .header-links .theme-toggle:focus-visible,
         .header-links .header-link--primary:hover,
         .header-links .header-link--primary:focus-visible {
           color: var(--logo-accent);
@@ -2326,10 +2410,6 @@
 
         .header-links .header-link:hover,
         .header-links .header-link:focus-visible,
-        .header-links .language-toggle:hover,
-        .header-links .language-toggle:focus-visible,
-        .header-links .theme-toggle:hover,
-        .header-links .theme-toggle:focus-visible,
         .header-links .header-link--primary:hover,
         .header-links .header-link--primary:focus-visible {
           background-image: var(--theme-gradient);
@@ -2343,7 +2423,9 @@
       @media (prefers-reduced-motion: reduce) {
         .header-menu-toggle,
         .header-menu-toggle .menu-line,
-        .header-links {
+        .header-links,
+        .language-toggle-chevron,
+        .language-menu {
           transition: none;
         }
 
@@ -2377,15 +2459,28 @@
             </a>
           </nav>
           <div class="header-preferences">
-            <div class="preference-switch language-toggle" data-language-toggle role="group" aria-label="Language">
-              <button class="preference-option" data-language-option="zh-CN" type="button" aria-label="Chinese" aria-pressed="false">中</button>
-              <span class="preference-divider" aria-hidden="true">/</span>
-              <button class="preference-option" data-language-option="en" type="button" aria-label="English" aria-pressed="true">EN</button>
+            <div class="language-control" data-language-control>
+              <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+                <svg class="language-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M4 5h8M8 3v2c0 4-2 7-5 9M5 9c1.5 2 3.5 3.5 6 4.5M15 5h5M17.5 3v2M14 18h6M17 14v4M14.5 21l2.5-7 2.5 7M15.5 19h3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+                </svg>
+                <span data-language-current>EN</span>
+                <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
+                </svg>
+              </button>
+              <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
+                <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
+                <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
+              </div>
             </div>
-            <div class="preference-switch theme-toggle" data-theme-toggle role="group" aria-label="Theme">
-              <button class="preference-option" data-theme-option="dark" type="button" aria-pressed="true">Dark</button>
-              <span class="preference-divider" aria-hidden="true">/</span>
-              <button class="preference-option" data-theme-option="light" type="button" aria-pressed="false">Light</button>
+            <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme">
+              <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" aria-pressed="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+              </button>
+              <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
+              </button>
             </div>
           </div>
           <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
@@ -2515,6 +2610,9 @@
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
       const analyticsSettings = document.querySelector("[data-analytics-settings]");
       const languageToggle = document.querySelector("[data-language-toggle]");
+      const languageCurrent = document.querySelector("[data-language-current]");
+      const languageMenu = document.querySelector("[data-language-menu]");
+      const languageControl = document.querySelector("[data-language-control]");
       const languageOptions = document.querySelectorAll("[data-language-option]");
       const themeToggle = document.querySelector("[data-theme-toggle]");
       const themeOptions = document.querySelectorAll("[data-theme-option]");
@@ -2675,9 +2773,10 @@
 
       function updateLanguageToggle(dictionary = translations[currentLocale]) {
         languageToggle.setAttribute("aria-label", dictionary["locale.group"]);
+        languageCurrent.textContent = currentLocale === "zh-CN" ? "中" : "EN";
         languageOptions.forEach((option) => {
           const locale = option.dataset.languageOption;
-          option.setAttribute("aria-pressed", String(locale === currentLocale));
+          option.setAttribute("aria-selected", String(locale === currentLocale));
           option.setAttribute("aria-label", dictionary[locale === "zh-CN" ? "locale.chinese" : "locale.english"]);
         });
       }
@@ -2687,10 +2786,18 @@
         themeToggle.setAttribute("aria-label", dictionary["theme.group"]);
         themeOptions.forEach((option) => {
           const theme = option.dataset.themeOption;
-          option.textContent = dictionary[theme === "dark" ? "theme.optionDark" : "theme.optionLight"];
           option.setAttribute("aria-pressed", String(theme === currentTheme));
           option.setAttribute("aria-label", dictionary[theme === currentTheme ? `theme.to${nextTheme === "light" ? "Light" : "Dark"}` : theme === "dark" ? "theme.optionDark" : "theme.optionLight"]);
         });
+      }
+
+      function setLanguageMenuOpen(isOpen, restoreFocus = false) {
+        languageToggle.setAttribute("aria-expanded", String(isOpen));
+        languageMenu.dataset.menuOpen = String(isOpen);
+
+        if (!isOpen && restoreFocus) {
+          languageToggle.focus();
+        }
       }
 
       function setTheme(theme, persist = true) {
@@ -2740,6 +2847,7 @@
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         updateLanguageToggle(dictionary);
         updateThemeToggle(dictionary);
+        setLanguageMenuOpen(false);
         menuToggle.setAttribute("aria-label", dictionary[menuToggle.getAttribute("aria-expanded") === "true" ? "nav.menu.close" : "nav.menu.open"]);
 
         if (persist) {
@@ -2764,6 +2872,12 @@
         if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
           setMenuOpen(false, true);
         }
+        if (event.key === "Escape" && languageToggle.getAttribute("aria-expanded") === "true") {
+          setLanguageMenuOpen(false, true);
+        }
+      });
+      languageToggle.addEventListener("click", () => {
+        setLanguageMenuOpen(languageToggle.getAttribute("aria-expanded") !== "true");
       });
       languageOptions.forEach((option) => option.addEventListener("click", () => {
         setLanguage(option.dataset.languageOption);
@@ -2771,6 +2885,11 @@
       themeOptions.forEach((option) => option.addEventListener("click", () => {
         setTheme(option.dataset.themeOption);
       }));
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest("[data-language-control]")) {
+          setLanguageMenuOpen(false);
+        }
+      });
       installNavigationLinks.forEach((installNavigationLink) => installNavigationLink.addEventListener("click", (event) => {
         event.preventDefault();
         setMenuOpen(false);
