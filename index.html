@@ -1478,6 +1478,89 @@
         transform: translateY(0);
       }
 
+      .header-menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        flex: none;
+        place-items: center;
+        border: 1px solid #333333;
+        border-radius: 8px;
+        background: #000000;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      .header-menu-toggle:hover,
+      .header-menu-toggle:focus-visible {
+        border-color: #e879d2;
+        color: #e879d2;
+      }
+
+      .header-menu-toggle svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-width: 720px) {
+        .site-header {
+          position: relative;
+          align-items: center;
+          flex-direction: row;
+          gap: 16px;
+          min-height: 46px;
+          padding: 0;
+        }
+
+        .header-menu-toggle {
+          display: grid;
+          margin-left: auto;
+        }
+
+        .header-links {
+          position: absolute;
+          z-index: 5;
+          top: calc(100% + 12px);
+          right: 0;
+          left: 0;
+          display: none;
+          width: auto;
+          flex-direction: column;
+          align-items: stretch;
+          flex-wrap: nowrap;
+          gap: 2px;
+          padding: 8px;
+          border: 1px solid #2a2a2a;
+          border-radius: 12px;
+          background: #050505;
+          box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+        }
+
+        .header-links[data-menu-open="true"] {
+          display: flex;
+        }
+
+        .header-link,
+        .language-toggle {
+          width: 100%;
+          min-height: 44px;
+          justify-content: flex-start;
+          padding: 10px 12px;
+          border-radius: 8px;
+        }
+
+        .language-toggle {
+          display: flex;
+          align-items: center;
+          text-align: left;
+        }
+
+        .header-link--primary {
+          background: #ffffff;
+          color: #000000;
+        }
+      }
+
       .header-link,
       .hero-link,
       .install-card-button,
@@ -1499,7 +1582,12 @@
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
           <span>Polaris</span>
         </a>
-        <nav class="header-links" aria-label="Polaris links">
+        <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 6.5h16M4 12h16M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+          </svg>
+        </button>
+        <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
           <a class="header-link header-link--primary" href="#install">
             <span data-i18n="nav.install">Install</span>
           </a>
@@ -1621,6 +1709,8 @@
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
       const analyticsSettings = document.querySelector("[data-analytics-settings]");
       const languageToggle = document.querySelector("[data-language-toggle]");
+      const menuToggle = document.querySelector("[data-menu-toggle]");
+      const menuPanel = document.querySelector("[data-menu-panel]");
       const installNavigationLinks = document.querySelectorAll('a[href="#install"]');
       const installSection = document.querySelector("#install");
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
@@ -1631,6 +1721,8 @@
       const translations = Object.freeze({
         en: Object.freeze({
           "nav.skip": "Skip to content",
+          "nav.menu.open": "Open menu",
+          "nav.menu.close": "Close menu",
           "nav.install": "Install",
           "nav.features": "How it works",
           "nav.issues": "GitHub Issues",
@@ -1682,6 +1774,8 @@
         }),
         "zh-CN": Object.freeze({
           "nav.skip": "跳到正文",
+          "nav.menu.open": "打开菜单",
+          "nav.menu.close": "关闭菜单",
           "nav.install": "安装",
           "nav.features": "功能",
           "nav.issues": "GitHub 问题反馈",
@@ -1738,6 +1832,16 @@
       let slsTracker = null;
       let slsArrivalTracked = false;
 
+      function setMenuOpen(isOpen, restoreFocus = false) {
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", translations[currentLocale][isOpen ? "nav.menu.close" : "nav.menu.open"]);
+        menuPanel.dataset.menuOpen = String(isOpen);
+
+        if (!isOpen && restoreFocus) {
+          menuToggle.focus();
+        }
+      }
+
       function setLanguage(locale, persist = true) {
         const dictionary = translations[locale] || translations.en;
         currentLocale = locale in translations ? locale : "en";
@@ -1773,6 +1877,7 @@
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         languageToggle.textContent = dictionary["locale.toggle"];
         languageToggle.setAttribute("aria-label", dictionary["locale.toggleAria"]);
+        menuToggle.setAttribute("aria-label", dictionary[menuToggle.getAttribute("aria-expanded") === "true" ? "nav.menu.close" : "nav.menu.open"]);
 
         if (persist) {
           window.localStorage.setItem(localeStorageKey, currentLocale);
@@ -1782,11 +1887,25 @@
       const savedLocale = window.localStorage.getItem(localeStorageKey);
       const browserLocale = /^zh(?:-|$)/i.test(navigator.language || "") ? "zh-CN" : "en";
       setLanguage(savedLocale === "zh-CN" || savedLocale === "en" ? savedLocale : browserLocale, false);
+      menuToggle.addEventListener("click", () => {
+        setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+      });
+      menuPanel.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          setMenuOpen(false);
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+          setMenuOpen(false, true);
+        }
+      });
       languageToggle.addEventListener("click", () => {
         setLanguage(currentLocale === "en" ? "zh-CN" : "en");
       });
       installNavigationLinks.forEach((installNavigationLink) => installNavigationLink.addEventListener("click", (event) => {
         event.preventDefault();
+        setMenuOpen(false);
         installSection.scrollIntoView({
           behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
           block: "start"

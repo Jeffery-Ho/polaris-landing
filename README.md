@@ -38,5 +38,6 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 ## Installation and localization
 
 - The homepage header links to an installation section with local ZIP installation and Chrome Web Store installation options.
+- On small screens, the header collapses to the Polaris logo and an accessible menu button; opening it reveals the same navigation actions without changing their URLs.
 - The local option explains the shortest path: download and unzip the package, then load the folder from `chrome://extensions` with Developer mode enabled.
 - The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.

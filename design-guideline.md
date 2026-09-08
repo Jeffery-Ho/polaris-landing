@@ -16,7 +16,7 @@
 
 - Use a wide, transparent header with the brand aligned left and a small navigation aligned right.
 - Make Install the only filled primary action; keep How it works, GitHub Issues, and the language toggle as lightweight controls.
-- On mobile, preserve the stacked navigation layout and its readable spacing without a surrounding capsule.
+- On mobile, collapse the navigation to a Polaris logo plus menu button. Open the links in a compact bordered panel with at least 44px touch targets.
 - Keep the header in normal page flow so the installation anchor remains predictable.
 
 ## Visual system
