@@ -4,7 +4,7 @@
 
 - Do not render an eyebrow or category label above the headline.
 - Use a large, compact headline with a clear product outcome.
-- Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for links, focus states, and small indexes.
+- Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for accent text and small indexes.
 - Use a split hero: product value and actions on the left, the introduction video as the primary visual on the right.
 - Keep the sequence as split hero, capabilities grid, installation panels, then support and privacy.
 
@@ -23,8 +23,9 @@
 ## Visual system
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
-- Use crisp 1px borders, 8px control and panel radii, generous spacing, and no background gradients, blur, or glass surfaces.
-- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` only for accent text, capability indexes, and interactive states; keep surfaces and primary CTAs solid.
+- Use crisp 1px borders, 8px control and panel radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
+- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and the local ZIP action; keep other surfaces and primary CTAs solid.
+- Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
 - Use white for the primary installation action and a dark outlined treatment for local ZIP installation.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
 - Provide a compact language dropdown and pill-style theme switch outside the navigation. Default to the system preference and persist explicit choices locally.

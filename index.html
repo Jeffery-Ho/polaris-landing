@@ -1608,8 +1608,12 @@
         --code-text: #d8d8d8;
         --line: rgba(255, 255, 255, 0.16);
         --line-strong: rgba(255, 255, 255, 0.28);
+        --interactive-bg: rgba(255, 255, 255, 0.08);
+        --interactive-border: rgba(255, 255, 255, 0.32);
+        --focus-color: #ffffff;
         --logo-accent: #e879d2;
         --theme-gradient: linear-gradient(135deg, #ffb36b 0%, #e879d2 52%, #7892ff 100%);
+        --menu-hover-bg: rgba(255, 255, 255, 0.08);
         --page-width: 1200px;
         --page-margin: 24px;
         --control-radius: 8px;
@@ -1630,6 +1634,10 @@
         --code-text: #333333;
         --line: rgba(0, 0, 0, 0.14);
         --line-strong: rgba(0, 0, 0, 0.24);
+        --interactive-bg: rgba(0, 0, 0, 0.06);
+        --interactive-border: rgba(0, 0, 0, 0.28);
+        --focus-color: #000000;
+        --menu-hover-bg: rgba(0, 0, 0, 0.06);
         color-scheme: light;
       }
 
@@ -2251,8 +2259,10 @@
       }
 
       .header-menu-toggle:hover,
-      .header-menu-toggle:focus-visible {
+      .header-menu-toggle:focus-visible,
+      .header-menu-toggle[aria-expanded="true"] {
         border-color: transparent;
+        background: var(--menu-hover-bg);
         color: var(--text-primary);
       }
 
@@ -2262,8 +2272,144 @@
         stroke: url("#polaris-theme-gradient");
       }
 
+      :root[data-theme="light"] .header-menu-toggle:hover .menu-line,
+      :root[data-theme="light"] .header-menu-toggle:focus-visible .menu-line,
+      :root[data-theme="light"] .header-menu-toggle[aria-expanded="true"] .menu-line {
+        stroke: var(--text-primary);
+      }
+
+      /* Shared interaction language: quiet surfaces, crisp edges, no hover lift. */
+      .header-link:not(.header-link--primary),
+      .creator-link,
+      .hero-link:not(.hero-link--primary),
+      .language-toggle,
+      .language-option,
+      .theme-option,
+      .header-menu-toggle,
+      .privacy-link,
+      .analytics-settings-button,
+      .install-steps a,
+      .analytics-consent-button {
+        transition: border-color var(--transition), background-color var(--transition), color var(--transition), opacity var(--transition);
+      }
+
+      .header-link:not(.header-link--primary):hover,
+      .header-link:not(.header-link--primary):focus-visible,
+      .creator-link:hover,
+      .creator-link:focus-visible,
+      .hero-link:not(.hero-link--primary):hover,
+      .hero-link:not(.hero-link--primary):focus-visible,
+      .language-toggle:hover,
+      .language-toggle:focus-visible,
+      .language-option:hover,
+      .language-option:focus-visible,
+      .theme-option:hover,
+      .theme-option:focus-visible,
+      .header-menu-toggle:hover,
+      .header-menu-toggle:focus-visible,
+      .privacy-link:hover,
+      .privacy-link:focus-visible,
+      .analytics-settings-button:hover,
+      .analytics-settings-button:focus-visible,
+      .install-steps a:hover,
+      .install-steps a:focus-visible,
+      .analytics-consent-button:hover,
+      .analytics-consent-button:focus-visible {
+        border-color: var(--interactive-border);
+        background-color: var(--interactive-bg);
+        background-image: none;
+        color: var(--text-primary);
+        -webkit-text-fill-color: currentColor;
+        transform: none;
+      }
+
+      .theme-toggle:hover,
+      .theme-toggle:focus-visible {
+        border-color: var(--interactive-border);
+        background-color: var(--panel-bg-raised);
+        color: var(--text-primary);
+      }
+
+      .theme-option[aria-pressed="true"],
+      .theme-option[aria-pressed="true"]:hover,
+      .theme-option[aria-pressed="true"]:focus-visible {
+        border-color: transparent;
+        background-color: var(--text-primary);
+        color: var(--page-bg);
+      }
+
+      .install-card:not(.install-card--store) .install-card-button {
+        border: 1px solid transparent;
+        background: linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box, var(--theme-gradient) border-box;
+        background-clip: padding-box, border-box;
+        -webkit-background-clip: padding-box, border-box;
+        color: var(--text-primary);
+      }
+
+      .install-card:not(.install-card--store) .install-card-button:hover,
+      .install-card:not(.install-card--store) .install-card-button:focus-visible {
+        border-color: transparent;
+        background: linear-gradient(var(--interactive-bg), var(--interactive-bg)) padding-box, var(--theme-gradient) border-box;
+        background-clip: padding-box, border-box;
+        -webkit-background-clip: padding-box, border-box;
+        color: var(--text-primary);
+        transform: none;
+      }
+
+      .install-card:not(.install-card--store) .install-card-button-label {
+        background-image: var(--theme-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .install-card--store .install-card-button:hover,
+      .install-card--store .install-card-button:focus-visible,
+      .hero-link--primary:hover,
+      .hero-link--primary:focus-visible {
+        border-color: var(--text-primary);
+        background-color: var(--text-primary);
+        background-image: none;
+        color: var(--page-bg);
+        -webkit-text-fill-color: currentColor;
+        filter: brightness(1.06);
+        transform: none;
+      }
+
+      @media (min-width: 801px) {
+        .header-link--primary:hover,
+        .header-link--primary:focus-visible {
+          border-color: var(--text-primary);
+          background-color: var(--text-primary);
+          background-image: none;
+          color: var(--page-bg);
+          -webkit-text-fill-color: currentColor;
+          filter: brightness(1.06);
+          transform: none;
+        }
+      }
+
+      .video-play-button:hover,
+      .video-play-button:focus-visible {
+        border-color: var(--interactive-border);
+        background-color: var(--text-primary);
+        color: var(--page-bg);
+        transform: translate(-50%, -50%);
+      }
+
+      .support-button:hover,
+      .support-button:focus-visible {
+        border-color: #ffd1a3;
+        background-color: #ff9226;
+        color: #ffffff;
+        filter: brightness(1.04);
+        transform: none;
+      }
+
       :focus-visible {
-        outline-color: var(--logo-accent);
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
       }
 
       @media (max-width: 800px) {
@@ -2405,18 +2551,11 @@
         .header-links .header-link:focus-visible,
         .header-links .header-link--primary:hover,
         .header-links .header-link--primary:focus-visible {
-          color: var(--logo-accent);
-        }
-
-        .header-links .header-link:hover,
-        .header-links .header-link:focus-visible,
-        .header-links .header-link--primary:hover,
-        .header-links .header-link--primary:focus-visible {
-          background-image: var(--theme-gradient);
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
+          border-color: var(--interactive-border);
+          background: var(--interactive-bg);
+          background-image: none;
+          color: var(--text-primary);
+          -webkit-text-fill-color: currentColor;
         }
       }
 
