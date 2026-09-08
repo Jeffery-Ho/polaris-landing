@@ -4,7 +4,7 @@
 
 - Do not render an eyebrow or category label above the headline.
 - Use a large, compact headline with a clear product outcome.
-- Keep the supporting sentence neutral gray; reserve the logo border accent for links, focus states, and small indexes.
+- Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for links, focus states, and small indexes.
 - Use a split hero: product value and actions on the left, the introduction video as the primary visual on the right.
 - Keep the sequence as split hero, capabilities grid, installation panels, then support and privacy.
 
@@ -15,18 +15,19 @@
 
 ## Header
 
-- Use a compact, transparent header with the brand aligned left and small bordered controls aligned right.
-- Make Install the only filled primary action; keep How it works, GitHub Issues, and the language toggle as lightweight controls.
+- Use a compact, transparent header with the brand aligned left, navigation in the middle, and pill-style preference switches outside the navigation.
+- Make Install the only filled primary action; keep How it works, GitHub Issues, language, and theme controls lightweight.
 - On mobile, collapse the navigation to a Polaris logo plus menu button. Open the links in a compact bordered panel with at least 44px touch targets.
 - Keep the header in normal page flow so the installation anchor remains predictable.
 
 ## Visual system
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
-- Use crisp 1px borders, 8px control and panel radii, generous spacing, and no gradients, blur, or glass surfaces.
-- Use the logo border accent `#e879d2` only for links, focus rings, and capability indexes.
+- Use crisp 1px borders, 8px control and panel radii, generous spacing, and no background gradients, blur, or glass surfaces.
+- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` only for accent text, capability indexes, and interactive states; keep surfaces and primary CTAs solid.
 - Use white for the primary installation action and a dark outlined treatment for local ZIP installation.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
+- Provide compact pill-style language and theme switches outside the navigation. Default to the system preference and persist explicit choices locally.
 
 ## Installation section
 

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark light">
     <meta name="description" content="Polaris AI Navigator is a Chrome extension for navigating long AI answers with section markers and one-click jumps.">
     <link rel="canonical" href="https://jeffery-ho.github.io/polaris-landing/">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png">
@@ -55,6 +56,21 @@
         document.documentElement.dataset.platform = "windows";
       }
     </script>
+    <script>
+      (() => {
+        const storageKey = "polaris-landing-theme";
+        let savedTheme = null;
+
+        try {
+          savedTheme = window.localStorage.getItem(storageKey);
+        } catch {
+          savedTheme = null;
+        }
+
+        const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
+      })();
+    </script>
     <style>
       @font-face {
         font-family: "Polaris Sans";
@@ -66,6 +82,7 @@
       }
 
       :root {
+        color-scheme: dark;
         color: #15161a;
         background: #f8f8fb;
         font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -1227,7 +1244,7 @@
 
       .header-link--primary {
         background: #ffffff;
-        color: #000000;
+        color: var(--page-bg);
       }
 
       .header-link:hover,
@@ -1587,18 +1604,44 @@
         --text-primary: #ededed;
         --text-secondary: #888888;
         --text-muted: #666666;
+        --code-bg: rgba(255, 255, 255, 0.08);
+        --code-text: #d8d8d8;
         --line: rgba(255, 255, 255, 0.16);
         --line-strong: rgba(255, 255, 255, 0.28);
         --logo-accent: #e879d2;
+        --theme-gradient: linear-gradient(135deg, #ffb36b 0%, #e879d2 52%, #7892ff 100%);
         --page-width: 1200px;
         --page-margin: 24px;
         --control-radius: 8px;
         --transition: 160ms ease;
+        color-scheme: dark;
+        color: var(--text-primary);
+        background: var(--page-bg);
+      }
+
+      :root[data-theme="light"] {
+        --page-bg: #ffffff;
+        --panel-bg: #fafafa;
+        --panel-bg-raised: #f4f4f4;
+        --text-primary: #171717;
+        --text-secondary: #666666;
+        --text-muted: #888888;
+        --code-bg: rgba(0, 0, 0, 0.07);
+        --code-text: #333333;
+        --line: rgba(0, 0, 0, 0.14);
+        --line-strong: rgba(0, 0, 0, 0.24);
+        color-scheme: light;
       }
 
       body {
         background: var(--page-bg);
         color: var(--text-primary);
+      }
+
+      .skip-link {
+        border-color: var(--text-primary);
+        background: var(--text-primary);
+        color: var(--page-bg);
       }
 
       .page-shell {
@@ -1611,6 +1654,14 @@
         min-height: 48px;
         gap: 24px;
         padding: 0;
+      }
+
+      .header-end {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-left: auto;
       }
 
       .brand {
@@ -1630,8 +1681,59 @@
         gap: 2px;
       }
 
-      .header-link,
-      .language-toggle {
+      .header-preferences {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .preference-switch {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        gap: 1px;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--panel-bg-raised);
+      }
+
+      .preference-option {
+        min-width: 30px;
+        min-height: 26px;
+        padding: 5px 8px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1;
+        transition: background-color var(--transition), color var(--transition);
+      }
+
+      .preference-option[aria-pressed="true"] {
+        background: var(--text-primary);
+        color: var(--page-bg);
+      }
+
+      .preference-option:hover,
+      .preference-option:focus-visible {
+        color: var(--logo-accent);
+      }
+
+      .preference-option[aria-pressed="true"]:hover,
+      .preference-option[aria-pressed="true"]:focus-visible {
+        color: var(--page-bg);
+      }
+
+      .preference-divider {
+        display: none;
+      }
+
+      .header-link {
         min-height: 34px;
         padding: 7px 9px;
         border: 1px solid transparent;
@@ -1647,7 +1749,7 @@
         padding-left: 13px;
         border-color: var(--line-strong);
         background: var(--text-primary);
-        color: #000000;
+        color: var(--page-bg);
       }
 
       .header-link:hover,
@@ -1665,17 +1767,40 @@
         color: #000000;
       }
 
-      .language-toggle {
+      .language-toggle,
+      .theme-toggle {
         border-color: var(--line);
-        background: transparent;
+        background: var(--panel-bg-raised);
         color: var(--text-secondary);
       }
 
       .language-toggle:hover,
-      .language-toggle:focus-visible {
+      .language-toggle:focus-visible,
+      .theme-toggle:hover,
+      .theme-toggle:focus-visible {
         border-color: var(--logo-accent);
-        background: transparent;
+        background: var(--panel-bg-raised);
         color: var(--logo-accent);
+      }
+
+      .header-link:not(.header-link--primary):hover,
+      .header-link:not(.header-link--primary):focus-visible,
+      .language-toggle:hover,
+      .language-toggle:focus-visible,
+      .theme-toggle:hover,
+      .theme-toggle:focus-visible,
+      .creator-link:hover,
+      .creator-link:focus-visible,
+      .hero-link:not(.hero-link--primary):hover,
+      .hero-link:not(.hero-link--primary):focus-visible,
+      .install-card:not(.install-card--store) .install-card-button:hover,
+      .install-card:not(.install-card--store) .install-card-button:focus-visible,
+      .install-steps a {
+        background-image: var(--theme-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
       }
 
       main {
@@ -1738,7 +1863,7 @@
       .hero-link--primary {
         border-color: var(--text-primary);
         background: var(--text-primary);
-        color: #000000;
+        color: var(--page-bg);
       }
 
       .hero-link:hover,
@@ -1767,6 +1892,11 @@
 
       .video-placeholder {
         background: var(--panel-bg-raised);
+      }
+
+      code {
+        background: var(--code-bg);
+        color: var(--code-text);
       }
 
       .video-play-button {
@@ -1835,7 +1965,11 @@
       }
 
       .capability-index {
-        color: var(--logo-accent);
+        background-image: var(--theme-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 12px;
         font-weight: 600;
@@ -1912,7 +2046,7 @@
       .install-card--store .install-card-button:focus-visible {
         border-color: var(--text-primary);
         background: var(--text-primary);
-        color: #000000;
+        color: var(--page-bg);
       }
 
       .install-card-button[data-download-loading="true"] {
@@ -1922,7 +2056,7 @@
       }
 
       .install-steps {
-        color: #b8b8b8;
+        color: var(--text-secondary);
       }
 
       .install-steps a {
@@ -1987,7 +2121,7 @@
       }
 
       .footer-separator {
-        color: #555555;
+        color: var(--text-muted);
       }
 
       .analytics-consent {
@@ -2016,7 +2150,7 @@
       .analytics-consent-button--allow {
         border-color: var(--text-primary);
         background: var(--text-primary);
-        color: #000000;
+        color: var(--page-bg);
       }
 
       .header-menu-toggle {
@@ -2029,8 +2163,14 @@
 
       .header-menu-toggle:hover,
       .header-menu-toggle:focus-visible {
-        border-color: var(--logo-accent);
-        color: var(--logo-accent);
+        border-color: transparent;
+        color: var(--text-primary);
+      }
+
+      .header-menu-toggle:hover .menu-line,
+      .header-menu-toggle:focus-visible .menu-line,
+      .header-menu-toggle[aria-expanded="true"] .menu-line {
+        stroke: url("#polaris-theme-gradient");
       }
 
       :focus-visible {
@@ -2133,17 +2273,70 @@
           transition-delay: 0s;
         }
 
-        .header-link,
-        .language-toggle {
+        .header-link {
           min-height: 44px;
           padding: 10px 12px;
           border-radius: 6px;
         }
 
+        .header-preferences {
+          gap: 4px;
+        }
+
+        .preference-switch {
+          min-height: 38px;
+        }
+
+        .preference-option {
+          min-height: 30px;
+          padding: 6px 8px;
+        }
+
         .header-link--primary {
-          border-color: var(--text-primary);
-          background: var(--text-primary);
-          color: #000000;
+          border-color: transparent;
+          background: transparent;
+          color: var(--text-secondary);
+        }
+
+        .header-links .header-link,
+        .header-links .language-toggle,
+        .header-links .theme-toggle,
+        .header-links .header-link:hover,
+        .header-links .header-link:focus-visible,
+        .header-links .language-toggle:hover,
+        .header-links .language-toggle:focus-visible,
+        .header-links .theme-toggle:hover,
+        .header-links .theme-toggle:focus-visible,
+        .header-links .header-link--primary:hover,
+        .header-links .header-link--primary:focus-visible {
+          border-color: transparent;
+          background: transparent;
+        }
+
+        .header-links .header-link:hover,
+        .header-links .header-link:focus-visible,
+        .header-links .language-toggle:hover,
+        .header-links .language-toggle:focus-visible,
+        .header-links .theme-toggle:hover,
+        .header-links .theme-toggle:focus-visible,
+        .header-links .header-link--primary:hover,
+        .header-links .header-link--primary:focus-visible {
+          color: var(--logo-accent);
+        }
+
+        .header-links .header-link:hover,
+        .header-links .header-link:focus-visible,
+        .header-links .language-toggle:hover,
+        .header-links .language-toggle:focus-visible,
+        .header-links .theme-toggle:hover,
+        .header-links .theme-toggle:focus-visible,
+        .header-links .header-link--primary:hover,
+        .header-links .header-link--primary:focus-visible {
+          background-image: var(--theme-gradient);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
         }
       }
 
@@ -2171,25 +2364,45 @@
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
           <span>Polaris</span>
         </a>
-        <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-            <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-            <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-          </svg>
-        </button>
-        <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
-          <a class="header-link header-link--primary" href="#install">
-            <span data-i18n="nav.install">Install</span>
-          </a>
-          <a class="header-link" href="#capabilities">
-            <span data-i18n="nav.features">How it works</span>
-          </a>
-          <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
-            <span data-i18n="nav.issues">GitHub Issues</span>
-          </a>
-          <button class="language-toggle" data-language-toggle type="button">中文</button>
-        </nav>
+        <div class="header-end">
+          <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
+            <a class="header-link header-link--primary" href="#install">
+              <span data-i18n="nav.install">Install</span>
+            </a>
+            <a class="header-link" href="#capabilities">
+              <span data-i18n="nav.features">How it works</span>
+            </a>
+            <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
+              <span data-i18n="nav.issues">GitHub Issues</span>
+            </a>
+          </nav>
+          <div class="header-preferences">
+            <div class="preference-switch language-toggle" data-language-toggle role="group" aria-label="Language">
+              <button class="preference-option" data-language-option="zh-CN" type="button" aria-label="Chinese" aria-pressed="false">中</button>
+              <span class="preference-divider" aria-hidden="true">/</span>
+              <button class="preference-option" data-language-option="en" type="button" aria-label="English" aria-pressed="true">EN</button>
+            </div>
+            <div class="preference-switch theme-toggle" data-theme-toggle role="group" aria-label="Theme">
+              <button class="preference-option" data-theme-option="dark" type="button" aria-pressed="true">Dark</button>
+              <span class="preference-divider" aria-hidden="true">/</span>
+              <button class="preference-option" data-theme-option="light" type="button" aria-pressed="false">Light</button>
+            </div>
+          </div>
+          <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffb36b"></stop>
+                  <stop offset="52%" stop-color="#e879d2"></stop>
+                  <stop offset="100%" stop-color="#7892ff"></stop>
+                </linearGradient>
+              </defs>
+              <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+              <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+              <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+            </svg>
+          </button>
+        </div>
       </header>
 
       <main id="main-content">
@@ -2302,6 +2515,9 @@
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
       const analyticsSettings = document.querySelector("[data-analytics-settings]");
       const languageToggle = document.querySelector("[data-language-toggle]");
+      const languageOptions = document.querySelectorAll("[data-language-option]");
+      const themeToggle = document.querySelector("[data-theme-toggle]");
+      const themeOptions = document.querySelectorAll("[data-theme-option]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
       const installNavigationLinks = document.querySelectorAll('a[href="#install"]');
@@ -2311,6 +2527,7 @@
       const structuredData = document.querySelector('script[type="application/ld+json"]');
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
       const localeStorageKey = "polaris-landing-locale";
+      const themeStorageKey = "polaris-landing-theme";
       const translations = Object.freeze({
         en: Object.freeze({
           "nav.skip": "Skip to content",
@@ -2321,6 +2538,16 @@
           "nav.issues": "GitHub Issues",
           "locale.toggle": "中文",
           "locale.toggleAria": "Switch to Simplified Chinese",
+          "locale.group": "Language",
+          "locale.chinese": "Chinese",
+          "locale.english": "English",
+          "theme.light": "Light",
+          "theme.dark": "Dark",
+          "theme.group": "Theme",
+          "theme.optionDark": "Dark",
+          "theme.optionLight": "Light",
+          "theme.toLight": "Switch to light theme",
+          "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
           "hero.title": "Make long AI conversations easier to navigate.",
@@ -2374,6 +2601,16 @@
           "nav.issues": "GitHub 问题反馈",
           "locale.toggle": "English",
           "locale.toggleAria": "切换到英语",
+          "locale.group": "语言",
+          "locale.chinese": "中文",
+          "locale.english": "英语",
+          "theme.light": "浅色",
+          "theme.dark": "深色",
+          "theme.group": "主题",
+          "theme.optionDark": "深",
+          "theme.optionLight": "浅",
+          "theme.toLight": "切换到浅色模式",
+          "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
           "hero.title": "让长篇 AI 对话更容易阅读和跳转。",
@@ -2420,6 +2657,7 @@
         })
       });
       let currentLocale = "en";
+      let currentTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
       let analyticsEnabled = false;
       let analyticsInitialized = false;
       let slsTracker = null;
@@ -2432,6 +2670,38 @@
 
         if (!isOpen && restoreFocus) {
           menuToggle.focus();
+        }
+      }
+
+      function updateLanguageToggle(dictionary = translations[currentLocale]) {
+        languageToggle.setAttribute("aria-label", dictionary["locale.group"]);
+        languageOptions.forEach((option) => {
+          const locale = option.dataset.languageOption;
+          option.setAttribute("aria-pressed", String(locale === currentLocale));
+          option.setAttribute("aria-label", dictionary[locale === "zh-CN" ? "locale.chinese" : "locale.english"]);
+        });
+      }
+
+      function updateThemeToggle(dictionary = translations[currentLocale]) {
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        themeToggle.setAttribute("aria-label", dictionary["theme.group"]);
+        themeOptions.forEach((option) => {
+          const theme = option.dataset.themeOption;
+          option.textContent = dictionary[theme === "dark" ? "theme.optionDark" : "theme.optionLight"];
+          option.setAttribute("aria-pressed", String(theme === currentTheme));
+          option.setAttribute("aria-label", dictionary[theme === currentTheme ? `theme.to${nextTheme === "light" ? "Light" : "Dark"}` : theme === "dark" ? "theme.optionDark" : "theme.optionLight"]);
+        });
+      }
+
+      function setTheme(theme, persist = true) {
+        currentTheme = theme === "light" ? "light" : "dark";
+        document.documentElement.dataset.theme = currentTheme;
+        document.documentElement.style.colorScheme = currentTheme;
+        document.querySelector('meta[name="theme-color"]').content = currentTheme === "light" ? "#ffffff" : "#000000";
+        updateThemeToggle();
+
+        if (persist) {
+          window.localStorage.setItem(themeStorageKey, currentTheme);
         }
       }
 
@@ -2468,8 +2738,8 @@
         document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
         document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
-        languageToggle.textContent = dictionary["locale.toggle"];
-        languageToggle.setAttribute("aria-label", dictionary["locale.toggleAria"]);
+        updateLanguageToggle(dictionary);
+        updateThemeToggle(dictionary);
         menuToggle.setAttribute("aria-label", dictionary[menuToggle.getAttribute("aria-expanded") === "true" ? "nav.menu.close" : "nav.menu.open"]);
 
         if (persist) {
@@ -2479,6 +2749,8 @@
 
       const savedLocale = window.localStorage.getItem(localeStorageKey);
       const browserLocale = /^zh(?:-|$)/i.test(navigator.language || "") ? "zh-CN" : "en";
+      const savedTheme = window.localStorage.getItem(themeStorageKey);
+      setTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : currentTheme, false);
       setLanguage(savedLocale === "zh-CN" || savedLocale === "en" ? savedLocale : browserLocale, false);
       menuToggle.addEventListener("click", () => {
         setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
@@ -2493,9 +2765,12 @@
           setMenuOpen(false, true);
         }
       });
-      languageToggle.addEventListener("click", () => {
-        setLanguage(currentLocale === "en" ? "zh-CN" : "en");
-      });
+      languageOptions.forEach((option) => option.addEventListener("click", () => {
+        setLanguage(option.dataset.languageOption);
+      }));
+      themeOptions.forEach((option) => option.addEventListener("click", () => {
+        setTheme(option.dataset.themeOption);
+      }));
       installNavigationLinks.forEach((installNavigationLink) => installNavigationLink.addEventListener("click", (event) => {
         event.preventDefault();
         setMenuOpen(false);

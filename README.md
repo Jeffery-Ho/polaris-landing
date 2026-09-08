@@ -33,7 +33,7 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- The compact header keeps Install as the primary action. The hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
+- The compact header keeps Install as the primary action and provides a persisted light/dark theme switch. The hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
 
 ## Installation and localization
 
