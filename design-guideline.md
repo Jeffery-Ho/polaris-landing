@@ -3,8 +3,9 @@
 ## Hero
 
 - Do not render an eyebrow or category label above the headline.
-- Keep the headline compact with `font-size: clamp(40px, 4.6vw, 64px)`.
-- Use `#416bf0` for the supporting sentence so it matches Polaris's blue accent.
+- Use a large, compact headline with a clear product outcome.
+- Keep the supporting sentence neutral gray; reserve the logo border accent for links, focus states, and small indexes.
+- Keep the sequence as value statement, introduction video, capabilities, then installation.
 
 ## Typography
 
@@ -13,15 +14,22 @@
 
 ## Header
 
-- On desktop, use a wide, transparent header with `width: min(1200px, 100%)`, a 64px minimum height, and the brand aligned left with navigation aligned right.
-- Make Download the only filled primary action; keep Chrome Web Store, GitHub Issues, and the language toggle as lightweight secondary controls.
+- Use a wide, transparent header with the brand aligned left and a small navigation aligned right.
+- Make Install the only filled primary action; keep How it works, GitHub Issues, and the language toggle as lightweight controls.
 - On mobile, preserve the stacked navigation layout and its readable spacing without a surrounding capsule.
-- Keep the header in normal page flow so the installation anchor remains predictable; do not apply the liquid-glass displacement filter to this surface.
+- Keep the header in normal page flow so the installation anchor remains predictable.
+
+## Visual system
+
+- Use black, white, and neutral gray as the base palette, with black as the primary page surface.
+- Use fine borders, restrained corner radii, generous spacing, and minimal shadows instead of gradients or glass surfaces.
+- Use the logo border accent `#e879d2` only for links, focus rings, and capability indexes.
+- Use white for the primary installation action and a dark outlined treatment for local ZIP installation.
 
 ## Installation section
 
-- Place a two-option installation section below the introduction video; the header Download link smoothly scrolls to it without an abrupt jump.
-- Use equal glass cards on desktop and a single-column stack on mobile.
+- Place a two-option installation section below the introduction video; the header Install link smoothly scrolls to it without an abrupt jump.
+- Use equal bordered cards on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
 - After the local ZIP action is clicked, show a short loading state with a spinner and ignore repeat clicks while the browser starts the native download; restore the normal label automatically because native downloads do not expose completion to the page.
@@ -33,12 +41,10 @@
 
 ## PayPal CTA
 
-- Use ecommerce orange `#ff7a00` as the CTA base; it distinguishes the support action from the Polaris-blue product accents.
-- Keep the CTA visually prominent through a translucent gradient layer, white glass edge, inset highlight, soft orange shadow, and backdrop blur.
-- Use `scale: -76` with a translucent Polaris-blue base, stronger white highlight, and soft blue elevation so refraction remains visible without compromising white-text contrast.
+- Keep the PayPal action visually prominent with a solid warm-orange button, while keeping installation as the primary product action.
 
 ## Video loading and analytics consent
 
 - Keep the thumbnail visible until the video can play its first segment; do not show a playback button while it loads or plays normally.
-- Do not display loading, buffering, playback-failure, or other video state text. Show the centered liquid-glass play button only when playback cannot proceed; use `scale: -62`, a translucent white base, and a modern near-black play icon.
-- The consent prompt is a compact glass card fixed to the lower edge. It must clearly state that analytics is optional, keep the decline action equally reachable, and allow a later withdrawal from the footer.
+- Do not display loading, buffering, playback-failure, or other video state text. Show a centered black play button only when playback cannot proceed.
+- The consent prompt is a compact white card with a fine border and shadow fixed to the lower edge. It must clearly state that analytics is optional, keep the decline action equally reachable, and allow a later withdrawal from the footer.
