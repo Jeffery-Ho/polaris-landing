@@ -2,6 +2,7 @@
 
 ## 2026-09-09
 
+- 文案：将 Header 主按钮从“Install/安装”改为“Download/下载”，继续指向安装区域。
 - 视觉：将本地安装标题旁的推荐 Badge 改为深浅主题自适应的黑白样式，去除渐变边框。
 - 视觉：在本地安装标题右侧新增地区推荐 Badge，中文显示“中国大陆推荐”，英文显示“Recommended in Mainland China”。
 - 国际化：中文 Footer 保留 “Made with” 英文表述，其余 Footer 文案继续本地化。
