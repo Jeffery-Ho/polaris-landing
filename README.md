@@ -23,7 +23,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 ## Analytics and privacy
 
 - The page does not initialize or send analytics through Google Analytics or SLS until a visitor explicitly chooses “Allow analytics”.
-- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. SLS records UTM-tagged landing-page arrivals and local ZIP download clicks. Neither service receives AI conversation content, extension settings, or PayPal payment details.
+- Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. SLS records UTM-tagged landing-page arrivals and local ZIP download actions, including normalized device, browser, operating-system, viewport, and language categories. A download action means the visitor triggered the browser download control; it does not confirm that the file was saved. Neither service receives raw User-Agent values, device models, IP addresses, AI conversation content, extension settings, or PayPal payment details as event fields.
 - Visitors can change this choice from “Analytics settings” in the footer. The full disclosure is available at [privacy.html](privacy.html).
 - SLS event definitions, query examples, and the Aliyun deployment checklist are documented in [Doc/sls-analytics.md](Doc/sls-analytics.md).
 

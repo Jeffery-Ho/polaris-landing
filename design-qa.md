@@ -30,13 +30,14 @@ Final result: passed.
 
 - Before the video can play its first segment, the thumbnail keeps its 16:9 frame without a centered play control or loading text.
 - Buffering and playback failures do not display state text; the play control becomes reachable only when playback cannot proceed.
-- The consent card is visible for a new visitor. GA4 and SLS are configured only after “Allow analytics” with automatic page views disabled; SLS records UTM-tagged arrivals and ZIP download clicks, while declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.
+- The consent card is visible for a new visitor. GA4 and SLS are configured only after “Allow analytics” with automatic page views disabled; SLS records UTM-tagged arrivals and ZIP download actions with normalized device context, while declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.
 
 ## Installation and localization
 
 - Desktop: the header Download link smoothly scrolls to the two-card installation section while retaining the wide transparent header treatment.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
 - The ZIP action downloads the current `Polaris-for-Web-0.48.3-build-196.zip` asset; the archive contains a root `manifest.json` with version name `0.48.3(196)`.
+- Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.
 - The first visit follows the browser language (`zh-*` uses Simplified Chinese and other languages use English); switching languages updates all homepage copy and persists after refresh.
 
-Verification: passed on the local static server at desktop and mobile viewport sizes; language switching, persistence, anchor navigation, and ZIP download were verified.
+Verification: the inline module syntax, normalized device-context cases, download deduplication, click fallback, static resources, and diff formatting passed locally. Existing desktop and mobile viewport checks remain valid; direct iOS Safari, iOS Chrome, and Android browser acceptance still requires a real-device or browser-automation run.

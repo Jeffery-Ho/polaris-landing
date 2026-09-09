@@ -3011,7 +3011,7 @@
           "footer.privacy": "Privacy",
           "footer.analytics": "Analytics settings",
           "analytics.title": "Help improve Polaris",
-          "analytics.copy": "Allow Google Analytics to measure only support-page interactions. You can change this anytime.",
+          "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure only support-page interactions and anonymous download totals. You can change this anytime.",
           "analytics.allow": "Allow analytics",
           "analytics.decline": "Not now",
           "meta.title": "Polaris AI — AI Chat Navigator for Long Answers",
@@ -3075,7 +3075,7 @@
           "footer.privacy": "隐私政策",
           "footer.analytics": "分析设置",
           "analytics.title": "帮助改进 Polaris",
-          "analytics.copy": "允许 Google Analytics 仅统计支持页面的互动数据。你可以随时修改此选择。",
+          "analytics.copy": "允许 Google Analytics 和阿里云 SLS 仅统计支持页面互动及匿名下载汇总数据。你可以随时修改此选择。",
           "analytics.allow": "允许分析",
           "analytics.decline": "暂不允许",
           "meta.title": "Polaris AI — 长篇 AI 对话导航助手",
@@ -3087,6 +3087,7 @@
       let analyticsEnabled = false;
       let analyticsInitialized = false;
       let slsTracker = null;
+      let slsCredentialsReadyPromise = null;
       let slsArrivalTracked = false;
 
       function setMenuOpen(isOpen, restoreFocus = false) {
@@ -3255,6 +3256,91 @@
         return parameters;
       }
 
+      function detectSlsBrowserFamily() {
+        const userAgent = navigator.userAgent || "";
+
+        if (/EdgA|EdgiOS|Edg\//i.test(userAgent)) {
+          return "Edge";
+        }
+
+        if (/OPR|Opera Mini|Opera Mobi/i.test(userAgent)) {
+          return "Opera";
+        }
+
+        if (/CriOS|Chrome|Chromium/i.test(userAgent)) {
+          return "Chrome";
+        }
+
+        if (/FxiOS|Firefox/i.test(userAgent)) {
+          return "Firefox";
+        }
+
+        if (/Safari/i.test(userAgent)) {
+          return "Safari";
+        }
+
+        return "Other";
+      }
+
+      function detectSlsOSFamily() {
+        const userAgent = navigator.userAgent || "";
+        const platform = navigator.platform || "";
+
+        if (/iPad/i.test(userAgent) || (platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+          return "iPadOS";
+        }
+
+        if (/iPhone|iPod/i.test(userAgent)) {
+          return "iOS";
+        }
+
+        if (/Android/i.test(userAgent)) {
+          return "Android";
+        }
+
+        if (/Windows/i.test(userAgent)) {
+          return "Windows";
+        }
+
+        if (/Mac OS X|Macintosh/i.test(userAgent)) {
+          return "macOS";
+        }
+
+        if (/Linux/i.test(userAgent)) {
+          return "Linux";
+        }
+
+        return "Other";
+      }
+
+      function detectSlsDeviceClass(osFamily) {
+        const userAgent = navigator.userAgent || "";
+
+        if (osFamily === "iPadOS" || (/Android/i.test(userAgent) && !/Mobile/i.test(userAgent))) {
+          return "tablet";
+        }
+
+        if (/iPhone|iPod|Windows Phone|Mobile/i.test(userAgent)) {
+          return "mobile";
+        }
+
+        return "desktop";
+      }
+
+      function getSlsDeviceContext() {
+        const osFamily = detectSlsOSFamily();
+        const viewportWidth = window.innerWidth || 0;
+        const browserLanguage = (navigator.language || "").toLowerCase();
+
+        return {
+          device_class: detectSlsDeviceClass(osFamily),
+          browser_family: detectSlsBrowserFamily(),
+          os_family: osFamily,
+          viewport_bucket: viewportWidth < 768 ? "narrow" : viewportWidth < 1024 ? "medium" : "wide",
+          browser_language: browserLanguage.startsWith("zh") ? "zh" : browserLanguage.startsWith("en") ? "en" : "other"
+        };
+      }
+
       function hasSlsConfiguration() {
         const slsConfig = supportConfig.sls;
 
@@ -3311,6 +3397,13 @@
 
         tracker.useStsPlugin(window.stsPlugin(stsOptions));
         slsTracker = tracker;
+        slsCredentialsReadyPromise = stsOptions.refreshSTSToken()
+          .then(() => {
+            stsOptions.stsTokenFreshTime = new Date();
+          })
+          .catch((error) => {
+            console.warn("SLS analytics credentials could not be preloaded", error);
+          });
       }
 
       function trackSlsEvent(eventType, parameters) {
@@ -3318,10 +3411,23 @@
           return;
         }
 
-        try {
-          slsTracker.sendImmediate({ eventType, ...parameters });
-        } catch (error) {
-          console.warn("SLS analytics event could not be sent", error);
+        const tracker = slsTracker;
+        const send = () => {
+          if (!analyticsEnabled || slsTracker !== tracker || typeof tracker.sendImmediate !== "function") {
+            return;
+          }
+
+          try {
+            tracker.sendImmediate({ eventType, ...parameters });
+          } catch (error) {
+            console.warn("SLS analytics event could not be sent", error);
+          }
+        };
+
+        if (slsCredentialsReadyPromise) {
+          slsCredentialsReadyPromise.then(send);
+        } else {
+          send();
         }
       }
 
@@ -3335,6 +3441,7 @@
         slsArrivalTracked = true;
         trackSlsEvent("landing_page_arrival", {
           ...utmParameters,
+          ...getSlsDeviceContext(),
           locale: currentLocale,
           page: window.location.pathname || "/"
         });
@@ -3387,6 +3494,7 @@
         } else {
           analyticsEnabled = false;
           slsTracker = null;
+          slsCredentialsReadyPromise = null;
 
           if (analyticsInitialized && typeof window.gtag === "function") {
             window.gtag("consent", "update", { analytics_storage: "denied" });
@@ -3409,6 +3517,8 @@
         analyticsAccept.focus();
       });
       let zipDownloadLoadingTimer = null;
+      let zipDownloadPrimed = false;
+      let zipDownloadPrimeTimer = null;
 
       function setZipDownloadLoading(isLoading) {
         if (zipDownloadLoadingTimer !== null) {
@@ -3427,18 +3537,53 @@
         }
       }
 
+      function resetZipDownloadPriming() {
+        zipDownloadPrimed = false;
+
+        if (zipDownloadPrimeTimer !== null) {
+          window.clearTimeout(zipDownloadPrimeTimer);
+          zipDownloadPrimeTimer = null;
+        }
+      }
+
+      function trackZipDownload() {
+        if (zipDownloadPrimed) {
+          return;
+        }
+
+        zipDownloadPrimed = true;
+        zipDownloadPrimeTimer = window.setTimeout(resetZipDownloadPriming, 1500);
+        trackSlsEvent("zip_download", {
+          ...readSlsUtmParameters(),
+          ...getSlsDeviceContext(),
+          asset: "Polaris-for-Web-0.48.3-build-196.zip",
+          locale: currentLocale,
+          page: window.location.pathname || "/"
+        });
+      }
+
+      if ("PointerEvent" in window) {
+        localZipLink.addEventListener("pointerdown", (event) => {
+          if (event.isPrimary === false || localZipLink.dataset.downloadLoading === "true") {
+            return;
+          }
+
+          const deviceClass = getSlsDeviceContext().device_class;
+
+          if (deviceClass === "mobile" || deviceClass === "tablet") {
+            trackZipDownload();
+          }
+        });
+      }
+
       localZipLink.addEventListener("click", () => {
         if (localZipLink.dataset.downloadLoading === "true") {
           return;
         }
 
         setZipDownloadLoading(true);
-        trackSlsEvent("zip_download", {
-          ...readSlsUtmParameters(),
-          asset: "Polaris-for-Web-0.48.3-build-196.zip",
-          locale: currentLocale,
-          page: window.location.pathname || "/"
-        });
+        trackZipDownload();
+        resetZipDownloadPriming();
       });
 
       function startVideoPlayback() {
