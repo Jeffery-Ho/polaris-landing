@@ -25,7 +25,8 @@
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
 - Use crisp 1px borders, 8px panel radii, 999px button radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
-- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and product CTA labels/borders; keep CTA interiors solid.
+- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and installation CTA labels/borders; keep CTA interiors solid.
+- Keep Hero banner actions monochrome: use a solid primary button and an outlined secondary button, then invert their black/white treatment on hover.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
 - Use the shared gradient label/border treatment for product CTAs, with a solid theme-aware interior and no gradient hover fill.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
@@ -33,7 +34,7 @@
 
 ## Installation section
 
-- Place a two-option installation section after the capabilities grid; the header Install link smoothly scrolls to it without an abrupt jump.
+- Place a two-option installation section after the capabilities grid; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
 - Use equal 1px bordered panels on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.

@@ -2456,6 +2456,51 @@
         transform: none;
       }
 
+      /* Hero banner actions stay monochrome and invert on hover. */
+      .hero-link,
+      .hero-link:hover,
+      .hero-link:focus-visible {
+        border-color: var(--text-primary);
+        background: transparent;
+        background-image: none;
+        color: var(--text-primary);
+        -webkit-text-fill-color: currentColor;
+        filter: none;
+      }
+
+      .hero-link--primary,
+      .hero-link--primary:hover,
+      .hero-link--primary:focus-visible {
+        border-color: var(--text-primary);
+        background: var(--text-primary);
+        background-image: none;
+        color: var(--page-bg);
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-link:not(.hero-link--primary):hover,
+      .hero-link:not(.hero-link--primary):focus-visible,
+      .hero-link--primary:hover,
+      .hero-link--primary:focus-visible {
+        background: var(--text-primary);
+        color: var(--page-bg);
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-link--primary:hover,
+      .hero-link--primary:focus-visible {
+        background: transparent;
+        color: var(--text-primary);
+      }
+
+      .hero-link > span {
+        background-image: none;
+        background-clip: border-box;
+        -webkit-background-clip: border-box;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
+      }
+
       :focus-visible {
         outline: 2px solid var(--focus-color);
         outline-offset: 3px;
@@ -2820,8 +2865,7 @@
       const themeOptions = document.querySelectorAll("[data-theme-option]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
-      const installNavigationLinks = document.querySelectorAll('a[href="#install"]');
-      const installSection = document.querySelector("#install");
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -3092,14 +3136,20 @@
           setLanguageMenuOpen(false);
         }
       });
-      installNavigationLinks.forEach((installNavigationLink) => installNavigationLink.addEventListener("click", (event) => {
+      inPageNavigationLinks.forEach((inPageNavigationLink) => inPageNavigationLink.addEventListener("click", (event) => {
+        const target = document.getElementById(inPageNavigationLink.getAttribute("href").slice(1));
+
+        if (!target) {
+          return;
+        }
+
         event.preventDefault();
         setMenuOpen(false);
-        installSection.scrollIntoView({
+        target.scrollIntoView({
           behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
           block: "start"
         });
-        window.history.replaceState(null, "", "#install");
+        window.history.replaceState(null, "", inPageNavigationLink.getAttribute("href"));
       }));
 
       function trackEvent(name, parameters) {
