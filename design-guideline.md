@@ -16,7 +16,7 @@
 ## Header
 
 - Use a compact, transparent header with the brand aligned left, navigation in the middle, and pill-style preference switches outside the navigation.
-- Make Install the only filled primary action; keep How it works, GitHub Issues, language, and theme controls lightweight.
+- Use the shared gradient label/border treatment for product actions; keep GitHub Issues, language, and theme controls lightweight.
 - On mobile, collapse the navigation to a Polaris logo plus menu button. Open the links in a compact bordered panel with at least 44px touch targets.
 - Keep the header in normal page flow so the installation anchor remains predictable.
 
@@ -24,9 +24,9 @@
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
 - Use crisp 1px borders, 8px control and panel radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
-- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and the local ZIP action; keep other surfaces and primary CTAs solid.
+- Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and product CTA labels/borders; keep CTA interiors solid.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
-- Use white for the primary installation action and a dark outlined treatment for local ZIP installation.
+- Use the shared gradient label/border treatment for product CTAs, with a solid theme-aware interior and no gradient hover fill.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
 - Provide a compact language dropdown and pill-style theme switch outside the navigation. Default to the system preference and persist explicit choices locally.
 
