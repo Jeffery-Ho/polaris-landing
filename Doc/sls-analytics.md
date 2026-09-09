@@ -82,10 +82,12 @@ After enabling field indexes for the event fields, these queries can be used in 
 
 ```sql
 * | SELECT device_class, browser_family, os_family, count(*) AS mobile_downloads
-  WHERE eventType = 'zip_download' AND device_class = 'mobile'
+  WHERE eventType = 'zip_download' AND device_class IN ('mobile', 'tablet')
   GROUP BY device_class, browser_family, os_family
   ORDER BY mobile_downloads DESC
 ```
+
+The SLS search bar can narrow this same result to mobile devices with `eventType:zip_download and device_class:mobile`.
 
 ```sql
 * | SELECT attribution_source, attribution_status, count(*) AS downloads

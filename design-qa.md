@@ -36,7 +36,7 @@ Final result: passed.
 
 - Desktop: the header Download link smoothly scrolls to the two-card installation section while retaining the wide transparent header treatment.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
-- The ZIP action downloads the current `Polaris-for-Web-0.48.3-build-196.zip` asset; the archive contains a root `manifest.json` with version name `0.48.3(196)`.
+- The ZIP action keeps the stable `Polaris-for-Web-0.48.3-build-196.zip` URL while downloading the `0.49.2(200)` archive as `Polaris-AI-0.49.2-build-200.zip`; the archive contains a root `manifest.json` with version name `0.49.2(200)`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.
 - The same-origin `/entry/extension/` fallback stores only the fixed `polaris_extension` source in tab-scoped session storage; direct visits without source data use `attribution_source=unknown` and `attribution_status=missing`.
 - The first visit follows the browser language (`zh-*` uses Simplified Chinese and other languages use English); switching languages updates all homepage copy and persists after refresh.

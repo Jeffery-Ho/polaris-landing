@@ -5,6 +5,7 @@
 - 埋点：Landing 到达事件不再要求 UTM；新增 `attribution_source` 和 `attribution_status`，缺少来源时明确记录 `unknown`/`missing`。
 - 归因：新增同源 `/entry/extension/` 入口，扩展来源通过标签页级 `sessionStorage` 传递，避免依赖可能被浏览器清理的 UTM 参数。
 - 兼容：浏览器分类增加可识别的 Arc；保留匿名设备、系统、视口和语言分类，不记录原始 User-Agent、完整 URL 或唯一标识。
+- 发布：保留原有 ZIP URL，将其内容更新为扩展 `0.49.2(200)`，下载文件名同步更新为 `Polaris-AI-0.49.2-build-200.zip`。
 - 文档：同步更新 SLS 索引字段、移动端查询示例、隐私说明、README 和 QA 记录。
 
 ## 2026-09-09
