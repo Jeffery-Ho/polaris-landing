@@ -2,6 +2,13 @@
 
 ## 2026-09-09
 
+- 埋点：Landing 到达事件不再要求 UTM；新增 `attribution_source` 和 `attribution_status`，缺少来源时明确记录 `unknown`/`missing`。
+- 归因：新增同源 `/entry/extension/` 入口，扩展来源通过标签页级 `sessionStorage` 传递，避免依赖可能被浏览器清理的 UTM 参数。
+- 兼容：浏览器分类增加可识别的 Arc；保留匿名设备、系统、视口和语言分类，不记录原始 User-Agent、完整 URL 或唯一标识。
+- 文档：同步更新 SLS 索引字段、移动端查询示例、隐私说明、README 和 QA 记录。
+
+## 2026-09-09
+
 - 埋点：为 landing 到达和 ZIP 下载事件补充匿名设备、浏览器、系统、视口和语言分类；移动端在下载触摸操作开始时提前发起 SLS 请求，避免与浏览器下载处理产生竞态。
 - 隐私：明确 `zip_download` 表示触发下载操作，不代表文件已成功保存；事件字段不包含原始 User-Agent、设备型号或 IP 地址。
 - 下载：将本地 ZIP 下载后的文件名改为 `Polaris-AI-0.48.3-build-196.zip`，保留原始资源地址和下载埋点兼容性。

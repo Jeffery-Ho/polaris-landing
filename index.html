@@ -3011,7 +3011,7 @@
           "footer.privacy": "Privacy",
           "footer.analytics": "Analytics settings",
           "analytics.title": "Help improve Polaris",
-          "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure only support-page interactions and anonymous download totals. You can change this anytime.",
+          "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure support-page interactions and anonymous source, device, and download totals. You can change this anytime.",
           "analytics.allow": "Allow analytics",
           "analytics.decline": "Not now",
           "meta.title": "Polaris AI — AI Chat Navigator for Long Answers",
@@ -3075,7 +3075,7 @@
           "footer.privacy": "隐私政策",
           "footer.analytics": "分析设置",
           "analytics.title": "帮助改进 Polaris",
-          "analytics.copy": "允许 Google Analytics 和阿里云 SLS 仅统计支持页面互动及匿名下载汇总数据。你可以随时修改此选择。",
+          "analytics.copy": "允许 Google Analytics 和阿里云 SLS 统计支持页面互动，以及匿名来源、设备和下载汇总数据。你可以随时修改此选择。",
           "analytics.allow": "允许分析",
           "analytics.decline": "暂不允许",
           "meta.title": "Polaris AI — 长篇 AI 对话导航助手",
@@ -3089,6 +3089,7 @@
       let slsTracker = null;
       let slsCredentialsReadyPromise = null;
       let slsArrivalTracked = false;
+      const slsAttributionStorageKey = "polaris-landing-attribution-source";
 
       function setMenuOpen(isOpen, restoreFocus = false) {
         menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -3256,8 +3257,44 @@
         return parameters;
       }
 
+      function readSlsAttributionContext() {
+        let firstPartySource = "";
+
+        try {
+          firstPartySource = window.sessionStorage.getItem(slsAttributionStorageKey)?.trim() || "";
+          window.sessionStorage.removeItem(slsAttributionStorageKey);
+        } catch {
+          firstPartySource = "";
+        }
+
+        if (firstPartySource === "polaris_extension") {
+          return {
+            attribution_source: firstPartySource,
+            attribution_status: "first_party"
+          };
+        }
+
+        const utmSource = readSlsUtmParameters().utm_source;
+
+        if (utmSource) {
+          return {
+            attribution_source: utmSource,
+            attribution_status: "utm"
+          };
+        }
+
+        return {
+          attribution_source: "unknown",
+          attribution_status: "missing"
+        };
+      }
+
       function detectSlsBrowserFamily() {
         const userAgent = navigator.userAgent || "";
+
+        if (/Arc(?:Mobile|Search)?/i.test(userAgent)) {
+          return "Arc";
+        }
 
         if (/EdgA|EdgiOS|Edg\//i.test(userAgent)) {
           return "Edge";
@@ -3340,6 +3377,8 @@
           browser_language: browserLanguage.startsWith("zh") ? "zh" : browserLanguage.startsWith("en") ? "en" : "other"
         };
       }
+
+      const slsAttributionContext = readSlsAttributionContext();
 
       function hasSlsConfiguration() {
         const slsConfig = supportConfig.sls;
@@ -3434,13 +3473,14 @@
       function trackLandingPageArrival() {
         const utmParameters = readSlsUtmParameters();
 
-        if (slsArrivalTracked || Object.keys(utmParameters).length === 0) {
+        if (slsArrivalTracked) {
           return;
         }
 
         slsArrivalTracked = true;
         trackSlsEvent("landing_page_arrival", {
           ...utmParameters,
+          ...slsAttributionContext,
           ...getSlsDeviceContext(),
           locale: currentLocale,
           page: window.location.pathname || "/"
@@ -3450,7 +3490,9 @@
       function trackSupportEntry() {
         const query = new URLSearchParams(window.location.search);
 
-        if (query.get("utm_source") === "polaris_extension" && query.get("utm_medium") === "support_entry") {
+        if (slsAttributionContext.attribution_source === "polaris_extension"
+          && (slsAttributionContext.attribution_status === "first_party"
+            || (query.get("utm_medium") === "support_entry" && query.get("utm_source") === "polaris_extension"))) {
           trackEvent("support_entry_opened", { source: "polaris_extension" });
         }
       }
@@ -3555,6 +3597,7 @@
         zipDownloadPrimeTimer = window.setTimeout(resetZipDownloadPriming, 1500);
         trackSlsEvent("zip_download", {
           ...readSlsUtmParameters(),
+          ...slsAttributionContext,
           ...getSlsDeviceContext(),
           asset: "Polaris-for-Web-0.48.3-build-196.zip",
           locale: currentLocale,
