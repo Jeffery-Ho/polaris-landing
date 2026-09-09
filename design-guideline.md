@@ -37,6 +37,7 @@
 - Place a two-option installation section after the capabilities grid; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
 - Use equal 1px bordered panels on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
+- Add a compact “Recommended in Mainland China” badge beside the local-installation title; keep its interior solid and use the theme gradient only for the border ring.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
 - After the local ZIP action is clicked, show a short loading state with a spinner and ignore repeat clicks while the browser starts the native download; restore the normal label automatically because native downloads do not expose completion to the page.
 

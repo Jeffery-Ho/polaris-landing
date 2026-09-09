@@ -2103,6 +2103,48 @@
         color: var(--text-primary);
         font-size: clamp(22px, 2.7vw, 30px);
         font-weight: 650;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 12px;
+      }
+
+      .install-card-badge {
+        position: relative;
+        display: inline-flex;
+        min-height: 26px;
+        flex: none;
+        align-items: center;
+        padding: 5px 10px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--panel-bg);
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .install-card-badge::before {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: var(--theme-gradient);
+        content: "";
+        pointer-events: none;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+      }
+
+      .install-card-badge > span {
+        position: relative;
+        z-index: 1;
       }
 
       .install-card-copy,
@@ -2842,7 +2884,10 @@
           <p class="install-intro" data-i18n="install.intro">Choose the installation method that works best for you.</p>
           <div class="install-options">
             <article class="install-card install-card--local">
-              <h3 class="install-card-title" data-i18n="install.local.title">Local installation</h3>
+              <h3 class="install-card-title">
+                <span data-i18n="install.local.title">Local installation</span>
+                <span class="install-card-badge"><span data-i18n="install.local.badge">Recommended in Mainland China</span></span>
+              </h3>
               <p class="install-card-copy" data-i18n="install.local.copy">Download the ZIP, unzip it, then load the folder in Chrome extensions.</p>
               <a class="install-card-button" href="assets/Polaris-for-Web-0.48.3-build-196.zip" download data-analytics-event="zip_download">
                 <span class="install-card-button-label install-card-button-label--default" data-download-label data-i18n="install.local.download" aria-hidden="false">Download ZIP</span>
@@ -2958,6 +3003,7 @@
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
+          "install.local.badge": "Recommended in Mainland China",
           "install.local.copy": "Download the ZIP, unzip it, then load the folder in Chrome extensions.",
           "install.local.download": "Download ZIP",
           "install.local.download.loading": "Downloading…",
@@ -3021,6 +3067,7 @@
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
+          "install.local.badge": "中国大陆推荐",
           "install.local.copy": "下载 ZIP，解压后在 Chrome 扩展程序中加载文件夹。",
           "install.local.download": "下载 ZIP 安装包",
           "install.local.download.loading": "下载中…",

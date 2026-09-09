@@ -2,6 +2,7 @@
 
 ## 2026-09-09
 
+- 视觉：在本地安装标题右侧新增地区推荐 Badge，中文显示“中国大陆推荐”，英文显示“Recommended in Mainland China”。
 - 国际化：中文 Footer 保留 “Made with” 英文表述，其余 Footer 文案继续本地化。
 - 修复：安装按钮改为纯色内底，主题渐变仅保留在边框与文字，hover 不再填充渐变背景。
 
