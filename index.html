@@ -1617,6 +1617,7 @@
         --page-width: 1200px;
         --page-margin: 24px;
         --control-radius: 8px;
+        --button-radius: 999px;
         --transition: 160ms ease;
         color-scheme: dark;
         color: var(--text-primary);
@@ -2410,6 +2411,22 @@
         -webkit-background-clip: padding-box, border-box;
         color: var(--text-primary);
         box-shadow: none;
+      }
+
+      .header-link,
+      .hero-link,
+      .install-card-button,
+      .support-button,
+      .language-toggle,
+      .language-option,
+      .theme-toggle,
+      .theme-option,
+      .analytics-consent-button,
+      .analytics-settings-button,
+      .header-menu-toggle,
+      .video-play-button,
+      .skip-link {
+        border-radius: var(--button-radius);
       }
 
       .header-link--primary > span,

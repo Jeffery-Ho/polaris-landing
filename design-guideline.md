@@ -24,7 +24,7 @@
 ## Visual system
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
-- Use crisp 1px borders, 8px control and panel radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
+- Use crisp 1px borders, 8px panel radii, 999px button radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
 - Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and product CTA labels/borders; keep CTA interiors solid.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
 - Use the shared gradient label/border treatment for product CTAs, with a solid theme-aware interior and no gradient hover fill.
