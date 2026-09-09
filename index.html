@@ -2478,6 +2478,7 @@
       }
 
       /* Keep installation CTA interiors solid; the theme gradient is only a border ring. */
+      .header-link--primary,
       .install-card:not(.install-card--store) .install-card-button,
       .install-card.install-card--store .install-card-button {
         position: relative;
@@ -2487,6 +2488,7 @@
         background-image: none;
       }
 
+      .header-link--primary::before,
       .install-card:not(.install-card--store) .install-card-button::before,
       .install-card.install-card--store .install-card-button::before {
         position: absolute;
@@ -2503,12 +2505,15 @@
         mask-composite: exclude;
       }
 
+      .header-link--primary > span,
       .install-card:not(.install-card--store) .install-card-button > *,
       .install-card.install-card--store .install-card-button > * {
         position: relative;
         z-index: 1;
       }
 
+      .header-link--primary:hover,
+      .header-link--primary:focus-visible,
       .install-card:not(.install-card--store) .install-card-button:hover,
       .install-card:not(.install-card--store) .install-card-button:focus-visible,
       .install-card.install-card--store .install-card-button:hover,
@@ -2718,6 +2723,10 @@
           background-image: none;
           color: var(--text-primary);
           -webkit-text-fill-color: currentColor;
+        }
+
+        .header-links .header-link--primary::before {
+          display: none;
         }
       }
 
