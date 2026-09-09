@@ -4,6 +4,7 @@
 
 - Do not render an eyebrow or category label above the headline.
 - Use a large, compact headline with a clear product outcome.
+- For Simplified Chinese, use a concise two-line headline with explicit line grouping so no single character is stranded on a line; tighten tracking with a Chinese-specific type scale.
 - Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for accent text and small indexes.
 - Use a split hero: product value and actions on the left, the introduction video as the primary visual on the right.
 - Keep the sequence as split hero, capabilities grid, installation panels, then support and privacy.

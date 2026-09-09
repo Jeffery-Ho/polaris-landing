@@ -2591,6 +2591,20 @@
         }
       }
 
+      :root[lang^="zh"] h1 {
+        max-width: none;
+        font-size: clamp(42px, 4.6vw, 64px);
+        letter-spacing: -0.1em;
+        line-height: 1.04;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 800px) {
+        :root[lang^="zh"] h1 {
+          font-size: clamp(36px, 9vw, 54px);
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .header-menu-toggle,
         .header-menu-toggle .menu-line,
@@ -2882,7 +2896,7 @@
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
-          "hero.title": "让长篇 AI 对话更容易阅读和跳转。",
+          "hero.title": "长篇 AI 对话<br>更易阅读和跳转。",
           "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
           "hero.explore": "了解工作方式",
           "hero.install": "安装 Polaris",
