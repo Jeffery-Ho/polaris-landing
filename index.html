@@ -2456,6 +2456,47 @@
         transform: none;
       }
 
+      /* Keep the ZIP CTA interior solid; the theme gradient is only a border ring. */
+      .install-card:not(.install-card--store) .install-card-button {
+        position: relative;
+        isolation: isolate;
+        border-color: transparent;
+        background: var(--panel-bg);
+        background-image: none;
+      }
+
+      .install-card:not(.install-card--store) .install-card-button::before {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: var(--theme-gradient);
+        content: "";
+        pointer-events: none;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+      }
+
+      .install-card:not(.install-card--store) .install-card-button > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .install-card:not(.install-card--store) .install-card-button:hover,
+      .install-card:not(.install-card--store) .install-card-button:focus-visible {
+        border-color: transparent;
+        background: var(--interactive-bg);
+        background-image: none;
+      }
+
+      .install-card:not(.install-card--store) .install-card-button[data-download-loading="true"] {
+        background: #333333;
+        background-image: none;
+      }
+
       /* Hero banner actions stay monochrome and invert on hover. */
       .hero-link,
       .hero-link:hover,
