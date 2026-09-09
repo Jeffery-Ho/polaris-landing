@@ -2110,13 +2110,12 @@
       }
 
       .install-card-badge {
-        position: relative;
         display: inline-flex;
         min-height: 26px;
         flex: none;
         align-items: center;
         padding: 5px 10px;
-        border: 1px solid transparent;
+        border: 1px solid var(--text-primary);
         border-radius: 999px;
         background: var(--panel-bg);
         color: var(--text-primary);
@@ -2125,26 +2124,6 @@
         letter-spacing: -0.01em;
         line-height: 1;
         white-space: nowrap;
-      }
-
-      .install-card-badge::before {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        padding: 1px;
-        border-radius: inherit;
-        background: var(--theme-gradient);
-        content: "";
-        pointer-events: none;
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        mask-composite: exclude;
-      }
-
-      .install-card-badge > span {
-        position: relative;
-        z-index: 1;
       }
 
       .install-card-copy,
