@@ -33,7 +33,7 @@
       <h1>Privacy</h1>
       <h2>Support-page analytics</h2>
       <p>Only after you choose “Allow analytics” on the Polaris support page, the page initializes and sends data through Google Analytics 4 and the Aliyun SLS WebTracking SDK. The SDK files may be loaded by the page, but no analytics event is initialized or sent before consent. Automatic page views are disabled.</p>
-      <p>Google Analytics measures visits arriving through the Polaris extension support link and clicks on the video recovery play button. SLS records a consented landing-page arrival and when a visitor triggers the local ZIP download action. UTM values are used when available; the extension also has a same-origin entry path that can provide the fixed source category <code>polaris_extension</code> when a browser removes UTM parameters. If no source is available, the event uses <code>unknown</code> and <code>missing</code>. Normalized device, browser, operating-system, viewport, and language categories support source-to-download analysis. A download action does not confirm that the file was saved successfully.</p>
+      <p>Google Analytics measures visits arriving through the Polaris extension support link and clicks on the video recovery play button. SLS records a consented landing-page arrival and when a visitor triggers the local ZIP download action. UTM values are used when available; the extension also has a same-origin entry path that can provide the fixed source category <code>polaris_extension</code> when a browser removes UTM parameters. Homepage visits without source parameters use <code>direct_share</code> and <code>direct</code>; this category also includes bookmarks, manually entered URLs, and links whose parameters were removed. Normalized device, browser, operating-system, viewport, and language categories support source-to-download analysis. A download action does not confirm that the file was saved successfully.</p>
       <p>We do not include raw User-Agent values, device models, IP addresses, full URLs, AI conversation content, extension settings, account information, or PayPal payment details as event fields for either analytics service. Your choice is saved locally in your browser and can be changed from “Analytics settings” in the support-page footer.</p>
       <h2>Payments and external links</h2>
       <p>The PayPal button opens PayPal in a new tab. Any payment information you provide is handled by PayPal under its own privacy terms.</p>
@@ -41,7 +41,7 @@
       <p>Google may process information according to its <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>. You can decline analytics and continue using the support page.</p>
       <h2>Aliyun SLS</h2>
       <p>Aliyun may process the SLS event data according to its <a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html" target="_blank" rel="noreferrer">third-party SDK privacy description</a>. The landing page uses temporary STS credentials for browser-side log delivery.</p>
-      <p class="updated">Last updated: September 9, 2026.</p>
+      <p class="updated">Last updated: September 11, 2026.</p>
     </main>
   </body>
 </html>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-09-11
+
+- 归因：用户同意分析后，无 UTM 的首页访问及其后续 ZIP 下载统一记录为 `direct_share`/`direct`；UTM 和扩展同源入口继续保持更高优先级。
+- 文档：同步说明直接归因也会包含书签、手动输入地址和被平台移除参数的链接，且不新增个人数据字段。
+
 ## 2026-09-09
 
 - 埋点：Landing 到达事件不再要求 UTM；新增 `attribution_source` 和 `attribution_status`，缺少来源时明确记录 `unknown`/`missing`。

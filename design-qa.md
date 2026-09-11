@@ -30,7 +30,7 @@ Final result: passed.
 
 - Before the video can play its first segment, the thumbnail keeps its 16:9 frame without a centered play control or loading text.
 - Buffering and playback failures do not display state text; the play control becomes reachable only when playback cannot proceed.
-- The consent card is visible for a new visitor. GA4 and SLS are configured only after “Allow analytics” with automatic page views disabled; SLS records consented arrivals and ZIP download actions with UTM, same-origin entry, or explicit unknown attribution plus normalized device context, while declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.
+- The consent card is visible for a new visitor. GA4 and SLS are configured only after “Allow analytics” with automatic page views disabled; SLS records consented arrivals and ZIP download actions with UTM, same-origin entry, or `direct_share` attribution plus normalized device context, while declining or later withdrawing consent stops subsequent custom events while keeping the landing page fully usable.
 
 ## Installation and localization
 
@@ -38,7 +38,7 @@ Final result: passed.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
 - The ZIP action keeps the stable `Polaris-for-Web-0.48.3-build-196.zip` URL while downloading the `0.49.2(200)` archive as `Polaris-AI-0.49.2-build-200.zip`; the archive contains a root `manifest.json` with version name `0.49.2(200)`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.
-- The same-origin `/entry/extension/` fallback stores only the fixed `polaris_extension` source in tab-scoped session storage; direct visits without source data use `attribution_source=unknown` and `attribution_status=missing`.
+- The same-origin `/entry/extension/` fallback stores only the fixed `polaris_extension` source in tab-scoped session storage; homepage visits without source parameters use `attribution_source=direct_share` and `attribution_status=direct`, including bookmarks, manually entered URLs, and links whose parameters were removed.
 - The first visit follows the browser language (`zh-*` uses Simplified Chinese and other languages use English); switching languages updates all homepage copy and persists after refresh.
 
 Verification: the inline module syntax, route resource, normalized device-context cases, download deduplication, click fallback, static resources, and diff formatting passed locally. The Aliyun SLS index was merged and read back with the attribution, viewport, language, and existing device fields. Existing desktop and mobile viewport checks remain valid; direct iOS Safari, iOS Chrome, Android browser, and Arc acceptance still requires a real-device or browser-automation run.

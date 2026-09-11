@@ -7,16 +7,16 @@ The landing page sends two SLS events after the visitor allows analytics:
 | `landing_page_arrival` | Record a landing-page visit after the visitor allows analytics. | `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `utm_id`, attribution context, `locale`, `page`, device context |
 | `zip_download` | Record that a visitor triggered the local ZIP download action. It does not claim that the file was saved successfully. | `asset`, supported UTM fields, attribution context, `locale`, `page`, device context |
 
-The current UTM context is copied to the ZIP event so download conversion can be queried without joining browser identifiers. When a browser removes UTM parameters, the page records an explicit attribution fallback instead of attempting to reconstruct the URL source.
+The current attribution context is copied to the ZIP event so download conversion can be queried without joining browser identifiers. Homepage visits without source parameters are grouped under `direct_share`; this category also includes bookmarks, manually entered URLs, and links whose parameters were removed.
 
-The extension opens the same-origin `/entry/extension/` path. That small entry page stores the fixed source `polaris_extension` in tab-scoped `sessionStorage` and redirects to the homepage. The homepage consumes this value before consent, so it remains available if the visitor takes time to allow analytics. If storage is unavailable, the source is recorded as `unknown`.
+The extension opens the same-origin `/entry/extension/` path. That small entry page stores the fixed source `polaris_extension` in tab-scoped `sessionStorage` and redirects to the homepage. The homepage consumes this value before consent, so it remains available if the visitor takes time to allow analytics. If storage is unavailable, the redirected homepage visit falls back to `direct_share`.
 
 Both events include the following attribution fields:
 
 | Field | Values |
 | --- | --- |
-| `attribution_source` | `polaris_extension`, the UTM source value, or `unknown` |
-| `attribution_status` | `first_party`, `utm`, `missing` |
+| `attribution_source` | `polaris_extension`, the UTM source value, or `direct_share` |
+| `attribution_status` | `first_party`, `utm`, `direct` |
 
 Both events also include the following normalized device context:
 
