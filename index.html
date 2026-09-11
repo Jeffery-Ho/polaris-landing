@@ -1743,10 +1743,10 @@
         min-height: 34px;
         align-items: center;
         gap: 7px;
-        padding: 7px 8px;
-        border: 0;
+        padding: 7px 10px;
+        border: 1px solid var(--line);
         border-radius: 999px;
-        background: transparent;
+        background: var(--panel-bg-raised);
         color: var(--text-secondary);
         cursor: pointer;
         font: inherit;
@@ -1766,8 +1766,22 @@
       }
 
       .language-toggle-icon {
-        width: 17px;
+        display: inline-flex;
+        width: 22px;
         height: 17px;
+        align-items: flex-end;
+        justify-content: center;
+        color: currentColor;
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: -0.18em;
+        line-height: 1;
+      }
+
+      .language-toggle-icon span:last-child {
+        align-self: flex-end;
+        margin-left: 1px;
+        font-size: 9px;
       }
 
       .language-toggle-chevron {
@@ -2933,9 +2947,7 @@
           <div class="header-preferences">
             <div class="language-control" data-language-control>
               <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
-                <svg class="language-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M4 5h8M8 3v2c0 4-2 7-5 9M5 9c1.5 2 3.5 3.5 6 4.5M15 5h5M17.5 3v2M14 18h6M17 14v4M14.5 21l2.5-7 2.5 7M15.5 19h3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
-                </svg>
+                <span class="language-toggle-icon" aria-hidden="true"><span>文</span><span>A</span></span>
                 <span data-language-current>EN</span>
                 <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
