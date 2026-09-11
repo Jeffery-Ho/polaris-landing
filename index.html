@@ -1665,6 +1665,44 @@
         padding: 0;
       }
 
+      .platform-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 26px;
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .platform-banner-title {
+        flex: none;
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      .platform-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 0;
+        margin: 0;
+        padding: 0;
+        color: var(--text-secondary);
+        font-size: 13px;
+        list-style: none;
+      }
+
+      .platform-list li + li::before {
+        margin-right: 8px;
+        color: var(--text-muted);
+        content: ",";
+      }
+
       .header-end {
         display: flex;
         align-items: center;
@@ -2216,8 +2254,99 @@
         transform: translateY(-1px);
       }
 
+      .updates-section {
+        margin-top: 72px;
+        text-align: left;
+      }
+
+      .updates-heading {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: clamp(28px, 3.2vw, 38px);
+        font-weight: 690;
+        letter-spacing: -0.06em;
+        line-height: 1;
+      }
+
+      .updates-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .update-release {
+        min-height: 176px;
+        padding: clamp(24px, 3vw, 32px);
+        border: 1px solid var(--line);
+        border-radius: var(--control-radius);
+        background: var(--panel-bg);
+      }
+
+      .update-version,
+      .update-title,
+      .update-copy {
+        margin: 0;
+      }
+
+      .update-version {
+        background-image: var(--theme-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+      }
+
+      .update-title {
+        margin-top: 26px;
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: 650;
+        letter-spacing: -0.035em;
+      }
+
+      .update-copy {
+        margin-top: 8px;
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .updates-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+      }
+
+      .updates-toggle {
+        min-height: 44px;
+        padding: 10px 16px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--control-radius);
+        background: transparent;
+        color: var(--text-primary);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 650;
+        cursor: pointer;
+        transition: border-color var(--transition), background var(--transition), color var(--transition);
+      }
+
+      .updates-toggle:hover,
+      .updates-toggle:focus-visible {
+        border-color: var(--interactive-border);
+        background: var(--interactive-bg);
+        color: var(--text-primary);
+      }
+
       .site-footer {
+        margin-top: 72px;
         padding-top: 28px;
+        border-top: 1px solid var(--line);
       }
 
       .footer-copy,
@@ -2640,6 +2769,22 @@
         .support-button {
           width: auto;
         }
+
+        .platform-banner {
+          align-items: center;
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+
+        .updates-list {
+          grid-template-columns: 1fr;
+        }
+
+        .update-release {
+          min-height: 0;
+        }
+
       }
 
       @media (max-width: 800px) {
@@ -2778,6 +2923,9 @@
             <a class="header-link" href="#capabilities">
               <span data-i18n="nav.features">How it works</span>
             </a>
+            <a class="header-link" href="#updates">
+              <span data-i18n="nav.updates">Updates</span>
+            </a>
             <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
               <span data-i18n="nav.issues">GitHub Issues</span>
             </a>
@@ -2823,6 +2971,21 @@
           </button>
         </div>
       </header>
+
+      <section class="platform-banner" aria-labelledby="platform-banner-title">
+        <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
+        <ul class="platform-list">
+          <li>ChatGPT</li>
+          <li>Claude</li>
+          <li>Gemini</li>
+          <li>Grok</li>
+          <li>Doubao</li>
+          <li>Kimi</li>
+          <li>Qwen</li>
+          <li>Yuanbao</li>
+          <li>Diandian AI</li>
+        </ul>
+      </section>
 
       <main id="main-content">
         <div class="hero-grid">
@@ -2906,6 +3069,15 @@
           </div>
           <a class="support-button" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal" data-i18n="support.button">Support on PayPal</a>
         </section>
+
+        <section class="updates-section" id="updates" aria-labelledby="updates-title">
+          <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
+          <div class="updates-list" id="updates-list" data-updates-list></div>
+          <div class="updates-actions">
+            <button class="updates-toggle" data-updates-show-more type="button" aria-controls="updates-list" aria-expanded="false" data-i18n="updates.showMore">View all updates</button>
+            <button class="updates-toggle" data-updates-collapse type="button" aria-controls="updates-list" hidden data-i18n="updates.collapse">Collapse updates</button>
+          </div>
+        </section>
       </main>
 
       <footer class="site-footer">
@@ -2945,6 +3117,9 @@
       const themeOptions = document.querySelectorAll("[data-theme-option]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
+      const updatesList = document.querySelector("[data-updates-list]");
+      const updatesShowMore = document.querySelector("[data-updates-show-more]");
+      const updatesCollapse = document.querySelector("[data-updates-collapse]");
       const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
@@ -2952,6 +3127,29 @@
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
       const localeStorageKey = "polaris-landing-locale";
       const themeStorageKey = "polaris-landing-theme";
+      const updatesPreviewCount = 5;
+      const releaseNotes = Object.freeze([
+        { version: "0.51.0", en: { title: "Grok navigation", copy: "Grok now supports Polaris navigation for user groups, headings, lists, tables, streaming updates, search, and Chapter View." }, zh: { title: "支持 Grok 导航", copy: "Grok 现支持用户分组、标题、列表、表格、流式更新、搜索与章节视图。" } },
+        { version: "0.50.0", en: { title: "Google Gemini navigation", copy: "Google Gemini now supports Polaris navigation for user groups, headings, lists, tables, streaming updates, search, and Chapter View." }, zh: { title: "支持 Google Gemini 导航", copy: "Google Gemini 现支持用户分组、标题、列表、表格、流式更新、搜索与章节视图。" } },
+        { version: "0.49.0", en: { title: "Drag recovery and diagnostic export", copy: "Pointer dragging now recovers after lost capture, window or page transitions, and route changes. About & Settings can download a redacted session log and open a pre-addressed email for manual attachment." }, zh: { title: "导航拖动恢复与诊断日志导出", copy: "导航拖动现在会在指针捕获丢失、窗口或页面切换以及路由变化后自动清理并恢复。关于与设置新增脱敏会话日志下载和邮件入口，附件需要手动添加。" } },
+        { version: "0.48.0", en: { title: "Support entry in update notes", copy: "Update notes now include a heart-shaped support button next to email feedback." }, zh: { title: "更新说明新增赞赏入口", copy: "更新说明的邮件反馈旁新增心形赞赏按钮，可在新标签页打开赞赏页。" } },
+        { version: "0.47.0", en: { title: "Ordered-list marker filter", copy: "Ordered lists can now generate markers when enabled in settings, and are disabled by default for every platform." }, zh: { title: "有序列表 Marker 筛选", copy: "设置现可单独启用有序列表 Marker；所有平台默认关闭。" } },
+        { version: "0.46.0", en: { title: "Bold-text marker filter", copy: "Bold text can now generate markers when enabled in settings, and is disabled by default for every platform." }, zh: { title: "加粗文本 Marker 筛选", copy: "设置现可单独启用加粗文本 Marker；所有平台默认关闭。" } },
+        { version: "0.45.0", en: { title: "Claude.ai navigation", copy: "Claude.ai now supports Polaris navigation for user groups, headings, unordered lists, tables, and Chapter View." }, zh: { title: "支持 Claude.ai 导航", copy: "Claude.ai 现支持用户分组、标题、无序列表、表格 Maker 与章节视图。" } },
+        { version: "0.44.0", en: { title: "Maker groups expanded by default", copy: "User groups and Maker stacks now stay expanded by default. You can still collapse either one manually, and scrolling no longer changes that choice." }, zh: { title: "Maker 分组默认展开", copy: "用户分组和 Maker 堆叠现默认展开；仍可手动收起，滚动不会再改写你的分组状态。" } },
+        { version: "0.40.0", en: { title: "Optional support-page analytics", copy: "The support link now identifies Polaris as its source. The separate support page measures that arrival and its video loading play control only after you allow analytics." }, zh: { title: "可选的赞赏页分析", copy: "赞赏入口会标记 Polaris 来源；独立赞赏页仅在你同意分析后记录该到访和视频加载播放按钮点击。" } },
+        { version: "0.39.0", en: { title: "A support entry in settings", copy: "A heart button at the right edge of the Polaris settings header opens the support page in a new tab." }, zh: { title: "修正赞赏入口位置", copy: "Polaris 设置面板 Header 右侧新增心形入口，可在新标签页打开赞赏页。" } },
+        { version: "0.38.0", en: { title: "A new Polaris support page", copy: "The Polaris website now includes a focused support page with the extension link, issue tracker, introduction video area, and a direct PayPal option." }, zh: { title: "新增 Polaris 赞赏页", copy: "Polaris 网站新增独立赞赏页，集中提供扩展入口、问题反馈、介绍视频区域和 PayPal 直达入口。" } },
+        { version: "0.37.0", en: { title: "Stable Maker lists while streaming", copy: "Existing Makers stay stable while responses stream, so the list remains scrollable and collapsible; wheel, trackpad, or list-drag input takes control immediately so Makers can remain outside the visible list without being pulled back." }, zh: { title: "Maker 列表流式稳定化", copy: "回答流式生成时复用已有 Maker，列表仍可持续滚动与折叠；滚轮、触摸板或列表拖动会立即接管滚动，Maker 可保持在列表不可见区域，不再闪烁或被自动拉回。" } },
+        { version: "0.36.0", en: { title: "Progressive Maker rendering", copy: "Makers now appear during streaming output as soon as the first valid section is available, without waiting for the response to finish." }, zh: { title: "Maker 流式渐进渲染", copy: "流式输出识别到首个有效 Maker 后即开始渐进渲染，不再等待整段回答结束。" } },
+        { version: "0.35.0", en: { title: "Table markers across AI chats", copy: "Visible response tables now create one navigation marker from their first row on every supported platform." }, zh: { title: "全平台表格 Maker", copy: "所有支持平台的可见回复表格现在都会按首行生成一个导航 Maker。" } },
+        { version: "0.34.0", en: { title: "Mixed raw Markdown chapters", copy: "Chapter View now safely formats raw mixed Markdown, including nested task lists, inline styles, code, tables, and Unicode characters." }, zh: { title: "章节支持混排 Markdown 与特殊字符", copy: "章节视图现可安全格式化原始混排 Markdown，支持嵌套任务列表、行内格式、代码、表格及 Unicode 特殊字符。" } },
+        { version: "0.33.0", en: { title: "Raw Markdown tables in chapters", copy: "Chapter View now formats complete pipe tables even when the source page leaves them as raw Markdown text." }, zh: { title: "章节支持原始 Markdown 表格", copy: "网页未渲染的完整管道表格现在会在章节视图中格式化显示。" } },
+        { version: "0.32.0", en: { title: "Jump back to empty chapters", copy: "Empty Chapter View sections can now take you directly to their original conversation position." }, zh: { title: "空章节可跳回原会话", copy: "没有可显示正文的章节现在可直接跳转到其在原会话中的位置。" } },
+        { version: "0.31.0", en: { title: "Richer Markdown chapters", copy: "Chapter View now renders headings, task lists, images, nested content, and complex tables safely." }, zh: { title: "更完整的 Markdown 章节阅读", copy: "章节视图现可安全渲染标题、任务列表、图片、嵌套内容与复杂表格。" } },
+        { version: "0.30.0", en: { title: "Review updates anytime", copy: "About & Settings now provides a nearby entry to reopen update notes." }, zh: { title: "随时查看更新说明", copy: "关于与设置面板在版本号旁新增入口，可再次查看更新说明。" } },
+        { version: "0.29.0", en: { title: "What's new notifications", copy: "A version update dialog now summarizes changes and provides direct feedback options." }, zh: { title: "新增版本更新通知", copy: "版本更新弹窗会说明本次改动，并提供直接反馈入口。" } }
+      ]);
       const translations = Object.freeze({
         en: Object.freeze({
           "nav.skip": "Skip to content",
@@ -2959,6 +3157,7 @@
           "nav.menu.close": "Close menu",
           "nav.install": "Download",
           "nav.features": "How it works",
+          "nav.updates": "Updates",
           "nav.issues": "GitHub Issues",
           "locale.toggle": "中文",
           "locale.toggleAria": "Switch to Simplified Chinese",
@@ -2978,6 +3177,7 @@
           "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
           "hero.explore": "See how it works",
           "hero.install": "Install Polaris",
+          "platforms.title": "Currently supported platforms",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
           "capabilities.title": "A clearer way to read",
@@ -3006,6 +3206,9 @@
           "support.title": "Support independent software",
           "support.copy": "Polaris is free to use. Support helps keep it maintained.",
           "support.button": "Support on PayPal",
+          "updates.title": "Release notes",
+          "updates.showMore": "View all updates",
+          "updates.collapse": "Collapse updates",
           "footer.made": "Made with",
           "footer.by": "by",
           "footer.privacy": "Privacy",
@@ -3023,6 +3226,7 @@
           "nav.menu.close": "关闭菜单",
           "nav.install": "下载",
           "nav.features": "功能",
+          "nav.updates": "更新记录",
           "nav.issues": "GitHub 问题反馈",
           "locale.toggle": "English",
           "locale.toggleAria": "切换到英语",
@@ -3042,6 +3246,7 @@
           "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
           "hero.explore": "了解工作方式",
           "hero.install": "安装 Polaris",
+          "platforms.title": "当前支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
           "capabilities.title": "更清晰地阅读长篇回答",
@@ -3070,6 +3275,9 @@
           "support.title": "支持独立软件",
           "support.copy": "Polaris 免费使用，你的支持有助于持续维护。",
           "support.button": "通过 PayPal 支持",
+          "updates.title": "更新记录",
+          "updates.showMore": "查看更多更新记录",
+          "updates.collapse": "收起更新记录",
           "footer.made": "Made with",
           "footer.by": "作者",
           "footer.privacy": "隐私政策",
@@ -3089,6 +3297,7 @@
       let slsTracker = null;
       let slsCredentialsReadyPromise = null;
       let slsArrivalTracked = false;
+      let updatesExpanded = false;
       const slsAttributionStorageKey = "polaris-landing-attribution-source";
 
       function setMenuOpen(isOpen, restoreFocus = false) {
@@ -3142,6 +3351,33 @@
         }
       }
 
+      function renderReleaseNotes() {
+        const notes = updatesExpanded ? releaseNotes : releaseNotes.slice(0, updatesPreviewCount);
+        const localeKey = currentLocale === "zh-CN" ? "zh" : "en";
+        const cards = notes.map((note) => {
+          const card = document.createElement("article");
+          const version = document.createElement("h3");
+          const title = document.createElement("p");
+          const copy = document.createElement("p");
+          const localizedNote = note[localeKey];
+
+          card.className = "update-release";
+          version.className = "update-version";
+          title.className = "update-title";
+          copy.className = "update-copy";
+          version.textContent = `v${note.version}`;
+          title.textContent = localizedNote.title;
+          copy.textContent = localizedNote.copy;
+          card.append(version, title, copy);
+          return card;
+        });
+
+        updatesList.replaceChildren(...cards);
+        updatesShowMore.hidden = updatesExpanded;
+        updatesShowMore.setAttribute("aria-expanded", String(updatesExpanded));
+        updatesCollapse.hidden = !updatesExpanded;
+      }
+
       function setLanguage(locale, persist = true) {
         const dictionary = translations[locale] || translations.en;
         currentLocale = locale in translations ? locale : "en";
@@ -3175,6 +3411,7 @@
         document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
         document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
+        renderReleaseNotes();
         updateLanguageToggle(dictionary);
         updateThemeToggle(dictionary);
         setLanguageMenuOpen(false);
@@ -3215,6 +3452,16 @@
       themeOptions.forEach((option) => option.addEventListener("click", () => {
         setTheme(option.dataset.themeOption);
       }));
+      updatesShowMore.addEventListener("click", () => {
+        updatesExpanded = true;
+        renderReleaseNotes();
+        updatesCollapse.focus();
+      });
+      updatesCollapse.addEventListener("click", () => {
+        updatesExpanded = false;
+        renderReleaseNotes();
+        updatesShowMore.focus();
+      });
       document.addEventListener("click", (event) => {
         if (!event.target.closest("[data-language-control]")) {
           setLanguageMenuOpen(false);

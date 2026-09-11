@@ -7,7 +7,7 @@
 - For Simplified Chinese, use a concise two-line headline with explicit line grouping so no single character is stranded on a line; tighten tracking with a Chinese-specific type scale.
 - Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for accent text and small indexes.
 - Use a split hero: product value and actions on the left, the introduction video as the primary visual on the right.
-- Keep the sequence as split hero, capabilities grid, installation panels, then support and privacy.
+- Keep the sequence as split hero, capabilities grid, installation panels, support, release notes, then privacy.
 
 ## Typography
 
@@ -20,6 +20,13 @@
 - Use the shared gradient label/border treatment for product actions; keep GitHub Issues, language, and theme controls lightweight.
 - On mobile, collapse the navigation to a Polaris logo plus menu button. Open the links in a compact bordered panel with at least 44px touch targets.
 - Keep the header in normal page flow so the installation anchor remains predictable.
+- Place a compact, centered, bordered platform banner directly below the header. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
+
+## Release notes
+
+- Place a release-notes section below the support block and above the footer. Put the fine divider on the footer's top edge, separating the update cards from the bottom information.
+- Mirror the feature releases from `Polaris-for-Web/src/release-notes.js`, sorted newest first. Show the latest five in the same bordered-card style as the installation tutorials; provide a button to reveal the complete list and replace it with a collapse action at the bottom of the expanded list.
+- Render version labels as compact accent text, then show the source release title and explanatory copy.
 
 ## Visual system
 
