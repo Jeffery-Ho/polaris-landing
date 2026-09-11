@@ -37,7 +37,7 @@
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
 - Use the shared gradient label/border treatment for product CTAs, with a solid theme-aware interior and no gradient hover fill.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
-- Provide a compact pill-style language dropdown with a clear translation marker beside the matching pill-style theme switch outside the navigation. The marker must use the control's current color rather than a fixed fill. Default to the system preference and persist explicit choices locally.
+- Provide a compact pill-style language dropdown with a clear translation marker beside the matching pill-style theme switch outside the navigation. The marker must use the control's current color rather than a fixed fill and be optically centered with its language text. Default to the system preference and persist explicit choices locally.
 
 ## Installation section
 
