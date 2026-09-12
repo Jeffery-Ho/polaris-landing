@@ -36,7 +36,7 @@ Final result: passed.
 
 - Desktop: the header Download link smoothly scrolls to the two-card installation section while retaining the wide transparent header treatment.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
-- The ZIP action opens the GitHub [latest Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) page, where the versioned ZIP asset can be downloaded; each archive contains a root `manifest.json`.
+- The ZIP action resolves the GitHub [latest Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) API and directly downloads its versioned ZIP asset; if the API is unavailable, it falls back to the Release page. Each archive contains a root `manifest.json`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.
 - The same-origin `/entry/extension/` fallback stores only the fixed `polaris_extension` source in tab-scoped session storage; homepage visits without source parameters use `attribution_source=direct_share` and `attribution_status=direct`, including bookmarks, manually entered URLs, and links whose parameters were removed.
 - The first visit follows the browser language (`zh-*` uses Simplified Chinese and other languages use English); switching languages updates all homepage copy and persists after refresh.

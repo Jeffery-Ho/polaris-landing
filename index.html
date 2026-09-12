@@ -3125,6 +3125,10 @@
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
       const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
+      const latestReleasePageUrl = "https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest";
+      const latestReleaseApiUrl = "https://api.github.com/repos/Jeffery-Ho/Polaris-for-Web/releases/latest";
+      const latestReleaseAssetPrefix = "https://github.com/Jeffery-Ho/Polaris-for-Web/releases/download/";
+      const releaseAssetNamePattern = /^Polaris-AI-\d+\.\d+\.\d+-build-\d+\.zip$/;
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
@@ -3811,6 +3815,7 @@
       let zipDownloadLoadingTimer = null;
       let zipDownloadPrimed = false;
       let zipDownloadPrimeTimer = null;
+      let latestReleaseAssetName = "github-release-latest";
 
       function setZipDownloadLoading(isLoading) {
         if (zipDownloadLoadingTimer !== null) {
@@ -3838,6 +3843,40 @@
         }
       }
 
+      async function resolveLatestReleaseDownload() {
+        try {
+          const response = await fetch(latestReleaseApiUrl, {
+            headers: { Accept: "application/vnd.github+json" }
+          });
+
+          if (!response.ok) {
+            throw new Error(`GitHub API responded with ${response.status}`);
+          }
+
+          const release = await response.json();
+          const asset = Array.isArray(release.assets)
+            ? release.assets.find((candidate) => (
+                releaseAssetNamePattern.test(candidate?.name || "")
+                && typeof candidate?.browser_download_url === "string"
+                && candidate.browser_download_url.startsWith(latestReleaseAssetPrefix)
+              ))
+            : null;
+
+          if (!asset) {
+            throw new Error("No versioned Polaris ZIP asset was found");
+          }
+
+          latestReleaseAssetName = asset.name;
+          localZipLink.href = asset.browser_download_url;
+          return asset.browser_download_url;
+        } catch {
+          localZipLink.href = latestReleasePageUrl;
+          return latestReleasePageUrl;
+        }
+      }
+
+      const latestReleaseDownloadPromise = resolveLatestReleaseDownload();
+
       function trackZipDownload() {
         if (zipDownloadPrimed) {
           return;
@@ -3849,7 +3888,7 @@
           ...readSlsUtmParameters(),
           ...slsAttributionContext,
           ...getSlsDeviceContext(),
-          asset: "github-release-latest",
+          asset: latestReleaseAssetName,
           locale: currentLocale,
           page: window.location.pathname || "/"
         });
@@ -3869,14 +3908,22 @@
         });
       }
 
-      localZipLink.addEventListener("click", () => {
-        if (localZipLink.dataset.downloadLoading === "true") {
+      localZipLink.addEventListener("click", async (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
           return;
         }
 
+        if (localZipLink.dataset.downloadLoading === "true") {
+          event.preventDefault();
+          return;
+        }
+
+        event.preventDefault();
         setZipDownloadLoading(true);
         trackZipDownload();
         resetZipDownloadPriming();
+        const href = await latestReleaseDownloadPromise;
+        window.location.assign(href);
       });
 
       function startVideoPlayback() {
