@@ -3844,9 +3844,13 @@
       }
 
       async function resolveLatestReleaseDownload() {
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), 8000);
+
         try {
           const response = await fetch(latestReleaseApiUrl, {
-            headers: { Accept: "application/vnd.github+json" }
+            headers: { Accept: "application/vnd.github+json" },
+            signal: controller.signal
           });
 
           if (!response.ok) {
@@ -3872,6 +3876,8 @@
         } catch {
           localZipLink.href = latestReleasePageUrl;
           return latestReleasePageUrl;
+        } finally {
+          window.clearTimeout(timeoutId);
         }
       }
 

@@ -7,6 +7,7 @@ const homepageSource = await readFile(new URL("../index.html", import.meta.url),
 test("下载按钮解析 Latest Release 的版本化 ZIP 并直接导航到资产", () => {
   assert.match(homepageSource, /latestReleaseApiUrl = "https:\/\/api\.github\.com\/repos\/Jeffery-Ho\/Polaris-for-Web\/releases\/latest"/);
   assert.match(homepageSource, /fetch\(latestReleaseApiUrl/);
+  assert.match(homepageSource, /signal: controller\.signal/);
   assert.match(homepageSource, /releaseAssetNamePattern = \/\^Polaris-AI-/);
   assert.match(homepageSource, /candidate\.browser_download_url\.startsWith\(latestReleaseAssetPrefix\)/);
   assert.match(homepageSource, /localZipLink\.href = asset\.browser_download_url/);
