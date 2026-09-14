@@ -1,0 +1,29 @@
+name: Deploy Polaris landing to ECS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: polaris-landing-ecs
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64, polaris-landing]
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact release source
+        # v4.2.2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Verify landing behavior
+        run: node --test test/*.test.js
+
+      - name: Publish atomically
+        run: ./deploy/release.sh "$GITHUB_SHA" "$GITHUB_WORKSPACE"

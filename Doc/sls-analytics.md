@@ -103,7 +103,7 @@ The SLS search bar can narrow this same result to mobile devices with `eventType
 3. Create a RAM role restricted to `log:PostLogStoreLogs` and `log:PutLogs` for this Logstore.
 4. Deploy `aliyun/fc/index.py` as an FC Python function with handler `index.handler`.
 5. Bind the RAM role as the FC execution role and set `SLS_ROLE_ARN`, `SLS_REGION`, `SLS_PROJECT`, `SLS_LOGSTORE`, and `ALLOWED_ORIGIN`. The runtime credential variables are injected by FC and must not be manually populated.
-6. Add a public HTTPS HTTP trigger, allow anonymous access, verify `GET` and `OPTIONS`, then copy the endpoint into `support-config.js`.
+6. Add a public HTTPS HTTP trigger, allow anonymous access, set `ALLOWED_ORIGIN` to `https://polaris-ai.work`, verify `GET` and `OPTIONS`, then copy the endpoint into `support-config.js`.
 
 The FC source returns only short-lived STS credentials. Never commit its AccessKey environment values or a generated endpoint containing secrets.
 

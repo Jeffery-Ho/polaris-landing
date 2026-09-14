@@ -2,8 +2,8 @@
 
 ## Property and indexing
 
-1. Verify the URL-prefix property `https://jeffery-ho.github.io/polaris-landing/` in the Google account that owns the site.
-2. Submit `https://jeffery-ho.github.io/polaris-landing/sitemap.xml`.
+1. Verify the URL-prefix property `https://polaris-ai.work/` in the Google account that owns the site.
+2. Submit `https://polaris-ai.work/sitemap.xml`.
 3. Use URL Inspection to request indexing for the homepage and `privacy.html`. Do not request indexing for `/support/`; it is intentionally marked `noindex` until real support content is published.
 
 ## Brand-query baseline

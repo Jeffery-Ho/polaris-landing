@@ -1,8 +1,8 @@
 # Polaris Landing
 
-Static GitHub Pages source for the Polaris AI website. The current homepage retains the existing introduction and support experience while its metadata establishes Polaris AI Navigator as the Chrome extension brand.
+Static source for the Polaris AI website. The current homepage retains the existing introduction and support experience while its metadata establishes Polaris AI Navigator as the Chrome extension brand.
 
-Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io/polaris-landing/).
+Published at [polaris-ai.work](https://polaris-ai.work/), served by Nginx on the Polaris ECS instance and deployed by its repository-scoped GitHub Actions runner.
 
 ## Assets
 
@@ -15,7 +15,7 @@ Published at [jeffery-ho.github.io/polaris-landing](https://jeffery-ho.github.io
 
 ## SEO
 
-- The homepage canonical URL is `https://jeffery-ho.github.io/polaris-landing/` and its page title is `Polaris AI — AI Chat Navigator for Long Answers`.
+- The homepage canonical URL is `https://polaris-ai.work/` and its page title is `Polaris AI — AI Chat Navigator for Long Answers`.
 - `robots.txt` permits crawling, while `sitemap.xml` lists the homepage and privacy page for submission in Google Search Console.
 - The homepage emits Organization and SoftwareApplication/WebApplication JSON-LD. The reserved `/support/` path is intentionally excluded from indexing until its content is ready.
 - [SEARCH_CONSOLE.md](SEARCH_CONSOLE.md) records the remaining account-only indexing steps and the 7/28/90-day brand-query baseline.
@@ -41,3 +41,15 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 - On small screens, the header collapses to the Polaris logo and an accessible menu button; opening it reveals the same navigation actions without changing their URLs.
 - The local option explains the shortest path: download and unzip the package, then load the folder from `chrome://extensions` with Developer mode enabled.
 - The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.
+
+## ECS deployment
+
+Run the installation in this order:
+
+1. Point `polaris-ai.work` at the ECS and add `www` as a CNAME to the root domain.
+2. Run `deploy/bootstrap-ecs.sh` as root to install the host prerequisites and create the deployment user.
+3. With a fresh repository runner registration token, approved runner version, and matching SHA-256 checksum, run `deploy/install-github-runner.sh` as root. It registers only this repository and creates the `polaris-landing` runner label used by the workflow.
+4. Trigger the workflow once. It creates `/srv/polaris-landing/current` from a tested commit.
+5. Run `deploy/bootstrap-ecs.sh` again with `CERTBOT_EMAIL` set locally. It requests the certificate and activates the HTTPS and redirect configuration.
+
+The repository-scoped runner executes `.github/workflows/deploy-ecs.yml`; `deploy/release.sh` stages only public assets and atomically moves the `current` symlink to the verified release.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-14
+
+- 部署：主站迁移至阿里云 ECS 的 Nginx 静态托管，`polaris-ai.work` 为唯一 canonical 域名，`www` 强制跳转至根域名；部署改为仓库专用 GitHub Actions runner 的原子 release 切换。
+- 分析：SLS STS 函数部署说明明确将严格 CORS 来源切换至 `https://polaris-ai.work`。
+- SEO：主页、隐私页、支持页、Open Graph、Twitter、JSON-LD、sitemap、robots 和 Search Console 指引均改用新域名。
+
 ## 2026-09-11
 
 - 发布：本地安装按钮和下载埋点改为解析主仓库 GitHub Latest Release 的版本化 ZIP 并直接下载；API 不可用时回退到 Release 页面，保留旧 ZIP 资源。
