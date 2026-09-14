@@ -47,7 +47,7 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 Run the installation in this order:
 
 1. Point `polaris-ai.work` at the ECS and add `www` as a CNAME to the root domain.
-2. Run `deploy/bootstrap-ecs.sh` as root to install the host prerequisites and create the deployment user.
+2. Run `deploy/bootstrap-ecs.sh` as root to install the host prerequisites and create the deployment user. If the ECS already runs an edge proxy on 80/443, use `POLARIS_EDGE_MODE=existing-proxy deploy/bootstrap-ecs.sh`; native Nginx then listens only on `172.17.0.1:8080`, and the existing proxy must handle TLS plus forwarding for `polaris-ai.work`.
 3. With a fresh repository runner registration token, approved runner version, and matching SHA-256 checksum, run `deploy/install-github-runner.sh` as root. It registers only this repository and creates the `polaris-landing` runner label used by the workflow.
 4. Trigger the workflow once. It creates `/srv/polaris-landing/current` from a tested commit.
 5. Run `deploy/bootstrap-ecs.sh` again with `CERTBOT_EMAIL` set locally. It requests the certificate and activates the HTTPS and redirect configuration.

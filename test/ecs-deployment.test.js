@@ -8,7 +8,7 @@ import { spawnSync } from "node:child_process";
 const readProjectFile = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("ECS deployment keeps the public origin and runtime configuration aligned", async () => {
-  const [home, privacy, support, sitemap, robots, workflow, nginx, releaseScript, runnerScript] = await Promise.all([
+  const [home, privacy, support, sitemap, robots, workflow, nginx, internalNginx, releaseScript, runnerScript, bootstrapScript] = await Promise.all([
     readProjectFile("index.html"),
     readProjectFile("privacy.html"),
     readProjectFile("support/index.html"),
@@ -16,8 +16,10 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
     readProjectFile("robots.txt"),
     readProjectFile(".github/workflows/deploy-ecs.yml"),
     readProjectFile("deploy/nginx/polaris-ai.work.conf"),
+    readProjectFile("deploy/nginx/polaris-ai.work.internal.conf"),
     readProjectFile("deploy/release.sh"),
-    readProjectFile("deploy/install-github-runner.sh")
+    readProjectFile("deploy/install-github-runner.sh"),
+    readProjectFile("deploy/bootstrap-ecs.sh")
   ]);
 
   for (const source of [home, privacy, support, sitemap, robots]) {
@@ -31,6 +33,9 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
   assert.match(nginx, /server_name polaris-ai\.work;/);
   assert.match(nginx, /server_name www\.polaris-ai\.work;/);
   assert.match(nginx, /return 301 https:\/\/polaris-ai\.work\$request_uri;/);
+  assert.match(internalNginx, /listen 172\.17\.0\.1:8080;/);
+  assert.match(bootstrapScript, /POLARIS_EDGE_MODE/);
+  assert.match(bootstrapScript, /existing-proxy/);
   assert.match(releaseScript, /POLARIS_SITE_ROOT:-\/srv\/polaris-landing/);
   assert.match(releaseScript, /renameSync/);
   assert.match(runnerScript, /RUNNER_SHA256/);

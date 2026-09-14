@@ -3,6 +3,7 @@
 ## 2026-09-14
 
 - 部署：主站迁移至阿里云 ECS 的 Nginx 静态托管，`polaris-ai.work` 为唯一 canonical 域名，`www` 强制跳转至根域名；部署改为仓库专用 GitHub Actions runner 的原子 release 切换。
+- 部署：当 ECS 已有边缘代理占用 80/443 时，原生 Nginx 改为仅监听 Docker 网桥 `172.17.0.1:8080`，由现有代理继续负责 TLS 和公网转发，避免中断既有服务。
 - 分析：SLS STS 函数部署说明明确将严格 CORS 来源切换至 `https://polaris-ai.work`。
 - SEO：主页、隐私页、支持页、Open Graph、Twitter、JSON-LD、sitemap、robots 和 Search Console 指引均改用新域名。
 
