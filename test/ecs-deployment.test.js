@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, readlink, realpath, rm, writeFile, mkdir } from "node:fs/promises";
+import { mkdtemp, readFile, readlink, realpath, rm, writeFile, mkdir, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -67,6 +67,7 @@ test("release script switches atomically and retains only the current and previo
 
     assert.equal(release(first).status, 0);
     assert.equal(await readFile(join(siteRoot, "current", "index.html"), "utf8"), "first");
+    assert.equal(((await stat(join(siteRoot, "current", "index.html"))).mode & 0o444) !== 0, true);
     assert.equal(await readlink(join(siteRoot, "current")), join(await realpath(siteRoot), "releases", first));
 
     await writeFile(join(sourceRoot, "index.html"), "second");

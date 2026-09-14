@@ -81,5 +81,6 @@ done
 
 mv "$staging_directory" "$release_directory"
 trap - EXIT
+chmod -R a+rX "$release_directory"
 switch_current_release
 prune_releases
