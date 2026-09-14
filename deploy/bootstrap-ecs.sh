@@ -23,7 +23,7 @@ esac
 
 dnf install -y nginx certbot python3-certbot-nginx nodejs rsync
 id "$deploy_user" &>/dev/null || useradd --create-home --shell /bin/bash "$deploy_user"
-install -d -o "$deploy_user" -g "$deploy_user" -m 0755 "$site_root/releases"
+install -d -o "$deploy_user" -g "$deploy_user" -m 0755 "$site_root" "$site_root/releases"
 
 if [[ "$edge_mode" == "existing-proxy" ]]; then
   # Keep an existing edge proxy on 80/443. The stock Nginx example otherwise
