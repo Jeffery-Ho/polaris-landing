@@ -6,13 +6,13 @@ if [[ "$(id -u)" -ne 0 ]]; then
   exit 1
 fi
 
-: "${RUNNER_TOKEN:?Set RUNNER_TOKEN to a fresh repository runner registration token.}"
 : "${RUNNER_VERSION:?Set RUNNER_VERSION to the approved GitHub Actions runner version.}"
 : "${RUNNER_SHA256:?Set RUNNER_SHA256 to the approved Linux x64 archive checksum.}"
 
 runner_user="polaris-deploy"
 runner_home="/home/$runner_user/actions-runner"
-runner_archive="/tmp/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
+runner_cache_dir="${RUNNER_CACHE_DIR:-/var/cache/polaris-runner}"
+runner_archive="$runner_cache_dir/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
 runner_url="https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
 
 id "$runner_user" &>/dev/null || {
@@ -20,17 +20,28 @@ id "$runner_user" &>/dev/null || {
   exit 1
 }
 
+install -d -m 0755 "$runner_cache_dir"
+
+if ! echo "$RUNNER_SHA256  $runner_archive" | sha256sum --check --status 2>/dev/null; then
+  curl --fail --location --retry 10 --retry-all-errors --retry-delay 5 \
+    --continue-at - --output "$runner_archive" "$runner_url"
+  echo "$RUNNER_SHA256  $runner_archive" | sha256sum --check --status
+fi
+
+if [[ "${RUNNER_DOWNLOAD_ONLY:-0}" == "1" ]]; then
+  echo "Runner archive downloaded and verified: $runner_archive"
+  exit 0
+fi
+
+: "${RUNNER_TOKEN:?Set RUNNER_TOKEN to a fresh repository runner registration token.}"
+
 if [[ -e "$runner_home" ]]; then
   echo "Runner directory already exists: $runner_home" >&2
   exit 1
 fi
 
-curl --fail --location --retry 3 --output "$runner_archive" "$runner_url"
-echo "$RUNNER_SHA256  $runner_archive" | sha256sum --check --status
-
 install -d -o "$runner_user" -g "$runner_user" -m 0755 "$runner_home"
 tar -xzf "$runner_archive" --directory "$runner_home"
-rm -f "$runner_archive"
 "$runner_home/bin/installdependencies.sh"
 
 runuser -u "$runner_user" -- "$runner_home/config.sh" \

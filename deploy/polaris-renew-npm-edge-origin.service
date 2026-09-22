@@ -1,0 +1,6 @@
+[Unit]
+Description=Renew Polaris Nginx Proxy Manager origin certificate
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/polaris-renew-npm-edge-origin

@@ -2,7 +2,7 @@
 
 Static source for the Polaris AI website. The current homepage retains the existing introduction and support experience while its metadata establishes Polaris AI Navigator as the Chrome extension brand.
 
-Published at [polaris-ai.work](https://polaris-ai.work/), served by Nginx on the Polaris ECS instance and deployed by its repository-scoped GitHub Actions runner.
+Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polaris ECS instance through Alibaba Cloud ESA and deployed by its repository-scoped GitHub Actions runner.
 
 ## Assets
 
@@ -42,14 +42,14 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 - The local option explains the shortest path: download and unzip the package, then load the folder from `chrome://extensions` with Developer mode enabled.
 - The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.
 
-## ECS deployment
+## ESA + ECS deployment
 
 Run the installation in this order:
 
-1. Point `polaris-ai.work` at the ECS and add `www` as a CNAME to the root domain.
+1. Create the ESA site and point its proxied records to the ECS origin `47.104.229.186`; the public DNS records then use the ESA CNAME targets.
 2. Run `deploy/bootstrap-ecs.sh` as root to install the host prerequisites and create the deployment user. If the ECS already runs an edge proxy on 80/443, use `POLARIS_EDGE_MODE=existing-proxy deploy/bootstrap-ecs.sh`; native Nginx then listens only on `172.17.0.1:8080`, and the existing proxy must handle TLS plus forwarding for `polaris-ai.work`.
-3. With a fresh repository runner registration token, approved runner version, and matching SHA-256 checksum, run `deploy/install-github-runner.sh` as root. It registers only this repository and creates the `polaris-landing` runner label used by the workflow.
-4. Trigger the workflow once. It creates `/srv/polaris-landing/current` from a tested commit.
-5. Run `deploy/bootstrap-ecs.sh` again with `CERTBOT_EMAIL` set locally. It requests the certificate and activates the HTTPS and redirect configuration.
+3. Run `deploy/configure-npm-edge-origin.sh` with `ACME_EMAIL` set locally. It creates the NPM origin proxy, requests the origin certificate, and installs its renewal timer.
+4. With a fresh repository runner registration token, approved runner version, and matching SHA-256 checksum, first run `RUNNER_DOWNLOAD_ONLY=1 deploy/install-github-runner.sh` to cache the verified archive, then run it again with the fresh token. It registers only this repository and creates the `polaris-landing` runner label used by the workflow.
+5. Configure ESA HTTPS, the root-domain canonical redirect, `www` redirect, and source protection only after the origin responds correctly.
 
-The repository-scoped runner executes `.github/workflows/deploy-ecs.yml`; `deploy/release.sh` stages only public assets and atomically moves the `current` symlink to the verified release.
+The repository-scoped runner executes `.github/workflows/deploy-ecs.yml`; `deploy/release.sh` stages only public assets and atomically moves the `current` symlink to the verified release. ESA terminates public HTTPS, while Nginx Proxy Manager maintains the HTTPS origin connection to native Nginx.

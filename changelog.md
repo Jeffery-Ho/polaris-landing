@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-09-22
+
+- 部署：将 `polaris-ai.work` 的公网入口切换为阿里云 ESA，ECS 保留为静态源站；补充 NPM 源站 HTTPS、ACME 自动续期、ESA 回源配置和根域名 canonical 重定向流程。
+- 部署：GitHub Actions Runner 增加可续传缓存与两阶段下载，避免官方安装包下载期间注册令牌过期。
+
 ## 2026-09-14
 
 - 部署：主站迁移至阿里云 ECS 的 Nginx 静态托管，`polaris-ai.work` 为唯一 canonical 域名，`www` 强制跳转至根域名；部署改为仓库专用 GitHub Actions runner 的原子 release 切换。
