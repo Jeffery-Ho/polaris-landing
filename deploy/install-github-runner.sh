@@ -23,8 +23,18 @@ id "$runner_user" &>/dev/null || {
 install -d -m 0755 "$runner_cache_dir"
 
 if ! echo "$RUNNER_SHA256  $runner_archive" | sha256sum --check --status 2>/dev/null; then
-  curl --fail --location --retry 10 --retry-all-errors --retry-delay 5 \
-    --continue-at - --output "$runner_archive" "$runner_url"
+  curl_args=(
+    --fail
+    --location
+    --retry 10
+    --retry-delay 5
+    --continue-at -
+    --output "$runner_archive"
+  )
+  if curl --help all 2>/dev/null | grep -q -- "--retry-all-errors"; then
+    curl_args+=(--retry-all-errors)
+  fi
+  curl "${curl_args[@]}" "$runner_url"
   echo "$RUNNER_SHA256  $runner_archive" | sha256sum --check --status
 fi
 

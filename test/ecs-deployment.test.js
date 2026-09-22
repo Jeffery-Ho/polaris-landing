@@ -51,6 +51,8 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
   assert.match(runnerScript, /RUNNER_SHA256/);
   assert.match(runnerScript, /RUNNER_DOWNLOAD_ONLY/);
   assert.match(runnerScript, /--continue-at -/);
+  assert.match(runnerScript, /curl --help all/);
+  assert.match(runnerScript, /curl_args\+=\(--retry-all-errors\)/);
   assert.match(runnerScript, /RUNNER_CACHE_DIR/);
   assert.match(runnerScript, /--labels self-hosted,linux,x64,polaris-landing/);
   assert.match(runnerScript, /installdependencies\.sh/);
