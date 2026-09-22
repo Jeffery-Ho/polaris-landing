@@ -2,6 +2,7 @@
 
 ## 2026-09-22
 
+- 修复：下载按钮默认直达 `Polaris-AI-0.55.0-build-222.zip`；GitHub Latest Release API 被限流或拦截时继续下载该版本化 ZIP，不再回退到 HTML Release 页面。
 - 部署：将 `polaris-ai.work` 的公网入口切换为阿里云 ESA，ECS 保留为静态源站；补充 NPM 源站 HTTPS、ACME 自动续期、ESA 回源配置和根域名 canonical 重定向流程。
 - 部署：GitHub Actions Runner 增加可续传缓存与两阶段下载，避免官方安装包下载期间注册令牌过期。
 - 修复：Runner 安装脚本兼容 Alibaba Cloud Linux 的旧版 `curl`，并在 Runner 根目录完成依赖检查及 systemd 服务安装。

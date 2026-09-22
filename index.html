@@ -3043,7 +3043,7 @@
                 <span class="install-card-badge"><span data-i18n="install.local.badge">Recommended in Mainland China</span></span>
               </h3>
               <p class="install-card-copy" data-i18n="install.local.copy">Download the ZIP, unzip it, then load the folder in Chrome extensions.</p>
-              <a class="install-card-button" href="https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest" data-analytics-event="zip_download">
+              <a class="install-card-button" href="https://github.com/Jeffery-Ho/Polaris-for-Web/releases/download/v0.55.0-build.222/Polaris-AI-0.55.0-build-222.zip" data-analytics-event="zip_download">
                 <span class="install-card-button-label install-card-button-label--default" data-download-label data-i18n="install.local.download" aria-hidden="false">Download ZIP</span>
                 <span class="install-card-button-label install-card-button-label--loading" data-download-loading-label data-i18n="install.local.download.loading" aria-hidden="true">Downloading…</span>
                 <span class="install-card-button-spinner" aria-hidden="true"></span>
@@ -3125,10 +3125,14 @@
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
       const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
-      const latestReleasePageUrl = "https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest";
       const latestReleaseApiUrl = "https://api.github.com/repos/Jeffery-Ho/Polaris-for-Web/releases/latest";
       const latestReleaseAssetPrefix = "https://github.com/Jeffery-Ho/Polaris-for-Web/releases/download/";
       const releaseAssetNamePattern = /^Polaris-AI-\d+\.\d+\.\d+-build-\d+\.zip$/;
+      const latestReleaseFallbackUrl = localZipLink.href;
+      const latestReleaseFallback = Object.freeze({
+        url: latestReleaseFallbackUrl,
+        name: new URL(latestReleaseFallbackUrl).pathname.split("/").pop()
+      });
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
@@ -3815,7 +3819,7 @@
       let zipDownloadLoadingTimer = null;
       let zipDownloadPrimed = false;
       let zipDownloadPrimeTimer = null;
-      let latestReleaseAssetName = "github-release-latest";
+      let latestReleaseAssetName = latestReleaseFallback.name;
 
       function setZipDownloadLoading(isLoading) {
         if (zipDownloadLoadingTimer !== null) {
@@ -3874,14 +3878,15 @@
           localZipLink.href = asset.browser_download_url;
           return asset.browser_download_url;
         } catch {
-          localZipLink.href = latestReleasePageUrl;
-          return latestReleasePageUrl;
+          latestReleaseAssetName = latestReleaseFallback.name;
+          localZipLink.href = latestReleaseFallback.url;
+          return latestReleaseFallback.url;
         } finally {
           window.clearTimeout(timeoutId);
         }
       }
 
-      const latestReleaseDownloadPromise = resolveLatestReleaseDownload();
+      void resolveLatestReleaseDownload();
 
       function trackZipDownload() {
         if (zipDownloadPrimed) {
@@ -3914,7 +3919,7 @@
         });
       }
 
-      localZipLink.addEventListener("click", async (event) => {
+      localZipLink.addEventListener("click", (event) => {
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
           return;
         }
@@ -3924,12 +3929,9 @@
           return;
         }
 
-        event.preventDefault();
         setZipDownloadLoading(true);
         trackZipDownload();
         resetZipDownloadPriming();
-        const href = await latestReleaseDownloadPromise;
-        window.location.assign(href);
       });
 
       function startVideoPlayback() {
