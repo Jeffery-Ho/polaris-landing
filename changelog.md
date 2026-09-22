@@ -5,6 +5,7 @@
 - 部署：将 `polaris-ai.work` 的公网入口切换为阿里云 ESA，ECS 保留为静态源站；补充 NPM 源站 HTTPS、ACME 自动续期、ESA 回源配置和根域名 canonical 重定向流程。
 - 部署：GitHub Actions Runner 增加可续传缓存与两阶段下载，避免官方安装包下载期间注册令牌过期。
 - 修复：Runner 安装脚本兼容 Alibaba Cloud Linux 的旧版 `curl`，并在 Runner 根目录完成依赖检查及 systemd 服务安装。
+- 安全：启用 ESA 源站防护，以 ECS 前缀列表限制 80/443 仅允许当前 ESA 回源 IPv4 网段，并记录先同步安全组再确认回源 IP 更新的维护顺序。
 
 ## 2026-09-14
 
