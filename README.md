@@ -8,7 +8,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 - `assets/polaris-introduction.mp4` is a 1440×916, 30fps H.264 muted autoplay video with a fast-start MP4 index.
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
-- The local-installation button starts with a verified versioned GitHub Release ZIP, then resolves the [latest GitHub Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) when the API is available. If GitHub rate-limits the API, the button keeps downloading the verified ZIP instead of opening an HTML Release page. The existing `assets/Polaris-for-Web-0.48.3-build-196.zip` file remains archived for compatibility.
+- The local-installation button uses the stable [latest GitHub Release ZIP asset](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip). The extension release workflow publishes that fixed asset name alongside the versioned ZIP only after validating the archive, so landing downloads do not depend on the GitHub API. The existing `assets/Polaris-for-Web-0.48.3-build-196.zip` file remains archived for compatibility.
 - `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, PayPal URL, GA4 Measurement ID, and deployed SLS endpoint configuration.

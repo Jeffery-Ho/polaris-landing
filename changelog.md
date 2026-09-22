@@ -2,6 +2,7 @@
 
 ## 2026-09-22
 
+- 发布：下载按钮改用 GitHub Release 的固定 `latest/download/Polaris-AI.zip` 资产；扩展发布工作流先以 Draft Release 上传并校验版本 ZIP 与稳定别名，再发布到 Latest，避免 API 限流或资产上传竞态导致用户拿到旧包或 HTML 页面。
 - 修复：下载按钮默认直达 `Polaris-AI-0.55.0-build-222.zip`；GitHub Latest Release API 被限流或拦截时继续下载该版本化 ZIP，不再回退到 HTML Release 页面。
 - 部署：将 `polaris-ai.work` 的公网入口切换为阿里云 ESA，ECS 保留为静态源站；补充 NPM 源站 HTTPS、ACME 自动续期、ESA 回源配置和根域名 canonical 重定向流程。
 - 部署：GitHub Actions Runner 增加可续传缓存与两阶段下载，避免官方安装包下载期间注册令牌过期。
