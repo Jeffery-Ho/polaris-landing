@@ -55,6 +55,7 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
   assert.match(runnerScript, /curl_args\+=\(--retry-all-errors\)/);
   assert.match(runnerScript, /RUNNER_CACHE_DIR/);
   assert.match(runnerScript, /--labels self-hosted,linux,x64,polaris-landing/);
+  assert.match(runnerScript, /cd "\$runner_home"/);
   assert.match(runnerScript, /installdependencies\.sh/);
   assert.match(npmScript, /ACME_EMAIL/);
   assert.match(npmScript, /polaris-renew-npm-edge-origin\.timer/);

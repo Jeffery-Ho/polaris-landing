@@ -52,15 +52,18 @@ fi
 
 install -d -o "$runner_user" -g "$runner_user" -m 0755 "$runner_home"
 tar -xzf "$runner_archive" --directory "$runner_home"
-"$runner_home/bin/installdependencies.sh"
+(
+  cd "$runner_home"
+  ./bin/installdependencies.sh
 
-runuser -u "$runner_user" -- "$runner_home/config.sh" \
-  --unattended \
-  --url https://github.com/Jeffery-Ho/polaris-landing \
-  --token "$RUNNER_TOKEN" \
-  --name polaris-landing-ecs \
-  --labels self-hosted,linux,x64,polaris-landing \
-  --work "$runner_home/_work"
+  runuser -u "$runner_user" -- ./config.sh \
+    --unattended \
+    --url https://github.com/Jeffery-Ho/polaris-landing \
+    --token "$RUNNER_TOKEN" \
+    --name polaris-landing-ecs \
+    --labels self-hosted,linux,x64,polaris-landing \
+    --work "$runner_home/_work"
 
-"$runner_home/svc.sh" install "$runner_user"
-"$runner_home/svc.sh" start
+  ./svc.sh install "$runner_user"
+  ./svc.sh start
+)
