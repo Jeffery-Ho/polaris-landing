@@ -3534,14 +3534,14 @@
         align-items: center;
         justify-content: center;
         width: 0;
-        height: 0.85em;
+        height: 0.72em;
         margin-inline: 0;
-        transform: translateY(-0.04em);
+        transform: translateY(0.06em);
         transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1), margin-inline 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
       }
 
       .platform-slot.is-open {
-        width: 0.85em;
+        width: 0.72em;
         margin-inline: 0.12em;
       }
 
@@ -3585,6 +3585,15 @@
         transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
       }
 
+      @keyframes how-enlarge {
+        from { transform: scale(0.86); }
+        to { transform: scale(1); }
+      }
+
+      .how-stage.is-zooming .browser {
+        animation: how-enlarge 720ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .platform-slot,
         .platform-icon,
@@ -3593,6 +3602,10 @@
         .chat-marker,
         .how-note {
           transition: none;
+        }
+
+        .how-stage.is-zooming .browser {
+          animation: none;
         }
       }
 
@@ -3619,6 +3632,7 @@
       }
 
       .browser {
+        transform-origin: center center;
         --shell-bg: #faf9f7;
         --shell-ink: #1c1917;
         --shell-muted: #7a716b;
@@ -4674,7 +4688,7 @@
         { name: "Kimi", src: "icons/platforms/platform-kimi.png", width: 512 },
         { name: "Qwen", src: "icons/platforms/platform-qianwen.png", width: 512 },
         { name: "Yuanbao", src: "icons/platforms/platform-yuanbao.png", width: 512 },
-        { name: "Diandian AI", src: "icons/platforms/platform-xiaohongshu.png", width: 202 },
+        { name: "Diandian AI", src: "icons/platforms/platform-xiaohongshu.png", width: 512 },
         { name: "Manus", src: "icons/platforms/platform-manus.png", width: 512 },
         { name: "DeepSeek", src: "icons/platforms/platform-deepseek.png", width: 512 }
       ]);
@@ -5381,7 +5395,18 @@
         const howPanels = [...howStage.querySelectorAll("[data-how-panel]")];
         const howSearches = [...howStage.querySelectorAll("[data-how-search]")];
 
-        const setHowMode = (mode) => {
+        const enlargeBrowser = () => {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+          }
+
+          howStage.classList.remove("is-zooming");
+          void howStage.offsetWidth;
+          howStage.classList.add("is-zooming");
+        };
+
+        const setHowMode = (mode, animate = false) => {
+          const changed = howStage.dataset.mode !== mode;
           howStage.dataset.mode = mode;
           howTabs.forEach((tab) => {
             const selected = tab.dataset.howMode === mode;
@@ -5397,6 +5422,10 @@
           howSearches.forEach((label) => {
             label.hidden = label.dataset.howSearch !== mode;
           });
+
+          if (animate && changed) {
+            enlargeBrowser();
+          }
         };
 
         const setHowActive = (id) => {
@@ -5414,7 +5443,7 @@
         howStage.addEventListener("click", (event) => {
           const modeControl = event.target.closest("[data-how-mode]");
           if (modeControl && howStage.contains(modeControl)) {
-            setHowMode(modeControl.dataset.howMode);
+            setHowMode(modeControl.dataset.howMode, true);
             return;
           }
 
@@ -5432,7 +5461,7 @@
           event.preventDefault();
           const current = howTabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
           const next = event.key === "ArrowRight" ? (current + 1) % howTabs.length : (current - 1 + howTabs.length) % howTabs.length;
-          setHowMode(howTabs[next].dataset.howMode);
+          setHowMode(howTabs[next].dataset.howMode, true);
           howTabs[next].focus();
         });
 
