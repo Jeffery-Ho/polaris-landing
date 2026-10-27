@@ -5,7 +5,7 @@
 - Fill the first screen: the hero is a full-bleed field at least `100svh`, with the page background running behind the floating nav.
 - Use a short supporting sentence, then a two-line headline at display scale. Do not spend the hero on a four-line headline, and do not add a decorative wordmark that is not the Polaris name.
 - For Simplified Chinese, keep the concise two-line headline with an explicit line break so no character is stranded.
-- Give the hero one solid monochrome install pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
+- Give the hero one solid monochrome Free trial pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
 - Anchor the existing introduction video large at the bottom of the hero so it dominates the first screen. Keep its source, thumbnail, and failure-recovery play control.
 - Match the extension conversation cover: paper `#faf9f7` in light and `#191817` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Move the platform list below the hero as a quiet centered row. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
@@ -19,10 +19,10 @@
 ## Header
 
 - Use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not use a full-width header bar or a header bottom border.
-- Inside the pill, show the logo mark with a minimal wordmark and two quiet text links — How it works and Updates — at about 70% opacity, with no underlines. Do not place Download or GitHub Issues in that pill.
-- At the top of the page, leave Download to the hero install action. After the visitor scrolls past the hero, reveal a separate floating Download pill on the right that matches the nav pill. Do not use the gradient outline treatment on the header Download control.
+- Inside the pill, show the logo mark with a minimal wordmark and two quiet text links — How it works and Updates — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill.
+- At the top of the page, the hero Free trial action owns the install section. After the visitor scrolls past the hero, reveal a separate floating Free trial pill on the right that matches the nav pill and uses the same label. Do not use the gradient outline treatment on that header control.
 - Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.
-- On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Download so the install section stays reachable. GitHub Issues lives in the footer.
+- On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Free trial so the install section stays reachable. GitHub Issues lives in the footer.
 - In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
 
 ## Release notes
@@ -36,9 +36,9 @@
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
 - Use crisp 1px borders, 8px panel radii, 999px button radii, and generous spacing. Keep decorative blur off the page sections. The header pills are the exception: they use a 16px radius, a soft shadow, and backdrop blur.
 - Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and installation CTA labels/borders; keep CTA interiors solid.
-- Keep the hero install pill monochrome: solid black on the light field and solid white on the dark field, with no gradient outline. The secondary hero action is a text link.
+- Keep the hero Free trial pill monochrome: solid black on the light field and solid white on the dark field, with no gradient outline. The secondary hero action is a text link. The label is “Free trial” in English and “免费试用” in Simplified Chinese, and it scrolls to the installation section.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
-- Use the shared gradient label/border treatment for installation CTAs, with a solid theme-aware interior and no gradient hover fill. The header Download pill does not use that gradient.
+- Use the shared gradient label/border treatment for installation CTAs, with a solid theme-aware interior and no gradient hover fill. The header Free trial pill does not use that gradient.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
 - Provide a compact language dropdown with a clear translation marker beside the theme switch, both outside the center navigation pill. The marker must use the control's current color rather than a fixed fill and be optically centered with its language text. Default to the system preference and persist explicit choices locally.
 

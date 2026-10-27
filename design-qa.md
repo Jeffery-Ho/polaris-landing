@@ -2,8 +2,8 @@
 
 ## Hero typography refinement
 
-- Desktop: the first screen is a full-bleed hero with a two-line headline, one install pill, a text link to capabilities, and a large bottom-anchored video. The platform list sits below that hero.
-- Mobile: the same hero stacks without horizontal overflow, and the install pill remains the only filled hero action.
+- Desktop: the first screen is a full-bleed hero with a two-line headline, one Free trial pill, a text link to capabilities, and a large bottom-anchored video. The platform list sits below that hero.
+- Mobile: the same hero stacks without horizontal overflow, and the Free trial pill remains the only filled hero action.
 
 ## Cross-platform typography
 
@@ -14,9 +14,9 @@ Final result: passed.
 
 ## Header navigation
 
-- Desktop: a centered floating pill holds the logo, How it works, and Updates. Download is absent until the page scrolls past the hero, then a separate right-side pill links to the installation section. Language and theme controls sit outside the pill. GitHub Issues is in the footer.
-- Mobile: the logo, language, theme, and menu button stay reachable without horizontal overflow. The menu lists How it works, Updates, and Download.
-- The header Download control does not use the gradient outline. The header Download link reaches the installation section, and the language toggle remains keyboard accessible.
+- Desktop: a centered floating pill holds the logo, How it works, and Updates. Free trial is absent until the page scrolls past the hero, then a separate right-side pill links to the installation section. Language and theme controls sit outside the pill. GitHub Issues is in the footer.
+- Mobile: the logo, language, theme, and menu button stay reachable without horizontal overflow. The menu lists How it works, Updates, and Free trial.
+- The header Free trial control does not use the gradient outline. It uses the same Free trial / 免费试用 label as the hero and reaches the installation section. The language toggle remains keyboard accessible.
 
 ## PayPal CTA glass refinement
 
@@ -34,7 +34,7 @@ Final result: passed.
 
 ## Installation and localization
 
-- Desktop: once the header Download pill is revealed, it smoothly scrolls to the two-card installation section.
+- Desktop: once the header Free trial pill is revealed, it smoothly scrolls to the two-card installation section.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
 - The ZIP action resolves the GitHub [latest Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) API and directly downloads its versioned ZIP asset; if the API is unavailable, it falls back to the Release page. Each archive contains a root `manifest.json`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.
