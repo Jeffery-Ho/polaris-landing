@@ -3366,6 +3366,9 @@
       }
 
       .hero-stage h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         max-width: none;
         margin: 18px auto 0;
         color: inherit;
@@ -3374,6 +3377,13 @@
         letter-spacing: -0.055em;
         line-height: 0.96;
         white-space: normal;
+      }
+
+      .headline-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: inherit;
       }
 
       :root[lang^="zh"] .hero-stage h1 {
@@ -3518,25 +3528,27 @@
       }
 
       .platform-slot {
-        display: inline-block;
+        display: inline-flex;
         position: relative;
+        flex: none;
+        align-items: center;
+        justify-content: center;
         width: 0;
-        height: 0;
-        vertical-align: baseline;
-        transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
+        height: 0.85em;
+        margin-inline: 0;
+        transform: translateY(-0.04em);
+        transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1), margin-inline 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
       }
 
       .platform-slot.is-open {
-        width: 1.05em;
+        width: 0.85em;
+        margin-inline: 0.12em;
       }
 
       .platform-icon {
         position: absolute;
-        bottom: 0.02em;
-        left: 0.1em;
+        inset: 0;
         display: grid;
-        width: 0.85em;
-        height: 0.85em;
         place-items: center;
         border-radius: 30%;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28), inset 0 0 0 1px rgba(0, 0, 0, 0.14);
@@ -3684,7 +3696,7 @@
       <section class="hero-stage">
         <div class="hero-copy">
           <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
-          <h1 id="hero-title" data-i18n="hero.title">Navigate <span class="platform-slot" data-platform-slot></span> long<br>AI <span class="platform-slot" data-platform-slot></span> conversations.</h1>
+          <h1 id="hero-title" data-i18n="hero.title"><span class="headline-line">Navigate <span class="platform-slot" data-platform-slot></span> long</span><span class="headline-line">AI <span class="platform-slot" data-platform-slot></span> conversations.</span></h1>
           <div class="hero-actions">
             <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
             <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
@@ -3885,7 +3897,7 @@
           "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
-          "hero.title": "Navigate <span class=\"platform-slot\" data-platform-slot></span> long<br>AI <span class=\"platform-slot\" data-platform-slot></span> conversations.",
+          "hero.title": "<span class=\"headline-line\">Navigate <span class=\"platform-slot\" data-platform-slot></span> long</span><span class=\"headline-line\">AI <span class=\"platform-slot\" data-platform-slot></span> conversations.</span>",
           "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
           "hero.explore": "See how it works",
           "hero.install": "Free trial",
@@ -3954,7 +3966,7 @@
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
-          "hero.title": "长篇 <span class=\"platform-slot\" data-platform-slot></span> 对话<br>一键 <span class=\"platform-slot\" data-platform-slot></span> 跳转。",
+          "hero.title": "<span class=\"headline-line\">长篇 <span class=\"platform-slot\" data-platform-slot></span> 对话</span><span class=\"headline-line\">一键 <span class=\"platform-slot\" data-platform-slot></span> 跳转。</span>",
           "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
           "hero.explore": "了解工作方式",
           "hero.install": "免费试用",
