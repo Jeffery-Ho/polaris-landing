@@ -3328,17 +3328,20 @@
         box-sizing: border-box;
         min-height: 100svh;
         padding: clamp(112px, 14vh, 148px) 24px 0;
+        --hero-bg: #faf9f7;
+        --hero-accent: #b85c3a;
         background:
-          radial-gradient(110% 78% at 50% -18%, #d46545 0%, rgba(196, 81, 44, 0.42) 42%, transparent 70%),
-          linear-gradient(180deg, #e7b49a 0%, #f3d7c8 46%, #f7ece6 100%);
+          radial-gradient(
+            ellipse 70% 45% at 50% 0%,
+            color-mix(in srgb, var(--hero-accent) 12%, transparent),
+            transparent 70%
+          ) var(--hero-bg);
         color: #171717;
       }
 
       :root[data-theme="dark"] .hero-stage {
-        background:
-          radial-gradient(100% 72% at 50% -16%, rgba(196, 81, 44, 0.72) 0%, rgba(156, 66, 40, 0.28) 48%, transparent 72%),
-          radial-gradient(52% 42% at 100% 36%, rgba(156, 66, 40, 0.34), transparent 62%),
-          linear-gradient(180deg, #1a0e0b 0%, #0e0a08 100%);
+        --hero-bg: #191817;
+        --hero-accent: #e69a78;
         color: #f5f5f5;
       }
 
@@ -3351,7 +3354,7 @@
       .hero-stage .intro {
         max-width: 46rem;
         margin: 0 auto;
-        color: #5c3a30;
+        color: var(--text-secondary);
         font-size: clamp(16px, 1.5vw, 19px);
         font-weight: 450;
         letter-spacing: -0.02em;
@@ -3359,7 +3362,7 @@
       }
 
       :root[data-theme="dark"] .hero-stage .intro {
-        color: #f0d8cc;
+        color: var(--text-secondary);
       }
 
       .hero-stage h1 {
@@ -3445,7 +3448,7 @@
         background: transparent;
         background-image: none;
         box-shadow: none;
-        color: #5c3a30;
+        color: var(--hero-accent);
         font-size: 15px;
         font-weight: 560;
         letter-spacing: -0.02em;
@@ -3456,7 +3459,7 @@
       }
 
       :root[data-theme="dark"] .hero-stage .hero-link--text {
-        color: #f0d8cc;
+        color: var(--hero-accent);
       }
 
       .hero-stage .hero-link--text:hover,
@@ -3486,13 +3489,13 @@
         margin: auto 0 -72px;
         border: 1px solid rgba(23, 23, 23, 0.08);
         border-radius: 22px;
-        background: #eceaf1;
-        box-shadow: 0 28px 70px rgba(92, 42, 24, 0.2);
+        background: var(--hero-bg);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.08);
       }
 
       :root[data-theme="dark"] .hero-stage .video-frame {
         border-color: rgba(255, 255, 255, 0.12);
-        background: #121218;
+        background: var(--hero-bg);
         box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
       }
 

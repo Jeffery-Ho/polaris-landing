@@ -7,7 +7,7 @@
 - For Simplified Chinese, keep the concise two-line headline with an explicit line break so no character is stranded.
 - Give the hero one solid monochrome install pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
 - Anchor the existing introduction video large at the bottom of the hero so it dominates the first screen. Keep its source, thumbnail, and failure-recovery play control.
-- Wash the field with a terracotta gradient: soft clay on the light theme, and burnt-sienna warmth on a near-black base in the dark theme. Do not use the peach, pink, and blue theme gradient as the hero field.
+- Match the extension conversation cover: paper `#faf9f7` in light and `#191817` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Move the platform list below the hero as a quiet centered row. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
 - Keep the sequence as full-bleed hero, platform row, capabilities grid, installation panels, support, release notes, then the footer.
 
