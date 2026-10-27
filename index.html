@@ -3587,9 +3587,426 @@
 
       @media (prefers-reduced-motion: reduce) {
         .platform-slot,
-        .platform-icon {
+        .platform-icon,
+        .chat-block,
+        .side-item,
+        .chat-marker,
+        .how-note {
           transition: none;
         }
+      }
+
+      .how-section {
+        scroll-margin-top: 96px;
+      }
+
+      .how-stage {
+        margin-top: 36px;
+      }
+
+      .browser {
+        --shell-bg: #faf9f7;
+        --shell-ink: #1c1917;
+        --shell-muted: #7a716b;
+        --shell-line: rgba(28, 25, 23, 0.1);
+        --shell-accent: #b85c3a;
+        --shell-chat: #ffffff;
+        --shell-chrome: #f3f1ee;
+        --shell-user: #1c1917;
+        --shell-user-ink: #faf9f7;
+        overflow: hidden;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        border-radius: 18px;
+        background: var(--shell-bg);
+        box-shadow: 0 28px 70px rgba(40, 16, 8, 0.08);
+        color: var(--shell-ink);
+      }
+
+      :root[data-theme="dark"] .browser {
+        --shell-bg: #191817;
+        --shell-ink: #f5f1ec;
+        --shell-muted: #a39890;
+        --shell-line: rgba(255, 255, 255, 0.1);
+        --shell-accent: #e69a78;
+        --shell-chat: #141312;
+        --shell-chrome: #221f1d;
+        --shell-user: #f5f1ec;
+        --shell-user-ink: #191817;
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .browser-chrome {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 48px;
+        padding: 8px 14px;
+        background: var(--shell-chrome);
+        border-bottom: 1px solid var(--shell-line);
+      }
+
+      .browser-dots {
+        display: flex;
+        flex: none;
+        gap: 6px;
+      }
+
+      .browser-dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #c9c2ba;
+      }
+
+      .browser-dots i:nth-child(1) { background: #ff5f57; }
+      .browser-dots i:nth-child(2) { background: #febc2e; }
+      .browser-dots i:nth-child(3) { background: #28c840; }
+
+      .browser-tab,
+      .browser-address {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        height: 30px;
+        padding: 0 12px;
+        border-radius: 8px;
+        background: var(--shell-bg);
+        color: var(--shell-muted);
+        font-size: 12px;
+        font-weight: 560;
+        letter-spacing: -0.01em;
+      }
+
+      .browser-tab {
+        flex: none;
+        max-width: 140px;
+        color: var(--shell-ink);
+      }
+
+      .browser-tab img {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        border-radius: 4px;
+      }
+
+      .browser-address {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .browser-address svg {
+        width: 12px;
+        height: 12px;
+        flex: none;
+      }
+
+      .browser-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        min-height: 0;
+        background: var(--shell-chat);
+      }
+
+      .chat {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-width: 0;
+        padding: 22px 22px 26px;
+      }
+
+      .chat-user {
+        align-self: flex-end;
+        max-width: min(78%, 420px);
+        margin: 0;
+        padding: 10px 14px;
+        border-radius: 16px 16px 6px 16px;
+        background: var(--shell-user);
+        color: var(--shell-user-ink);
+        font-size: 13.5px;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
+      }
+
+      .chat-answer {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .chat-block {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 12px;
+        transition: background 180ms ease;
+      }
+
+      .how-stage[data-active="decision"] [data-how-block="decision"],
+      .how-stage[data-active="slips"] [data-how-block="slips"],
+      .how-stage[data-active="timeline"] [data-how-block="slips"],
+      .how-stage[data-active="owners"] [data-how-block="slips"],
+      .how-stage[data-active="checkin"] [data-how-block="checkin"] {
+        background: color-mix(in srgb, var(--shell-accent) 12%, transparent);
+      }
+
+      .chat-marker {
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        margin-top: 1px;
+        padding: 0;
+        border: 0;
+        border-radius: 7px;
+        background: color-mix(in srgb, var(--shell-accent) 16%, transparent);
+        cursor: pointer;
+      }
+
+      .chat-marker span {
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--shell-accent);
+      }
+
+      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"],
+      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] {
+        background: var(--shell-accent);
+      }
+
+      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"] span,
+      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] span {
+        background: #fff;
+      }
+
+      .chat-block h3,
+      .chat-block p,
+      .chat-subs {
+        margin: 0;
+      }
+
+      .chat-block h3 {
+        color: var(--shell-ink);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+        line-height: 1.3;
+      }
+
+      .chat-block p {
+        margin-top: 4px;
+        color: var(--shell-muted);
+        font-size: 13.5px;
+        line-height: 1.45;
+      }
+
+      .chat-subs {
+        display: grid;
+        gap: 2px;
+        margin-top: 8px;
+        padding: 0 0 0 12px;
+        border-left: 1px solid var(--shell-line);
+        list-style: none;
+      }
+
+      .chat-subs button {
+        padding: 2px 0;
+        border: 0;
+        background: transparent;
+        color: var(--shell-muted);
+        font-size: 13px;
+        font-weight: 550;
+        letter-spacing: -0.02em;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .how-stage[data-active="timeline"] .chat-subs [data-how-jump="timeline"],
+      .how-stage[data-active="owners"] .chat-subs [data-how-jump="owners"] {
+        color: var(--shell-accent);
+      }
+
+      .side-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 0;
+        padding: 16px 14px 18px;
+        border-left: 1px solid var(--shell-line);
+        background: var(--shell-bg);
+      }
+
+      .side-identity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 680;
+        letter-spacing: -0.03em;
+      }
+
+      .side-identity img {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+      }
+
+      .side-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid var(--shell-line);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--shell-chat) 72%, var(--shell-bg));
+        color: var(--shell-muted);
+        font-size: 12px;
+      }
+
+      .side-search svg {
+        width: 14px;
+        height: 14px;
+        flex: none;
+      }
+
+      .side-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 3px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--shell-ink) 6%, transparent);
+      }
+
+      .side-tab {
+        min-height: 30px;
+        padding: 6px 8px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--shell-muted);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        cursor: pointer;
+      }
+
+      .side-tab[aria-selected="true"] {
+        background: var(--shell-chat);
+        color: var(--shell-ink);
+        box-shadow: 0 1px 2px rgba(28, 25, 23, 0.08);
+      }
+
+      .side-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .side-list[hidden],
+      [data-how-search][hidden] {
+        display: none !important;
+      }
+
+      .side-item {
+        display: flex;
+        width: 100%;
+        min-height: 40px;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--shell-ink);
+        font-size: 13.5px;
+        font-weight: 580;
+        letter-spacing: -0.02em;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .side-item--child {
+        margin-left: 16px;
+        width: calc(100% - 16px);
+        color: var(--shell-muted);
+        font-weight: 520;
+      }
+
+      .how-stage[data-active="decision"] .side-item[data-how-jump="decision"],
+      .how-stage[data-active="slips"] .side-item[data-how-jump="slips"],
+      .how-stage[data-active="timeline"] .side-item[data-how-jump="timeline"],
+      .how-stage[data-active="owners"] .side-item[data-how-jump="owners"],
+      .how-stage[data-active="checkin"] .side-item[data-how-jump="checkin"] {
+        border-color: color-mix(in srgb, var(--shell-accent) 35%, transparent);
+        background: color-mix(in srgb, var(--shell-accent) 14%, transparent);
+        box-shadow: inset 2px 0 0 var(--shell-accent);
+        color: var(--shell-ink);
+      }
+
+      .how-notes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .how-note {
+        display: grid;
+        gap: 6px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: transparent;
+        color: var(--text-secondary);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
+        border-color: color-mix(in srgb, #b85c3a 55%, var(--line));
+      }
+
+      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
+      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
+        border-color: color-mix(in srgb, #e69a78 55%, var(--line));
+      }
+
+      .how-note-name {
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: 670;
+        letter-spacing: -0.03em;
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
+        color: #b85c3a;
+      }
+
+      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
+      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
+        color: #e69a78;
+      }
+
+      .how-note-copy {
+        font-size: 14px;
+        line-height: 1.45;
       }
 
       @media (max-width: 800px) {
@@ -3623,6 +4040,27 @@
 
         .platform-banner {
           margin-top: 72px;
+        }
+
+        .browser-body {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .side-panel {
+          border-top: 1px solid var(--shell-line);
+          border-left: 0;
+        }
+
+        .how-notes {
+          grid-template-columns: 1fr;
+        }
+
+        .browser-tab span,
+        .browser-address span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     </style>
@@ -3729,25 +4167,92 @@
           </ul>
         </section>
 
-        <section class="capability-section" id="capabilities" aria-labelledby="capabilities-title">
-          <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">A clearer way to read</h2>
-          <p class="section-copy" data-i18n="capabilities.intro">Stay oriented in long answers without losing your place.</p>
-          <div class="capability-grid">
-            <article class="capability-card">
-              <span class="capability-index">01</span>
-              <h3 class="capability-title" data-i18n="capabilities.markers.title">Section markers</h3>
-              <p class="capability-copy" data-i18n="capabilities.markers.copy">See the structure of long AI responses at a glance.</p>
-            </article>
-            <article class="capability-card">
-              <span class="capability-index">02</span>
-              <h3 class="capability-title" data-i18n="capabilities.jump.title">One-click jumps</h3>
-              <p class="capability-copy" data-i18n="capabilities.jump.copy">Jump directly to the section you want to read.</p>
-            </article>
-            <article class="capability-card">
-              <span class="capability-index">03</span>
-              <h3 class="capability-title" data-i18n="capabilities.chapter.title">Chapter View</h3>
-              <p class="capability-copy" data-i18n="capabilities.chapter.copy">Focus on one section, search it, and copy what you need.</p>
-            </article>
+        <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
+          <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">How it works</h2>
+          <p class="section-copy" data-i18n="capabilities.intro">Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.</p>
+          <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
+            <div class="browser">
+              <div class="browser-chrome" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <div class="browser-tab">
+                  <img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16">
+                  <span data-i18n="how.tab">Chat</span>
+                </div>
+                <div class="browser-address">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                  <span>chatgpt.com</span>
+                </div>
+              </div>
+              <div class="browser-body">
+                <div class="chat">
+                  <p class="chat-user" data-i18n="how.prompt">Summarize the launch plan.</p>
+                  <div class="chat-answer">
+                    <section class="chat-block" data-how-block="decision">
+                      <button class="chat-marker" type="button" data-how-jump="decision" aria-labelledby="how-h-decision"><span></span></button>
+                      <div>
+                        <h3 id="how-h-decision" data-i18n="how.h.decision">The decision</h3>
+                        <p data-i18n="how.p.decision">Ship the smaller release on Friday and hold the rest.</p>
+                      </div>
+                    </section>
+                    <section class="chat-block" data-how-block="slips">
+                      <button class="chat-marker" type="button" data-how-jump="slips" aria-labelledby="how-h-slips"><span></span></button>
+                      <div>
+                        <h3 id="how-h-slips" data-i18n="how.h.slips">What slips first</h3>
+                        <p data-i18n="how.p.slips">Two pieces move if the week gets tight.</p>
+                        <ul class="chat-subs">
+                          <li><button type="button" data-how-jump="timeline" data-i18n="how.h.timeline">Timeline</button></li>
+                          <li><button type="button" data-how-jump="owners" data-i18n="how.h.owners">Owners</button></li>
+                        </ul>
+                      </div>
+                    </section>
+                    <section class="chat-block" data-how-block="checkin">
+                      <button class="chat-marker" type="button" data-how-jump="checkin" aria-labelledby="how-h-checkin"><span></span></button>
+                      <div>
+                        <h3 id="how-h-checkin" data-i18n="how.h.checkin">The next check-in</h3>
+                        <p data-i18n="how.p.checkin">Review the cut list Monday morning, before the build locks.</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <aside class="side-panel" aria-label="Polaris">
+                  <div class="side-identity">
+                    <img src="icons/gpt-voyager-icon-96.png" alt="" width="22" height="22">
+                    <span>Polaris</span>
+                  </div>
+                  <div class="side-search" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                    <span data-how-search="toc" data-i18n="how.search.toc">Search headings</span>
+                    <span data-how-search="outline" data-i18n="how.search.outline" hidden>Search structure</span>
+                  </div>
+                  <div class="side-tabs" role="tablist" aria-label="Polaris">
+                    <button class="side-tab" type="button" role="tab" id="how-tab-toc" data-how-mode="toc" aria-selected="true" aria-controls="how-panel-toc" data-i18n="how.toc">TOC</button>
+                    <button class="side-tab" type="button" role="tab" id="how-tab-outline" data-how-mode="outline" aria-selected="false" tabindex="-1" aria-controls="how-panel-outline" data-i18n="how.outline">Outline</button>
+                  </div>
+                  <div class="side-list" id="how-panel-toc" role="tabpanel" aria-labelledby="how-tab-toc" data-how-panel="toc">
+                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
+                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
+                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
+                  </div>
+                  <div class="side-list" id="how-panel-outline" role="tabpanel" aria-labelledby="how-tab-outline" data-how-panel="outline" hidden>
+                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
+                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
+                    <button class="side-item side-item--child" type="button" data-how-jump="timeline"><span data-i18n="how.h.timeline">Timeline</span></button>
+                    <button class="side-item side-item--child" type="button" data-how-jump="owners"><span data-i18n="how.h.owners">Owners</span></button>
+                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
+                  </div>
+                </aside>
+              </div>
+            </div>
+            <div class="how-notes">
+              <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true">
+                <span class="how-note-name" data-i18n="how.toc">TOC</span>
+                <span class="how-note-copy" data-i18n="how.toc.copy">Jump to any heading without scrolling the thread.</span>
+              </button>
+              <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false">
+                <span class="how-note-name" data-i18n="how.outline">Outline</span>
+                <span class="how-note-copy" data-i18n="how.outline.copy">Browse how the answer is built, including what sits inside each section.</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -3904,14 +4409,24 @@
           "platforms.title": "Currently supported platforms",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
-          "capabilities.title": "A clearer way to read",
-          "capabilities.intro": "Stay oriented in long answers without losing your place.",
-          "capabilities.markers.title": "Section markers",
-          "capabilities.markers.copy": "See the structure of long AI responses at a glance.",
-          "capabilities.jump.title": "One-click jumps",
-          "capabilities.jump.copy": "Jump directly to the section you want to read.",
-          "capabilities.chapter.title": "Chapter View",
-          "capabilities.chapter.copy": "Focus on one section, search it, & copy what you need.",
+          "capabilities.title": "How it works",
+          "capabilities.intro": "Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.",
+          "how.tab": "Chat",
+          "how.prompt": "Summarize the launch plan.",
+          "how.h.decision": "The decision",
+          "how.p.decision": "Ship the smaller release on Friday and hold the rest.",
+          "how.h.slips": "What slips first",
+          "how.p.slips": "Two pieces move if the week gets tight.",
+          "how.h.timeline": "Timeline",
+          "how.h.owners": "Owners",
+          "how.h.checkin": "The next check-in",
+          "how.p.checkin": "Review the cut list Monday morning, before the build locks.",
+          "how.toc": "TOC",
+          "how.outline": "Outline",
+          "how.toc.copy": "Jump to any heading without scrolling the thread.",
+          "how.outline.copy": "Browse how the answer is built, including what sits inside each section.",
+          "how.search.toc": "Search headings",
+          "how.search.outline": "Search structure",
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
@@ -3973,14 +4488,24 @@
           "platforms.title": "当前支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
-          "capabilities.title": "更清晰地阅读长篇回答",
-          "capabilities.intro": "快速了解回答结构，不再丢失当前位置。",
-          "capabilities.markers.title": "章节标记",
-          "capabilities.markers.copy": "一眼查看长篇 AI 回答的内容结构。",
-          "capabilities.jump.title": "一键跳转",
-          "capabilities.jump.copy": "直接跳到你想阅读的章节。",
-          "capabilities.chapter.title": "章节视图",
-          "capabilities.chapter.copy": "专注阅读单个章节，搜索并复制需要的内容。",
+          "capabilities.title": "如何工作",
+          "capabilities.intro": "标记落在长回答上。TOC 用来跳到某一节，Outline 用来看它的结构。",
+          "how.tab": "对话",
+          "how.prompt": "概括一下发布计划。",
+          "how.h.decision": "这次的决定",
+          "how.p.decision": "周五先发较小的版本，其余部分先留着。",
+          "how.h.slips": "最先会推迟的部分",
+          "how.p.slips": "这一周如果变紧，有两块会往后挪。",
+          "how.h.timeline": "时间",
+          "how.h.owners": "负责人",
+          "how.h.checkin": "下一次核对",
+          "how.p.checkin": "周一早上先看删减清单，再锁定构建。",
+          "how.toc": "TOC",
+          "how.outline": "Outline",
+          "how.toc.copy": "不用滚动整段对话，点一下就到那个标题。",
+          "how.outline.copy": "先看回答是怎么组织的，以及每一节里面有什么。",
+          "how.search.toc": "搜索标题",
+          "how.search.outline": "搜索结构",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
@@ -4828,6 +5353,73 @@
         paypalLink.target = "_blank";
         paypalLink.rel = "noreferrer";
         paypalLink.removeAttribute("aria-disabled");
+      }
+
+      const howStage = document.querySelector("[data-how-stage]");
+
+      if (howStage) {
+        const howTabs = [...howStage.querySelectorAll("[role='tab']")];
+        const howNotes = [...howStage.querySelectorAll(".how-note")];
+        const howPanels = [...howStage.querySelectorAll("[data-how-panel]")];
+        const howSearches = [...howStage.querySelectorAll("[data-how-search]")];
+
+        const setHowMode = (mode) => {
+          howStage.dataset.mode = mode;
+          howTabs.forEach((tab) => {
+            const selected = tab.dataset.howMode === mode;
+            tab.setAttribute("aria-selected", String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+          });
+          howNotes.forEach((note) => {
+            note.setAttribute("aria-pressed", String(note.dataset.howMode === mode));
+          });
+          howPanels.forEach((panel) => {
+            panel.hidden = panel.dataset.howPanel !== mode;
+          });
+          howSearches.forEach((label) => {
+            label.hidden = label.dataset.howSearch !== mode;
+          });
+        };
+
+        const setHowActive = (id) => {
+          howStage.dataset.active = id;
+          howStage.querySelectorAll("[data-how-jump]").forEach((control) => {
+            const current = control.dataset.howJump === id;
+            if (current) {
+              control.setAttribute("aria-current", "true");
+            } else {
+              control.removeAttribute("aria-current");
+            }
+          });
+        };
+
+        howStage.addEventListener("click", (event) => {
+          const modeControl = event.target.closest("[data-how-mode]");
+          if (modeControl && howStage.contains(modeControl)) {
+            setHowMode(modeControl.dataset.howMode);
+            return;
+          }
+
+          const jump = event.target.closest("[data-how-jump]");
+          if (jump && howStage.contains(jump)) {
+            setHowActive(jump.dataset.howJump);
+          }
+        });
+
+        howStage.querySelector(".side-tabs")?.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+            return;
+          }
+
+          event.preventDefault();
+          const current = howTabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+          const next = event.key === "ArrowRight" ? (current + 1) % howTabs.length : (current - 1 + howTabs.length) % howTabs.length;
+          setHowMode(howTabs[next].dataset.howMode);
+          howTabs[next].focus();
+        });
+
+        setHowMode(howStage.dataset.mode || "toc");
+        setHowActive(howStage.dataset.active || "decision");
       }
     </script>
   </body>

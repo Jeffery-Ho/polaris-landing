@@ -29,7 +29,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Design
 
-The homepage follows a restrained black-and-white visual system. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by grid-based capabilities, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows a restrained black-and-white visual system. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.

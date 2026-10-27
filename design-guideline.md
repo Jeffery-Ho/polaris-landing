@@ -9,7 +9,8 @@
 - Anchor the existing introduction video large at the bottom of the hero so it dominates the first screen. Keep its source, thumbnail, and failure-recovery play control.
 - Match the extension conversation cover: paper `#faf9f7` in light and `#191817` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
-- Keep the sequence as full-bleed hero, capabilities grid, installation panels, support, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
+- Keep the sequence as full-bleed hero, How it works, installation panels, support, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
+- How it works is a browser-chrome illustration, not a text grid. Inside the window, margin markers sit on a long answer and a Polaris side panel switches between TOC (a jump list) and Outline (the same answer as a nested structure). Use the conversation-cover paper and terracotta for that mock in both themes.
 
 ## Typography
 
@@ -44,7 +45,7 @@
 
 ## Installation section
 
-- Place a two-option installation section after the capabilities grid; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
+- Place a two-option installation section after How it works; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
 - Use equal 1px bordered panels on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
 - Add a compact “Recommended in Mainland China” badge beside the local-installation title; use a solid theme-aware black or white border and interior.
