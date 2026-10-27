@@ -33,12 +33,12 @@ The homepage follows a restrained black-and-white visual system inspired by Verc
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- The compact header keeps Install as the primary product action and provides a persisted light/dark theme switch. Installation actions use the shared gradient label/border treatment with solid interiors, while Hero banner actions remain monochrome; the hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
+- The header is a centered floating pill with How it works and Updates. Download stays on the hero until the visitor scrolls past it, then appears as a separate pill on the right. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use the shared gradient label/border treatment with solid interiors; the header Download pill does not. Hero banner actions remain monochrome, the hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
 
 ## Installation and localization
 
-- The homepage header links to an installation section with local ZIP installation and Chrome Web Store installation options.
-- On small screens, the header collapses to the Polaris logo and an accessible menu button; opening it reveals the same navigation actions without changing their URLs.
+- The homepage Download actions — the hero, the scroll-revealed header pill, and the mobile menu — lead to an installation section with local ZIP installation and Chrome Web Store installation options.
+- On small screens, the header collapses to the Polaris logo and an accessible menu button; opening it reveals How it works, Updates, and Download without changing their URLs.
 - The local option explains the shortest path: download and unzip the package, then load the folder from `chrome://extensions` with Developer mode enabled.
 - The homepage supports English and Simplified Chinese. The first visit follows the browser language, and a manual choice is saved locally in the browser.
 

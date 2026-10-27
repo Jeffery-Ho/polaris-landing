@@ -16,11 +16,13 @@
 
 ## Header
 
-- Use a compact, transparent header with the brand aligned left, navigation in the middle, and pill-style preference switches outside the navigation.
-- Use the shared gradient label/border treatment for product actions; keep GitHub Issues, language, and theme controls lightweight.
-- On mobile, collapse the navigation to a Polaris logo plus menu button. Open the links in a compact bordered panel with at least 44px touch targets.
-- Keep the header in normal page flow so the installation anchor remains predictable.
-- Place a compact, centered, bordered platform banner directly below the header. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
+- Use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not use a full-width header bar or a header bottom border.
+- Inside the pill, show the logo mark with a minimal wordmark and two quiet text links — How it works and Updates — at about 70% opacity, with no underlines. Do not place Download or GitHub Issues in that pill.
+- At the top of the page, leave Download to the hero install action. After the visitor scrolls past the hero, reveal a separate floating Download pill on the right that matches the nav pill. Do not use the gradient outline treatment on the header Download control.
+- Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.
+- On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Download so the install section stays reachable. GitHub Issues lives in the footer.
+- In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
+- Place a compact, centered, bordered platform banner directly below the header clearance. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
 
 ## Release notes
 
@@ -31,13 +33,13 @@
 ## Visual system
 
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
-- Use crisp 1px borders, 8px panel radii, 999px button radii, generous spacing, and no decorative background gradients, blur, or glass surfaces.
+- Use crisp 1px borders, 8px panel radii, 999px button radii, and generous spacing. Keep decorative blur off the page sections. The header pills are the exception: they use a 16px radius, a soft shadow, and backdrop blur.
 - Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and installation CTA labels/borders; keep CTA interiors solid.
 - Keep Hero banner actions monochrome: use a solid primary button and an outlined secondary button, then invert their black/white treatment on hover.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
-- Use the shared gradient label/border treatment for product CTAs, with a solid theme-aware interior and no gradient hover fill.
+- Use the shared gradient label/border treatment for installation CTAs, with a solid theme-aware interior and no gradient hover fill. The header Download pill does not use that gradient.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.
-- Provide a compact pill-style language dropdown with a clear translation marker beside the matching pill-style theme switch outside the navigation. The marker must use the control's current color rather than a fixed fill and be optically centered with its language text. Default to the system preference and persist explicit choices locally.
+- Provide a compact language dropdown with a clear translation marker beside the theme switch, both outside the center navigation pill. The marker must use the control's current color rather than a fixed fill and be optically centered with its language text. Default to the system preference and persist explicit choices locally.
 
 ## Installation section
 

@@ -14,9 +14,9 @@ Final result: passed.
 
 ## Header navigation
 
-- Desktop: the header uses a wide transparent layout with the brand on the left, Download as the primary action, and secondary links on the right.
-- Mobile: the header stacks its brand and navigation without a surrounding capsule or horizontal overflow.
-- The header Download link reaches the installation section and the language toggle remains keyboard accessible.
+- Desktop: a centered floating pill holds the logo, How it works, and Updates. Download is absent until the page scrolls past the hero, then a separate right-side pill links to the installation section. Language and theme controls sit outside the pill. GitHub Issues is in the footer.
+- Mobile: the logo, language, theme, and menu button stay reachable without horizontal overflow. The menu lists How it works, Updates, and Download.
+- The header Download control does not use the gradient outline. The header Download link reaches the installation section, and the language toggle remains keyboard accessible.
 
 ## PayPal CTA glass refinement
 
@@ -34,7 +34,7 @@ Final result: passed.
 
 ## Installation and localization
 
-- Desktop: the header Download link smoothly scrolls to the two-card installation section while retaining the wide transparent header treatment.
+- Desktop: once the header Download pill is revealed, it smoothly scrolls to the two-card installation section.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
 - The ZIP action resolves the GitHub [latest Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) API and directly downloads its versioned ZIP asset; if the API is unavailable, it falls back to the Release page. Each archive contains a root `manifest.json`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.

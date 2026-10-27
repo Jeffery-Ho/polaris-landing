@@ -2908,73 +2908,476 @@
           transition: none;
         }
       }
+
+      /* Floating pill navigation */
+      :root {
+        --nav-pill-bg: rgba(18, 18, 18, 0.82);
+        --nav-pill-border: rgba(255, 255, 255, 0.12);
+        --nav-ink: #f5f5f5;
+        --nav-link: rgba(245, 245, 245, 0.7);
+        --nav-pill-shadow: 0 12px 32px rgba(0, 0, 0, 0.42), 0 1px 2px rgba(0, 0, 0, 0.28);
+        scroll-padding-top: 88px;
+      }
+
+      :root[data-theme="light"] {
+        --nav-pill-bg: rgba(255, 255, 255, 0.94);
+        --nav-pill-border: rgba(0, 0, 0, 0.08);
+        --nav-ink: #171717;
+        --nav-link: rgba(23, 23, 23, 0.7);
+        --nav-pill-shadow: 0 10px 28px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      }
+
+      .skip-link {
+        z-index: 40;
+      }
+
+      .page-shell {
+        padding-top: 92px;
+      }
+
+      .platform-banner {
+        margin-top: 4px;
+      }
+
+      #install {
+        scroll-margin-top: 0;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 30;
+        top: max(16px, env(safe-area-inset-top));
+        right: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        width: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+        gap: 16px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        pointer-events: none;
+      }
+
+      .nav-pill,
+      .header-utilities,
+      .header-download {
+        pointer-events: auto;
+      }
+
+      .nav-pill {
+        position: relative;
+        isolation: isolate;
+        grid-column: 2;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        max-width: calc(100vw - 40px);
+        padding: 0 8px 0 10px;
+        border: 1px solid var(--nav-pill-border);
+        border-radius: 16px;
+        background: transparent;
+        box-shadow: var(--nav-pill-shadow);
+        color: var(--nav-ink);
+      }
+
+      .nav-pill::before,
+      .header-download::after {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background: var(--nav-pill-bg);
+        content: "";
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .nav-pill .brand {
+        gap: 8px;
+        margin-right: 4px;
+        padding-left: 2px;
+        color: var(--nav-ink);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+      }
+
+      .nav-pill .brand-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+      }
+
+      .nav-pill .brand-name {
+        color: var(--nav-ink);
+      }
+
+      .nav-pill .header-links {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .nav-pill .header-link {
+        display: inline-flex;
+        width: auto;
+        min-height: 36px;
+        align-items: center;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        color: var(--nav-link);
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        white-space: nowrap;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .nav-pill .header-link:hover,
+      .nav-pill .header-link:focus-visible {
+        border-color: transparent;
+        background: transparent;
+        background-image: none;
+        color: var(--nav-ink);
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .nav-pill .header-link--drawer {
+        display: none;
+      }
+
+      .header-utilities {
+        position: relative;
+        grid-column: 3;
+        justify-self: end;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .header-download {
+        position: absolute;
+        top: 50%;
+        right: calc(100% + 12px);
+        display: inline-flex;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        border: 1px solid var(--nav-pill-border);
+        border-radius: 16px;
+        background: transparent;
+        background-image: none;
+        box-shadow: var(--nav-pill-shadow);
+        isolation: isolate;
+        color: var(--nav-ink);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(calc(-50% + 8px));
+        transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms, background-color var(--transition), border-color var(--transition);
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .header-download::before {
+        content: none;
+        display: none;
+      }
+
+      .site-header[data-past-hero="true"] .header-download {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 0s, background-color var(--transition), border-color var(--transition);
+      }
+
+      .header-download:hover,
+      .header-download:focus-visible {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: transparent;
+        background-image: none;
+        color: var(--nav-ink);
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .header-download:hover::after,
+      .header-download:focus-visible::after {
+        background: #222222;
+      }
+
+      :root[data-theme="light"] .header-download:hover,
+      :root[data-theme="light"] .header-download:focus-visible {
+        border-color: rgba(0, 0, 0, 0.16);
+      }
+
+      :root[data-theme="light"] .header-download:hover::after,
+      :root[data-theme="light"] .header-download:focus-visible::after {
+        background: #ffffff;
+      }
+
+      .site-header .header-preferences {
+        gap: 0;
+      }
+
+      .site-header .language-toggle,
+      .site-header .theme-toggle {
+        min-height: 40px;
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .site-header .language-toggle:hover,
+      .site-header .language-toggle:focus-visible,
+      .site-header .theme-toggle:hover,
+      .site-header .theme-toggle:focus-visible {
+        border-color: transparent;
+        background: var(--menu-hover-bg);
+        color: var(--text-primary);
+      }
+
+      .header-menu-toggle {
+        display: none;
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .nav-pill .brand-name {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          margin: -1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        .nav-pill .header-link {
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+      }
+
+      @media (min-width: 801px) and (max-width: 860px) {
+        .site-header .language-toggle-chevron,
+        .site-header [data-language-current] {
+          display: none;
+        }
+
+        .site-header .language-toggle {
+          min-width: 40px;
+          justify-content: center;
+          padding-inline: 10px;
+        }
+
+        .header-download {
+          right: calc(100% + 10px);
+          padding-inline: 14px;
+        }
+      }
+
+      @media (max-width: 800px) {
+        .page-shell {
+          padding-top: 76px;
+        }
+
+        .site-header {
+          display: flex;
+          justify-content: space-between;
+          top: max(10px, env(safe-area-inset-top));
+          padding-right: max(12px, env(safe-area-inset-right));
+          padding-left: max(12px, env(safe-area-inset-left));
+        }
+
+        .nav-pill {
+          grid-column: auto;
+          height: 48px;
+          padding: 0 8px 0 8px;
+        }
+
+        .nav-pill .brand {
+          margin-right: 0;
+        }
+
+        .nav-pill .header-links {
+          position: fixed;
+          z-index: 5;
+          top: calc(max(10px, env(safe-area-inset-top)) + 58px);
+          right: max(12px, env(safe-area-inset-right));
+          left: max(12px, env(safe-area-inset-left));
+          display: flex;
+          width: auto;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 2px;
+          padding: 8px;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          background: var(--panel-bg-raised);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateY(-6px);
+          transition: opacity var(--transition), transform var(--transition), visibility 0s linear var(--transition);
+        }
+
+        .nav-pill .header-links[data-menu-open="true"] {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateY(0);
+          transition-delay: 0s;
+        }
+
+        .nav-pill .header-link,
+        .nav-pill .header-link--drawer {
+          display: flex;
+          width: 100%;
+          min-height: 44px;
+          justify-content: flex-start;
+          padding: 10px 12px;
+          border-radius: 10px;
+          color: var(--text-primary);
+          font-size: 15px;
+          font-weight: 550;
+        }
+
+        .nav-pill .header-link:hover,
+        .nav-pill .header-link:focus-visible,
+        .nav-pill .header-link--drawer:hover,
+        .nav-pill .header-link--drawer:focus-visible {
+          border-color: transparent;
+          background: var(--menu-hover-bg);
+          color: var(--text-primary);
+        }
+
+        .header-download {
+          display: none;
+        }
+
+        .header-menu-toggle {
+          display: grid;
+          width: 44px;
+          height: 44px;
+        }
+
+        .site-header .language-toggle,
+        .site-header .theme-toggle {
+          min-height: 44px;
+        }
+
+        .site-header .theme-option {
+          width: 34px;
+          height: 34px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-download,
+        .nav-pill .header-links {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content" data-i18n="nav.skip">Skip to content</a>
-    <div class="page-shell">
-      <header class="site-header">
+    <header class="site-header" data-past-hero="false">
+      <div class="nav-pill">
         <a class="brand" href="./" aria-label="Polaris home">
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
-          <span>Polaris</span>
+          <span class="brand-name">Polaris</span>
         </a>
-        <div class="header-end">
-          <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
-            <a class="header-link header-link--primary" href="#install">
-              <span data-i18n="nav.install">Download</span>
-            </a>
-            <a class="header-link" href="#capabilities">
-              <span data-i18n="nav.features">How it works</span>
-            </a>
-            <a class="header-link" href="#updates">
-              <span data-i18n="nav.updates">Updates</span>
-            </a>
-            <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
-              <span data-i18n="nav.issues">GitHub Issues</span>
-            </a>
-          </nav>
-          <div class="header-preferences">
-            <div class="language-control" data-language-control>
-              <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
-                <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
-                  <path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path>
-                </svg>
-                <span data-language-current>EN</span>
-                <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
-                </svg>
-              </button>
-              <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
-                <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
-                <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
-              </div>
-            </div>
-            <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme">
-              <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" aria-pressed="true">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
-              </button>
-              <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" aria-pressed="false">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
-              </button>
+        <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
+          <a class="header-link" href="#capabilities">
+            <span data-i18n="nav.features">How it works</span>
+          </a>
+          <a class="header-link" href="#updates">
+            <span data-i18n="nav.updates">Updates</span>
+          </a>
+          <a class="header-link header-link--drawer" href="#install">
+            <span data-i18n="nav.install">Download</span>
+          </a>
+        </nav>
+      </div>
+      <div class="header-utilities">
+        <a class="header-download" href="#install" data-header-download aria-hidden="true" tabindex="-1">
+          <span data-i18n="nav.install">Download</span>
+        </a>
+        <div class="header-preferences">
+          <div class="language-control" data-language-control>
+            <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+              <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
+                <path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path>
+              </svg>
+              <span data-language-current>EN</span>
+              <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
+              </svg>
+            </button>
+            <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
+              <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
+              <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
             </div>
           </div>
-          <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffb36b"></stop>
-                  <stop offset="52%" stop-color="#e879d2"></stop>
-                  <stop offset="100%" stop-color="#7892ff"></stop>
-                </linearGradient>
-              </defs>
-              <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-              <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-              <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-            </svg>
-          </button>
+          <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme">
+            <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+            </button>
+            <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
+            </button>
+          </div>
         </div>
-      </header>
-
+        <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffb36b"></stop>
+                <stop offset="52%" stop-color="#e879d2"></stop>
+                <stop offset="100%" stop-color="#7892ff"></stop>
+              </linearGradient>
+            </defs>
+            <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+            <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+            <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <div class="page-shell">
       <section class="platform-banner" aria-labelledby="platform-banner-title">
         <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
         <ul class="platform-list">
@@ -3084,7 +3487,7 @@
       </main>
 
       <footer class="site-footer">
-        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
+        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer" data-i18n="nav.issues">GitHub Issues</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
       </footer>
     </div>
 
@@ -3120,10 +3523,13 @@
       const themeOptions = document.querySelectorAll("[data-theme-option]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
+      const siteHeader = document.querySelector(".site-header");
+      const headerDownload = document.querySelector("[data-header-download]");
+      const heroRegion = document.querySelector(".hero-grid");
       const updatesList = document.querySelector("[data-updates-list]");
       const updatesShowMore = document.querySelector("[data-updates-show-more]");
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
-      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .header-download[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -3313,6 +3719,26 @@
         }
       }
 
+      function syncPastHero() {
+        if (!siteHeader || !headerDownload || !heroRegion) {
+          return;
+        }
+
+        const navClearance = siteHeader.getBoundingClientRect().bottom + 8;
+        const pastHero = heroRegion.getBoundingClientRect().bottom <= navClearance;
+        siteHeader.dataset.pastHero = String(pastHero);
+        headerDownload.setAttribute("aria-hidden", String(!pastHero));
+
+        if (pastHero) {
+          headerDownload.removeAttribute("tabindex");
+        } else {
+          headerDownload.tabIndex = -1;
+          if (document.activeElement === headerDownload) {
+            headerDownload.blur();
+          }
+        }
+      }
+
       function updateLanguageToggle(dictionary = translations[currentLocale]) {
         languageToggle.setAttribute("aria-label", dictionary["locale.group"]);
         languageCurrent.textContent = currentLocale === "zh-CN" ? "中" : "EN";
@@ -3430,6 +3856,14 @@
       const savedTheme = window.localStorage.getItem(themeStorageKey);
       setTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : currentTheme, false);
       setLanguage(savedLocale === "zh-CN" || savedLocale === "en" ? savedLocale : browserLocale, false);
+      syncPastHero();
+      window.addEventListener("scroll", syncPastHero, { passive: true });
+      window.addEventListener("resize", syncPastHero);
+      window.addEventListener("pageshow", syncPastHero);
+      window.addEventListener("load", () => {
+        syncPastHero();
+        window.requestAnimationFrame(syncPastHero);
+      });
       menuToggle.addEventListener("click", () => {
         setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
       });
