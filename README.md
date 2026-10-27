@@ -29,7 +29,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Design
 
-The homepage follows a restrained black-and-white visual system inspired by Vercel's dark minimal information hierarchy. Its split hero pairs the product value with the introduction video, followed by grid-based capabilities, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows a restrained black-and-white visual system. Its first screen is a full-bleed hero with a short two-line headline, one install pill, and a large introduction video, followed by a quiet platform row, grid-based capabilities, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
 - macOS uses the browser's native system font stack.
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.

@@ -2,12 +2,14 @@
 
 ## Hero
 
-- Do not render an eyebrow or category label above the headline.
-- Use a large, compact headline with a clear product outcome.
-- For Simplified Chinese, use a concise two-line headline with explicit line grouping so no single character is stranded on a line; tighten tracking with a Chinese-specific type scale.
-- Keep the supporting sentence neutral gray; reserve the logo-derived theme gradient for accent text and small indexes.
-- Use a split hero: product value and actions on the left, the introduction video as the primary visual on the right.
-- Keep the sequence as split hero, capabilities grid, installation panels, support, release notes, then privacy.
+- Fill the first screen: the hero is a full-bleed field at least `100svh`, with the page background running behind the floating nav.
+- Use a short supporting sentence, then a two-line headline at display scale. Do not spend the hero on a four-line headline, and do not add a decorative wordmark that is not the Polaris name.
+- For Simplified Chinese, keep the concise two-line headline with an explicit line break so no character is stranded.
+- Give the hero one solid monochrome install pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
+- Anchor the existing introduction video large at the bottom of the hero so it dominates the first screen. Keep its source, thumbnail, and failure-recovery play control.
+- Wash the field with a soft brand tint from `#ffb36b`, `#e879d2`, and `#7892ff`. Keep that wash light on the light theme and dark on the dark theme. Do not use a gold field.
+- Move the platform list below the hero as a quiet centered row. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
+- Keep the sequence as full-bleed hero, platform row, capabilities grid, installation panels, support, release notes, then the footer.
 
 ## Typography
 
@@ -22,7 +24,6 @@
 - Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.
 - On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Download so the install section stays reachable. GitHub Issues lives in the footer.
 - In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
-- Place a compact, centered, bordered platform banner directly below the header clearance. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
 
 ## Release notes
 
@@ -35,7 +36,7 @@
 - Use black, white, and neutral gray as the base palette, with black as the primary page surface.
 - Use crisp 1px borders, 8px panel radii, 999px button radii, and generous spacing. Keep decorative blur off the page sections. The header pills are the exception: they use a 16px radius, a soft shadow, and backdrop blur.
 - Use the logo-derived theme gradient `#ffb36b → #e879d2 → #7892ff` for accent text, capability indexes, and installation CTA labels/borders; keep CTA interiors solid.
-- Keep Hero banner actions monochrome: use a solid primary button and an outlined secondary button, then invert their black/white treatment on hover.
+- Keep the hero install pill monochrome: solid black on the light field and solid white on the dark field, with no gradient outline. The secondary hero action is a text link.
 - Use one shared hover treatment across controls: a subtle theme-aware surface, a fine contrasting border, stable text color, and no vertical lift. Use a theme-aware solid focus ring: white on dark surfaces and black on light surfaces.
 - Use the shared gradient label/border treatment for installation CTAs, with a solid theme-aware interior and no gradient hover fill. The header Download pill does not use that gradient.
 - Use grid dividers and edge-aligned sections instead of floating card shadows.

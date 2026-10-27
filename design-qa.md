@@ -2,8 +2,8 @@
 
 ## Hero typography refinement
 
-- Desktop, 1280 × 720: the category eyebrow is absent; headline renders at 58.88px; the supporting sentence renders as `rgb(65, 107, 240)`.
-- Mobile, 390 × 844: the category eyebrow remains absent; the 40px minimum headline size and blue supporting sentence fit without horizontal overflow.
+- Desktop: the first screen is a full-bleed hero with a two-line headline, one install pill, a text link to capabilities, and a large bottom-anchored video. The platform list sits below that hero.
+- Mobile: the same hero stacks without horizontal overflow, and the install pill remains the only filled hero action.
 
 ## Cross-platform typography
 

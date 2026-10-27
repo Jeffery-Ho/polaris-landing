@@ -3310,6 +3310,246 @@
           transition: none;
         }
       }
+
+      /* Full-bleed hero */
+      main {
+        width: 100%;
+        padding: 0;
+      }
+
+      .page-shell {
+        padding-top: 0;
+      }
+
+      .hero-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        min-height: 100svh;
+        padding: clamp(112px, 14vh, 148px) 24px 0;
+        background:
+          radial-gradient(90% 70% at 50% -8%, rgba(255, 179, 107, 0.42), transparent 58%),
+          radial-gradient(70% 55% at 96% 18%, rgba(232, 121, 210, 0.28), transparent 52%),
+          radial-gradient(64% 50% at 4% 72%, rgba(120, 146, 255, 0.26), transparent 56%),
+          #f6f3f8;
+        color: #171717;
+      }
+
+      :root[data-theme="dark"] .hero-stage {
+        background:
+          radial-gradient(88% 62% at 50% -6%, rgba(232, 121, 210, 0.28), transparent 56%),
+          radial-gradient(58% 46% at 92% 28%, rgba(120, 146, 255, 0.2), transparent 52%),
+          radial-gradient(50% 40% at 8% 78%, rgba(255, 179, 107, 0.16), transparent 54%),
+          #07070b;
+        color: #f5f5f5;
+      }
+
+      .hero-copy {
+        width: min(1120px, 100%);
+        margin-bottom: clamp(28px, 4vh, 48px);
+        text-align: center;
+      }
+
+      .hero-stage .intro {
+        max-width: 46rem;
+        margin: 0 auto;
+        color: #3c3c44;
+        font-size: clamp(16px, 1.5vw, 19px);
+        font-weight: 450;
+        letter-spacing: -0.02em;
+        line-height: 1.45;
+      }
+
+      :root[data-theme="dark"] .hero-stage .intro {
+        color: #d7d7de;
+      }
+
+      .hero-stage h1 {
+        max-width: none;
+        margin: 18px auto 0;
+        color: inherit;
+        font-size: clamp(52px, 7.2vw, 104px);
+        font-weight: 670;
+        letter-spacing: -0.055em;
+        line-height: 0.96;
+        white-space: normal;
+      }
+
+      :root[lang^="zh"] .hero-stage h1 {
+        max-width: none;
+        font-size: clamp(48px, 6.6vw, 96px);
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        white-space: normal;
+      }
+
+      .hero-stage .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px 22px;
+        margin-top: 28px;
+      }
+
+      .hero-stage .hero-link--primary {
+        min-height: 52px;
+        padding: 14px 26px;
+        border: 0;
+        border-radius: 999px;
+        background: #171717;
+        background-image: none;
+        box-shadow: 0 12px 28px rgba(40, 16, 32, 0.16);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--primary {
+        background: #f4f4f5;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        color: #111111;
+      }
+
+      .hero-stage .hero-link--primary:hover,
+      .hero-stage .hero-link--primary:focus-visible {
+        border: 0;
+        background: #000000;
+        background-image: none;
+        color: #ffffff;
+        filter: none;
+        transform: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:focus-visible {
+        background: #ffffff;
+        color: #111111;
+      }
+
+      .hero-stage .hero-link--primary > span {
+        background: none;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-stage .hero-link--text {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        padding: 8px 2px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        color: #3c3c44;
+        font-size: 15px;
+        font-weight: 560;
+        letter-spacing: -0.02em;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--text {
+        color: #d7d7de;
+      }
+
+      .hero-stage .hero-link--text:hover,
+      .hero-stage .hero-link--text:focus-visible {
+        border: 0;
+        background: transparent;
+        background-image: none;
+        color: #171717;
+        text-decoration: underline;
+        transform: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--text:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
+        color: #ffffff;
+      }
+
+      .hero-stage .hero-link--text > span {
+        background: none;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-stage .video-frame {
+        width: min(1180px, 100%);
+        margin: auto 0 -72px;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        border-radius: 22px;
+        background: #eceaf1;
+        box-shadow: 0 28px 70px rgba(48, 24, 40, 0.16);
+      }
+
+      :root[data-theme="dark"] .hero-stage .video-frame {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: #121218;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .platform-banner {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 112px;
+        padding: 4px 0 0;
+        border: 0;
+      }
+
+      .platform-banner-title,
+      .platform-list {
+        font-size: 13px;
+      }
+
+      .platform-banner-title {
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      @media (max-width: 800px) {
+        .page-shell {
+          padding-top: 0;
+        }
+
+        .hero-stage {
+          min-height: 100svh;
+          padding: 96px 16px 0;
+        }
+
+        .hero-stage h1,
+        :root[lang^="zh"] .hero-stage h1 {
+          font-size: clamp(36px, 10vw, 56px);
+          letter-spacing: -0.06em;
+        }
+
+        .hero-stage .hero-actions {
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .hero-stage .hero-link--primary {
+          width: min(100%, 280px);
+        }
+
+        .hero-stage .video-frame {
+          margin-bottom: -40px;
+        }
+
+        .platform-banner {
+          margin-top: 72px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -3377,42 +3617,40 @@
         </button>
       </div>
     </header>
-    <div class="page-shell">
-      <section class="platform-banner" aria-labelledby="platform-banner-title">
-        <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
-        <ul class="platform-list">
-          <li>ChatGPT</li>
-          <li>Claude</li>
-          <li>Gemini</li>
-          <li>Grok</li>
-          <li>Doubao</li>
-          <li>Kimi</li>
-          <li>Qwen</li>
-          <li>Yuanbao</li>
-          <li>Diandian AI</li>
-        </ul>
-      </section>
-
-      <main id="main-content">
-        <div class="hero-grid">
-          <section class="hero" aria-labelledby="hero-title">
-            <h1 id="hero-title" data-i18n="hero.title">Make long AI conversations easier to navigate.</h1>
-            <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
-            <div class="hero-actions">
-              <a class="hero-link hero-link--primary" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
-              <a class="hero-link" href="#install"><span data-i18n="hero.install">Install Polaris</span></a>
-            </div>
-          </section>
-
-          <section class="video-frame" aria-label="Polaris introduction video">
-            <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
-            <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
-            <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
-            <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
-            </button>
-          </section>
+    <main id="main-content">
+      <section class="hero-stage">
+        <div class="hero-copy">
+          <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
+          <h1 id="hero-title" data-i18n="hero.title">Navigate long<br>AI conversations.</h1>
+          <div class="hero-actions">
+            <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Install Polaris</span></a>
+            <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
+          </div>
         </div>
+        <section class="video-frame" aria-label="Polaris introduction video">
+          <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
+          <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
+          <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
+          <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          </button>
+        </section>
+      </section>
+      <div class="page-shell">
+        <section class="platform-banner" aria-labelledby="platform-banner-title">
+          <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
+          <ul class="platform-list">
+            <li>ChatGPT</li>
+            <li>Claude</li>
+            <li>Gemini</li>
+            <li>Grok</li>
+            <li>Doubao</li>
+            <li>Kimi</li>
+            <li>Qwen</li>
+            <li>Yuanbao</li>
+            <li>Diandian AI</li>
+          </ul>
+        </section>
 
         <section class="capability-section" id="capabilities" aria-labelledby="capabilities-title">
           <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">A clearer way to read</h2>
@@ -3484,12 +3722,12 @@
             <button class="updates-toggle" data-updates-collapse type="button" aria-controls="updates-list" hidden data-i18n="updates.collapse">Collapse updates</button>
           </div>
         </section>
-      </main>
 
       <footer class="site-footer">
         <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer" data-i18n="nav.issues">GitHub Issues</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
       </footer>
-    </div>
+      </div>
+    </main>
 
     <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
       <p class="analytics-consent-title" id="analytics-consent-title" data-i18n="analytics.title">Help improve Polaris</p>
@@ -3525,7 +3763,7 @@
       const menuPanel = document.querySelector("[data-menu-panel]");
       const siteHeader = document.querySelector(".site-header");
       const headerDownload = document.querySelector("[data-header-download]");
-      const heroRegion = document.querySelector(".hero-grid");
+      const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
       const updatesShowMore = document.querySelector("[data-updates-show-more]");
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
@@ -3582,7 +3820,7 @@
           "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
-          "hero.title": "Make long AI conversations easier to navigate.",
+          "hero.title": "Navigate long<br>AI conversations.",
           "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
           "hero.explore": "See how it works",
           "hero.install": "Install Polaris",
