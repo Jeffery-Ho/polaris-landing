@@ -3601,7 +3601,21 @@
       }
 
       .how-stage {
-        margin-top: 36px;
+        display: grid;
+        grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.45fr);
+        gap: clamp(28px, 4vw, 64px);
+        align-items: center;
+      }
+
+      .how-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .how-copy .section-copy {
+        max-width: 36rem;
       }
 
       .browser {
@@ -3960,9 +3974,10 @@
 
       .how-notes {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 16px;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        margin-top: 28px;
       }
 
       .how-note {
@@ -4052,8 +4067,9 @@
           border-left: 0;
         }
 
-        .how-notes {
+        .how-stage {
           grid-template-columns: 1fr;
+          gap: 28px;
         }
 
         .browser-tab span,
@@ -4168,9 +4184,21 @@
         </section>
 
         <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
-          <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">How it works</h2>
-          <p class="section-copy" data-i18n="capabilities.intro">Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.</p>
           <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
+            <div class="how-copy">
+              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">How it works</h2>
+              <p class="section-copy" data-i18n="capabilities.intro">Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.</p>
+              <div class="how-notes">
+                <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true">
+                  <span class="how-note-name" data-i18n="how.toc">TOC</span>
+                  <span class="how-note-copy" data-i18n="how.toc.copy">Jump to any heading without scrolling the thread.</span>
+                </button>
+                <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false">
+                  <span class="how-note-name" data-i18n="how.outline">Outline</span>
+                  <span class="how-note-copy" data-i18n="how.outline.copy">Browse how the answer is built, including what sits inside each section.</span>
+                </button>
+              </div>
+            </div>
             <div class="browser">
               <div class="browser-chrome" aria-hidden="true">
                 <span class="browser-dots"><i></i><i></i><i></i></span>
@@ -4242,16 +4270,6 @@
                   </div>
                 </aside>
               </div>
-            </div>
-            <div class="how-notes">
-              <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true">
-                <span class="how-note-name" data-i18n="how.toc">TOC</span>
-                <span class="how-note-copy" data-i18n="how.toc.copy">Jump to any heading without scrolling the thread.</span>
-              </button>
-              <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false">
-                <span class="how-note-name" data-i18n="how.outline">Outline</span>
-                <span class="how-note-copy" data-i18n="how.outline.copy">Browse how the answer is built, including what sits inside each section.</span>
-              </button>
             </div>
           </div>
         </section>
