@@ -3517,6 +3517,68 @@
         font-weight: 500;
       }
 
+      .platform-slot {
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 0;
+        vertical-align: baseline;
+        transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
+      }
+
+      .platform-slot.is-open {
+        width: 1.05em;
+      }
+
+      .platform-icon {
+        position: absolute;
+        bottom: 0.02em;
+        left: 0.1em;
+        display: grid;
+        width: 0.85em;
+        height: 0.85em;
+        place-items: center;
+        border-radius: 30%;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28), inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+        line-height: 1;
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(0.7);
+        transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
+      }
+
+      .platform-mark {
+        font-size: 0.42em;
+        font-weight: 720;
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+
+      .platform-mark[data-wide="true"] {
+        font-size: 0.3em;
+      }
+
+      .platform-icon.is-shown {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        transition: opacity 200ms ease, filter 220ms ease, transform 420ms cubic-bezier(0.18, 1.35, 0.36, 1);
+      }
+
+      .platform-icon.is-leaving {
+        opacity: 0;
+        filter: blur(6px);
+        transform: scale(0.68);
+        transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .platform-slot,
+        .platform-icon {
+          transition: none;
+        }
+      }
+
       @media (max-width: 800px) {
         .page-shell {
           padding-top: 0;
@@ -3621,7 +3683,7 @@
       <section class="hero-stage">
         <div class="hero-copy">
           <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
-          <h1 id="hero-title" data-i18n="hero.title">Navigate long<br>AI conversations.</h1>
+          <h1 id="hero-title" data-i18n="hero.title">Navigate <span class="platform-slot" data-platform-slot></span> long<br>AI <span class="platform-slot" data-platform-slot></span> conversations.</h1>
           <div class="hero-actions">
             <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
             <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
@@ -3637,7 +3699,7 @@
         </section>
       </section>
       <div class="page-shell">
-        <section class="platform-banner" aria-labelledby="platform-banner-title">
+        <section class="platform-banner sr-only" aria-labelledby="platform-banner-title">
           <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
           <ul class="platform-list">
             <li>ChatGPT</li>
@@ -3820,7 +3882,7 @@
           "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
-          "hero.title": "Navigate long<br>AI conversations.",
+          "hero.title": "Navigate <span class=\"platform-slot\" data-platform-slot></span> long<br>AI <span class=\"platform-slot\" data-platform-slot></span> conversations.",
           "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
           "hero.explore": "See how it works",
           "hero.install": "Free trial",
@@ -3889,7 +3951,7 @@
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
-          "hero.title": "长篇 AI 对话<br>更易阅读和跳转。",
+          "hero.title": "长篇 <span class=\"platform-slot\" data-platform-slot></span> 对话<br>一键 <span class=\"platform-slot\" data-platform-slot></span> 跳转。",
           "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
           "hero.explore": "了解工作方式",
           "hero.install": "免费试用",
@@ -4045,6 +4107,132 @@
         updatesCollapse.hidden = !updatesExpanded;
       }
 
+      const headlinePlatforms = Object.freeze([
+        { name: "ChatGPT", mark: "C", bg: "#10a37f", fg: "#ffffff" },
+        { name: "Claude", mark: "Cl", bg: "#d97757", fg: "#ffffff" },
+        { name: "Gemini", mark: "G", bg: "#4c8dff", fg: "#ffffff" },
+        { name: "Grok", mark: "Gr", bg: "#1c1c1c", fg: "#ffffff" },
+        { name: "Doubao", mark: "豆", bg: "#3370ff", fg: "#ffffff" },
+        { name: "Kimi", mark: "K", bg: "#5b4dff", fg: "#ffffff" },
+        { name: "Qwen", mark: "Q", bg: "#615ced", fg: "#ffffff" },
+        { name: "Yuanbao", mark: "元", bg: "#12b886", fg: "#ffffff" },
+        { name: "Diandian AI", mark: "点", bg: "#ff5a7a", fg: "#ffffff" }
+      ]);
+      let headlinePlatformTimer = null;
+
+      function makePlatformIcon(platform) {
+        const icon = document.createElement("span");
+        icon.className = "platform-icon";
+        icon.dataset.name = platform.name;
+        icon.setAttribute("role", "img");
+        icon.setAttribute("aria-label", platform.name);
+        icon.title = platform.name;
+        icon.style.backgroundColor = platform.bg;
+        icon.style.color = platform.fg;
+        const mark = document.createElement("span");
+        mark.className = "platform-mark";
+        mark.dataset.wide = String(platform.mark.length > 1);
+        mark.textContent = platform.mark;
+        icon.append(mark);
+        return icon;
+      }
+
+      function shownPlatformNames() {
+        return new Set([...document.querySelectorAll(".platform-icon:not(.is-leaving)")].map((icon) => icon.dataset.name));
+      }
+
+      function nextHeadlinePlatform(slot) {
+        const current = slot.querySelector(".platform-icon:not(.is-leaving)")?.dataset.name;
+        const visible = shownPlatformNames();
+        const choices = headlinePlatforms.filter((platform) => platform.name !== current && !visible.has(platform.name));
+        const pool = choices.length ? choices : headlinePlatforms.filter((platform) => platform.name !== current);
+        return pool[Math.floor(Math.random() * pool.length)] || headlinePlatforms[0];
+      }
+
+      function swapHeadlinePlatform(slot) {
+        if (slot.dataset.busy === "true") {
+          return;
+        }
+
+        const current = slot.querySelector(".platform-icon:not(.is-leaving)");
+        if (!current) {
+          return;
+        }
+
+        slot.dataset.busy = "true";
+        const incoming = makePlatformIcon(nextHeadlinePlatform(slot));
+        slot.append(incoming);
+        window.requestAnimationFrame(() => {
+          current.classList.add("is-leaving");
+          incoming.classList.add("is-shown");
+        });
+        window.setTimeout(() => {
+          current.remove();
+          slot.dataset.busy = "false";
+        }, 260);
+      }
+
+      function initHeadlinePlatforms() {
+        if (headlinePlatformTimer !== null) {
+          window.clearInterval(headlinePlatformTimer);
+          headlinePlatformTimer = null;
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const slots = [...document.querySelectorAll("[data-platform-slot]")];
+        slots.forEach((slot, index) => {
+          const icon = makePlatformIcon(headlinePlatforms[index % headlinePlatforms.length]);
+          slot.replaceChildren(icon);
+          slot.dataset.busy = "false";
+          if (reduceMotion) {
+            slot.classList.add("is-open");
+            icon.classList.add("is-shown");
+            return;
+          }
+
+          slot.classList.remove("is-open");
+          icon.classList.remove("is-shown");
+          window.requestAnimationFrame(() => {
+            slot.classList.add("is-open");
+            window.setTimeout(() => icon.classList.add("is-shown"), 200 + (index * 70));
+          });
+        });
+
+        const headline = document.querySelector("#hero-title");
+        if (!headline.dataset.platformPauseBound) {
+          headline.dataset.platformPauseBound = "true";
+          headline.addEventListener("mouseenter", () => {
+            headline.dataset.paused = "true";
+          });
+          headline.addEventListener("mouseleave", () => {
+            headline.dataset.paused = "false";
+          });
+          headline.addEventListener("focusin", () => {
+            headline.dataset.paused = "true";
+          });
+          headline.addEventListener("focusout", () => {
+            headline.dataset.paused = "false";
+          });
+        }
+
+        if (reduceMotion || slots.length === 0) {
+          return;
+        }
+
+        headlinePlatformTimer = window.setInterval(() => {
+          if (headline.dataset.paused === "true") {
+            return;
+          }
+
+          const liveSlots = [...document.querySelectorAll("[data-platform-slot]")];
+          if (!liveSlots.length) {
+            return;
+          }
+
+          swapHeadlinePlatform(liveSlots[Math.floor(Math.random() * liveSlots.length)]);
+        }, 2040);
+      }
+
       function setLanguage(locale, persist = true) {
         const dictionary = translations[locale] || translations.en;
         currentLocale = locale in translations ? locale : "en";
@@ -4079,6 +4267,7 @@
         document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         renderReleaseNotes();
+        initHeadlinePlatforms();
         updateLanguageToggle(dictionary);
         updateThemeToggle(dictionary);
         setLanguageMenuOpen(false);

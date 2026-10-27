@@ -2,7 +2,7 @@
 
 ## Hero typography refinement
 
-- Desktop: the first screen is a full-bleed hero with a two-line headline, one Free trial pill, a text link to capabilities, and a large bottom-anchored video. The platform list sits below that hero.
+- Desktop: the first screen is a full-bleed hero with a two-line headline, one inline platform mark per line, one Free trial pill, a text link to capabilities, and a large bottom-anchored video.
 - Mobile: the same hero stacks without horizontal overflow, and the Free trial pill remains the only filled hero action.
 
 ## Cross-platform typography

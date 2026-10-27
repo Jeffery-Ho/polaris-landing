@@ -8,8 +8,8 @@
 - Give the hero one solid monochrome Free trial pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
 - Anchor the existing introduction video large at the bottom of the hero so it dominates the first screen. Keep its source, thumbnail, and failure-recovery play control.
 - Match the extension conversation cover: paper `#faf9f7` in light and `#191817` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
-- Move the platform list below the hero as a quiet centered row. It must use text only, wrap cleanly on small screens, separate platform names with half-width commas, and mirror the platform list in `Polaris-for-Web/README.md`.
-- Keep the sequence as full-bleed hero, platform row, capabilities grid, installation panels, support, release notes, then the footer.
+- Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
+- Keep the sequence as full-bleed hero, capabilities grid, installation panels, support, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
 
 ## Typography
 
