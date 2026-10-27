@@ -3547,15 +3547,15 @@
         transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
       }
 
-      .platform-mark {
-        font-size: 0.42em;
-        font-weight: 720;
-        letter-spacing: -0.05em;
-        line-height: 1;
+      .platform-icon {
+        overflow: hidden;
       }
 
-      .platform-mark[data-wide="true"] {
-        font-size: 0.3em;
+      .platform-icon img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .platform-icon.is-shown {
@@ -3711,6 +3711,8 @@
             <li>Qwen</li>
             <li>Yuanbao</li>
             <li>Diandian AI</li>
+            <li>Manus</li>
+            <li>DeepSeek</li>
           </ul>
         </section>
 
@@ -4108,15 +4110,17 @@
       }
 
       const headlinePlatforms = Object.freeze([
-        { name: "ChatGPT", mark: "C", bg: "#10a37f", fg: "#ffffff" },
-        { name: "Claude", mark: "Cl", bg: "#d97757", fg: "#ffffff" },
-        { name: "Gemini", mark: "G", bg: "#4c8dff", fg: "#ffffff" },
-        { name: "Grok", mark: "Gr", bg: "#1c1c1c", fg: "#ffffff" },
-        { name: "Doubao", mark: "豆", bg: "#3370ff", fg: "#ffffff" },
-        { name: "Kimi", mark: "K", bg: "#5b4dff", fg: "#ffffff" },
-        { name: "Qwen", mark: "Q", bg: "#615ced", fg: "#ffffff" },
-        { name: "Yuanbao", mark: "元", bg: "#12b886", fg: "#ffffff" },
-        { name: "Diandian AI", mark: "点", bg: "#ff5a7a", fg: "#ffffff" }
+        { name: "ChatGPT", src: "icons/platforms/platform-chatgpt.png" },
+        { name: "Claude", src: "icons/platforms/platform-claude.png" },
+        { name: "Gemini", src: "icons/platforms/platform-gemini.png" },
+        { name: "Grok", src: "icons/platforms/platform-grok.png" },
+        { name: "Doubao", src: "icons/platforms/platform-doubao.png" },
+        { name: "Kimi", src: "icons/platforms/platform-kimi.png" },
+        { name: "Qwen", src: "icons/platforms/platform-qianwen.png" },
+        { name: "Yuanbao", src: "icons/platforms/platform-yuanbao.png" },
+        { name: "Diandian AI", src: "icons/platforms/platform-xiaohongshu.png" },
+        { name: "Manus", src: "icons/platforms/platform-manus.png" },
+        { name: "DeepSeek", src: "icons/platforms/platform-deepseek.png" }
       ]);
       let headlinePlatformTimer = null;
 
@@ -4124,16 +4128,12 @@
         const icon = document.createElement("span");
         icon.className = "platform-icon";
         icon.dataset.name = platform.name;
-        icon.setAttribute("role", "img");
-        icon.setAttribute("aria-label", platform.name);
         icon.title = platform.name;
-        icon.style.backgroundColor = platform.bg;
-        icon.style.color = platform.fg;
-        const mark = document.createElement("span");
-        mark.className = "platform-mark";
-        mark.dataset.wide = String(platform.mark.length > 1);
-        mark.textContent = platform.mark;
-        icon.append(mark);
+        const image = document.createElement("img");
+        image.src = platform.src;
+        image.alt = platform.name;
+        image.draggable = false;
+        icon.append(image);
         return icon;
       }
 
