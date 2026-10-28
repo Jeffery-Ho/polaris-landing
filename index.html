@@ -3917,9 +3917,11 @@
       .side-search span {
         grid-area: 1 / 2;
         opacity: 0;
-        transition: opacity 420ms ease;
+        transition: opacity 300ms ease;
       }
 
+      .how-stage[data-mode="toc"] [data-how-search="toc"],
+      .how-stage[data-mode="outline"] [data-how-search="outline"],
       .side-search span.is-current {
         opacity: 1;
       }
@@ -3952,7 +3954,9 @@
         cursor: pointer;
       }
 
-      .side-tab[aria-selected="true"] {
+      .side-tab[aria-selected="true"],
+      .how-stage[data-mode="toc"] .side-tab[data-how-mode="toc"],
+      .how-stage[data-mode="outline"] .side-tab[data-how-mode="outline"] {
         background: var(--shell-chat);
         color: var(--shell-ink);
         box-shadow: 0 1px 2px rgba(28, 25, 23, 0.08);
@@ -3972,7 +3976,10 @@
         transition: opacity 300ms ease;
       }
 
-      .side-list.is-current {
+      .side-list.is-current,
+      .how-stage[data-mode="toc"] [data-how-panel="toc"],
+      .how-stage[data-mode="outline"] [data-how-panel="outline"] {
+        z-index: 1;
         opacity: 1;
         pointer-events: auto;
       }
@@ -4086,16 +4093,26 @@
         overflow: hidden;
       }
 
+      .how-note-headline,
       .how-note-body,
       .how-note-points {
         margin: 0;
       }
 
+      .how-note-headline {
+        padding-top: 8px;
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: 680;
+        letter-spacing: -0.03em;
+        line-height: 1.3;
+      }
+
       .how-note-body {
-        padding-top: 10px;
+        padding-top: 6px;
         color: var(--text-secondary);
         font-size: 14px;
-        line-height: 1.5;
+        line-height: 1.45;
       }
 
       .how-note-points {
@@ -4115,18 +4132,18 @@
       }
 
       .how-note-points li::before {
-        content: "";
+        content: "✓";
         position: absolute;
-        top: 0.5em;
+        top: 0;
         left: 0;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: #b85c3a;
+        color: #b85c3a;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.4;
       }
 
       :root[data-theme="dark"] .how-note-points li::before {
-        background: #e69a78;
+        color: #e69a78;
       }
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
@@ -4321,9 +4338,8 @@
         <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
           <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
             <div class="how-copy">
-              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">Find your place in a long answer</h2>
-              <p class="section-copy" data-i18n="capabilities.intro">A long reply hides the part you need, and scrolling back rarely finds it. Polaris puts two views beside the answer: a flat list for jumping to a section, and the same reply opened up as a structure.</p>
-              <p class="how-pick" data-i18n="how.pick">Pick one and see it in the window.</p>
+              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">Find the section you need</h2>
+              <p class="section-copy" data-i18n="capabilities.intro">Pick one and see it in the window.</p>
               <div class="how-notes">
                 <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true" aria-labelledby="how-toc-title">
                   <span class="how-note-bar" aria-hidden="true"></span>
@@ -4331,10 +4347,11 @@
                   <span class="how-note-name" id="how-toc-title" data-i18n="how.toc.title">Jump to a section</span>
                   <div class="how-note-more">
                     <div>
-                      <p class="how-note-body" data-i18n="how.toc.body">You should not have to drag through the whole reply to find one part. TOC is a flat list, one row per section. Click a row and that part of the answer is marked and brought into view.</p>
+                      <p class="how-note-headline" data-i18n="how.toc.headline">Like a contents page</p>
+                      <p class="how-note-body" data-i18n="how.toc.body">Click a heading and that part of the answer is marked.</p>
                       <ul class="how-note-points">
-                        <li data-i18n="how.toc.b1">One row for every section</li>
-                        <li data-i18n="how.toc.b2">A click moves the answer there</li>
+                        <li data-i18n="how.toc.b1">Every section is a row</li>
+                        <li data-i18n="how.toc.b2">A click jumps there</li>
                         <li data-i18n="how.toc.b3">Markers stay on the reply</li>
                       </ul>
                     </div>
@@ -4343,14 +4360,15 @@
                 <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false" aria-labelledby="how-outline-title">
                   <span class="how-note-bar" aria-hidden="true"></span>
                   <span class="how-note-index" aria-hidden="true">02</span>
-                  <span class="how-note-name" id="how-outline-title" data-i18n="how.outline.title">See how it is built</span>
+                  <span class="how-note-name" id="how-outline-title" data-i18n="how.outline.title">See the structure</span>
                   <div class="how-note-more">
                     <div>
-                      <p class="how-note-body" data-i18n="how.outline.body">The same answer is not only a list of titles. Some sections hold others. Outline shows that nesting, so you can tell a heading from the pieces inside it before you read them.</p>
+                      <p class="how-note-headline" data-i18n="how.outline.headline">See what each section holds</p>
+                      <p class="how-note-body" data-i18n="how.outline.body">Outline nests the same answer, parents and the pieces inside them.</p>
                       <ul class="how-note-points">
-                        <li data-i18n="how.outline.b1">Parent sections, and what they contain</li>
-                        <li data-i18n="how.outline.b2">The shape of the reply, not only its titles</li>
-                        <li data-i18n="how.outline.b3">The same answer as TOC, read as a structure</li>
+                        <li data-i18n="how.outline.b1">Parents, and their sections</li>
+                        <li data-i18n="how.outline.b2">The shape, not only the titles</li>
+                        <li data-i18n="how.outline.b3">The same answer as TOC</li>
                       </ul>
                     </div>
                   </div>
@@ -4587,19 +4605,20 @@
           "platforms.title": "Currently supported platforms",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
-          "capabilities.title": "Find your place in a long answer",
-          "capabilities.intro": "A long reply hides the part you need, and scrolling back rarely finds it. Polaris puts two views beside the answer: a flat list for jumping to a section, and the same reply opened up as a structure.",
-          "how.pick": "Pick one and see it in the window.",
+          "capabilities.title": "Find the section you need",
+          "capabilities.intro": "Pick one and see it in the window.",
           "how.toc.title": "Jump to a section",
-          "how.toc.body": "You should not have to drag through the whole reply to find one part. TOC is a flat list, one row per section. Click a row and that part of the answer is marked and brought into view.",
-          "how.toc.b1": "One row for every section",
-          "how.toc.b2": "A click moves the answer there",
+          "how.toc.headline": "Like a contents page",
+          "how.toc.body": "Click a heading and that part of the answer is marked.",
+          "how.toc.b1": "Every section is a row",
+          "how.toc.b2": "A click jumps there",
           "how.toc.b3": "Markers stay on the reply",
-          "how.outline.title": "See how it is built",
-          "how.outline.body": "The same answer is not only a list of titles. Some sections hold others. Outline shows that nesting, so you can tell a heading from the pieces inside it before you read them.",
-          "how.outline.b1": "Parent sections, and what they contain",
-          "how.outline.b2": "The shape of the reply, not only its titles",
-          "how.outline.b3": "The same answer as TOC, read as a structure",
+          "how.outline.title": "See the structure",
+          "how.outline.headline": "See what each section holds",
+          "how.outline.body": "Outline nests the same answer, parents and the pieces inside them.",
+          "how.outline.b1": "Parents, and their sections",
+          "how.outline.b2": "The shape, not only the titles",
+          "how.outline.b3": "The same answer as TOC",
           "how.tab": "Chat",
           "how.prompt": "Summarize the launch plan.",
           "how.h.decision": "The decision",
@@ -4675,19 +4694,20 @@
           "platforms.title": "当前支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
-          "capabilities.title": "在长回答里<br>找到那一节",
-          "capabilities.intro": "回复一长，你要的那段就埋在后面，往回翻也容易找不到。Polaris 在回答旁边放两种看法：一份用来跳转的扁平列表，以及同一篇回答展开后的结构。",
-          "how.pick": "选一个，在右边窗口里看它。",
+          "capabilities.title": "找到你要的那一节",
+          "capabilities.intro": "选一个，在右边窗口里看。",
           "how.toc.title": "跳到某一节",
-          "how.toc.body": "不用把整篇滚完才找得到那一段。TOC 是旁边的一份扁平列表，一行就是一个小节。点一行，回答里对应的位置会被标出来，并移到眼前。",
-          "how.toc.b1": "每个小节单独一行",
-          "how.toc.b2": "点一下，回答就到那一节",
-          "how.toc.b3": "标记留在回答旁边",
-          "how.outline.title": "看清它是怎么搭的",
-          "how.outline.body": "同一篇回答不只有一串标题。有的小节里面还有更小的部分。Outline 把这层关系摊开，你能分清哪一行是上级，哪一行是它里面的内容，再决定读哪一段。",
-          "how.outline.b1": "上级，以及它里面的小节",
-          "how.outline.b2": "先看结构，再决定读哪里",
-          "how.outline.b3": "和 TOC 是同一篇回答，按层级来看",
+          "how.toc.headline": "像目录一样跳",
+          "how.toc.body": "点一个标题，那一节会被标出来。",
+          "how.toc.b1": "每个小节一行",
+          "how.toc.b2": "点一下就到",
+          "how.toc.b3": "标记留在回答上",
+          "how.outline.title": "看结构",
+          "how.outline.headline": "看清每一节里有什么",
+          "how.outline.body": "Outline 把同一篇回答按层级摊开。",
+          "how.outline.b1": "上级和里面的小节",
+          "how.outline.b2": "先看结构，再读",
+          "how.outline.b3": "和 TOC 是同一篇",
           "how.tab": "对话",
           "how.prompt": "概括一下发布计划。",
           "how.h.decision": "这次的决定",
@@ -5578,6 +5598,7 @@
           howSearches.forEach((label) => {
             label.classList.toggle("is-current", label.dataset.howSearch === mode);
           });
+          setHowActive(mode === "outline" ? "timeline" : "decision");
         };
 
         const setHowActive = (id) => {
@@ -5618,7 +5639,6 @@
         });
 
         setHowMode(howStage.dataset.mode || "toc");
-        setHowActive(howStage.dataset.active || "decision");
       }
     </script>
   </body>
