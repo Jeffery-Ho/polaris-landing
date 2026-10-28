@@ -3585,27 +3585,6 @@
         transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
       }
 
-      @keyframes how-frame {
-        0% { transform: scale(1.06); }
-        70% { transform: scale(1.012); }
-        100% { transform: scale(1); }
-      }
-
-      @keyframes how-shot {
-        0% { transform: scale(1.16); opacity: 0.2; }
-        24% { opacity: 1; }
-        70% { transform: scale(1.04); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-      }
-
-      .how-stage.is-zooming .browser {
-        animation: how-frame 1000ms linear;
-      }
-
-      .how-stage.is-zooming .browser-body {
-        animation: how-shot 1000ms linear;
-      }
-
       @media (prefers-reduced-motion: reduce) {
         .platform-slot,
         .platform-icon,
@@ -3618,10 +3597,6 @@
           transition: none;
         }
 
-        .how-stage.is-zooming .browser,
-        .how-stage.is-zooming .browser-body {
-          animation: none;
-        }
       }
 
       .how-section {
@@ -3990,16 +3965,13 @@
         flex-direction: column;
         gap: 6px;
         opacity: 0;
-        transform: translateY(8px);
         pointer-events: none;
-        transition: opacity 320ms ease, transform 320ms cubic-bezier(0.22, 0.8, 0.24, 1);
+        transition: opacity 220ms ease;
       }
 
       .side-list.is-current {
         opacity: 1;
-        transform: none;
         pointer-events: auto;
-        transition-delay: 160ms;
       }
 
       .side-item {
@@ -5461,18 +5433,7 @@
         const howPanels = [...howStage.querySelectorAll("[data-how-panel]")];
         const howSearches = [...howStage.querySelectorAll("[data-how-search]")];
 
-        const enlargeBrowser = () => {
-          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            return;
-          }
-
-          howStage.classList.remove("is-zooming");
-          void howStage.offsetWidth;
-          howStage.classList.add("is-zooming");
-        };
-
-        const setHowMode = (mode, animate = false) => {
-          const changed = howStage.dataset.mode !== mode;
+        const setHowMode = (mode) => {
           howStage.dataset.mode = mode;
           howTabs.forEach((tab) => {
             const selected = tab.dataset.howMode === mode;
@@ -5491,10 +5452,6 @@
           howSearches.forEach((label) => {
             label.classList.toggle("is-current", label.dataset.howSearch === mode);
           });
-
-          if (animate && changed) {
-            enlargeBrowser();
-          }
         };
 
         const setHowActive = (id) => {
@@ -5512,7 +5469,7 @@
         howStage.addEventListener("click", (event) => {
           const modeControl = event.target.closest("[data-how-mode]");
           if (modeControl && howStage.contains(modeControl)) {
-            setHowMode(modeControl.dataset.howMode, true);
+            setHowMode(modeControl.dataset.howMode);
             return;
           }
 
@@ -5530,7 +5487,7 @@
           event.preventDefault();
           const current = howTabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
           const next = event.key === "ArrowRight" ? (current + 1) % howTabs.length : (current - 1 + howTabs.length) % howTabs.length;
-          setHowMode(howTabs[next].dataset.howMode, true);
+          setHowMode(howTabs[next].dataset.howMode);
           howTabs[next].focus();
         });
 

@@ -4,7 +4,7 @@
 
 - Desktop: the first screen is a full-bleed hero with a two-line headline, one inline platform mark per line, one Free trial pill, a text link to capabilities, and a large bottom-anchored video.
 - Mobile: the same hero stacks without horizontal overflow, and the Free trial pill remains the only filled hero action.
-- How it works: copy and the TOC / Outline switch sit on the left, and the browser chrome sits on the right. Narrow screens stack the copy above the window. The browser is a wide product window, about 737:545, large beside the copy. Switching modes zooms that picture in and lets it settle while the side list fades. TOC is a flat jump list; Outline nests the sections inside it. Both themes use the paper and terracotta cover colors.
+- How it works: copy and the TOC / Outline switch sit on the left, and the browser chrome sits on the right. Narrow screens stack the copy above the window. The browser is a wide product window, about 737:545, large beside the copy. Switching modes does not scale the window. The side list fades between TOC and Outline. TOC is a flat jump list; Outline nests the sections inside it. Both themes use the paper and terracotta cover colors.
 - Headline marks are opaque white or black rounded tiles, inset from the edge, and share the letter centerline.
 
 ## Cross-platform typography
