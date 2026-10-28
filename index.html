@@ -3592,6 +3592,9 @@
         .side-item,
         .chat-marker,
         .how-note,
+        .how-note-bar,
+        .how-note-name,
+        .how-note-more,
         .side-list,
         .side-search span {
           transition: none;
@@ -3605,7 +3608,7 @@
 
       .how-stage {
         display: grid;
-        grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
         gap: clamp(32px, 4vw, 56px);
         align-items: center;
       }
@@ -3966,7 +3969,7 @@
         gap: 6px;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 220ms ease;
+        transition: opacity 300ms ease;
       }
 
       .side-list.is-current {
@@ -4009,65 +4012,147 @@
         color: var(--shell-ink);
       }
 
+      .how-pick {
+        margin: 18px 0 0;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+
       .how-notes {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 8px;
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        margin-top: 22px;
+        margin-top: 10px;
       }
 
       .how-note {
-        display: grid;
-        gap: 4px;
-        padding: 12px 14px;
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 16px 8px 16px 22px;
         border: 0;
-        border-radius: 12px;
+        border-radius: 16px;
         background: transparent;
-        box-shadow: inset 2px 0 0 transparent;
         color: var(--text-secondary);
         text-align: left;
         cursor: pointer;
-        transition: background 180ms ease, box-shadow 180ms ease;
+        transition: background 300ms ease;
       }
 
-      .how-note:hover,
-      .how-note:focus-visible {
-        background: color-mix(in srgb, var(--text-primary) 5%, transparent);
+      .how-note-bar {
+        position: absolute;
+        top: 16%;
+        bottom: 16%;
+        left: 0;
+        width: 3px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--text-primary) 16%, transparent);
+        transition: background 300ms ease;
+      }
+
+      .how-note-index {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--text-muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        font-weight: 560;
+        letter-spacing: 0.04em;
+        line-height: 1.2;
+        transition: color 300ms ease;
+      }
+
+      .how-note-name {
+        display: block;
+        color: var(--text-secondary);
+        font-size: 20px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+        line-height: 1.25;
+        transition: color 300ms ease;
+      }
+
+      .how-note-more {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition: grid-template-rows 300ms ease, opacity 300ms ease;
+      }
+
+      .how-note-more > div {
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .how-note-body,
+      .how-note-points {
+        margin: 0;
+      }
+
+      .how-note-body {
+        padding-top: 10px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .how-note-points {
+        display: grid;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .how-note-points li {
+        position: relative;
+        padding-left: 14px;
+        color: var(--text-primary);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .how-note-points li::before {
+        content: "";
+        position: absolute;
+        top: 0.5em;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #b85c3a;
+      }
+
+      :root[data-theme="dark"] .how-note-points li::before {
+        background: #e69a78;
       }
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
       .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
-        background: color-mix(in srgb, #b85c3a 10%, transparent);
-        box-shadow: inset 2px 0 0 #b85c3a;
+        background: color-mix(in srgb, var(--text-primary) 6%, transparent);
       }
 
-      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
-      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
-        background: color-mix(in srgb, #e69a78 14%, transparent);
-        box-shadow: inset 2px 0 0 #e69a78;
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
+        background: #b85c3a;
       }
 
-      .how-note-name {
-        color: var(--text-primary);
-        font-size: 16px;
-        font-weight: 670;
-        letter-spacing: -0.03em;
+      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
+      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
+        background: #e69a78;
       }
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
       .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
-        color: #b85c3a;
+        color: var(--text-primary);
       }
 
-      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
-      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
-        color: #e69a78;
-      }
-
-      .how-note-copy {
-        font-size: 14px;
-        line-height: 1.45;
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-more,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-more {
+        grid-template-rows: 1fr;
+        opacity: 1;
       }
 
       @media (max-width: 800px) {
@@ -4236,16 +4321,39 @@
         <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
           <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
             <div class="how-copy">
-              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">How it works</h2>
-              <p class="section-copy" data-i18n="capabilities.intro">Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.</p>
+              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">Find your place in a long answer</h2>
+              <p class="section-copy" data-i18n="capabilities.intro">A long reply hides the part you need, and scrolling back rarely finds it. Polaris puts two views beside the answer: a flat list for jumping to a section, and the same reply opened up as a structure.</p>
+              <p class="how-pick" data-i18n="how.pick">Pick one and see it in the window.</p>
               <div class="how-notes">
-                <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true">
-                  <span class="how-note-name" data-i18n="how.toc">TOC</span>
-                  <span class="how-note-copy" data-i18n="how.toc.copy">Jump to any heading without scrolling the thread.</span>
+                <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true" aria-labelledby="how-toc-title">
+                  <span class="how-note-bar" aria-hidden="true"></span>
+                  <span class="how-note-index" aria-hidden="true">01</span>
+                  <span class="how-note-name" id="how-toc-title" data-i18n="how.toc.title">Jump to a section</span>
+                  <div class="how-note-more">
+                    <div>
+                      <p class="how-note-body" data-i18n="how.toc.body">You should not have to drag through the whole reply to find one part. TOC is a flat list, one row per section. Click a row and that part of the answer is marked and brought into view.</p>
+                      <ul class="how-note-points">
+                        <li data-i18n="how.toc.b1">One row for every section</li>
+                        <li data-i18n="how.toc.b2">A click moves the answer there</li>
+                        <li data-i18n="how.toc.b3">Markers stay on the reply</li>
+                      </ul>
+                    </div>
+                  </div>
                 </button>
-                <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false">
-                  <span class="how-note-name" data-i18n="how.outline">Outline</span>
-                  <span class="how-note-copy" data-i18n="how.outline.copy">Browse how the answer is built, including what sits inside each section.</span>
+                <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false" aria-labelledby="how-outline-title">
+                  <span class="how-note-bar" aria-hidden="true"></span>
+                  <span class="how-note-index" aria-hidden="true">02</span>
+                  <span class="how-note-name" id="how-outline-title" data-i18n="how.outline.title">See how it is built</span>
+                  <div class="how-note-more">
+                    <div>
+                      <p class="how-note-body" data-i18n="how.outline.body">The same answer is not only a list of titles. Some sections hold others. Outline shows that nesting, so you can tell a heading from the pieces inside it before you read them.</p>
+                      <ul class="how-note-points">
+                        <li data-i18n="how.outline.b1">Parent sections, and what they contain</li>
+                        <li data-i18n="how.outline.b2">The shape of the reply, not only its titles</li>
+                        <li data-i18n="how.outline.b3">The same answer as TOC, read as a structure</li>
+                      </ul>
+                    </div>
+                  </div>
                 </button>
               </div>
             </div>
@@ -4479,8 +4587,19 @@
           "platforms.title": "Currently supported platforms",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
-          "capabilities.title": "How it works",
-          "capabilities.intro": "Markers land on a long answer. TOC jumps to a heading. Outline shows the structure around it.",
+          "capabilities.title": "Find your place in a long answer",
+          "capabilities.intro": "A long reply hides the part you need, and scrolling back rarely finds it. Polaris puts two views beside the answer: a flat list for jumping to a section, and the same reply opened up as a structure.",
+          "how.pick": "Pick one and see it in the window.",
+          "how.toc.title": "Jump to a section",
+          "how.toc.body": "You should not have to drag through the whole reply to find one part. TOC is a flat list, one row per section. Click a row and that part of the answer is marked and brought into view.",
+          "how.toc.b1": "One row for every section",
+          "how.toc.b2": "A click moves the answer there",
+          "how.toc.b3": "Markers stay on the reply",
+          "how.outline.title": "See how it is built",
+          "how.outline.body": "The same answer is not only a list of titles. Some sections hold others. Outline shows that nesting, so you can tell a heading from the pieces inside it before you read them.",
+          "how.outline.b1": "Parent sections, and what they contain",
+          "how.outline.b2": "The shape of the reply, not only its titles",
+          "how.outline.b3": "The same answer as TOC, read as a structure",
           "how.tab": "Chat",
           "how.prompt": "Summarize the launch plan.",
           "how.h.decision": "The decision",
@@ -4493,8 +4612,6 @@
           "how.p.checkin": "Review the cut list Monday morning, before the build locks.",
           "how.toc": "TOC",
           "how.outline": "Outline",
-          "how.toc.copy": "Jump to any heading without scrolling the thread.",
-          "how.outline.copy": "Browse how the answer is built, including what sits inside each section.",
           "how.search.toc": "Search headings",
           "how.search.outline": "Search structure",
           "install.title": "Install Polaris AI",
@@ -4558,8 +4675,19 @@
           "platforms.title": "当前支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
-          "capabilities.title": "如何工作",
-          "capabilities.intro": "标记落在长回答上。TOC 用来跳到某一节，Outline 用来看它的结构。",
+          "capabilities.title": "在长回答里<br>找到那一节",
+          "capabilities.intro": "回复一长，你要的那段就埋在后面，往回翻也容易找不到。Polaris 在回答旁边放两种看法：一份用来跳转的扁平列表，以及同一篇回答展开后的结构。",
+          "how.pick": "选一个，在右边窗口里看它。",
+          "how.toc.title": "跳到某一节",
+          "how.toc.body": "不用把整篇滚完才找得到那一段。TOC 是旁边的一份扁平列表，一行就是一个小节。点一行，回答里对应的位置会被标出来，并移到眼前。",
+          "how.toc.b1": "每个小节单独一行",
+          "how.toc.b2": "点一下，回答就到那一节",
+          "how.toc.b3": "标记留在回答旁边",
+          "how.outline.title": "看清它是怎么搭的",
+          "how.outline.body": "同一篇回答不只有一串标题。有的小节里面还有更小的部分。Outline 把这层关系摊开，你能分清哪一行是上级，哪一行是它里面的内容，再决定读哪一段。",
+          "how.outline.b1": "上级，以及它里面的小节",
+          "how.outline.b2": "先看结构，再决定读哪里",
+          "how.outline.b3": "和 TOC 是同一篇回答，按层级来看",
           "how.tab": "对话",
           "how.prompt": "概括一下发布计划。",
           "how.h.decision": "这次的决定",
@@ -4572,8 +4700,6 @@
           "how.p.checkin": "周一早上先看删减清单，再锁定构建。",
           "how.toc": "TOC",
           "how.outline": "Outline",
-          "how.toc.copy": "不用滚动整段对话，点一下就到那个标题。",
-          "how.outline.copy": "先看回答是怎么组织的，以及每一节里面有什么。",
           "how.search.toc": "搜索标题",
           "how.search.outline": "搜索结构",
           "install.title": "安装 Polaris AI",
