@@ -4031,14 +4031,14 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 18px;
       }
 
       .how-note {
         position: relative;
         display: block;
         width: 100%;
-        padding: 16px 8px 16px 22px;
+        padding: 20px 24px;
         border: 0;
         border-radius: 16px;
         background: transparent;
@@ -4055,35 +4055,36 @@
         left: 0;
         width: 3px;
         border-radius: 999px;
-        background: color-mix(in srgb, var(--text-primary) 16%, transparent);
+        background: color-mix(in srgb, var(--text-primary) 15%, transparent);
         transition: background 300ms ease;
       }
 
       .how-note-index {
         display: block;
-        margin-bottom: 6px;
-        color: var(--text-muted);
+        margin-bottom: 8px;
+        color: color-mix(in srgb, var(--text-muted) 70%, transparent);
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 11px;
-        font-weight: 560;
-        letter-spacing: 0.04em;
-        line-height: 1.2;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        line-height: 14px;
         transition: color 300ms ease;
       }
 
       .how-note-name {
         display: block;
-        color: var(--text-secondary);
-        font-size: 20px;
-        font-weight: 650;
+        color: var(--text-muted);
+        font-size: 24px;
+        font-weight: 500;
         letter-spacing: -0.03em;
-        line-height: 1.25;
+        line-height: 30px;
         transition: color 300ms ease;
       }
 
       .how-note-more {
         display: grid;
         grid-template-rows: 0fr;
+        overflow: hidden;
         opacity: 0;
         transition: grid-template-rows 300ms ease, opacity 300ms ease;
       }
@@ -4097,27 +4098,28 @@
       .how-note-body,
       .how-note-points {
         margin: 0;
+        max-width: 32ch;
       }
 
       .how-note-headline {
-        padding-top: 8px;
+        padding-top: 10px;
         color: var(--text-primary);
-        font-size: 15px;
-        font-weight: 680;
-        letter-spacing: -0.03em;
-        line-height: 1.3;
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        line-height: 20px;
       }
 
       .how-note-body {
-        padding-top: 6px;
+        padding-top: 4px;
         color: var(--text-secondary);
         font-size: 14px;
-        line-height: 1.45;
+        line-height: 20px;
       }
 
       .how-note-points {
         display: grid;
-        gap: 6px;
+        gap: 4px;
         margin-top: 10px;
         padding: 0;
         list-style: none;
@@ -4125,10 +4127,10 @@
 
       .how-note-points li {
         position: relative;
-        padding-left: 14px;
-        color: var(--text-primary);
+        padding-left: 16px;
+        color: var(--text-secondary);
         font-size: 14px;
-        line-height: 1.4;
+        line-height: 20px;
       }
 
       .how-note-points li::before {
@@ -4153,12 +4155,12 @@
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
       .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
-        background: #b85c3a;
+        background: var(--text-primary);
       }
 
-      :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
-      :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
-        background: #e69a78;
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-index,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-index {
+        color: var(--text-muted);
       }
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
