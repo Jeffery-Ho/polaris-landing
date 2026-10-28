@@ -3585,14 +3585,25 @@
         transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
       }
 
-      @keyframes how-enlarge {
-        0% { transform: scale(0.9); opacity: 0.48; }
-        50% { transform: scale(0.962); opacity: 1; }
+      @keyframes how-frame {
+        0% { transform: scale(1.06); }
+        70% { transform: scale(1.012); }
+        100% { transform: scale(1); }
+      }
+
+      @keyframes how-shot {
+        0% { transform: scale(1.16); opacity: 0.2; }
+        24% { opacity: 1; }
+        70% { transform: scale(1.04); opacity: 1; }
         100% { transform: scale(1); opacity: 1; }
       }
 
       .how-stage.is-zooming .browser {
-        animation: how-enlarge 1100ms linear;
+        animation: how-frame 1000ms linear;
+      }
+
+      .how-stage.is-zooming .browser-body {
+        animation: how-shot 1000ms linear;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -3607,7 +3618,8 @@
           transition: none;
         }
 
-        .how-stage.is-zooming .browser {
+        .how-stage.is-zooming .browser,
+        .how-stage.is-zooming .browser-body {
           animation: none;
         }
       }
@@ -3618,8 +3630,8 @@
 
       .how-stage {
         display: grid;
-        grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
-        gap: clamp(28px, 3.2vw, 44px);
+        grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+        gap: clamp(32px, 4vw, 56px);
         align-items: center;
       }
 
@@ -3641,6 +3653,10 @@
       }
 
       .browser {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        aspect-ratio: 737 / 545;
         transform-origin: center center;
         --shell-bg: #faf9f7;
         --shell-ink: #1c1917;
@@ -3653,7 +3669,7 @@
         --shell-user-ink: #faf9f7;
         overflow: hidden;
         border: 1px solid rgba(23, 23, 23, 0.08);
-        border-radius: 18px;
+        border-radius: 22px;
         background: var(--shell-bg);
         box-shadow: 0 28px 70px rgba(40, 16, 8, 0.08);
         color: var(--shell-ink);
@@ -3742,17 +3758,20 @@
 
       .browser-body {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 300px;
+        flex: 1;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 32%);
         min-height: 0;
+        transform-origin: center center;
         background: var(--shell-chat);
       }
 
       .chat {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        justify-content: center;
+        gap: 22px;
         min-width: 0;
-        padding: 22px 22px 26px;
+        padding: 28px 28px 32px;
       }
 
       .chat-user {
@@ -3880,6 +3899,7 @@
       .side-panel {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 12px;
         min-width: 0;
         padding: 16px 14px 18px;
@@ -4109,6 +4129,10 @@
 
         .platform-banner {
           margin-top: 72px;
+        }
+
+        .browser {
+          aspect-ratio: auto;
         }
 
         .browser-body {
