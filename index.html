@@ -3318,7 +3318,7 @@
       }
 
       .page-shell {
-        padding-top: 0;
+        padding-top: 192px;
       }
 
       .hero-stage {
@@ -3330,6 +3330,7 @@
         padding: clamp(112px, 14vh, 148px) 24px 0;
         --hero-bg: #faf9f7;
         --hero-accent: #b85c3a;
+        --hero-accent-text: #a44e31;
         background:
           radial-gradient(
             ellipse 70% 45% at 50% 0%,
@@ -3342,6 +3343,7 @@
       :root[data-theme="dark"] .hero-stage {
         --hero-bg: #191817;
         --hero-accent: #e69a78;
+        --hero-accent-text: #e69a78;
         color: #f5f5f5;
       }
 
@@ -3458,7 +3460,7 @@
         background: transparent;
         background-image: none;
         box-shadow: none;
-        color: var(--hero-accent);
+        color: var(--hero-accent-text);
         font-size: 15px;
         font-weight: 560;
         letter-spacing: -0.02em;
@@ -3469,7 +3471,7 @@
       }
 
       :root[data-theme="dark"] .hero-stage .hero-link--text {
-        color: var(--hero-accent);
+        color: var(--hero-accent-text);
       }
 
       .hero-stage .hero-link--text:hover,
@@ -3523,8 +3525,12 @@
       }
 
       .platform-banner-title {
-        color: var(--text-muted);
+        color: #706762;
         font-weight: 500;
+      }
+
+      :root[data-theme="dark"] .platform-banner-title {
+        color: #b9afa7;
       }
 
       .platform-slot {
@@ -3585,598 +3591,149 @@
         transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
       }
 
-      @media (prefers-reduced-motion: reduce) {
-        .platform-slot,
-        .platform-icon,
-        .chat-block,
-        .side-item,
-        .chat-marker,
-        .how-note,
-        .how-note-bar,
-        .how-note-name,
-        .how-note-more,
-        .side-list,
-        .side-search span {
-          transition: none;
-        }
-
-      }
-
+      /* Dia scroll-linked feature introduction: two fixed-mode windows, one fixture. */
       .how-section {
+        --how-page: #faf9f7;
+        --how-ink: #201c19;
+        --how-muted: #706762;
+        --how-line: #ded9d3;
+        --how-chat: #fff;
+        --how-chrome: #f2efeb;
+        --how-accent: #b85c3a;
+        --how-accent-text: #a44e31;
+        /* Break out of the existing, narrower page shell without changing that shell. */
+        box-sizing: border-box;
+        width: min(var(--how-viewport-width, calc(100% + var(--page-margin) * 2)), 1400px);
+        max-width: none;
+        margin: 0 calc((100% - min(var(--how-viewport-width, calc(100% + var(--page-margin) * 2)), 1400px)) / 2) 100px;
+        padding: 0 10px;
+        border: 0;
+        background: transparent;
+        color: var(--how-ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
         scroll-margin-top: 96px;
-      }
-
-      .how-stage {
-        display: grid;
-        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
-        gap: clamp(32px, 4vw, 56px);
-        align-items: center;
-      }
-
-      .how-copy {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        min-width: 0;
-      }
-
-      .how-copy .section-heading {
-        font-size: clamp(32px, 3vw, 42px);
-      }
-
-      .how-copy .section-copy {
-        max-width: 22rem;
-        margin-top: 12px;
-        font-size: 16px;
-      }
-
-      .browser {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        aspect-ratio: 737 / 545;
-        transform-origin: center center;
-        --shell-bg: #faf9f7;
-        --shell-ink: #1c1917;
-        --shell-muted: #7a716b;
-        --shell-line: rgba(28, 25, 23, 0.1);
-        --shell-accent: #b85c3a;
-        --shell-chat: #ffffff;
-        --shell-chrome: #f3f1ee;
-        --shell-user: #1c1917;
-        --shell-user-ink: #faf9f7;
-        overflow: hidden;
-        border: 1px solid rgba(23, 23, 23, 0.08);
-        border-radius: 22px;
-        background: var(--shell-bg);
-        box-shadow: 0 28px 70px rgba(40, 16, 8, 0.08);
-        color: var(--shell-ink);
-      }
-
-      :root[data-theme="dark"] .browser {
-        --shell-bg: #191817;
-        --shell-ink: #f5f1ec;
-        --shell-muted: #a39890;
-        --shell-line: rgba(255, 255, 255, 0.1);
-        --shell-accent: #e69a78;
-        --shell-chat: #141312;
-        --shell-chrome: #221f1d;
-        --shell-user: #f5f1ec;
-        --shell-user-ink: #191817;
-        border-color: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
-      }
-
-      .browser-chrome {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-height: 48px;
-        padding: 8px 14px;
-        background: var(--shell-chrome);
-        border-bottom: 1px solid var(--shell-line);
-      }
-
-      .browser-dots {
-        display: flex;
-        flex: none;
-        gap: 6px;
-      }
-
-      .browser-dots i {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #c9c2ba;
-      }
-
-      .browser-dots i:nth-child(1) { background: #ff5f57; }
-      .browser-dots i:nth-child(2) { background: #febc2e; }
-      .browser-dots i:nth-child(3) { background: #28c840; }
-
-      .browser-tab,
-      .browser-address {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 0;
-        height: 30px;
-        padding: 0 12px;
-        border-radius: 8px;
-        background: var(--shell-bg);
-        color: var(--shell-muted);
-        font-size: 12px;
-        font-weight: 560;
-        letter-spacing: -0.01em;
-      }
-
-      .browser-tab {
-        flex: none;
-        max-width: 140px;
-        color: var(--shell-ink);
-      }
-
-      .browser-tab img {
-        width: 16px;
-        height: 16px;
-        flex: none;
-        border-radius: 4px;
-      }
-
-      .browser-address {
-        flex: 1;
-        justify-content: center;
-      }
-
-      .browser-address svg {
-        width: 12px;
-        height: 12px;
-        flex: none;
-      }
-
-      .browser-body {
-        display: grid;
-        flex: 1;
-        grid-template-columns: minmax(0, 1fr) minmax(220px, 32%);
-        min-height: 0;
-        transform-origin: center center;
-        background: var(--shell-chat);
-      }
-
-      .chat {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 22px;
-        min-width: 0;
-        padding: 28px 28px 32px;
-      }
-
-      .chat-user {
-        align-self: flex-end;
-        max-width: min(78%, 420px);
-        margin: 0;
-        padding: 10px 14px;
-        border-radius: 16px 16px 6px 16px;
-        background: var(--shell-user);
-        color: var(--shell-user-ink);
-        font-size: 13.5px;
-        font-weight: 500;
-        letter-spacing: -0.015em;
-        line-height: 1.4;
-      }
-
-      .chat-answer {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .chat-block {
-        display: grid;
-        grid-template-columns: 22px minmax(0, 1fr);
-        gap: 10px;
-        align-items: start;
-        margin: 0;
-        padding: 10px 12px;
-        border-radius: 12px;
-        transition: background 180ms ease;
-      }
-
-      .how-stage[data-active="decision"] [data-how-block="decision"],
-      .how-stage[data-active="slips"] [data-how-block="slips"],
-      .how-stage[data-active="timeline"] [data-how-block="slips"],
-      .how-stage[data-active="owners"] [data-how-block="slips"],
-      .how-stage[data-active="checkin"] [data-how-block="checkin"] {
-        background: color-mix(in srgb, var(--shell-accent) 12%, transparent);
-      }
-
-      .chat-marker {
-        display: grid;
-        width: 22px;
-        height: 22px;
-        place-items: center;
-        margin-top: 1px;
-        padding: 0;
-        border: 0;
-        border-radius: 7px;
-        background: color-mix(in srgb, var(--shell-accent) 16%, transparent);
-        cursor: pointer;
-      }
-
-      .chat-marker span {
-        width: 7px;
-        height: 7px;
-        border-radius: 2px;
-        background: var(--shell-accent);
-      }
-
-      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"],
-      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"],
-      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"],
-      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"],
-      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] {
-        background: var(--shell-accent);
-      }
-
-      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"] span,
-      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"] span,
-      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"] span,
-      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"] span,
-      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] span {
-        background: #fff;
-      }
-
-      .chat-block h3,
-      .chat-block p,
-      .chat-subs {
-        margin: 0;
-      }
-
-      .chat-block h3 {
-        color: var(--shell-ink);
-        font-size: 15px;
-        font-weight: 650;
-        letter-spacing: -0.03em;
-        line-height: 1.3;
-      }
-
-      .chat-block p {
-        margin-top: 4px;
-        color: var(--shell-muted);
-        font-size: 13.5px;
-        line-height: 1.45;
-      }
-
-      .chat-subs {
-        display: grid;
-        gap: 2px;
-        margin-top: 8px;
-        padding: 0 0 0 12px;
-        border-left: 1px solid var(--shell-line);
-        list-style: none;
-      }
-
-      .chat-subs button {
-        padding: 2px 0;
-        border: 0;
-        background: transparent;
-        color: var(--shell-muted);
-        font-size: 13px;
-        font-weight: 550;
-        letter-spacing: -0.02em;
-        text-align: left;
-        cursor: pointer;
-      }
-
-      .how-stage[data-active="timeline"] .chat-subs [data-how-jump="timeline"],
-      .how-stage[data-active="owners"] .chat-subs [data-how-jump="owners"] {
-        color: var(--shell-accent);
-      }
-
-      .side-panel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 12px;
-        min-width: 0;
-        padding: 16px 14px 18px;
-        border-left: 1px solid var(--shell-line);
-        background: var(--shell-bg);
-      }
-
-      .side-identity {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        font-weight: 680;
-        letter-spacing: -0.03em;
-      }
-
-      .side-identity img {
-        width: 22px;
-        height: 22px;
-        border-radius: 6px;
-      }
-
-      .side-search {
-        display: grid;
-        grid-template-columns: 14px minmax(0, 1fr);
-        align-items: center;
-        column-gap: 8px;
-        min-height: 34px;
-        padding: 0 12px;
-        border: 1px solid var(--shell-line);
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--shell-chat) 72%, var(--shell-bg));
-        color: var(--shell-muted);
-        font-size: 12px;
-      }
-
-      .side-search span {
-        grid-area: 1 / 2;
-        opacity: 0;
-        transition: opacity 300ms ease;
-      }
-
-      .how-stage[data-mode="toc"] [data-how-search="toc"],
-      .how-stage[data-mode="outline"] [data-how-search="outline"],
-      .side-search span.is-current {
-        opacity: 1;
-      }
-
-      .side-search svg {
-        grid-area: 1 / 1;
-        width: 14px;
-        height: 14px;
-      }
-
-      .side-tabs {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3px;
-        padding: 3px;
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--shell-ink) 6%, transparent);
-      }
-
-      .side-tab {
-        min-height: 30px;
-        padding: 6px 8px;
-        border: 0;
-        border-radius: 999px;
-        background: transparent;
-        color: var(--shell-muted);
-        font-size: 12px;
-        font-weight: 650;
-        letter-spacing: -0.02em;
-        cursor: pointer;
-      }
-
-      .side-tab[aria-selected="true"],
-      .how-stage[data-mode="toc"] .side-tab[data-how-mode="toc"],
-      .how-stage[data-mode="outline"] .side-tab[data-how-mode="outline"] {
-        background: var(--shell-chat);
-        color: var(--shell-ink);
-        box-shadow: 0 1px 2px rgba(28, 25, 23, 0.08);
-      }
-
-      .side-lists {
-        display: grid;
-      }
-
-      .side-list {
-        display: flex;
-        grid-area: 1 / 1;
-        flex-direction: column;
-        gap: 6px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 300ms ease;
-      }
-
-      .side-list.is-current,
-      .how-stage[data-mode="toc"] [data-how-panel="toc"],
-      .how-stage[data-mode="outline"] [data-how-panel="outline"] {
-        z-index: 1;
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .side-item {
-        display: flex;
-        width: 100%;
-        min-height: 40px;
-        align-items: center;
-        padding: 8px 12px;
-        border: 1px solid transparent;
-        border-radius: 12px;
-        background: transparent;
-        color: var(--shell-ink);
-        font-size: 13.5px;
-        font-weight: 580;
-        letter-spacing: -0.02em;
-        text-align: left;
-        cursor: pointer;
-      }
-
-      .side-item--child {
-        margin-left: 16px;
-        width: calc(100% - 16px);
-        color: var(--shell-muted);
-        font-weight: 520;
-      }
-
-      .how-stage[data-active="decision"] .side-item[data-how-jump="decision"],
-      .how-stage[data-active="slips"] .side-item[data-how-jump="slips"],
-      .how-stage[data-active="timeline"] .side-item[data-how-jump="timeline"],
-      .how-stage[data-active="owners"] .side-item[data-how-jump="owners"],
-      .how-stage[data-active="checkin"] .side-item[data-how-jump="checkin"] {
-        border-color: color-mix(in srgb, var(--shell-accent) 35%, transparent);
-        background: color-mix(in srgb, var(--shell-accent) 14%, transparent);
-        box-shadow: inset 2px 0 0 var(--shell-accent);
-        color: var(--shell-ink);
-      }
-
-      .how-pick {
-        margin: 18px 0 0;
-        color: var(--text-primary);
-        font-size: 14px;
-        font-weight: 650;
-        letter-spacing: -0.02em;
-      }
-
-      .how-notes {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 18px;
-      }
-
-      .how-note {
-        position: relative;
-        display: block;
-        width: 100%;
-        padding: 20px 24px;
-        border: 0;
-        border-radius: 16px;
-        background: transparent;
-        color: var(--text-secondary);
-        text-align: left;
-        cursor: pointer;
-        transition: background 300ms ease;
-      }
-
-      .how-note-bar {
-        position: absolute;
-        top: 16%;
-        bottom: 16%;
-        left: 0;
-        width: 3px;
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--text-primary) 15%, transparent);
-        transition: background 300ms ease;
-      }
-
-      .how-note-index {
-        display: block;
-        margin-bottom: 8px;
-        color: color-mix(in srgb, var(--text-muted) 70%, transparent);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 11px;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        line-height: 14px;
-        transition: color 300ms ease;
-      }
-
-      .how-note-name {
-        display: block;
-        color: var(--text-muted);
-        font-size: 24px;
-        font-weight: 500;
-        letter-spacing: -0.03em;
-        line-height: 30px;
-        transition: color 300ms ease;
-      }
-
-      .how-note-more {
-        display: grid;
-        grid-template-rows: 0fr;
-        overflow: hidden;
-        opacity: 0;
-        transition: grid-template-rows 300ms ease, opacity 300ms ease;
-      }
-
-      .how-note-more > div {
-        min-height: 0;
-        overflow: hidden;
-      }
-
-      .how-note-headline,
-      .how-note-body,
-      .how-note-points {
-        margin: 0;
-        max-width: 32ch;
-      }
-
-      .how-note-headline {
-        padding-top: 10px;
-        color: var(--text-primary);
-        font-size: 14px;
-        font-weight: 650;
-        letter-spacing: -0.02em;
-        line-height: 20px;
-      }
-
-      .how-note-body {
-        padding-top: 4px;
-        color: var(--text-secondary);
-        font-size: 14px;
-        line-height: 20px;
-      }
-
-      .how-note-points {
-        display: grid;
-        gap: 4px;
-        margin-top: 10px;
-        padding: 0;
-        list-style: none;
-      }
-
-      .how-note-points li {
-        position: relative;
-        padding-left: 16px;
-        color: var(--text-secondary);
-        font-size: 14px;
-        line-height: 20px;
-      }
-
-      .how-note-points li::before {
-        content: "✓";
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: #b85c3a;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 1.4;
-      }
-
-      :root[data-theme="dark"] .how-note-points li::before {
-        color: #e69a78;
-      }
-
-      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
-      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
-        background: color-mix(in srgb, var(--text-primary) 6%, transparent);
-      }
-
-      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
-      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
-        background: var(--text-primary);
-      }
-
-      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-index,
-      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-index {
-        color: var(--text-muted);
-      }
-
-      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
-      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
-        color: var(--text-primary);
-      }
-
-      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-more,
-      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-more {
-        grid-template-rows: 1fr;
-        opacity: 1;
+        overflow-anchor: none;
+      }
+      :root[data-theme="dark"] .how-section {
+        --how-page: #191817;
+        --how-ink: #f5f1ed;
+        --how-muted: #b9afa7;
+        --how-line: #423b35;
+        --how-chat: #201e1b;
+        --how-chrome: #27231f;
+        --how-accent: #e69a78;
+        --how-accent-text: #e69a78;
+      }
+      .how-section *, .how-section *::before, .how-section *::after { box-sizing: border-box; }
+      .how-heading { max-width: 720px; margin: 0 auto; text-align: center; }
+      .how-heading h2 { margin: 0; color: var(--how-ink); font-size: 48px; font-weight: 650; letter-spacing: -.035em; line-height: 54px; }
+      .how-stage { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; align-items: stretch; margin-top: 80px; }
+      .how-selector-rail { grid-column: span 4; min-width: 0; }
+      .how-notes { position: sticky; top: 20vh; min-width: 0; }
+      .how-notes[data-sticky="false"] { position: static; }
+      .how-scenes { display: flex; grid-column: span 8; flex-direction: column; gap: 20px; min-width: 0; }
+      .how-scene { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 60vh; padding-bottom: 40px; scroll-margin-top: 160px; }
+      .how-note { position: relative; min-width: 0; padding: 20px 24px; border-radius: 16px; background: transparent; }
+      .how-note::before { position: absolute; top: 16%; bottom: 16%; left: 0; width: 3px; border-radius: 3px; background: transparent; content: ""; transition: background-color 300ms cubic-bezier(.4,0,.2,1); }
+      .how-note-title { margin: 0; }
+      .how-note-index { display: block; margin-bottom: 8px; color: var(--how-muted); font: 400 11px/14px ui-monospace, SFMono-Regular, Menlo, monospace; transition: color 300ms cubic-bezier(.4,0,.2,1); }
+      .how-note-button { display: flex; align-items: center; width: 100%; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--how-muted); font: inherit; text-align: left; text-decoration: none; transition: color 300ms cubic-bezier(.4,0,.2,1); }
+      .how-note-name { font-size: 24px; font-weight: 600; letter-spacing: -.025em; line-height: 30px; }
+      .how-note-body { margin: 0; color: var(--how-muted); font-size: 14px; line-height: 20px; }
+      .how-note-points { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+      .how-note-points li { display: flex; align-items: baseline; gap: 8px; color: var(--how-muted); font-size: 14px; line-height: 20px; }
+      .how-check { flex: none; width: 12px; color: var(--how-accent-text); font-size: 12px; }
+      .how-detail-content { padding-top: 10px; }
+      .how-enhanced .how-note[data-expanded="true"]::before { background: var(--how-ink); }
+      .how-enhanced .how-note[data-expanded="true"] .how-note-button { color: var(--how-ink); }
+      .how-enhanced .how-detail { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 300ms cubic-bezier(.25,.46,.45,.94), opacity 300ms cubic-bezier(.25,.46,.45,.94); }
+      .how-enhanced .how-detail-inner { min-height: 0; overflow: hidden; }
+      .how-enhanced .how-note[data-expanded="true"] .how-detail { grid-template-rows: 1fr; opacity: 1; }
+      .how-section [hidden] { display: none !important; }
+      .how-mobile-copy { order: 2; flex-shrink: 0; padding: 0; }
+      .how-mobile-copy .how-note-index, .how-mobile-details { display: none; }
+      .how-scene-title { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+      .how-font-probe { position: fixed; top: 0; left: 0; width: max-content; visibility: hidden; pointer-events: none; white-space: nowrap; }
+      .how-font-probe > span { display: block; width: max-content; }
+      .how-section .browser { display: flex; order: 1; flex-shrink: 0; flex-direction: column; container-type: inline-size; width: min(100%, 784px); height: 580px; min-width: 0; margin: 0 auto; overflow: hidden; border: 1px solid var(--how-line); border-radius: 12px; background: var(--how-chat); color: var(--how-ink); box-shadow: 0 1px 2px #0000000A, 0 12px 28px -12px #0000001A, 0 28px 56px -28px #0000001F; transform: none; }
+      :root[data-theme="dark"] .how-section .browser { box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 12px 28px -12px rgba(0,0,0,.28), 0 28px 56px -28px rgba(0,0,0,.32); }
+      .browser-chrome { display: flex; flex: 0 0 44px; align-items: center; gap: 12px; min-width: 0; padding: 0 16px; border-bottom: 1px solid var(--how-line); background: var(--how-chrome); }
+      .browser-dots { display: flex; flex: none; gap: 6px; }
+      .browser-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--how-muted); }
+      .browser-tab, .browser-address { display: flex; align-items: center; gap: 8px; min-width: 0; color: var(--how-muted); font-size: 12px; line-height: 20px; }
+      .browser-tab { color: var(--how-ink); }
+      .browser-address { flex: 1; justify-content: center; }
+      .browser-address svg { width: 12px; height: 12px; }
+      .how-image { display: inline-grid; flex: none; place-items: center; width: 16px; height: 16px; overflow: hidden; border-radius: 4px; background: var(--how-chrome); color: var(--how-ink); font-size: 12px; line-height: 1; }
+      .how-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .how-image--brand { width: 20px; height: 20px; }
+      .browser-body { display: grid; flex: 1; grid-template-columns: minmax(0, 1fr) clamp(180px, 32%, 240px); min-width: 0; min-height: 0; background: var(--how-chat); }
+      .chat { grid-column: 1; grid-row: 1; min-width: 0; min-height: 0; padding: 32px; overflow: auto; overscroll-behavior-y: contain; overflow-anchor: none; }
+      .chat-user { width: fit-content; max-width: 100%; margin: 0 0 32px auto; padding: 8px 12px; border-radius: 16px; background: var(--how-ink); color: var(--how-chat); font-size: 14px; line-height: 22px; overflow-wrap: anywhere; }
+      /* A viewport-sized tail keeps the last heading precisely reachable at every font size. */
+      .chat-answer { padding-bottom: var(--how-answer-tail, 534px); }
+      .chat-block + .chat-block { margin-top: 32px; }
+      .chat-block h4, .chat-block h5, .chat-block p { margin: 0; }
+      .chat-block h4 { color: var(--how-ink); font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 22px; }
+      .chat-block h5 { color: var(--how-ink); font-size: 13px; font-weight: 500; letter-spacing: 0; line-height: 20px; }
+      .chat-block p { margin-top: 6px; color: var(--how-muted); font-size: 14px; line-height: 22px; overflow-wrap: anywhere; }
+      .chat-sub { margin: 16px 0 0 16px; }
+      .chat-heading-button { display: flex; align-items: center; min-width: 44px; min-height: 44px; max-width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; text-decoration: none; overflow-wrap: anywhere; }
+      .side-panel { position: relative; grid-column: 2; grid-row: 1; min-width: 0; min-height: 0; padding: 16px; overflow: auto; overscroll-behavior-y: contain; overflow-anchor: none; border-left: 1px solid var(--how-line); background: var(--how-chrome); }
+      .side-stack { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+      .side-header { display: grid; gap: 12px; min-width: 0; }
+      .side-identity { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; line-height: 20px; }
+      .side-search { display: grid; grid-template-columns: 12px minmax(0,1fr); align-items: center; gap: 8px; min-height: 36px; padding: 4px 12px; border: 1px solid var(--how-line); border-radius: 20px; color: var(--how-muted); font-size: 12px; line-height: 20px; overflow-wrap: anywhere; }
+      .side-search svg { width: 12px; height: 12px; }
+      .side-mode { display: flex; align-items: center; min-height: 40px; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--how-ink) 5%, var(--how-chrome)); color: var(--how-ink); font-size: 14px; font-weight: 500; line-height: 20px; overflow-wrap: anywhere; }
+      .side-list { min-width: 0; }
+      .side-item { display: flex; align-items: center; width: 100%; min-width: 44px; min-height: 44px; padding: 12px; border: 0; border-radius: 12px; background: transparent; color: var(--how-muted); font-family: inherit; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; text-decoration: none; overflow-wrap: anywhere; transition: color 300ms cubic-bezier(.4,0,.2,1), background-color 300ms cubic-bezier(.4,0,.2,1); }
+      .side-item[aria-current="location"] { background: color-mix(in srgb, var(--how-ink) 5%, var(--how-chrome)); box-shadow: inset 3px 0 var(--how-accent); color: var(--how-ink); }
+      @media (hover: hover) { .side-item:hover { background: color-mix(in srgb, var(--how-ink) 3%, var(--how-chrome)); } .side-item[aria-current="location"]:hover { background: color-mix(in srgb, var(--how-ink) 5%, var(--how-chrome)); } }
+      .side-parent { display: grid; grid-template-columns: minmax(0,1fr) 44px; align-items: start; }
+      .side-collapse { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 12px; border: 0; border-radius: 12px; background: transparent; color: var(--how-ink); }
+      .how-section span[data-how-collapse] { visibility: hidden; }
+      .side-collapse svg { width: 16px; height: 16px; transition: transform 300ms cubic-bezier(.4,0,.2,1); }
+      .side-collapse[aria-expanded="false"] svg { transform: rotate(-90deg); }
+      .side-children { margin-left: 16px; }
+      .how-section button { font-family: inherit; }
+      .how-section button, .how-section a { -webkit-tap-highlight-color: transparent; }
+      .how-section button:not(:disabled) { cursor: pointer; }
+      .how-section :focus-visible { outline: 2px solid var(--how-accent); outline-offset: 3px; }
+      .how-section [data-how-enter="pending"] .browser { opacity: 0; }
+      .how-section [data-how-enter="entered"] .browser { opacity: 1; transition: opacity 700ms cubic-bezier(.87,0,.13,1); }
+      @container (max-width: 639px) { .chat { padding: 20px; } .browser-address { display: none; } }
+      @media (min-width: 800px) and (max-width: 999px) { .how-note-name { font-size: 22px; line-height: 28px; } }
+      @media (width < 800px) {
+        .how-section { width: min(var(--how-viewport-width, calc(100% + var(--page-margin) * 2)), 784px); margin: 0 calc((100% - min(var(--how-viewport-width, calc(100% + var(--page-margin) * 2)), 784px)) / 2) 80px; padding: 0 24px; }
+        .how-heading h2 { font-size: 32px; line-height: 38px; }
+        .how-stage { display: block; margin-top: 48px; }
+        .how-selector-rail { display: none; }
+        .how-scenes { gap: 60px; }
+        .how-scene { min-height: 0; padding-bottom: 0; }
+        .how-mobile-copy { margin-top: 20px; padding: 4px; }
+        .how-mobile-copy .how-note-index { display: block; margin-bottom: 6px; font-size: 12px; line-height: 16px; }
+        .how-scene-title { position: static; width: auto; height: auto; margin: 0 0 10px; overflow: visible; clip-path: none; white-space: normal; color: var(--how-ink); font-size: 24px; font-weight: 600; letter-spacing: -.025em; line-height: 30px; }
+        .how-mobile-details { display: block; }
+        .how-mobile-copy .how-note-body, .how-mobile-copy .how-note-points li { font-size: 16px; line-height: 24px; }
+        .how-section .browser { height: auto; min-height: 624px; box-shadow: 0 1px 2px #0000000A, 0 10px 24px -12px #0000001A, 0 24px 48px -24px #0000001F; }
+        :root[data-theme="dark"] .how-section .browser { box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 10px 24px -12px rgba(0,0,0,.28), 0 24px 48px -24px rgba(0,0,0,.32); }
+        .browser-chrome { flex-basis: 40px; }
+        .browser-address { display: none; }
+        .browser-body { flex: 1 0 auto; grid-template-columns: minmax(0,1fr); grid-template-rows: auto 240px; }
+        .side-panel { grid-column: 1; grid-row: 1; height: max(342px, var(--how-nav-height, 0px)); overflow: auto; border-left: 0; border-bottom: 1px solid var(--how-line); }
+        .side-header { grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; }
+        .side-search { min-height: 24px; padding: 0; border: 0; }
+        .chat { grid-row: 2; height: 240px; padding: 20px; }
+        .chat-answer { padding-bottom: var(--how-answer-tail, 240px); }
+        .how-section [data-how-enter="pending"] { opacity: 0; transform: translateY(20px); }
+        .how-section [data-how-enter="entered"] { opacity: 1; transform: translateY(0); transition: opacity 500ms cubic-bezier(.25,.46,.45,.94), transform 500ms cubic-bezier(.25,.46,.45,.94); }
+        .how-section [data-how-enter] .browser { opacity: 1; transition: none; transform: none; }
       }
 
       @media (max-width: 800px) {
         .page-shell {
-          padding-top: 0;
+          padding-top: 120px;
         }
 
         .hero-stage {
@@ -4207,30 +3764,19 @@
           margin-top: 72px;
         }
 
-        .browser {
-          aspect-ratio: auto;
-        }
-
-        .browser-body {
-          grid-template-columns: 1fr;
-          min-height: 0;
-        }
-
-        .side-panel {
-          border-top: 1px solid var(--shell-line);
-          border-left: 0;
-        }
-
-        .how-stage {
-          grid-template-columns: 1fr;
-          gap: 28px;
-        }
-
-        .browser-tab span,
-        .browser-address span {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+      }
+      @media (width: 800px) {
+        .page-shell { padding-top: 160px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .how-section [data-how-enter], .how-section [data-how-enter] .browser { opacity: 1 !important; transform: none !important; }
+        .how-section, .how-section *, .how-section::before, .how-section::after,
+        .how-section *::before, .how-section *::after,
+        .platform-slot, .platform-slot *, .platform-slot::before, .platform-slot::after,
+        .platform-slot *::before, .platform-slot *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
         }
       }
     </style>
@@ -4303,8 +3849,8 @@
     <main id="main-content">
       <section class="hero-stage">
         <div class="hero-copy">
-          <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
-          <h1 id="hero-title" data-i18n="hero.title"><span class="headline-line">Navigate <span class="platform-slot" data-platform-slot></span> long</span><span class="headline-line">AI <span class="platform-slot" data-platform-slot></span> conversations.</span></h1>
+          <p class="intro" data-i18n="hero.intro">With the ZIP version, find sections in long answers and jump straight to the source.</p>
+          <h1 id="hero-title" aria-label="Navigate long AI conversations."><span class="sr-only" data-i18n="hero.title">Navigate long AI conversations.</span><span class="headline-line" data-hero-line aria-hidden="true">Navigate <span class="platform-slot" data-platform-slot aria-hidden="true"></span> long</span><span class="headline-line" data-hero-line aria-hidden="true">AI <span class="platform-slot" data-platform-slot aria-hidden="true"></span> conversations.</span></h1>
           <div class="hero-actions">
             <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
             <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
@@ -4320,136 +3866,119 @@
         </section>
       </section>
       <div class="page-shell">
-        <section class="platform-banner sr-only" aria-labelledby="platform-banner-title">
-          <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
-          <ul class="platform-list">
-            <li>ChatGPT</li>
-            <li>Claude</li>
-            <li>Gemini</li>
-            <li>Grok</li>
-            <li>Doubao</li>
-            <li>Kimi</li>
-            <li>Qwen</li>
-            <li>Yuanbao</li>
-            <li>Diandian AI</li>
-            <li>Manus</li>
-            <li>DeepSeek</li>
-          </ul>
-        </section>
-
-        <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
-          <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
-            <div class="how-copy">
-              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">Find the section you need</h2>
-              <p class="section-copy" data-i18n="capabilities.intro">Pick one and see it in the window.</p>
-              <div class="how-notes">
-                <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true" aria-labelledby="how-toc-title">
-                  <span class="how-note-bar" aria-hidden="true"></span>
-                  <span class="how-note-index" aria-hidden="true">01</span>
-                  <span class="how-note-name" id="how-toc-title" data-i18n="how.toc.title">Jump to a section</span>
-                  <div class="how-note-more">
-                    <div>
-                      <p class="how-note-headline" data-i18n="how.toc.headline">Like a contents page</p>
-                      <p class="how-note-body" data-i18n="how.toc.body">Click a heading and that part of the answer is marked.</p>
-                      <ul class="how-note-points">
-                        <li data-i18n="how.toc.b1">Every section is a row</li>
-                        <li data-i18n="how.toc.b2">A click jumps there</li>
-                        <li data-i18n="how.toc.b3">Markers stay on the reply</li>
-                      </ul>
-                    </div>
-                  </div>
-                </button>
-                <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false" aria-labelledby="how-outline-title">
-                  <span class="how-note-bar" aria-hidden="true"></span>
-                  <span class="how-note-index" aria-hidden="true">02</span>
-                  <span class="how-note-name" id="how-outline-title" data-i18n="how.outline.title">See the structure</span>
-                  <div class="how-note-more">
-                    <div>
-                      <p class="how-note-headline" data-i18n="how.outline.headline">See what each section holds</p>
-                      <p class="how-note-body" data-i18n="how.outline.body">Outline nests the same answer, parents and the pieces inside them.</p>
-                      <ul class="how-note-points">
-                        <li data-i18n="how.outline.b1">Parents, and their sections</li>
-                        <li data-i18n="how.outline.b2">The shape, not only the titles</li>
-                        <li data-i18n="how.outline.b3">The same answer as TOC</li>
-                      </ul>
-                    </div>
-                  </div>
-                </button>
+        <section class="how-section" id="capabilities" aria-labelledby="capabilities-title">
+          <div class="how-heading">
+            <h2 id="capabilities-title" data-i18n="capabilities.title">Find the section you need</h2>
+          </div>
+          <div class="how-stage" data-how-stage data-mode="toc" data-active-scene="toc" data-active="decision">
+            <div class="how-selector-rail">
+              <nav class="how-notes" data-how-selector aria-labelledby="capabilities-title">
+              <div class="how-note" data-how-feature="toc">
+                <span class="how-note-index" aria-hidden="true">01</span>
+                <div class="how-note-title"><a class="how-note-button" href="#feature-toc" data-how-mode="toc" id="toc-feature-button"><span class="how-note-name" data-i18n="how.toc.title">Jump to a section</span></a></div>
+                <div class="how-detail" id="toc-feature-details"><div class="how-detail-inner"><div class="how-detail-content">
+                  <p class="how-note-body" data-i18n="how.toc.body">Click a heading to jump to that section in the original answer.</p>
+<ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b1">Find the section you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b2">Jump straight to the original answer</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b3">See your selected heading</span></li></ul>
+                </div></div></div>
               </div>
+              <div class="how-note" data-how-feature="outline">
+                <span class="how-note-index" aria-hidden="true">02</span>
+                <div class="how-note-title"><a class="how-note-button" href="#feature-outline" data-how-mode="outline" id="outline-feature-button"><span class="how-note-name" data-i18n="how.outline.title">See the structure</span></a></div>
+                <div class="how-detail" id="outline-feature-details"><div class="how-detail-inner"><div class="how-detail-content">
+                  <p class="how-note-body" data-i18n="how.outline.body">Outline shows how sections and subsections fit together within the same answer.</p>
+<ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b1">See how sections fit together</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b2">Expand the parts you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b3">Read the same answer by section</span></li></ul>
+                </div></div></div>
+              </div>
+              </nav>
             </div>
-            <div class="browser">
-              <div class="browser-chrome" aria-hidden="true">
-                <span class="browser-dots"><i></i><i></i><i></i></span>
-                <div class="browser-tab">
-                  <img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16">
-                  <span data-i18n="how.tab">Chat</span>
+            <div class="how-scenes">
+              <article class="how-scene" id="feature-toc" data-how-scene="toc" aria-labelledby="toc-title">
+                <div class="how-mobile-copy">
+                  <span class="how-note-index" aria-hidden="true">01</span>
+                  <h3 class="how-scene-title" id="toc-title" data-i18n="how.toc.title">Jump to a section</h3>
+                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.toc.body">Click a heading to jump to that section in the original answer.</p>
+<ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b1">Find the section you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b2">Jump straight to the original answer</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b3">See your selected heading</span></li></ul></div>
                 </div>
-                <div class="browser-address">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
-                  <span>chatgpt.com</span>
+                <div class="browser">
+                  <div class="browser-chrome" aria-hidden="true">
+                    <span class="browser-dots"><i></i><i></i><i></i></span>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span data-i18n="how.tab">Chat</span></div>
+                    <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
+                  </div>
+                  <div class="browser-body">
+                    <aside class="side-panel" aria-label="Polaris">
+                      <div class="side-stack">
+                        <div class="side-header">
+                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png" alt="" width="20" height="20"></span><span>Polaris</span></div>
+                          <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.toc">Search headings</span></div>
+                        </div>
+                        <div class="side-mode" id="toc-mode" data-i18n="how.toc">TOC</div>
+                        <div class="side-list" id="toc-panel" data-how-panel="toc" role="group" aria-labelledby="toc-mode">
+                          <a class="side-item" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
+<a class="side-item" href="#toc-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a>
+<a class="side-item" href="#toc-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a>
+<a class="side-item" href="#toc-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a>
+<a class="side-item" href="#toc-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a>
+                        </div>
+                      </div>
+                    </aside>
+                    <div class="chat" data-how-answer="toc" role="region" aria-labelledby="toc-prompt" tabindex="0">
+                      <p class="chat-user" id="toc-prompt" data-i18n="how.prompt">What is the release plan?</p>
+                      <div class="chat-answer">
+                        <section class="chat-block"><h4 id="toc-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p></section>
+                    <section class="chat-block"><h4 id="toc-h-slips" data-how-target="slips"><a class="chat-heading-button" href="#toc-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a></h4><p class="chat-text" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p>
+                      <section class="chat-sub"><h5 id="toc-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5></section>
+                      <section class="chat-sub"><h5 id="toc-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5></section>
+                    </section>
+                    <section class="chat-block"><h4 id="toc-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#toc-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p></section>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="browser-body">
-                <div class="chat">
-                  <p class="chat-user" data-i18n="how.prompt">Summarize the launch plan.</p>
-                  <div class="chat-answer">
-                    <section class="chat-block" data-how-block="decision">
-                      <button class="chat-marker" type="button" data-how-jump="decision" aria-labelledby="how-h-decision"><span></span></button>
-                      <div>
-                        <h3 id="how-h-decision" data-i18n="how.h.decision">The decision</h3>
-                        <p data-i18n="how.p.decision">Ship the smaller release on Friday and hold the rest.</p>
+              </article>
+              <article class="how-scene" id="feature-outline" data-how-scene="outline" aria-labelledby="outline-title">
+                <div class="how-mobile-copy">
+                  <span class="how-note-index" aria-hidden="true">02</span>
+                  <h3 class="how-scene-title" id="outline-title" data-i18n="how.outline.title">See the structure</h3>
+                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.outline.body">Outline shows how sections and subsections fit together within the same answer.</p>
+<ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b1">See how sections fit together</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b2">Expand the parts you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b3">Read the same answer by section</span></li></ul></div>
+                </div>
+                <div class="browser">
+                  <div class="browser-chrome" aria-hidden="true">
+                    <span class="browser-dots"><i></i><i></i><i></i></span>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span data-i18n="how.tab">Chat</span></div>
+                    <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
+                  </div>
+                  <div class="browser-body">
+                    <aside class="side-panel" aria-label="Polaris">
+                      <div class="side-stack">
+                        <div class="side-header">
+                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png" alt="" width="20" height="20"></span><span>Polaris</span></div>
+                          <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.outline">Search chapters</span></div>
+                        </div>
+                        <div class="side-mode" id="outline-mode" data-i18n="how.outline">Outline</div>
+                        <div class="side-list" id="outline-panel" data-how-panel="outline" role="group" aria-labelledby="outline-mode">
+                          <a class="side-item" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
+                      <div class="side-parent"><a class="side-item" href="#outline-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a><span class="side-collapse" data-how-collapse aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg></span></div>
+                      <div class="side-children" id="outline-children"><a class="side-item" href="#outline-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a><a class="side-item" href="#outline-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></div>
+                      <a class="side-item" href="#outline-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a>
+                        </div>
                       </div>
+                    </aside>
+                    <div class="chat" data-how-answer="outline" role="region" aria-labelledby="outline-prompt" tabindex="0">
+                      <p class="chat-user" id="outline-prompt" data-i18n="how.prompt">What is the release plan?</p>
+                      <div class="chat-answer">
+                        <section class="chat-block"><h4 id="outline-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p></section>
+                    <section class="chat-block"><h4 id="outline-h-slips" data-how-target="slips"><a class="chat-heading-button" href="#outline-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a></h4><p class="chat-text" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p>
+                      <section class="chat-sub"><h5 id="outline-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5></section>
+                      <section class="chat-sub"><h5 id="outline-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5></section>
                     </section>
-                    <section class="chat-block" data-how-block="slips">
-                      <button class="chat-marker" type="button" data-how-jump="slips" aria-labelledby="how-h-slips"><span></span></button>
-                      <div>
-                        <h3 id="how-h-slips" data-i18n="how.h.slips">What slips first</h3>
-                        <p data-i18n="how.p.slips">Two pieces move if the week gets tight.</p>
-                        <ul class="chat-subs">
-                          <li><button type="button" data-how-jump="timeline" data-i18n="how.h.timeline">Timeline</button></li>
-                          <li><button type="button" data-how-jump="owners" data-i18n="how.h.owners">Owners</button></li>
-                        </ul>
+                    <section class="chat-block"><h4 id="outline-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#outline-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p></section>
                       </div>
-                    </section>
-                    <section class="chat-block" data-how-block="checkin">
-                      <button class="chat-marker" type="button" data-how-jump="checkin" aria-labelledby="how-h-checkin"><span></span></button>
-                      <div>
-                        <h3 id="how-h-checkin" data-i18n="how.h.checkin">The next check-in</h3>
-                        <p data-i18n="how.p.checkin">Review the cut list Monday morning, before the build locks.</p>
-                      </div>
-                    </section>
+                    </div>
                   </div>
                 </div>
-                <aside class="side-panel" aria-label="Polaris">
-                  <div class="side-identity">
-                    <img src="icons/gpt-voyager-icon-96.png" alt="" width="22" height="22">
-                    <span>Polaris</span>
-                  </div>
-                  <div class="side-search" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
-                    <span class="is-current" data-how-search="toc" data-i18n="how.search.toc">Search headings</span>
-                    <span data-how-search="outline" data-i18n="how.search.outline">Search structure</span>
-                  </div>
-                  <div class="side-tabs" role="tablist" aria-label="Polaris">
-                    <button class="side-tab" type="button" role="tab" id="how-tab-toc" data-how-mode="toc" aria-selected="true" aria-controls="how-panel-toc" data-i18n="how.toc">TOC</button>
-                    <button class="side-tab" type="button" role="tab" id="how-tab-outline" data-how-mode="outline" aria-selected="false" tabindex="-1" aria-controls="how-panel-outline" data-i18n="how.outline">Outline</button>
-                  </div>
-                  <div class="side-lists">
-                  <div class="side-list is-current" id="how-panel-toc" role="tabpanel" aria-labelledby="how-tab-toc" data-how-panel="toc">
-                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
-                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
-                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
-                  </div>
-                  <div class="side-list" id="how-panel-outline" role="tabpanel" aria-labelledby="how-tab-outline" data-how-panel="outline" aria-hidden="true" inert>
-                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
-                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
-                    <button class="side-item side-item--child" type="button" data-how-jump="timeline"><span data-i18n="how.h.timeline">Timeline</span></button>
-                    <button class="side-item side-item--child" type="button" data-how-jump="owners"><span data-i18n="how.h.owners">Owners</span></button>
-                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
-                  </div>
-                  </div>
-                </aside>
-              </div>
+              </article>
             </div>
           </div>
         </section>
@@ -4469,6 +3998,7 @@
                 <span class="install-card-button-label install-card-button-label--loading" data-download-loading-label data-i18n="install.local.download.loading" aria-hidden="true">Downloading…</span>
                 <span class="install-card-button-spinner" aria-hidden="true"></span>
               </a>
+              <p class="install-note" data-i18n="how.demo.note">ZIP-version concept demo. TOC (table of contents) and Outline correspond to Navigation and Chapters in the extension.</p>
               <ol class="install-steps">
                 <li data-i18n="install.local.step1">Download and unzip the offline ZIP package.</li>
                 <li data-i18n="install.local.step2">Open <code>chrome://extensions</code> and turn on Developer mode.</li>
@@ -4481,6 +4011,7 @@
               <h3 class="install-card-title" data-i18n="install.store.title">Chrome Web Store</h3>
               <p class="install-card-copy" data-i18n="install.store.copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>
               <a class="install-card-button" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span class="install-card-button-label" data-i18n="install.store.button">Install from Chrome Web Store</span></a>
+              <p class="install-note" data-i18n="install.store.versionNote">The store and ZIP versions differ; features may vary.</p>
               <p class="install-note" data-i18n="install.store.note">The extension will be added to Chrome after you confirm the installation in the store.</p>
             </article>
           </div>
@@ -4579,6 +4110,9 @@
       ]);
       const translations = Object.freeze({
         en: Object.freeze({
+          "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
+          "how.demo.note": "ZIP-version concept demo. TOC (table of contents) and Outline correspond to Navigation and Chapters in the extension.",
+          "hero.titleAria": "Navigate long AI conversations.",
           "nav.skip": "Skip to content",
           "nav.menu.open": "Open menu",
           "nav.menu.close": "Close menu",
@@ -4600,41 +4134,39 @@
           "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
-          "hero.title": "<span class=\"headline-line\">Navigate <span class=\"platform-slot\" data-platform-slot></span> long</span><span class=\"headline-line\">AI <span class=\"platform-slot\" data-platform-slot></span> conversations.</span>",
-          "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
+          "hero.title": "Navigate long AI conversations.",
+          "hero.intro": "With the ZIP version, find sections in long answers and jump straight to the source.",
           "hero.explore": "See how it works",
           "hero.install": "Free trial",
-          "platforms.title": "Currently supported platforms",
+          "platforms.title": "Platforms supported by the ZIP version",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
           "capabilities.title": "Find the section you need",
-          "capabilities.intro": "Pick one and see it in the window.",
+          "capabilities.intro": "Pick a feature to see the demo.",
           "how.toc.title": "Jump to a section",
-          "how.toc.headline": "Like a contents page",
-          "how.toc.body": "Click a heading and that part of the answer is marked.",
-          "how.toc.b1": "Every section is a row",
-          "how.toc.b2": "A click jumps there",
-          "how.toc.b3": "Markers stay on the reply",
+          "how.toc.body": "Click a heading to jump to that section in the original answer.",
+          "how.toc.b1": "Find the section you need",
+          "how.toc.b2": "Jump straight to the original answer",
+          "how.toc.b3": "See your selected heading",
           "how.outline.title": "See the structure",
-          "how.outline.headline": "See what each section holds",
-          "how.outline.body": "Outline nests the same answer, parents and the pieces inside them.",
-          "how.outline.b1": "Parents, and their sections",
-          "how.outline.b2": "The shape, not only the titles",
-          "how.outline.b3": "The same answer as TOC",
+          "how.outline.body": "Outline shows how sections and subsections fit together within the same answer.",
+          "how.outline.b1": "See how sections fit together",
+          "how.outline.b2": "Expand the parts you need",
+          "how.outline.b3": "Read the same answer by section",
           "how.tab": "Chat",
-          "how.prompt": "Summarize the launch plan.",
+          "how.prompt": "What is the release plan?",
           "how.h.decision": "The decision",
-          "how.p.decision": "Ship the smaller release on Friday and hold the rest.",
-          "how.h.slips": "What slips first",
-          "how.p.slips": "Two pieces move if the week gets tight.",
-          "how.h.timeline": "Timeline",
-          "how.h.owners": "Owners",
+          "how.p.decision": "Ship the smaller release on Friday.",
+          "how.h.slips": "The release details",
+          "how.p.slips": "Confirm the timing and responsibilities before Friday.",
+          "how.h.timeline": "Release timing",
+          "how.h.owners": "Team roles",
           "how.h.checkin": "The next check-in",
-          "how.p.checkin": "Review the cut list Monday morning, before the build locks.",
+          "how.p.checkin": "Review feedback on Monday.",
           "how.toc": "TOC",
           "how.outline": "Outline",
           "how.search.toc": "Search headings",
-          "how.search.outline": "Search structure",
+          "how.search.outline": "Search chapters",
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
@@ -4668,6 +4200,9 @@
           "meta.description": "Navigate long AI answers with section markers and one-click jumps in Chrome."
         }),
         "zh-CN": Object.freeze({
+          "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
+          "how.demo.note": "以下为 ZIP 版概念演示；目录／大纲对应扩展中的“导航”／“章节”。",
+          "hero.titleAria": "长篇 AI 对话，一键跳转。",
           "nav.skip": "跳到正文",
           "nav.menu.open": "打开菜单",
           "nav.menu.close": "关闭菜单",
@@ -4689,41 +4224,39 @@
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
-          "hero.title": "<span class=\"headline-line\">长篇 <span class=\"platform-slot\" data-platform-slot></span> 对话</span><span class=\"headline-line\">一键 <span class=\"platform-slot\" data-platform-slot></span> 跳转。</span>",
-          "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
+          "hero.title": "长篇 AI 对话，一键跳转。",
+          "hero.intro": "用 ZIP 版在长回答里找章节，一键跳到原文。",
           "hero.explore": "了解工作方式",
           "hero.install": "免费试用",
-          "platforms.title": "当前支持的平台",
+          "platforms.title": "ZIP 版支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
           "capabilities.title": "找到你要的那一节",
-          "capabilities.intro": "选一个，在右边窗口里看。",
+          "capabilities.intro": "选一个功能，看看演示。",
           "how.toc.title": "跳到某一节",
-          "how.toc.headline": "像目录一样跳",
-          "how.toc.body": "点一个标题，那一节会被标出来。",
-          "how.toc.b1": "每个小节一行",
-          "how.toc.b2": "点一下就到",
-          "how.toc.b3": "标记留在回答上",
+          "how.toc.body": "点一个标题，跳到原回答中对应的章节。",
+          "how.toc.b1": "快速找到要读的章节",
+          "how.toc.b2": "一键跳到原文",
+          "how.toc.b3": "看清选中的标题",
           "how.outline.title": "看结构",
-          "how.outline.headline": "看清每一节里有什么",
-          "how.outline.body": "Outline 把同一篇回答按层级摊开。",
-          "how.outline.b1": "上级和里面的小节",
-          "how.outline.b2": "先看结构，再读",
-          "how.outline.b3": "和 TOC 是同一篇",
+          "how.outline.body": "大纲按层级展示同一条回答里的章节和小节。",
+          "how.outline.b1": "看清章节和小节的关系",
+          "how.outline.b2": "展开需要的小节",
+          "how.outline.b3": "逐节读同一条回答",
           "how.tab": "对话",
-          "how.prompt": "概括一下发布计划。",
-          "how.h.decision": "这次的决定",
-          "how.p.decision": "周五先发较小的版本，其余部分先留着。",
-          "how.h.slips": "最先会推迟的部分",
-          "how.p.slips": "这一周如果变紧，有两块会往后挪。",
-          "how.h.timeline": "时间",
-          "how.h.owners": "负责人",
-          "how.h.checkin": "下一次核对",
-          "how.p.checkin": "周一早上先看删减清单，再锁定构建。",
-          "how.toc": "TOC",
-          "how.outline": "Outline",
+          "how.prompt": "这次怎么发布？",
+          "how.h.decision": "发布决定",
+          "how.p.decision": "周五先发一个小版本。",
+          "how.h.slips": "发布细节",
+          "how.p.slips": "周五前确认时间和分工。",
+          "how.h.timeline": "发布时间",
+          "how.h.owners": "人员分工",
+          "how.h.checkin": "下次核对",
+          "how.p.checkin": "周一一起看用户反馈。",
+          "how.toc": "目录",
+          "how.outline": "大纲",
           "how.search.toc": "搜索标题",
-          "how.search.outline": "搜索结构",
+          "how.search.outline": "搜索章节",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
@@ -4757,6 +4290,7 @@
           "meta.description": "使用章节标记和一键跳转，更轻松地浏览 Chrome 中的长篇 AI 回答。"
         })
       });
+      let howDemo = null;
       let currentLocale = "en";
       let currentTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
       let analyticsEnabled = false;
@@ -4832,6 +4366,7 @@
         document.documentElement.style.colorScheme = currentTheme;
         document.querySelector('meta[name="theme-color"]').content = currentTheme === "light" ? "#ffffff" : "#000000";
         updateThemeToggle();
+        howDemo?.refreshPreferences();
 
         if (persist) {
           window.localStorage.setItem(themeStorageKey, currentTheme);
@@ -4878,122 +4413,113 @@
         { name: "Manus", src: "icons/platforms/platform-manus.png", width: 512 },
         { name: "DeepSeek", src: "icons/platforms/platform-deepseek.png", width: 512 }
       ]);
+      const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const heroVisualLines = Object.freeze({
+        en: ["Navigate <span class='platform-slot' data-platform-slot aria-hidden='true'></span> long", "AI <span class='platform-slot' data-platform-slot aria-hidden='true'></span> conversations."],
+        "zh-CN": ["长篇 <span class='platform-slot' data-platform-slot aria-hidden='true'></span> 对话", "一键 <span class='platform-slot' data-platform-slot aria-hidden='true'></span> 跳转。"]
+      });
       let headlinePlatformTimer = null;
+      const headlineTimeouts = new Set();
+      const headlineFrames = new Set();
+
+      function headlineLater(callback, delay) {
+        const id = window.setTimeout(() => {
+          headlineTimeouts.delete(id);
+          callback();
+        }, delay);
+        headlineTimeouts.add(id);
+      }
+
+      function headlineFrame(callback) {
+        const id = window.requestAnimationFrame(() => {
+          headlineFrames.delete(id);
+          callback();
+        });
+        headlineFrames.add(id);
+      }
 
       function makePlatformIcon(platform) {
         const icon = document.createElement("span");
         icon.className = "platform-icon";
         icon.dataset.name = platform.name;
-        icon.title = platform.name;
+        icon.setAttribute("aria-hidden", "true");
         const image = document.createElement("img");
         image.src = platform.src;
         image.srcset = `${platform.src} 3x`;
         image.width = 88;
         image.height = 88;
-        image.alt = platform.name;
+        image.alt = "";
         image.decoding = "sync";
         image.draggable = false;
         icon.append(image);
         return icon;
       }
 
-      function shownPlatformNames() {
-        return new Set([...document.querySelectorAll(".platform-icon:not(.is-leaving)")].map((icon) => icon.dataset.name));
-      }
-
       function nextHeadlinePlatform(slot) {
         const current = slot.querySelector(".platform-icon:not(.is-leaving)")?.dataset.name;
-        const visible = shownPlatformNames();
+        const visible = new Set([...document.querySelectorAll(".platform-icon:not(.is-leaving)")].map((icon) => icon.dataset.name));
         const choices = headlinePlatforms.filter((platform) => platform.name !== current && !visible.has(platform.name));
         const pool = choices.length ? choices : headlinePlatforms.filter((platform) => platform.name !== current);
         return pool[Math.floor(Math.random() * pool.length)] || headlinePlatforms[0];
       }
 
       function swapHeadlinePlatform(slot) {
-        if (slot.dataset.busy === "true") {
-          return;
-        }
-
+        if (motionPreference.matches || slot.dataset.busy === "true") return;
         const current = slot.querySelector(".platform-icon:not(.is-leaving)");
-        if (!current) {
-          return;
-        }
-
+        if (!current) return;
         slot.dataset.busy = "true";
         const incoming = makePlatformIcon(nextHeadlinePlatform(slot));
         slot.append(incoming);
-        window.requestAnimationFrame(() => {
+        headlineFrame(() => {
           current.classList.add("is-leaving");
           incoming.classList.add("is-shown");
         });
-        window.setTimeout(() => {
+        headlineLater(() => {
           current.remove();
           slot.dataset.busy = "false";
         }, 260);
       }
 
       function initHeadlinePlatforms() {
-        if (headlinePlatformTimer !== null) {
-          window.clearInterval(headlinePlatformTimer);
-          headlinePlatformTimer = null;
-        }
-
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.clearInterval(headlinePlatformTimer);
+        headlinePlatformTimer = null;
+        headlineTimeouts.forEach((id) => window.clearTimeout(id));
+        headlineTimeouts.clear();
+        headlineFrames.forEach((id) => window.cancelAnimationFrame(id));
+        headlineFrames.clear();
         const slots = [...document.querySelectorAll("[data-platform-slot]")];
         slots.forEach((slot, index) => {
+          slot.setAttribute("aria-hidden", "true");
           const icon = makePlatformIcon(headlinePlatforms[index % headlinePlatforms.length]);
           slot.replaceChildren(icon);
           slot.dataset.busy = "false";
-          if (reduceMotion) {
+          if (motionPreference.matches) {
             slot.classList.add("is-open");
             icon.classList.add("is-shown");
-            return;
+          } else {
+            slot.classList.remove("is-open");
+            headlineFrame(() => {
+              slot.classList.add("is-open");
+              headlineLater(() => icon.classList.add("is-shown"), 200 + index * 70);
+            });
           }
-
-          slot.classList.remove("is-open");
-          icon.classList.remove("is-shown");
-          window.requestAnimationFrame(() => {
-            slot.classList.add("is-open");
-            window.setTimeout(() => icon.classList.add("is-shown"), 200 + (index * 70));
-          });
         });
-
         const headline = document.querySelector("#hero-title");
         if (!headline.dataset.platformPauseBound) {
           headline.dataset.platformPauseBound = "true";
-          headline.addEventListener("mouseenter", () => {
-            headline.dataset.paused = "true";
-          });
-          headline.addEventListener("mouseleave", () => {
-            headline.dataset.paused = "false";
-          });
-          headline.addEventListener("focusin", () => {
-            headline.dataset.paused = "true";
-          });
-          headline.addEventListener("focusout", () => {
-            headline.dataset.paused = "false";
-          });
+          headline.addEventListener("mouseenter", () => { headline.dataset.paused = "true"; });
+          headline.addEventListener("mouseleave", () => { headline.dataset.paused = "false"; });
         }
-
-        if (reduceMotion || slots.length === 0) {
-          return;
-        }
-
+        if (motionPreference.matches || !slots.length) return;
         headlinePlatformTimer = window.setInterval(() => {
-          if (headline.dataset.paused === "true") {
-            return;
-          }
-
-          const liveSlots = [...document.querySelectorAll("[data-platform-slot]")];
-          if (!liveSlots.length) {
-            return;
-          }
-
-          swapHeadlinePlatform(liveSlots[Math.floor(Math.random() * liveSlots.length)]);
+          if (headline.dataset.paused === "true" || motionPreference.matches) return;
+          swapHeadlinePlatform(slots[Math.floor(Math.random() * slots.length)]);
         }, 2040);
       }
+      motionPreference.addEventListener("change", initHeadlinePlatforms);
 
       function setLanguage(locale, persist = true) {
+        const answerTops = howDemo?.captureReadingPositions();
         const dictionary = translations[locale] || translations.en;
         currentLocale = locale in translations ? locale : "en";
 
@@ -5005,7 +4531,12 @@
           }
         });
 
+        document.querySelector("#hero-title").setAttribute("aria-label", dictionary["hero.titleAria"]);
+        document.querySelectorAll("[data-hero-line]").forEach((line, index) => {
+          line.innerHTML = heroVisualLines[currentLocale][index];
+        });
         document.documentElement.lang = currentLocale;
+        howDemo?.refreshPreferences(answerTops);
         document.title = dictionary["meta.title"];
         document.querySelector('meta[name="description"]').content = dictionary["meta.description"];
         document.querySelector('meta[property="og:title"]').content = dictionary["meta.title"];
@@ -5573,74 +5104,458 @@
         paypalLink.removeAttribute("aria-disabled");
       }
 
-      const howStage = document.querySelector("[data-how-stage]");
+      function initHowDemo(stage) {
+        const section = stage.closest(".how-section");
+        const selector = stage.querySelector("[data-how-selector]");
+        const features = [...stage.querySelectorAll("[data-how-feature]")];
+        const scenes = [...stage.querySelectorAll("[data-how-scene]")].map((article) => ({
+          mode: article.dataset.howScene,
+          article,
+          browser: article.querySelector(".browser"),
+          answer: article.querySelector("[data-how-answer]"),
+          panel: article.querySelector("[data-how-panel]"),
+          sidebar: article.querySelector(".side-panel"),
+          stack: article.querySelector(".side-stack")
+        }));
+        const byMode = new Map(scenes.map((scene) => [scene.mode, scene]));
+        const toc = byMode.get("toc");
+        const outline = byMode.get("outline");
+        // The first semantic answer is the canonical fixture; the other answer and both
+        // fixed navigations bind to its exact five IDs, never to a mode-dependent index.
+        const fixture = [...toc.answer.querySelectorAll("[data-how-target]")].map((heading) => ({
+          id: heading.dataset.howTarget,
+          parent: heading.dataset.howParent || null,
+          key: heading.querySelector("[data-i18n]").dataset.i18n
+        }));
+        const byID = new Map(fixture.map((entry) => [entry.id, entry]));
+        const expected = ["decision", "slips", "timeline", "owners", "checkin"];
+        if (scenes.length !== 2 || !outline || fixture.length !== 5 || byID.size !== 5 ||
+            !expected.every((id) => byID.has(id)) || byID.get("timeline").parent !== "slips" || byID.get("owners").parent !== "slips") {
+          throw new Error("The feature demo requires both scenes and the complete five-heading fixture.");
+        }
+        scenes.forEach((scene) => {
+          scene.targets = new Map([...scene.answer.querySelectorAll("[data-how-target]")].map((heading) => [heading.dataset.howTarget, heading]));
+          const controls = [...scene.panel.querySelectorAll("[data-how-jump]")];
+          if (scene.targets.size !== 5 || controls.length !== 5 || !fixture.every((entry) =>
+            scene.targets.get(entry.id)?.querySelector("[data-i18n]")?.dataset.i18n === entry.key &&
+            controls.some((control) => control.dataset.howJump === entry.id))) {
+            throw new Error("Both feature windows must bind the same complete fixture.");
+          }
+        });
+        const desktop = window.matchMedia("(min-width: 800px)");
+        const state = { activeFeature: "toc", activeScene: "toc", currentID: "decision", outlineExpanded: true, locale: currentLocale, theme: currentTheme };
+        const roving = { toc: "decision", outline: "decision" };
+        const detailTransitions = new Map();
+        const readingTops = Object.fromEntries(scenes.map((scene) => [scene.mode, scene.answer.scrollTop]));
+        let pageFrame = 0;
+        let layoutFrame = 0;
+        let lockGeneration = 0;
+        let clickLock = null;
+        let lockTimer = null;
+        let nativePageMotion = false;
+        let nativePageTarget = null;
+        let entranceObserver = null;
+        const enteredScenes = new Set();
+        const isChild = (id) => Boolean(byID.get(id)?.parent);
 
-      if (howStage) {
-        const howTabs = [...howStage.querySelectorAll("[role='tab']")];
-        const howNotes = [...howStage.querySelectorAll(".how-note")];
-        const howPanels = [...howStage.querySelectorAll("[data-how-panel]")];
-        const howSearches = [...howStage.querySelectorAll("[data-how-search]")];
+        // Real links are the no-JS UI. Only successfully bound controls become buttons;
+        // moving their children preserves the original localization-node references.
+        function enhanceControl(link) {
+          const button = document.createElement("button");
+          [...link.attributes].forEach(({ name, value }) => {
+            if (name !== "href" && name !== "aria-hidden") button.setAttribute(name, value);
+          });
+          button.type = "button";
+          button.append(...link.childNodes);
+          link.replaceWith(button);
+          return button;
+        }
+        stage.querySelectorAll("a[data-how-mode], a[data-how-jump]").forEach(enhanceControl);
+        const collapse = enhanceControl(stage.querySelector("[data-how-collapse]"));
+        const children = stage.querySelector("#outline-children");
+        collapse.setAttribute("aria-controls", children.id);
+        collapse.setAttribute("aria-labelledby", "outline-h-slips");
+        children.setAttribute("role", "region");
+        children.setAttribute("aria-labelledby", "outline-h-slips");
+        features.forEach((feature) => {
+          const mode = feature.dataset.howFeature;
+          const button = feature.querySelector("[data-how-mode]");
+          const detail = feature.querySelector(".how-detail");
+          button.setAttribute("aria-controls", detail.id);
+          detail.setAttribute("role", "region");
+          detail.setAttribute("aria-labelledby", button.id);
+          detailTransitions.set(mode, { generation: 0, timer: null, onEnd: null });
+        });
 
-        const setHowMode = (mode) => {
-          howStage.dataset.mode = mode;
-          howTabs.forEach((tab) => {
-            const selected = tab.dataset.howMode === mode;
-            tab.setAttribute("aria-selected", String(selected));
-            tab.tabIndex = selected ? 0 : -1;
+        function setFeatureDetails(feature, expanded, animate) {
+          const mode = feature.dataset.howFeature;
+          const detail = feature.querySelector(".how-detail");
+          const transition = detailTransitions.get(mode);
+          const generation = ++transition.generation;
+          window.clearTimeout(transition.timer);
+          if (transition.onEnd) detail.removeEventListener("transitionend", transition.onEnd);
+          transition.onEnd = null;
+          feature.querySelector("[data-how-mode]").setAttribute("aria-expanded", String(expanded));
+          detail.inert = !expanded;
+          detail.setAttribute("aria-hidden", String(!expanded));
+          if (expanded) {
+            const wasHidden = detail.hidden;
+            detail.hidden = false;
+            if (wasHidden && animate && !motionPreference.matches) void detail.offsetHeight;
+            feature.dataset.expanded = "true";
+          } else {
+            feature.dataset.expanded = "false";
+            const finish = () => {
+              if (transition.generation !== generation || feature.dataset.expanded !== "false") return;
+              detail.hidden = true;
+              window.clearTimeout(transition.timer);
+              if (transition.onEnd) detail.removeEventListener("transitionend", transition.onEnd);
+              transition.onEnd = null;
+              measureSticky();
+            };
+            if (animate && !motionPreference.matches && !detail.hidden) {
+              transition.onEnd = (event) => {
+                if (event.target === detail && event.propertyName === "grid-template-rows") finish();
+              };
+              detail.addEventListener("transitionend", transition.onEnd);
+              // Safety for browsers that omit transitionend, guarded by this generation.
+              transition.timer = window.setTimeout(finish, 340);
+            } else finish();
+          }
+        }
+        function setActiveFeature(mode, animate = true, force = false) {
+          if (!byMode.has(mode) || (!force && mode === state.activeFeature)) return;
+          state.activeFeature = state.activeScene = mode;
+          stage.dataset.mode = stage.dataset.activeScene = mode;
+          features.forEach((feature) => {
+            const active = feature.dataset.howFeature === mode;
+            const button = feature.querySelector("[data-how-mode]");
+            if (active) button.setAttribute("aria-current", "location");
+            else button.removeAttribute("aria-current");
+            setFeatureDetails(feature, active, animate);
           });
-          howNotes.forEach((note) => {
-            note.setAttribute("aria-pressed", String(note.dataset.howMode === mode));
+          measureSticky();
+        }
+        function visibleItems(scene) {
+          return [...scene.panel.querySelectorAll(".side-item")].filter((item) =>
+            scene.mode !== "outline" || state.outlineExpanded || !isChild(item.dataset.howJump));
+        }
+        function renderNavigation() {
+          stage.dataset.active = state.currentID;
+          collapse.setAttribute("aria-expanded", String(state.outlineExpanded));
+          children.inert = !state.outlineExpanded;
+          children.setAttribute("aria-hidden", String(!state.outlineExpanded));
+          children.hidden = !state.outlineExpanded;
+          scenes.forEach((scene) => {
+            const available = visibleItems(scene);
+            if (!available.some((item) => item.dataset.howJump === roving[scene.mode])) roving[scene.mode] = "slips";
+            scene.panel.querySelectorAll(".side-item").forEach((item) => {
+              const visible = available.includes(item);
+              if (visible && item.dataset.howJump === state.currentID) item.setAttribute("aria-current", "location");
+              else item.removeAttribute("aria-current");
+              item.tabIndex = visible && item.dataset.howJump === roving[scene.mode] ? 0 : -1;
+            });
           });
-          howPanels.forEach((panel) => {
-            const current = panel.dataset.howPanel === mode;
-            panel.classList.toggle("is-current", current);
-            panel.setAttribute("aria-hidden", String(!current));
-            panel.toggleAttribute("inert", !current);
+        }
+        function jumpTo(id) {
+          if (!byID.has(id)) return;
+          state.currentID = id;
+          if (isChild(id)) state.outlineExpanded = true;
+          roving.toc = roving.outline = id;
+          renderNavigation();
+          scenes.forEach((scene) => {
+            const heading = scene.targets.get(id);
+            const padding = parseFloat(getComputedStyle(scene.answer).paddingTop) || 0;
+            const top = heading.getBoundingClientRect().top - scene.answer.getBoundingClientRect().top + scene.answer.scrollTop - padding;
+            // Only the two internal reading containers move. Never scrollIntoView here.
+            scene.answer.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+            readingTops[scene.mode] = scene.answer.scrollTop;
           });
-          howSearches.forEach((label) => {
-            label.classList.toggle("is-current", label.dataset.howSearch === mode);
+        }
+        function toggleOutline() {
+          const expanded = !state.outlineExpanded;
+          // Repair focus only when this action is about to hide its current owner.
+          if (!expanded && children.contains(document.activeElement)) collapse.focus();
+          const jumpToParent = !expanded && isChild(state.currentID);
+          state.outlineExpanded = expanded;
+          if (jumpToParent) jumpTo("slips");
+          else renderNavigation();
+        }
+        function measureSticky() {
+          const fits = selector.getBoundingClientRect().height <= window.innerHeight * .8 - 24;
+          selector.dataset.sticky = String(desktop.matches && fits);
+        }
+        function measureNavigation() {
+          if (!desktop.matches) {
+            // Measure full natural stacks off-flow, including collapsed children. This is
+            // the sole height reserve: both mobile windows share max(full TOC, Outline).
+            const heights = scenes.map((scene) => {
+              const clone = scene.stack.cloneNode(true);
+              clone.setAttribute("aria-hidden", "true");
+              clone.inert = true;
+              clone.style.cssText = `position:absolute;left:16px;top:16px;width:${scene.stack.getBoundingClientRect().width}px;visibility:hidden;pointer-events:none;`;
+              clone.querySelectorAll("[id], [data-i18n], [aria-controls], [aria-labelledby]").forEach((node) => {
+                ["id", "data-i18n", "aria-controls", "aria-labelledby"].forEach((name) => node.removeAttribute(name));
+              });
+              clone.querySelectorAll(".side-children").forEach((node) => { node.hidden = false; node.inert = false; node.removeAttribute("aria-hidden"); });
+              scene.sidebar.append(clone);
+              const height = clone.getBoundingClientRect().height + 33;
+              clone.remove();
+              return height;
+            });
+            section.style.setProperty("--how-nav-height", `${Math.ceil(Math.max(342, ...heights))}px`);
+          }
+          scenes.forEach((scene) => {
+            scene.answer.style.setProperty("--how-answer-tail", `${Math.max(534, scene.answer.clientHeight)}px`);
           });
-          setHowActive(mode === "outline" ? "timeline" : "decision");
-        };
-
-        const setHowActive = (id) => {
-          howStage.dataset.active = id;
-          howStage.querySelectorAll("[data-how-jump]").forEach((control) => {
-            const current = control.dataset.howJump === id;
-            if (current) {
-              control.setAttribute("aria-current", "true");
-            } else {
-              control.removeAttribute("aria-current");
+          measureSticky();
+        }
+        function captureReadingPositions() {
+          return Object.fromEntries(scenes.map((scene) => [scene.mode, scene.answer.scrollTop]));
+        }
+        function refreshPreferences(tops = captureReadingPositions()) {
+          state.locale = currentLocale;
+          state.theme = currentTheme;
+          selector.inert = !desktop.matches;
+          // clientWidth excludes classic scrollbars; 100vw would create horizontal spill.
+          section.style.setProperty("--how-viewport-width", `${document.documentElement.clientWidth}px`);
+          measureNavigation();
+          scenes.forEach((scene) => {
+            if (Number.isFinite(tops[scene.mode])) scene.answer.scrollTo({ top: tops[scene.mode], behavior: "auto" });
+            readingTops[scene.mode] = scene.answer.scrollTop;
+          });
+          requestPageSample();
+        }
+        function samplePage() {
+          if (clickLock !== null) return;
+          const bounds = section.getBoundingClientRect();
+          if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
+          let closest = state.activeFeature;
+          let distance = Infinity;
+          scenes.forEach((scene) => {
+            const rect = scene.article.getBoundingClientRect();
+            const next = Math.abs(rect.top + rect.height / 2 - window.innerHeight * .4);
+            if (next < distance || (next === distance && scene.mode === state.activeFeature)) {
+              distance = next;
+              closest = scene.mode;
             }
           });
-        };
-
-        howStage.addEventListener("click", (event) => {
-          const modeControl = event.target.closest("[data-how-mode]");
-          if (modeControl && howStage.contains(modeControl)) {
-            setHowMode(modeControl.dataset.howMode);
+          setActiveFeature(closest);
+        }
+        function requestPageSample() {
+          if (pageFrame) return;
+          pageFrame = window.requestAnimationFrame(() => { pageFrame = 0; samplePage(); });
+        }
+        function clearClickLock(cancelMotion = false) {
+          ++lockGeneration;
+          window.clearTimeout(lockTimer);
+          lockTimer = null;
+          clickLock = null;
+          if (cancelMotion) {
+            if (nativePageMotion) {
+              // Cancel only our native page animation at its ACTUAL current point;
+              // never restore a saved coordinate or snap unrelated content into view.
+              window.scrollTo({ left: window.scrollX, top: window.scrollY, behavior: "instant" });
+            }
+            nativePageMotion = false;
+            nativePageTarget = null;
+          }
+          // Releasing the 700ms scrollspy lock is not the end of native smooth motion.
+        }
+        function selectFeature(mode) {
+          const scene = byMode.get(mode);
+          if (!scene) return;
+          clearClickLock(true);
+          const generation = lockGeneration;
+          setActiveFeature(mode);
+          const target = Math.max(0, Math.min(
+            scene.article.getBoundingClientRect().top + window.scrollY - 160,
+            Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+          ));
+          if (!motionPreference.matches) clickLock = generation;
+          if (Math.abs(window.scrollY - target) > 1) {
+            nativePageMotion = !motionPreference.matches;
+            nativePageTarget = nativePageMotion ? target : null;
+            window.scrollTo({ top: target, behavior: motionPreference.matches ? "auto" : "smooth" });
+          }
+          if (motionPreference.matches) samplePage();
+          else lockTimer = window.setTimeout(() => {
+            if (clickLock !== generation || lockGeneration !== generation) return;
+            clearClickLock();
+            requestPageSample(); // Required even when the browser emitted no scroll event.
+          }, 700);
+        }
+        function isPageScrollIntent(event) {
+          if (event.defaultPrevented) return false;
+          const target = event.target instanceof Element ? event.target : null;
+          if (target?.isContentEditable || target?.closest(".chat, .side-panel, input, textarea, select, [contenteditable='true'], [role='textbox'], [role='listbox'], [role='slider']")) return false;
+          if (event.type === "keydown") {
+            const documentKey = event.key === "Home" || event.key === "End";
+            const verticalArrow = event.key === "ArrowUp" || event.key === "ArrowDown";
+            const unmodified = !event.ctrlKey && !event.metaKey && !event.altKey;
+            // Ctrl+Home/End and macOS Command+Up/Down (or Home/End) scroll
+            // the document; Option+Up/Down is page navigation on macOS.
+            const documentNavigation = (event.ctrlKey && !event.metaKey && !event.altKey && documentKey) ||
+              (event.metaKey && !event.ctrlKey && !event.altKey && (documentKey || verticalArrow)) ||
+              (event.altKey && !event.ctrlKey && !event.metaKey && verticalArrow);
+            if (!unmodified && !documentNavigation) return false;
+            if (!["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) return false;
+            if (event.key === " " && target?.closest("button, a, [role='button']")) return false;
+          } else if (event.ctrlKey || event.metaKey || event.altKey) {
+            return false; // Zoom/pinch wheels and other browser shortcuts are not page intent.
+          }
+          if (event.type === "wheel" && !event.deltaY) return false;
+          for (let node = target; node && node !== document.body && node !== document.documentElement; node = node.parentElement) {
+            if (node.scrollHeight > node.clientHeight && /auto|scroll/.test(getComputedStyle(node).overflowY)) return false;
+          }
+          return true;
+        }
+        function interruptPageScroll(event) {
+          if ((clickLock === null && !nativePageMotion) || !isPageScrollIntent(event)) return;
+          clearClickLock(true);
+          requestPageSample();
+        }
+        function revealScene(scene) {
+          enteredScenes.add(scene.mode);
+          scene.article.dataset.howEnter = "entered";
+        }
+        function setupEntrances() {
+          entranceObserver?.disconnect();
+          entranceObserver = null;
+          if (motionPreference.matches || !("IntersectionObserver" in window)) {
+            scenes.forEach(revealScene);
             return;
           }
-
+          try {
+            entranceObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+              if (!entry.isIntersecting || entry.intersectionRatio < .15) return;
+              const scene = scenes.find((candidate) => candidate.article === entry.target || candidate.browser === entry.target);
+              revealScene(scene);
+              entranceObserver.unobserve(entry.target);
+            }), { threshold: .15 });
+            scenes.filter((scene) => !enteredScenes.has(scene.mode)).forEach((scene) => {
+              entranceObserver.observe(desktop.matches ? scene.browser : scene.article);
+              // Static HTML is visible; hide only after successful controller/IO setup.
+              scene.article.dataset.howEnter = "pending";
+            });
+          } catch {
+            entranceObserver?.disconnect();
+            scenes.forEach(revealScene);
+          }
+        }
+        stage.addEventListener("click", (event) => {
+          if (event.target.closest("[data-how-collapse]")) { toggleOutline(); return; }
+          const mode = event.target.closest("[data-how-mode]");
+          if (mode) { selectFeature(mode.dataset.howMode); return; }
           const jump = event.target.closest("[data-how-jump]");
-          if (jump && howStage.contains(jump)) {
-            setHowActive(jump.dataset.howJump);
+          if (jump) jumpTo(jump.dataset.howJump);
+        });
+        stage.addEventListener("focusin", (event) => {
+          const scene = scenes.find((candidate) => candidate.article.contains(event.target));
+          if (scene && !enteredScenes.has(scene.mode)) revealScene(scene);
+        });
+        scenes.forEach((scene) => {
+          scene.answer.addEventListener("scroll", () => { readingTops[scene.mode] = scene.answer.scrollTop; }, { passive: true });
+          scene.panel.addEventListener("focusin", (event) => {
+            if (!event.target.matches(".side-item")) return;
+            roving[scene.mode] = event.target.dataset.howJump;
+            renderNavigation();
+          });
+          scene.panel.addEventListener("keydown", (event) => {
+            if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+            if (!event.target.matches(".side-item, .side-collapse")) return;
+            event.preventDefault();
+            const items = visibleItems(scene);
+            const index = event.target === collapse ? items.findIndex((item) => item.dataset.howJump === "slips") : items.indexOf(event.target);
+            const next = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : (index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+            items[next].focus(); // Native focus reveals offscreen destinations, including the page.
+          });
+        });
+        window.addEventListener("scroll", requestPageSample, { passive: true });
+        window.addEventListener("wheel", interruptPageScroll, { passive: true });
+        window.addEventListener("touchstart", interruptPageScroll, { passive: true });
+        window.addEventListener("keydown", interruptPageScroll);
+        window.addEventListener("scrollend", (event) => {
+          if (event.target !== document && event.target !== document.documentElement && event.target !== window) return;
+          const end = Math.min(nativePageTarget ?? window.scrollY, Math.max(0, document.documentElement.scrollHeight - window.innerHeight));
+          // An old cancellation's queued scrollend must not finish a newer request.
+          if (nativePageMotion && Math.abs(window.scrollY - end) <= 1) {
+            nativePageMotion = false;
+            nativePageTarget = null;
           }
         });
-
-        howStage.querySelector(".side-tabs")?.addEventListener("keydown", (event) => {
-          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
-            return;
-          }
-
-          event.preventDefault();
-          const current = howTabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
-          const next = event.key === "ArrowRight" ? (current + 1) % howTabs.length : (current - 1 + howTabs.length) % howTabs.length;
-          setHowMode(howTabs[next].dataset.howMode);
-          howTabs[next].focus();
+        window.addEventListener("resize", () => {
+          if (layoutFrame) return;
+          const tops = { ...readingTops };
+          layoutFrame = window.requestAnimationFrame(() => { layoutFrame = 0; refreshPreferences(tops); });
         });
+        window.addEventListener("pageshow", requestPageSample);
+        window.addEventListener("hashchange", requestPageSample);
+        window.addEventListener("popstate", requestPageSample);
+        window.addEventListener("load", requestPageSample);
+        desktop.addEventListener("change", () => {
+          clearClickLock(true);
+          refreshPreferences({ ...readingTops });
+          setupEntrances();
+        });
+        motionPreference.addEventListener("change", () => {
+          clearClickLock(true);
+          setActiveFeature(state.activeFeature, false, true);
+          scenes.forEach(revealScene);
+          entranceObserver?.disconnect();
+          refreshPreferences();
+        });
+        // Non-animated probes catch text-only zoom/font changes even at the same width.
+        const fontProbe = document.createElement("div");
+        fontProbe.className = "how-font-probe";
+        fontProbe.setAttribute("aria-hidden", "true");
+        fontProbe.inert = true;
+        const samples = ["how-note-name", "how-note-body", "side-item"].map((className) => {
+          const sample = document.createElement("span");
+          sample.className = className;
+          sample.textContent = "Mm汉";
+          fontProbe.append(sample);
+          return sample;
+        });
+        section.append(fontProbe);
+        let measuredMetrics = "";
+        function observeLayout() {
+          measureSticky();
+          const metrics = [currentLocale, ...scenes.map((scene) => scene.stack.getBoundingClientRect().width), ...samples.map((sample) => {
+            const rect = sample.getBoundingClientRect();
+            return `${rect.width}:${rect.height}`;
+          })].join("|");
+          if (metrics === measuredMetrics) return;
+          measuredMetrics = metrics;
+          measureNavigation();
+          requestPageSample();
+        }
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(observeLayout);
+          observer.observe(selector);
+          scenes.forEach((scene) => { observer.observe(scene.stack); observer.observe(scene.answer); });
+          samples.forEach((sample) => observer.observe(sample));
+        }
+        document.fonts?.ready.then(() => { measureNavigation(); requestPageSample(); });
+        document.fonts?.addEventListener("loadingdone", () => { measureNavigation(); requestPageSample(); });
+        setActiveFeature("toc", false, true);
+        renderNavigation();
+        section.classList.add("how-enhanced");
+        refreshPreferences();
+        samplePage(); // Actual restored/hash position wins; initialization never scrolls the page.
+        setupEntrances();
+        return { state, fixture, scenes, answers: scenes.map((scene) => scene.answer), selectFeature, setMode: selectFeature, jumpTo, toggleOutline, captureReadingPositions, refreshPreferences, samplePage };
+      }
 
-        setHowMode(howStage.dataset.mode || "toc");
+      const howStage = document.querySelector("[data-how-stage]");
+      if (howStage) {
+        howStage.querySelectorAll("[data-how-image]").forEach((frame) => {
+          const image = frame.querySelector("img");
+          const fallback = () => { frame.textContent = "P"; };
+          image.addEventListener("error", fallback, { once: true });
+          if (image.complete && !image.naturalWidth) fallback();
+        });
+        howDemo = initHowDemo(howStage);
       }
     </script>
   </body>
