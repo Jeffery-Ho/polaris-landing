@@ -3586,12 +3586,13 @@
       }
 
       @keyframes how-enlarge {
-        from { transform: scale(0.86); }
-        to { transform: scale(1); }
+        0% { transform: scale(0.9); opacity: 0.48; }
+        50% { transform: scale(0.962); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
       }
 
       .how-stage.is-zooming .browser {
-        animation: how-enlarge 720ms cubic-bezier(0.16, 1, 0.3, 1);
+        animation: how-enlarge 1100ms linear;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -3600,7 +3601,9 @@
         .chat-block,
         .side-item,
         .chat-marker,
-        .how-note {
+        .how-note,
+        .side-list,
+        .side-search span {
           transition: none;
         }
 
@@ -3615,8 +3618,8 @@
 
       .how-stage {
         display: grid;
-        grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.45fr);
-        gap: clamp(28px, 4vw, 64px);
+        grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+        gap: clamp(28px, 3.2vw, 44px);
         align-items: center;
       }
 
@@ -3627,8 +3630,14 @@
         min-width: 0;
       }
 
+      .how-copy .section-heading {
+        font-size: clamp(32px, 3vw, 42px);
+      }
+
       .how-copy .section-copy {
-        max-width: 36rem;
+        max-width: 22rem;
+        margin-top: 12px;
+        font-size: 16px;
       }
 
       .browser {
@@ -3894,9 +3903,10 @@
       }
 
       .side-search {
-        display: flex;
+        display: grid;
+        grid-template-columns: 14px minmax(0, 1fr);
         align-items: center;
-        gap: 8px;
+        column-gap: 8px;
         min-height: 34px;
         padding: 0 12px;
         border: 1px solid var(--shell-line);
@@ -3906,10 +3916,20 @@
         font-size: 12px;
       }
 
+      .side-search span {
+        grid-area: 1 / 2;
+        opacity: 0;
+        transition: opacity 420ms ease;
+      }
+
+      .side-search span.is-current {
+        opacity: 1;
+      }
+
       .side-search svg {
+        grid-area: 1 / 1;
         width: 14px;
         height: 14px;
-        flex: none;
       }
 
       .side-tabs {
@@ -3940,15 +3960,26 @@
         box-shadow: 0 1px 2px rgba(28, 25, 23, 0.08);
       }
 
-      .side-list {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .side-lists {
+        display: grid;
       }
 
-      .side-list[hidden],
-      [data-how-search][hidden] {
-        display: none !important;
+      .side-list {
+        display: flex;
+        grid-area: 1 / 1;
+        flex-direction: column;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(8px);
+        pointer-events: none;
+        transition: opacity 320ms ease, transform 320ms cubic-bezier(0.22, 0.8, 0.24, 1);
+      }
+
+      .side-list.is-current {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        transition-delay: 160ms;
       }
 
       .side-item {
@@ -3989,31 +4020,40 @@
       .how-notes {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
         width: 100%;
-        margin-top: 28px;
+        margin-top: 22px;
       }
 
       .how-note {
         display: grid;
-        gap: 6px;
-        padding: 16px 18px;
-        border: 1px solid var(--line);
+        gap: 4px;
+        padding: 12px 14px;
+        border: 0;
         border-radius: 12px;
         background: transparent;
+        box-shadow: inset 2px 0 0 transparent;
         color: var(--text-secondary);
         text-align: left;
         cursor: pointer;
+        transition: background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .how-note:hover,
+      .how-note:focus-visible {
+        background: color-mix(in srgb, var(--text-primary) 5%, transparent);
       }
 
       .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
       .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
-        border-color: color-mix(in srgb, #b85c3a 55%, var(--line));
+        background: color-mix(in srgb, #b85c3a 10%, transparent);
+        box-shadow: inset 2px 0 0 #b85c3a;
       }
 
       :root[data-theme="dark"] .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
       :root[data-theme="dark"] .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
-        border-color: color-mix(in srgb, #e69a78 55%, var(--line));
+        background: color-mix(in srgb, #e69a78 14%, transparent);
+        box-shadow: inset 2px 0 0 #e69a78;
       }
 
       .how-note-name {
@@ -4263,24 +4303,26 @@
                   </div>
                   <div class="side-search" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
-                    <span data-how-search="toc" data-i18n="how.search.toc">Search headings</span>
-                    <span data-how-search="outline" data-i18n="how.search.outline" hidden>Search structure</span>
+                    <span class="is-current" data-how-search="toc" data-i18n="how.search.toc">Search headings</span>
+                    <span data-how-search="outline" data-i18n="how.search.outline">Search structure</span>
                   </div>
                   <div class="side-tabs" role="tablist" aria-label="Polaris">
                     <button class="side-tab" type="button" role="tab" id="how-tab-toc" data-how-mode="toc" aria-selected="true" aria-controls="how-panel-toc" data-i18n="how.toc">TOC</button>
                     <button class="side-tab" type="button" role="tab" id="how-tab-outline" data-how-mode="outline" aria-selected="false" tabindex="-1" aria-controls="how-panel-outline" data-i18n="how.outline">Outline</button>
                   </div>
-                  <div class="side-list" id="how-panel-toc" role="tabpanel" aria-labelledby="how-tab-toc" data-how-panel="toc">
+                  <div class="side-lists">
+                  <div class="side-list is-current" id="how-panel-toc" role="tabpanel" aria-labelledby="how-tab-toc" data-how-panel="toc">
                     <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
                     <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
                     <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
                   </div>
-                  <div class="side-list" id="how-panel-outline" role="tabpanel" aria-labelledby="how-tab-outline" data-how-panel="outline" hidden>
+                  <div class="side-list" id="how-panel-outline" role="tabpanel" aria-labelledby="how-tab-outline" data-how-panel="outline" aria-hidden="true" inert>
                     <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
                     <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
                     <button class="side-item side-item--child" type="button" data-how-jump="timeline"><span data-i18n="how.h.timeline">Timeline</span></button>
                     <button class="side-item side-item--child" type="button" data-how-jump="owners"><span data-i18n="how.h.owners">Owners</span></button>
                     <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
+                  </div>
                   </div>
                 </aside>
               </div>
@@ -5417,10 +5459,13 @@
             note.setAttribute("aria-pressed", String(note.dataset.howMode === mode));
           });
           howPanels.forEach((panel) => {
-            panel.hidden = panel.dataset.howPanel !== mode;
+            const current = panel.dataset.howPanel === mode;
+            panel.classList.toggle("is-current", current);
+            panel.setAttribute("aria-hidden", String(!current));
+            panel.toggleAttribute("inert", !current);
           });
           howSearches.forEach((label) => {
-            label.hidden = label.dataset.howSearch !== mode;
+            label.classList.toggle("is-current", label.dataset.howSearch === mode);
           });
 
           if (animate && changed) {
