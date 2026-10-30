@@ -2,8 +2,10 @@
 
 ## Hero typography refinement
 
-- Desktop, 1280 × 720: the category eyebrow is absent; headline renders at 58.88px; the supporting sentence renders as `rgb(65, 107, 240)`.
-- Mobile, 390 × 844: the category eyebrow remains absent; the 40px minimum headline size and blue supporting sentence fit without horizontal overflow.
+- Desktop: the first screen is a full-bleed hero with a two-line headline, one inline platform mark per line, one Free trial pill, a text link to capabilities, and a large bottom-anchored video.
+- Mobile: the same hero stacks without horizontal overflow, and the Free trial pill remains the only filled hero action.
+- How it works: copy and the TOC / Outline switch sit on the left, and the browser chrome sits on the right. Narrow screens stack the copy above the window. The browser is a wide product window, about 737:545, large beside the copy. Switching modes does not scale the window. The selected feature expands over 300ms; the other collapses to its title. The side list fades. TOC is a flat jump list; Outline nests the sections inside it. Both themes use the paper and terracotta cover colors.
+- Headline marks are opaque white or black rounded tiles, inset from the edge, and share the letter centerline.
 
 ## Cross-platform typography
 
@@ -14,9 +16,9 @@ Final result: passed.
 
 ## Header navigation
 
-- Desktop: the header uses a wide transparent layout with the brand on the left, Download as the primary action, and secondary links on the right.
-- Mobile: the header stacks its brand and navigation without a surrounding capsule or horizontal overflow.
-- The header Download link reaches the installation section and the language toggle remains keyboard accessible.
+- Desktop: a centered floating pill holds the logo, How it works, and Updates. Free trial is absent until the page scrolls past the hero, then a separate right-side pill links to the installation section. Language and theme controls sit outside the pill. GitHub Issues is in the footer.
+- Mobile: the logo, language, theme, and menu button stay reachable without horizontal overflow. The menu lists How it works, Updates, and Free trial.
+- The header Free trial control does not use the gradient outline. It uses the same Free trial / 免费试用 label as the hero and reaches the installation section. The language toggle remains keyboard accessible.
 
 ## PayPal CTA glass refinement
 
@@ -34,7 +36,7 @@ Final result: passed.
 
 ## Installation and localization
 
-- Desktop: the header Download link smoothly scrolls to the two-card installation section while retaining the wide transparent header treatment.
+- Desktop: once the header Free trial pill is revealed, it smoothly scrolls to the two-card installation section.
 - Mobile: the two installation cards stack vertically, and the four local-installation steps do not create horizontal overflow.
 - The ZIP action resolves the GitHub [latest Release](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest) API and directly downloads its versioned ZIP asset; if the API is unavailable, it falls back to the Release page. Each archive contains a root `manifest.json`.
 - Mobile and tablet download actions prime the SLS request on pointer down and use the click handler as a no-duplicate fallback; logs report the triggered action, not confirmed file persistence.

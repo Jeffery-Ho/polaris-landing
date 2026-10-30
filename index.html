@@ -2908,128 +2908,1549 @@
           transition: none;
         }
       }
+
+      /* Floating pill navigation */
+      :root {
+        --nav-pill-bg: rgba(18, 18, 18, 0.82);
+        --nav-pill-border: rgba(255, 255, 255, 0.12);
+        --nav-ink: #f5f5f5;
+        --nav-link: rgba(245, 245, 245, 0.7);
+        --nav-pill-shadow: 0 12px 32px rgba(0, 0, 0, 0.42), 0 1px 2px rgba(0, 0, 0, 0.28);
+        scroll-padding-top: 88px;
+      }
+
+      :root[data-theme="light"] {
+        --nav-pill-bg: rgba(255, 255, 255, 0.94);
+        --nav-pill-border: rgba(0, 0, 0, 0.08);
+        --nav-ink: #171717;
+        --nav-link: rgba(23, 23, 23, 0.7);
+        --nav-pill-shadow: 0 10px 28px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      }
+
+      .skip-link {
+        z-index: 40;
+      }
+
+      .page-shell {
+        padding-top: 92px;
+      }
+
+      .platform-banner {
+        margin-top: 4px;
+      }
+
+      #install {
+        scroll-margin-top: 0;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 30;
+        top: max(16px, env(safe-area-inset-top));
+        right: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        width: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+        gap: 16px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        pointer-events: none;
+      }
+
+      .nav-pill,
+      .header-utilities,
+      .header-download {
+        pointer-events: auto;
+      }
+
+      .nav-pill {
+        position: relative;
+        isolation: isolate;
+        grid-column: 2;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        max-width: calc(100vw - 40px);
+        padding: 0 8px 0 10px;
+        border: 1px solid var(--nav-pill-border);
+        border-radius: 16px;
+        background: transparent;
+        box-shadow: var(--nav-pill-shadow);
+        color: var(--nav-ink);
+      }
+
+      .nav-pill::before,
+      .header-download::after {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background: var(--nav-pill-bg);
+        content: "";
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .nav-pill .brand {
+        gap: 8px;
+        margin-right: 4px;
+        padding-left: 2px;
+        color: var(--nav-ink);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+      }
+
+      .nav-pill .brand-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+      }
+
+      .nav-pill .brand-name {
+        color: var(--nav-ink);
+      }
+
+      .nav-pill .header-links {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .nav-pill .header-link {
+        display: inline-flex;
+        width: auto;
+        min-height: 36px;
+        align-items: center;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        color: var(--nav-link);
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        white-space: nowrap;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .nav-pill .header-link:hover,
+      .nav-pill .header-link:focus-visible {
+        border-color: transparent;
+        background: transparent;
+        background-image: none;
+        color: var(--nav-ink);
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .nav-pill .header-link--drawer {
+        display: none;
+      }
+
+      .header-utilities {
+        position: relative;
+        grid-column: 3;
+        justify-self: end;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .header-download {
+        position: absolute;
+        top: 50%;
+        right: calc(100% + 12px);
+        display: inline-flex;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        border: 1px solid var(--nav-pill-border);
+        border-radius: 16px;
+        background: transparent;
+        background-image: none;
+        box-shadow: var(--nav-pill-shadow);
+        isolation: isolate;
+        color: var(--nav-ink);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(calc(-50% + 8px));
+        transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms, background-color var(--transition), border-color var(--transition);
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .header-download::before {
+        content: none;
+        display: none;
+      }
+
+      .site-header[data-past-hero="true"] .header-download {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 0s, background-color var(--transition), border-color var(--transition);
+      }
+
+      .header-download:hover,
+      .header-download:focus-visible {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: transparent;
+        background-image: none;
+        color: var(--nav-ink);
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .header-download:hover::after,
+      .header-download:focus-visible::after {
+        background: #222222;
+      }
+
+      :root[data-theme="light"] .header-download:hover,
+      :root[data-theme="light"] .header-download:focus-visible {
+        border-color: rgba(0, 0, 0, 0.16);
+      }
+
+      :root[data-theme="light"] .header-download:hover::after,
+      :root[data-theme="light"] .header-download:focus-visible::after {
+        background: #ffffff;
+      }
+
+      .site-header .header-preferences {
+        gap: 0;
+      }
+
+      .site-header .language-toggle,
+      .site-header .theme-toggle {
+        min-height: 40px;
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .site-header .language-toggle:hover,
+      .site-header .language-toggle:focus-visible,
+      .site-header .theme-toggle:hover,
+      .site-header .theme-toggle:focus-visible {
+        border-color: transparent;
+        background: var(--menu-hover-bg);
+        color: var(--text-primary);
+      }
+
+      .header-menu-toggle {
+        display: none;
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .nav-pill .brand-name {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          margin: -1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        .nav-pill .header-link {
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+      }
+
+      @media (min-width: 801px) and (max-width: 860px) {
+        .site-header .language-toggle-chevron,
+        .site-header [data-language-current] {
+          display: none;
+        }
+
+        .site-header .language-toggle {
+          min-width: 40px;
+          justify-content: center;
+          padding-inline: 10px;
+        }
+
+        .header-download {
+          right: calc(100% + 10px);
+          padding-inline: 14px;
+        }
+      }
+
+      @media (max-width: 800px) {
+        .page-shell {
+          padding-top: 76px;
+        }
+
+        .site-header {
+          display: flex;
+          justify-content: space-between;
+          top: max(10px, env(safe-area-inset-top));
+          padding-right: max(12px, env(safe-area-inset-right));
+          padding-left: max(12px, env(safe-area-inset-left));
+        }
+
+        .nav-pill {
+          grid-column: auto;
+          height: 48px;
+          padding: 0 8px 0 8px;
+        }
+
+        .nav-pill .brand {
+          margin-right: 0;
+        }
+
+        .nav-pill .header-links {
+          position: fixed;
+          z-index: 5;
+          top: calc(max(10px, env(safe-area-inset-top)) + 58px);
+          right: max(12px, env(safe-area-inset-right));
+          left: max(12px, env(safe-area-inset-left));
+          display: flex;
+          width: auto;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 2px;
+          padding: 8px;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          background: var(--panel-bg-raised);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateY(-6px);
+          transition: opacity var(--transition), transform var(--transition), visibility 0s linear var(--transition);
+        }
+
+        .nav-pill .header-links[data-menu-open="true"] {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateY(0);
+          transition-delay: 0s;
+        }
+
+        .nav-pill .header-link,
+        .nav-pill .header-link--drawer {
+          display: flex;
+          width: 100%;
+          min-height: 44px;
+          justify-content: flex-start;
+          padding: 10px 12px;
+          border-radius: 10px;
+          color: var(--text-primary);
+          font-size: 15px;
+          font-weight: 550;
+        }
+
+        .nav-pill .header-link:hover,
+        .nav-pill .header-link:focus-visible,
+        .nav-pill .header-link--drawer:hover,
+        .nav-pill .header-link--drawer:focus-visible {
+          border-color: transparent;
+          background: var(--menu-hover-bg);
+          color: var(--text-primary);
+        }
+
+        .header-download {
+          display: none;
+        }
+
+        .header-menu-toggle {
+          display: grid;
+          width: 44px;
+          height: 44px;
+        }
+
+        .site-header .language-toggle,
+        .site-header .theme-toggle {
+          min-height: 44px;
+        }
+
+        .site-header .theme-option {
+          width: 34px;
+          height: 34px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-download,
+        .nav-pill .header-links {
+          transition: none;
+        }
+      }
+
+      /* Full-bleed hero */
+      main {
+        width: 100%;
+        padding: 0;
+      }
+
+      .page-shell {
+        padding-top: 0;
+      }
+
+      .hero-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        min-height: 100svh;
+        padding: clamp(112px, 14vh, 148px) 24px 0;
+        --hero-bg: #faf9f7;
+        --hero-accent: #b85c3a;
+        background:
+          radial-gradient(
+            ellipse 70% 45% at 50% 0%,
+            color-mix(in srgb, var(--hero-accent) 12%, transparent),
+            transparent 70%
+          ) var(--hero-bg);
+        color: #171717;
+      }
+
+      :root[data-theme="dark"] .hero-stage {
+        --hero-bg: #191817;
+        --hero-accent: #e69a78;
+        color: #f5f5f5;
+      }
+
+      .hero-copy {
+        width: min(1120px, 100%);
+        margin-bottom: clamp(28px, 4vh, 48px);
+        text-align: center;
+      }
+
+      .hero-stage .intro {
+        max-width: 46rem;
+        margin: 0 auto;
+        color: var(--text-secondary);
+        font-size: clamp(16px, 1.5vw, 19px);
+        font-weight: 450;
+        letter-spacing: -0.02em;
+        line-height: 1.45;
+      }
+
+      :root[data-theme="dark"] .hero-stage .intro {
+        color: var(--text-secondary);
+      }
+
+      .hero-stage h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: none;
+        margin: 18px auto 0;
+        color: inherit;
+        font-size: clamp(36.4px, 5.04vw, 72.8px);
+        font-weight: 670;
+        letter-spacing: -0.055em;
+        line-height: 0.96;
+        white-space: normal;
+      }
+
+      .headline-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: inherit;
+      }
+
+      :root[lang^="zh"] .hero-stage h1 {
+        max-width: none;
+        font-size: clamp(33.6px, 4.62vw, 67.2px);
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        white-space: normal;
+      }
+
+      .hero-stage .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px 22px;
+        margin-top: 28px;
+      }
+
+      .hero-stage .hero-link--primary {
+        min-height: 52px;
+        padding: 14px 26px;
+        border: 0;
+        border-radius: 999px;
+        background: #171717;
+        background-image: none;
+        box-shadow: 0 12px 28px rgba(40, 16, 32, 0.16);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--primary {
+        background: #f4f4f5;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        color: #111111;
+      }
+
+      .hero-stage .hero-link--primary:hover,
+      .hero-stage .hero-link--primary:focus-visible {
+        border: 0;
+        background: #000000;
+        background-image: none;
+        color: #ffffff;
+        filter: none;
+        transform: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:focus-visible {
+        background: #ffffff;
+        color: #111111;
+      }
+
+      .hero-stage .hero-link--primary > span {
+        background: none;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-stage .hero-link--text {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        padding: 8px 2px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        color: var(--hero-accent);
+        font-size: 15px;
+        font-weight: 560;
+        letter-spacing: -0.02em;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--text {
+        color: var(--hero-accent);
+      }
+
+      .hero-stage .hero-link--text:hover,
+      .hero-stage .hero-link--text:focus-visible {
+        border: 0;
+        background: transparent;
+        background-image: none;
+        color: #171717;
+        text-decoration: underline;
+        transform: none;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      :root[data-theme="dark"] .hero-stage .hero-link--text:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
+        color: #ffffff;
+      }
+
+      .hero-stage .hero-link--text > span {
+        background: none;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
+      }
+
+      .hero-stage .video-frame {
+        width: min(1180px, 100%);
+        margin: auto 0 -72px;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        border-radius: 22px;
+        background: var(--hero-bg);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.08);
+      }
+
+      :root[data-theme="dark"] .hero-stage .video-frame {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: var(--hero-bg);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .platform-banner {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 112px;
+        padding: 4px 0 0;
+        border: 0;
+      }
+
+      .platform-banner-title,
+      .platform-list {
+        font-size: 13px;
+      }
+
+      .platform-banner-title {
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .platform-slot {
+        display: inline-flex;
+        position: relative;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        width: 0;
+        height: 0.72em;
+        margin-inline: 0;
+        transform: translateY(0.06em);
+        transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1), margin-inline 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
+      }
+
+      .platform-slot.is-open {
+        width: 0.72em;
+        margin-inline: 0.12em;
+      }
+
+      .platform-icon {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 30%;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28), inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+        line-height: 1;
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(0.7);
+        transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
+      }
+
+      .platform-icon {
+        overflow: hidden;
+      }
+
+      .platform-icon img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        image-rendering: auto;
+      }
+
+      .platform-icon.is-shown {
+        opacity: 1;
+        filter: none;
+        transform: scale(1);
+        transition: opacity 200ms ease, filter 220ms ease, transform 420ms cubic-bezier(0.18, 1.35, 0.36, 1);
+      }
+
+      .platform-icon.is-leaving {
+        opacity: 0;
+        filter: blur(6px);
+        transform: scale(0.68);
+        transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .platform-slot,
+        .platform-icon,
+        .chat-block,
+        .side-item,
+        .chat-marker,
+        .how-note,
+        .how-note-bar,
+        .how-note-name,
+        .how-note-more,
+        .side-list,
+        .side-search span {
+          transition: none;
+        }
+
+      }
+
+      .how-section {
+        scroll-margin-top: 96px;
+      }
+
+      .how-stage {
+        display: grid;
+        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+        gap: clamp(32px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .how-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .how-copy .section-heading {
+        font-size: clamp(32px, 3vw, 42px);
+      }
+
+      .how-copy .section-copy {
+        max-width: 22rem;
+        margin-top: 12px;
+        font-size: 16px;
+      }
+
+      .browser {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        aspect-ratio: 737 / 545;
+        transform-origin: center center;
+        --shell-bg: #faf9f7;
+        --shell-ink: #1c1917;
+        --shell-muted: #7a716b;
+        --shell-line: rgba(28, 25, 23, 0.1);
+        --shell-accent: #b85c3a;
+        --shell-chat: #ffffff;
+        --shell-chrome: #f3f1ee;
+        --shell-user: #1c1917;
+        --shell-user-ink: #faf9f7;
+        overflow: hidden;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        border-radius: 22px;
+        background: var(--shell-bg);
+        box-shadow: 0 28px 70px rgba(40, 16, 8, 0.08);
+        color: var(--shell-ink);
+      }
+
+      :root[data-theme="dark"] .browser {
+        --shell-bg: #191817;
+        --shell-ink: #f5f1ec;
+        --shell-muted: #a39890;
+        --shell-line: rgba(255, 255, 255, 0.1);
+        --shell-accent: #e69a78;
+        --shell-chat: #141312;
+        --shell-chrome: #221f1d;
+        --shell-user: #f5f1ec;
+        --shell-user-ink: #191817;
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .browser-chrome {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 48px;
+        padding: 8px 14px;
+        background: var(--shell-chrome);
+        border-bottom: 1px solid var(--shell-line);
+      }
+
+      .browser-dots {
+        display: flex;
+        flex: none;
+        gap: 6px;
+      }
+
+      .browser-dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #c9c2ba;
+      }
+
+      .browser-dots i:nth-child(1) { background: #ff5f57; }
+      .browser-dots i:nth-child(2) { background: #febc2e; }
+      .browser-dots i:nth-child(3) { background: #28c840; }
+
+      .browser-tab,
+      .browser-address {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        height: 30px;
+        padding: 0 12px;
+        border-radius: 8px;
+        background: var(--shell-bg);
+        color: var(--shell-muted);
+        font-size: 12px;
+        font-weight: 560;
+        letter-spacing: -0.01em;
+      }
+
+      .browser-tab {
+        flex: none;
+        max-width: 140px;
+        color: var(--shell-ink);
+      }
+
+      .browser-tab img {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        border-radius: 4px;
+      }
+
+      .browser-address {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .browser-address svg {
+        width: 12px;
+        height: 12px;
+        flex: none;
+      }
+
+      .browser-body {
+        display: grid;
+        flex: 1;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 32%);
+        min-height: 0;
+        transform-origin: center center;
+        background: var(--shell-chat);
+      }
+
+      .chat {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        min-width: 0;
+        padding: 28px 28px 32px;
+      }
+
+      .chat-user {
+        align-self: flex-end;
+        max-width: min(78%, 420px);
+        margin: 0;
+        padding: 10px 14px;
+        border-radius: 16px 16px 6px 16px;
+        background: var(--shell-user);
+        color: var(--shell-user-ink);
+        font-size: 13.5px;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
+      }
+
+      .chat-answer {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .chat-block {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 12px;
+        transition: background 180ms ease;
+      }
+
+      .how-stage[data-active="decision"] [data-how-block="decision"],
+      .how-stage[data-active="slips"] [data-how-block="slips"],
+      .how-stage[data-active="timeline"] [data-how-block="slips"],
+      .how-stage[data-active="owners"] [data-how-block="slips"],
+      .how-stage[data-active="checkin"] [data-how-block="checkin"] {
+        background: color-mix(in srgb, var(--shell-accent) 12%, transparent);
+      }
+
+      .chat-marker {
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        margin-top: 1px;
+        padding: 0;
+        border: 0;
+        border-radius: 7px;
+        background: color-mix(in srgb, var(--shell-accent) 16%, transparent);
+        cursor: pointer;
+      }
+
+      .chat-marker span {
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--shell-accent);
+      }
+
+      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"],
+      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"],
+      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] {
+        background: var(--shell-accent);
+      }
+
+      .how-stage[data-active="decision"] .chat-marker[data-how-jump="decision"] span,
+      .how-stage[data-active="slips"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="timeline"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="owners"] .chat-marker[data-how-jump="slips"] span,
+      .how-stage[data-active="checkin"] .chat-marker[data-how-jump="checkin"] span {
+        background: #fff;
+      }
+
+      .chat-block h3,
+      .chat-block p,
+      .chat-subs {
+        margin: 0;
+      }
+
+      .chat-block h3 {
+        color: var(--shell-ink);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+        line-height: 1.3;
+      }
+
+      .chat-block p {
+        margin-top: 4px;
+        color: var(--shell-muted);
+        font-size: 13.5px;
+        line-height: 1.45;
+      }
+
+      .chat-subs {
+        display: grid;
+        gap: 2px;
+        margin-top: 8px;
+        padding: 0 0 0 12px;
+        border-left: 1px solid var(--shell-line);
+        list-style: none;
+      }
+
+      .chat-subs button {
+        padding: 2px 0;
+        border: 0;
+        background: transparent;
+        color: var(--shell-muted);
+        font-size: 13px;
+        font-weight: 550;
+        letter-spacing: -0.02em;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .how-stage[data-active="timeline"] .chat-subs [data-how-jump="timeline"],
+      .how-stage[data-active="owners"] .chat-subs [data-how-jump="owners"] {
+        color: var(--shell-accent);
+      }
+
+      .side-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        min-width: 0;
+        padding: 16px 14px 18px;
+        border-left: 1px solid var(--shell-line);
+        background: var(--shell-bg);
+      }
+
+      .side-identity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 680;
+        letter-spacing: -0.03em;
+      }
+
+      .side-identity img {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+      }
+
+      .side-search {
+        display: grid;
+        grid-template-columns: 14px minmax(0, 1fr);
+        align-items: center;
+        column-gap: 8px;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid var(--shell-line);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--shell-chat) 72%, var(--shell-bg));
+        color: var(--shell-muted);
+        font-size: 12px;
+      }
+
+      .side-search span {
+        grid-area: 1 / 2;
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
+
+      .how-stage[data-mode="toc"] [data-how-search="toc"],
+      .how-stage[data-mode="outline"] [data-how-search="outline"],
+      .side-search span.is-current {
+        opacity: 1;
+      }
+
+      .side-search svg {
+        grid-area: 1 / 1;
+        width: 14px;
+        height: 14px;
+      }
+
+      .side-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 3px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--shell-ink) 6%, transparent);
+      }
+
+      .side-tab {
+        min-height: 30px;
+        padding: 6px 8px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--shell-muted);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        cursor: pointer;
+      }
+
+      .side-tab[aria-selected="true"],
+      .how-stage[data-mode="toc"] .side-tab[data-how-mode="toc"],
+      .how-stage[data-mode="outline"] .side-tab[data-how-mode="outline"] {
+        background: var(--shell-chat);
+        color: var(--shell-ink);
+        box-shadow: 0 1px 2px rgba(28, 25, 23, 0.08);
+      }
+
+      .side-lists {
+        display: grid;
+      }
+
+      .side-list {
+        display: flex;
+        grid-area: 1 / 1;
+        flex-direction: column;
+        gap: 6px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms ease;
+      }
+
+      .side-list.is-current,
+      .how-stage[data-mode="toc"] [data-how-panel="toc"],
+      .how-stage[data-mode="outline"] [data-how-panel="outline"] {
+        z-index: 1;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .side-item {
+        display: flex;
+        width: 100%;
+        min-height: 40px;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--shell-ink);
+        font-size: 13.5px;
+        font-weight: 580;
+        letter-spacing: -0.02em;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .side-item--child {
+        margin-left: 16px;
+        width: calc(100% - 16px);
+        color: var(--shell-muted);
+        font-weight: 520;
+      }
+
+      .how-stage[data-active="decision"] .side-item[data-how-jump="decision"],
+      .how-stage[data-active="slips"] .side-item[data-how-jump="slips"],
+      .how-stage[data-active="timeline"] .side-item[data-how-jump="timeline"],
+      .how-stage[data-active="owners"] .side-item[data-how-jump="owners"],
+      .how-stage[data-active="checkin"] .side-item[data-how-jump="checkin"] {
+        border-color: color-mix(in srgb, var(--shell-accent) 35%, transparent);
+        background: color-mix(in srgb, var(--shell-accent) 14%, transparent);
+        box-shadow: inset 2px 0 0 var(--shell-accent);
+        color: var(--shell-ink);
+      }
+
+      .how-pick {
+        margin: 18px 0 0;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+
+      .how-notes {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 18px;
+      }
+
+      .how-note {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 20px 24px;
+        border: 0;
+        border-radius: 16px;
+        background: transparent;
+        color: var(--text-secondary);
+        text-align: left;
+        cursor: pointer;
+        transition: background 300ms ease;
+      }
+
+      .how-note-bar {
+        position: absolute;
+        top: 16%;
+        bottom: 16%;
+        left: 0;
+        width: 3px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--text-primary) 15%, transparent);
+        transition: background 300ms ease;
+      }
+
+      .how-note-index {
+        display: block;
+        margin-bottom: 8px;
+        color: color-mix(in srgb, var(--text-muted) 70%, transparent);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        line-height: 14px;
+        transition: color 300ms ease;
+      }
+
+      .how-note-name {
+        display: block;
+        color: var(--text-muted);
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        line-height: 30px;
+        transition: color 300ms ease;
+      }
+
+      .how-note-more {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        opacity: 0;
+        transition: grid-template-rows 300ms ease, opacity 300ms ease;
+      }
+
+      .how-note-more > div {
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .how-note-headline,
+      .how-note-body,
+      .how-note-points {
+        margin: 0;
+        max-width: 32ch;
+      }
+
+      .how-note-headline {
+        padding-top: 10px;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        line-height: 20px;
+      }
+
+      .how-note-body {
+        padding-top: 4px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .how-note-points {
+        display: grid;
+        gap: 4px;
+        margin-top: 10px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .how-note-points li {
+        position: relative;
+        padding-left: 16px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .how-note-points li::before {
+        content: "✓";
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #b85c3a;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      :root[data-theme="dark"] .how-note-points li::before {
+        color: #e69a78;
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"],
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] {
+        background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-bar,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-bar {
+        background: var(--text-primary);
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-index,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-index {
+        color: var(--text-muted);
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-name,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-name {
+        color: var(--text-primary);
+      }
+
+      .how-stage[data-mode="toc"] .how-note[data-how-mode="toc"] .how-note-more,
+      .how-stage[data-mode="outline"] .how-note[data-how-mode="outline"] .how-note-more {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+
+      @media (max-width: 800px) {
+        .page-shell {
+          padding-top: 0;
+        }
+
+        .hero-stage {
+          min-height: 100svh;
+          padding: 96px 16px 0;
+        }
+
+        .hero-stage h1,
+        :root[lang^="zh"] .hero-stage h1 {
+          font-size: clamp(25.2px, 7vw, 39.2px);
+          letter-spacing: -0.06em;
+        }
+
+        .hero-stage .hero-actions {
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .hero-stage .hero-link--primary {
+          width: min(100%, 280px);
+        }
+
+        .hero-stage .video-frame {
+          margin-bottom: -40px;
+        }
+
+        .platform-banner {
+          margin-top: 72px;
+        }
+
+        .browser {
+          aspect-ratio: auto;
+        }
+
+        .browser-body {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .side-panel {
+          border-top: 1px solid var(--shell-line);
+          border-left: 0;
+        }
+
+        .how-stage {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .browser-tab span,
+        .browser-address span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content" data-i18n="nav.skip">Skip to content</a>
-    <div class="page-shell">
-      <header class="site-header">
+    <header class="site-header" data-past-hero="false">
+      <div class="nav-pill">
         <a class="brand" href="./" aria-label="Polaris home">
           <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
-          <span>Polaris</span>
+          <span class="brand-name">Polaris</span>
         </a>
-        <div class="header-end">
-          <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
-            <a class="header-link header-link--primary" href="#install">
-              <span data-i18n="nav.install">Download</span>
-            </a>
-            <a class="header-link" href="#capabilities">
-              <span data-i18n="nav.features">How it works</span>
-            </a>
-            <a class="header-link" href="#updates">
-              <span data-i18n="nav.updates">Updates</span>
-            </a>
-            <a class="header-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">
-              <span data-i18n="nav.issues">GitHub Issues</span>
-            </a>
-          </nav>
-          <div class="header-preferences">
-            <div class="language-control" data-language-control>
-              <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
-                <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
-                  <path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path>
-                </svg>
-                <span data-language-current>EN</span>
-                <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
-                </svg>
-              </button>
-              <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
-                <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
-                <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
-              </div>
-            </div>
-            <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme">
-              <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" aria-pressed="true">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
-              </button>
-              <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" aria-pressed="false">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
-              </button>
+        <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
+          <a class="header-link" href="#capabilities">
+            <span data-i18n="nav.features">How it works</span>
+          </a>
+          <a class="header-link" href="#updates">
+            <span data-i18n="nav.updates">Updates</span>
+          </a>
+          <a class="header-link header-link--drawer" href="#install">
+            <span data-i18n="nav.install">Free trial</span>
+          </a>
+        </nav>
+      </div>
+      <div class="header-utilities">
+        <a class="header-download" href="#install" data-header-download aria-hidden="true" tabindex="-1">
+          <span data-i18n="nav.install">Free trial</span>
+        </a>
+        <div class="header-preferences">
+          <div class="language-control" data-language-control>
+            <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+              <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
+                <path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path>
+              </svg>
+              <span data-language-current>EN</span>
+              <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
+              </svg>
+            </button>
+            <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
+              <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
+              <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
             </div>
           </div>
-          <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffb36b"></stop>
-                  <stop offset="52%" stop-color="#e879d2"></stop>
-                  <stop offset="100%" stop-color="#7892ff"></stop>
-                </linearGradient>
-              </defs>
-              <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-              <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-              <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
-            </svg>
-          </button>
-        </div>
-      </header>
-
-      <section class="platform-banner" aria-labelledby="platform-banner-title">
-        <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
-        <ul class="platform-list">
-          <li>ChatGPT</li>
-          <li>Claude</li>
-          <li>Gemini</li>
-          <li>Grok</li>
-          <li>Doubao</li>
-          <li>Kimi</li>
-          <li>Qwen</li>
-          <li>Yuanbao</li>
-          <li>Diandian AI</li>
-        </ul>
-      </section>
-
-      <main id="main-content">
-        <div class="hero-grid">
-          <section class="hero" aria-labelledby="hero-title">
-            <h1 id="hero-title" data-i18n="hero.title">Make long AI conversations easier to navigate.</h1>
-            <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
-            <div class="hero-actions">
-              <a class="hero-link hero-link--primary" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
-              <a class="hero-link" href="#install"><span data-i18n="hero.install">Install Polaris</span></a>
-            </div>
-          </section>
-
-          <section class="video-frame" aria-label="Polaris introduction video">
-            <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
-            <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
-            <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
-            <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme">
+            <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
             </button>
-          </section>
+            <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
+            </button>
+          </div>
         </div>
+        <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffb36b"></stop>
+                <stop offset="52%" stop-color="#e879d2"></stop>
+                <stop offset="100%" stop-color="#7892ff"></stop>
+              </linearGradient>
+            </defs>
+            <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+            <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+            <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main-content">
+      <section class="hero-stage">
+        <div class="hero-copy">
+          <p class="intro" data-i18n="hero.intro">Polaris adds section markers and one-click navigation to AI-generated answers.</p>
+          <h1 id="hero-title" data-i18n="hero.title"><span class="headline-line">Navigate <span class="platform-slot" data-platform-slot></span> long</span><span class="headline-line">AI <span class="platform-slot" data-platform-slot></span> conversations.</span></h1>
+          <div class="hero-actions">
+            <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
+            <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
+          </div>
+        </div>
+        <section class="video-frame" aria-label="Polaris introduction video">
+          <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
+          <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
+          <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
+          <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+          </button>
+        </section>
+      </section>
+      <div class="page-shell">
+        <section class="platform-banner sr-only" aria-labelledby="platform-banner-title">
+          <h2 class="platform-banner-title" id="platform-banner-title" data-i18n="platforms.title">Currently supported platforms</h2>
+          <ul class="platform-list">
+            <li>ChatGPT</li>
+            <li>Claude</li>
+            <li>Gemini</li>
+            <li>Grok</li>
+            <li>Doubao</li>
+            <li>Kimi</li>
+            <li>Qwen</li>
+            <li>Yuanbao</li>
+            <li>Diandian AI</li>
+            <li>Manus</li>
+            <li>DeepSeek</li>
+          </ul>
+        </section>
 
-        <section class="capability-section" id="capabilities" aria-labelledby="capabilities-title">
-          <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">A clearer way to read</h2>
-          <p class="section-copy" data-i18n="capabilities.intro">Stay oriented in long answers without losing your place.</p>
-          <div class="capability-grid">
-            <article class="capability-card">
-              <span class="capability-index">01</span>
-              <h3 class="capability-title" data-i18n="capabilities.markers.title">Section markers</h3>
-              <p class="capability-copy" data-i18n="capabilities.markers.copy">See the structure of long AI responses at a glance.</p>
-            </article>
-            <article class="capability-card">
-              <span class="capability-index">02</span>
-              <h3 class="capability-title" data-i18n="capabilities.jump.title">One-click jumps</h3>
-              <p class="capability-copy" data-i18n="capabilities.jump.copy">Jump directly to the section you want to read.</p>
-            </article>
-            <article class="capability-card">
-              <span class="capability-index">03</span>
-              <h3 class="capability-title" data-i18n="capabilities.chapter.title">Chapter View</h3>
-              <p class="capability-copy" data-i18n="capabilities.chapter.copy">Focus on one section, search it, and copy what you need.</p>
-            </article>
+        <section class="capability-section how-section" id="capabilities" aria-labelledby="capabilities-title">
+          <div class="how-stage" data-how-stage data-mode="toc" data-active="decision">
+            <div class="how-copy">
+              <h2 class="section-heading" id="capabilities-title" data-i18n="capabilities.title">Find the section you need</h2>
+              <p class="section-copy" data-i18n="capabilities.intro">Pick one and see it in the window.</p>
+              <div class="how-notes">
+                <button class="how-note" type="button" data-how-mode="toc" aria-pressed="true" aria-labelledby="how-toc-title">
+                  <span class="how-note-bar" aria-hidden="true"></span>
+                  <span class="how-note-index" aria-hidden="true">01</span>
+                  <span class="how-note-name" id="how-toc-title" data-i18n="how.toc.title">Jump to a section</span>
+                  <div class="how-note-more">
+                    <div>
+                      <p class="how-note-headline" data-i18n="how.toc.headline">Like a contents page</p>
+                      <p class="how-note-body" data-i18n="how.toc.body">Click a heading and that part of the answer is marked.</p>
+                      <ul class="how-note-points">
+                        <li data-i18n="how.toc.b1">Every section is a row</li>
+                        <li data-i18n="how.toc.b2">A click jumps there</li>
+                        <li data-i18n="how.toc.b3">Markers stay on the reply</li>
+                      </ul>
+                    </div>
+                  </div>
+                </button>
+                <button class="how-note" type="button" data-how-mode="outline" aria-pressed="false" aria-labelledby="how-outline-title">
+                  <span class="how-note-bar" aria-hidden="true"></span>
+                  <span class="how-note-index" aria-hidden="true">02</span>
+                  <span class="how-note-name" id="how-outline-title" data-i18n="how.outline.title">See the structure</span>
+                  <div class="how-note-more">
+                    <div>
+                      <p class="how-note-headline" data-i18n="how.outline.headline">See what each section holds</p>
+                      <p class="how-note-body" data-i18n="how.outline.body">Outline nests the same answer, parents and the pieces inside them.</p>
+                      <ul class="how-note-points">
+                        <li data-i18n="how.outline.b1">Parents, and their sections</li>
+                        <li data-i18n="how.outline.b2">The shape, not only the titles</li>
+                        <li data-i18n="how.outline.b3">The same answer as TOC</li>
+                      </ul>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="browser">
+              <div class="browser-chrome" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <div class="browser-tab">
+                  <img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16">
+                  <span data-i18n="how.tab">Chat</span>
+                </div>
+                <div class="browser-address">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                  <span>chatgpt.com</span>
+                </div>
+              </div>
+              <div class="browser-body">
+                <div class="chat">
+                  <p class="chat-user" data-i18n="how.prompt">Summarize the launch plan.</p>
+                  <div class="chat-answer">
+                    <section class="chat-block" data-how-block="decision">
+                      <button class="chat-marker" type="button" data-how-jump="decision" aria-labelledby="how-h-decision"><span></span></button>
+                      <div>
+                        <h3 id="how-h-decision" data-i18n="how.h.decision">The decision</h3>
+                        <p data-i18n="how.p.decision">Ship the smaller release on Friday and hold the rest.</p>
+                      </div>
+                    </section>
+                    <section class="chat-block" data-how-block="slips">
+                      <button class="chat-marker" type="button" data-how-jump="slips" aria-labelledby="how-h-slips"><span></span></button>
+                      <div>
+                        <h3 id="how-h-slips" data-i18n="how.h.slips">What slips first</h3>
+                        <p data-i18n="how.p.slips">Two pieces move if the week gets tight.</p>
+                        <ul class="chat-subs">
+                          <li><button type="button" data-how-jump="timeline" data-i18n="how.h.timeline">Timeline</button></li>
+                          <li><button type="button" data-how-jump="owners" data-i18n="how.h.owners">Owners</button></li>
+                        </ul>
+                      </div>
+                    </section>
+                    <section class="chat-block" data-how-block="checkin">
+                      <button class="chat-marker" type="button" data-how-jump="checkin" aria-labelledby="how-h-checkin"><span></span></button>
+                      <div>
+                        <h3 id="how-h-checkin" data-i18n="how.h.checkin">The next check-in</h3>
+                        <p data-i18n="how.p.checkin">Review the cut list Monday morning, before the build locks.</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <aside class="side-panel" aria-label="Polaris">
+                  <div class="side-identity">
+                    <img src="icons/gpt-voyager-icon-96.png" alt="" width="22" height="22">
+                    <span>Polaris</span>
+                  </div>
+                  <div class="side-search" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                    <span class="is-current" data-how-search="toc" data-i18n="how.search.toc">Search headings</span>
+                    <span data-how-search="outline" data-i18n="how.search.outline">Search structure</span>
+                  </div>
+                  <div class="side-tabs" role="tablist" aria-label="Polaris">
+                    <button class="side-tab" type="button" role="tab" id="how-tab-toc" data-how-mode="toc" aria-selected="true" aria-controls="how-panel-toc" data-i18n="how.toc">TOC</button>
+                    <button class="side-tab" type="button" role="tab" id="how-tab-outline" data-how-mode="outline" aria-selected="false" tabindex="-1" aria-controls="how-panel-outline" data-i18n="how.outline">Outline</button>
+                  </div>
+                  <div class="side-lists">
+                  <div class="side-list is-current" id="how-panel-toc" role="tabpanel" aria-labelledby="how-tab-toc" data-how-panel="toc">
+                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
+                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
+                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
+                  </div>
+                  <div class="side-list" id="how-panel-outline" role="tabpanel" aria-labelledby="how-tab-outline" data-how-panel="outline" aria-hidden="true" inert>
+                    <button class="side-item" type="button" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></button>
+                    <button class="side-item" type="button" data-how-jump="slips"><span data-i18n="how.h.slips">What slips first</span></button>
+                    <button class="side-item side-item--child" type="button" data-how-jump="timeline"><span data-i18n="how.h.timeline">Timeline</span></button>
+                    <button class="side-item side-item--child" type="button" data-how-jump="owners"><span data-i18n="how.h.owners">Owners</span></button>
+                    <button class="side-item" type="button" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button>
+                  </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -3081,12 +4502,12 @@
             <button class="updates-toggle" data-updates-collapse type="button" aria-controls="updates-list" hidden data-i18n="updates.collapse">Collapse updates</button>
           </div>
         </section>
-      </main>
 
       <footer class="site-footer">
-        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
+        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer" data-i18n="nav.issues">GitHub Issues</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
       </footer>
-    </div>
+      </div>
+    </main>
 
     <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
       <p class="analytics-consent-title" id="analytics-consent-title" data-i18n="analytics.title">Help improve Polaris</p>
@@ -3120,10 +4541,13 @@
       const themeOptions = document.querySelectorAll("[data-theme-option]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
+      const siteHeader = document.querySelector(".site-header");
+      const headerDownload = document.querySelector("[data-header-download]");
+      const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
       const updatesShowMore = document.querySelector("[data-updates-show-more]");
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
-      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .hero-link[href^="#"]');
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .header-download[href^="#"], .hero-link[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -3158,7 +4582,7 @@
           "nav.skip": "Skip to content",
           "nav.menu.open": "Open menu",
           "nav.menu.close": "Close menu",
-          "nav.install": "Download",
+          "nav.install": "Free trial",
           "nav.features": "How it works",
           "nav.updates": "Updates",
           "nav.issues": "GitHub Issues",
@@ -3176,21 +4600,41 @@
           "theme.toDark": "Switch to dark theme",
           "aria.home": "Polaris home",
           "aria.love": "love",
-          "hero.title": "Make long AI conversations easier to navigate.",
+          "hero.title": "<span class=\"headline-line\">Navigate <span class=\"platform-slot\" data-platform-slot></span> long</span><span class=\"headline-line\">AI <span class=\"platform-slot\" data-platform-slot></span> conversations.</span>",
           "hero.intro": "Polaris adds section markers & one-click navigation to AI-generated answers.",
           "hero.explore": "See how it works",
-          "hero.install": "Install Polaris",
+          "hero.install": "Free trial",
           "platforms.title": "Currently supported platforms",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
-          "capabilities.title": "A clearer way to read",
-          "capabilities.intro": "Stay oriented in long answers without losing your place.",
-          "capabilities.markers.title": "Section markers",
-          "capabilities.markers.copy": "See the structure of long AI responses at a glance.",
-          "capabilities.jump.title": "One-click jumps",
-          "capabilities.jump.copy": "Jump directly to the section you want to read.",
-          "capabilities.chapter.title": "Chapter View",
-          "capabilities.chapter.copy": "Focus on one section, search it, & copy what you need.",
+          "capabilities.title": "Find the section you need",
+          "capabilities.intro": "Pick one and see it in the window.",
+          "how.toc.title": "Jump to a section",
+          "how.toc.headline": "Like a contents page",
+          "how.toc.body": "Click a heading and that part of the answer is marked.",
+          "how.toc.b1": "Every section is a row",
+          "how.toc.b2": "A click jumps there",
+          "how.toc.b3": "Markers stay on the reply",
+          "how.outline.title": "See the structure",
+          "how.outline.headline": "See what each section holds",
+          "how.outline.body": "Outline nests the same answer, parents and the pieces inside them.",
+          "how.outline.b1": "Parents, and their sections",
+          "how.outline.b2": "The shape, not only the titles",
+          "how.outline.b3": "The same answer as TOC",
+          "how.tab": "Chat",
+          "how.prompt": "Summarize the launch plan.",
+          "how.h.decision": "The decision",
+          "how.p.decision": "Ship the smaller release on Friday and hold the rest.",
+          "how.h.slips": "What slips first",
+          "how.p.slips": "Two pieces move if the week gets tight.",
+          "how.h.timeline": "Timeline",
+          "how.h.owners": "Owners",
+          "how.h.checkin": "The next check-in",
+          "how.p.checkin": "Review the cut list Monday morning, before the build locks.",
+          "how.toc": "TOC",
+          "how.outline": "Outline",
+          "how.search.toc": "Search headings",
+          "how.search.outline": "Search structure",
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
@@ -3227,7 +4671,7 @@
           "nav.skip": "跳到正文",
           "nav.menu.open": "打开菜单",
           "nav.menu.close": "关闭菜单",
-          "nav.install": "下载",
+          "nav.install": "免费试用",
           "nav.features": "功能",
           "nav.updates": "更新记录",
           "nav.issues": "GitHub 问题反馈",
@@ -3245,21 +4689,41 @@
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
-          "hero.title": "长篇 AI 对话<br>更易阅读和跳转。",
+          "hero.title": "<span class=\"headline-line\">长篇 <span class=\"platform-slot\" data-platform-slot></span> 对话</span><span class=\"headline-line\">一键 <span class=\"platform-slot\" data-platform-slot></span> 跳转。</span>",
           "hero.intro": "Polaris 为 AI 回答添加章节标记和一键跳转。",
           "hero.explore": "了解工作方式",
-          "hero.install": "安装 Polaris",
+          "hero.install": "免费试用",
           "platforms.title": "当前支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
-          "capabilities.title": "更清晰地阅读长篇回答",
-          "capabilities.intro": "快速了解回答结构，不再丢失当前位置。",
-          "capabilities.markers.title": "章节标记",
-          "capabilities.markers.copy": "一眼查看长篇 AI 回答的内容结构。",
-          "capabilities.jump.title": "一键跳转",
-          "capabilities.jump.copy": "直接跳到你想阅读的章节。",
-          "capabilities.chapter.title": "章节视图",
-          "capabilities.chapter.copy": "专注阅读单个章节，搜索并复制需要的内容。",
+          "capabilities.title": "找到你要的那一节",
+          "capabilities.intro": "选一个，在右边窗口里看。",
+          "how.toc.title": "跳到某一节",
+          "how.toc.headline": "像目录一样跳",
+          "how.toc.body": "点一个标题，那一节会被标出来。",
+          "how.toc.b1": "每个小节一行",
+          "how.toc.b2": "点一下就到",
+          "how.toc.b3": "标记留在回答上",
+          "how.outline.title": "看结构",
+          "how.outline.headline": "看清每一节里有什么",
+          "how.outline.body": "Outline 把同一篇回答按层级摊开。",
+          "how.outline.b1": "上级和里面的小节",
+          "how.outline.b2": "先看结构，再读",
+          "how.outline.b3": "和 TOC 是同一篇",
+          "how.tab": "对话",
+          "how.prompt": "概括一下发布计划。",
+          "how.h.decision": "这次的决定",
+          "how.p.decision": "周五先发较小的版本，其余部分先留着。",
+          "how.h.slips": "最先会推迟的部分",
+          "how.p.slips": "这一周如果变紧，有两块会往后挪。",
+          "how.h.timeline": "时间",
+          "how.h.owners": "负责人",
+          "how.h.checkin": "下一次核对",
+          "how.p.checkin": "周一早上先看删减清单，再锁定构建。",
+          "how.toc": "TOC",
+          "how.outline": "Outline",
+          "how.search.toc": "搜索标题",
+          "how.search.outline": "搜索结构",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
@@ -3310,6 +4774,26 @@
 
         if (!isOpen && restoreFocus) {
           menuToggle.focus();
+        }
+      }
+
+      function syncPastHero() {
+        if (!siteHeader || !headerDownload || !heroRegion) {
+          return;
+        }
+
+        const navClearance = siteHeader.getBoundingClientRect().bottom + 8;
+        const pastHero = heroRegion.getBoundingClientRect().bottom <= navClearance;
+        siteHeader.dataset.pastHero = String(pastHero);
+        headerDownload.setAttribute("aria-hidden", String(!pastHero));
+
+        if (pastHero) {
+          headerDownload.removeAttribute("tabindex");
+        } else {
+          headerDownload.tabIndex = -1;
+          if (document.activeElement === headerDownload) {
+            headerDownload.blur();
+          }
         }
       }
 
@@ -3381,6 +4865,134 @@
         updatesCollapse.hidden = !updatesExpanded;
       }
 
+      const headlinePlatforms = Object.freeze([
+        { name: "ChatGPT", src: "icons/platforms/platform-chatgpt.png", width: 512 },
+        { name: "Claude", src: "icons/platforms/platform-claude.png", width: 512 },
+        { name: "Gemini", src: "icons/platforms/platform-gemini.png", width: 512 },
+        { name: "Grok", src: "icons/platforms/platform-grok.png", width: 512 },
+        { name: "Doubao", src: "icons/platforms/platform-doubao.png", width: 512 },
+        { name: "Kimi", src: "icons/platforms/platform-kimi.png", width: 512 },
+        { name: "Qwen", src: "icons/platforms/platform-qianwen.png", width: 512 },
+        { name: "Yuanbao", src: "icons/platforms/platform-yuanbao.png", width: 512 },
+        { name: "Diandian AI", src: "icons/platforms/platform-xiaohongshu.png", width: 512 },
+        { name: "Manus", src: "icons/platforms/platform-manus.png", width: 512 },
+        { name: "DeepSeek", src: "icons/platforms/platform-deepseek.png", width: 512 }
+      ]);
+      let headlinePlatformTimer = null;
+
+      function makePlatformIcon(platform) {
+        const icon = document.createElement("span");
+        icon.className = "platform-icon";
+        icon.dataset.name = platform.name;
+        icon.title = platform.name;
+        const image = document.createElement("img");
+        image.src = platform.src;
+        image.srcset = `${platform.src} 3x`;
+        image.width = 88;
+        image.height = 88;
+        image.alt = platform.name;
+        image.decoding = "sync";
+        image.draggable = false;
+        icon.append(image);
+        return icon;
+      }
+
+      function shownPlatformNames() {
+        return new Set([...document.querySelectorAll(".platform-icon:not(.is-leaving)")].map((icon) => icon.dataset.name));
+      }
+
+      function nextHeadlinePlatform(slot) {
+        const current = slot.querySelector(".platform-icon:not(.is-leaving)")?.dataset.name;
+        const visible = shownPlatformNames();
+        const choices = headlinePlatforms.filter((platform) => platform.name !== current && !visible.has(platform.name));
+        const pool = choices.length ? choices : headlinePlatforms.filter((platform) => platform.name !== current);
+        return pool[Math.floor(Math.random() * pool.length)] || headlinePlatforms[0];
+      }
+
+      function swapHeadlinePlatform(slot) {
+        if (slot.dataset.busy === "true") {
+          return;
+        }
+
+        const current = slot.querySelector(".platform-icon:not(.is-leaving)");
+        if (!current) {
+          return;
+        }
+
+        slot.dataset.busy = "true";
+        const incoming = makePlatformIcon(nextHeadlinePlatform(slot));
+        slot.append(incoming);
+        window.requestAnimationFrame(() => {
+          current.classList.add("is-leaving");
+          incoming.classList.add("is-shown");
+        });
+        window.setTimeout(() => {
+          current.remove();
+          slot.dataset.busy = "false";
+        }, 260);
+      }
+
+      function initHeadlinePlatforms() {
+        if (headlinePlatformTimer !== null) {
+          window.clearInterval(headlinePlatformTimer);
+          headlinePlatformTimer = null;
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const slots = [...document.querySelectorAll("[data-platform-slot]")];
+        slots.forEach((slot, index) => {
+          const icon = makePlatformIcon(headlinePlatforms[index % headlinePlatforms.length]);
+          slot.replaceChildren(icon);
+          slot.dataset.busy = "false";
+          if (reduceMotion) {
+            slot.classList.add("is-open");
+            icon.classList.add("is-shown");
+            return;
+          }
+
+          slot.classList.remove("is-open");
+          icon.classList.remove("is-shown");
+          window.requestAnimationFrame(() => {
+            slot.classList.add("is-open");
+            window.setTimeout(() => icon.classList.add("is-shown"), 200 + (index * 70));
+          });
+        });
+
+        const headline = document.querySelector("#hero-title");
+        if (!headline.dataset.platformPauseBound) {
+          headline.dataset.platformPauseBound = "true";
+          headline.addEventListener("mouseenter", () => {
+            headline.dataset.paused = "true";
+          });
+          headline.addEventListener("mouseleave", () => {
+            headline.dataset.paused = "false";
+          });
+          headline.addEventListener("focusin", () => {
+            headline.dataset.paused = "true";
+          });
+          headline.addEventListener("focusout", () => {
+            headline.dataset.paused = "false";
+          });
+        }
+
+        if (reduceMotion || slots.length === 0) {
+          return;
+        }
+
+        headlinePlatformTimer = window.setInterval(() => {
+          if (headline.dataset.paused === "true") {
+            return;
+          }
+
+          const liveSlots = [...document.querySelectorAll("[data-platform-slot]")];
+          if (!liveSlots.length) {
+            return;
+          }
+
+          swapHeadlinePlatform(liveSlots[Math.floor(Math.random() * liveSlots.length)]);
+        }, 2040);
+      }
+
       function setLanguage(locale, persist = true) {
         const dictionary = translations[locale] || translations.en;
         currentLocale = locale in translations ? locale : "en";
@@ -3415,6 +5027,7 @@
         document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         renderReleaseNotes();
+        initHeadlinePlatforms();
         updateLanguageToggle(dictionary);
         updateThemeToggle(dictionary);
         setLanguageMenuOpen(false);
@@ -3430,6 +5043,14 @@
       const savedTheme = window.localStorage.getItem(themeStorageKey);
       setTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : currentTheme, false);
       setLanguage(savedLocale === "zh-CN" || savedLocale === "en" ? savedLocale : browserLocale, false);
+      syncPastHero();
+      window.addEventListener("scroll", syncPastHero, { passive: true });
+      window.addEventListener("resize", syncPastHero);
+      window.addEventListener("pageshow", syncPastHero);
+      window.addEventListener("load", () => {
+        syncPastHero();
+        window.requestAnimationFrame(syncPastHero);
+      });
       menuToggle.addEventListener("click", () => {
         setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
       });
@@ -3950,6 +5571,76 @@
         paypalLink.target = "_blank";
         paypalLink.rel = "noreferrer";
         paypalLink.removeAttribute("aria-disabled");
+      }
+
+      const howStage = document.querySelector("[data-how-stage]");
+
+      if (howStage) {
+        const howTabs = [...howStage.querySelectorAll("[role='tab']")];
+        const howNotes = [...howStage.querySelectorAll(".how-note")];
+        const howPanels = [...howStage.querySelectorAll("[data-how-panel]")];
+        const howSearches = [...howStage.querySelectorAll("[data-how-search]")];
+
+        const setHowMode = (mode) => {
+          howStage.dataset.mode = mode;
+          howTabs.forEach((tab) => {
+            const selected = tab.dataset.howMode === mode;
+            tab.setAttribute("aria-selected", String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+          });
+          howNotes.forEach((note) => {
+            note.setAttribute("aria-pressed", String(note.dataset.howMode === mode));
+          });
+          howPanels.forEach((panel) => {
+            const current = panel.dataset.howPanel === mode;
+            panel.classList.toggle("is-current", current);
+            panel.setAttribute("aria-hidden", String(!current));
+            panel.toggleAttribute("inert", !current);
+          });
+          howSearches.forEach((label) => {
+            label.classList.toggle("is-current", label.dataset.howSearch === mode);
+          });
+          setHowActive(mode === "outline" ? "timeline" : "decision");
+        };
+
+        const setHowActive = (id) => {
+          howStage.dataset.active = id;
+          howStage.querySelectorAll("[data-how-jump]").forEach((control) => {
+            const current = control.dataset.howJump === id;
+            if (current) {
+              control.setAttribute("aria-current", "true");
+            } else {
+              control.removeAttribute("aria-current");
+            }
+          });
+        };
+
+        howStage.addEventListener("click", (event) => {
+          const modeControl = event.target.closest("[data-how-mode]");
+          if (modeControl && howStage.contains(modeControl)) {
+            setHowMode(modeControl.dataset.howMode);
+            return;
+          }
+
+          const jump = event.target.closest("[data-how-jump]");
+          if (jump && howStage.contains(jump)) {
+            setHowActive(jump.dataset.howJump);
+          }
+        });
+
+        howStage.querySelector(".side-tabs")?.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+            return;
+          }
+
+          event.preventDefault();
+          const current = howTabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+          const next = event.key === "ArrowRight" ? (current + 1) % howTabs.length : (current - 1 + howTabs.length) % howTabs.length;
+          setHowMode(howTabs[next].dataset.howMode);
+          howTabs[next].focus();
+        });
+
+        setHowMode(howStage.dataset.mode || "toc");
       }
     </script>
   </body>
