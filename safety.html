@@ -25,10 +25,12 @@
     <p>How Polaris handles conversation content, permissions and external connections.</p>
     <h2>1. What Polaris Reads</h2>
 <p>Polaris reads supported AI conversation pages to build navigation, search and reading views. Complete ChatGPT and Gemini mode can request earlier messages in the current conversation through your existing website session. This makes a network request to the AI provider; local processing does not mean offline operation or provider approval of the access method.</p>
+<p>These features do not send conversations to OpenAI's public Responses API for inference, or offer Sign in with ChatGPT or ChatGPT plan usage. OpenAI's <a href="https://developers.openai.com/siwc/token-sharing-open-source">official OAuth plan-usage permission</a> does not grant access to ChatGPT conversations. Website-session credentials and OAuth plan-usage authorization are distinct; the existence of official API documentation does not authorize website-history access.</p>
 <h2>2. What Stays Local</h2>
 <p>Conversation text, search indexes and Markdown/HTML generation are processed in your browser. Polaris does not upload conversation text to the developer or a separate processing server. Copying writes to your system clipboard; downloaded files and any later sharing or cloud backup are controlled by you and the applications you use.</p>
 <p>Complete-reading snapshots can persist in the extension's local IndexedDB, isolated by confirmed identity and conversation, up to 100 MiB compressed. They remain after you close a page or turn complete mode off, until cleared, evicted or removed with the extension. Unknown identities and private windows skip persistent caching. Short-lived ChatGPT bridge snapshots are filtered and expire within 60 seconds. Hidden reasoning, tool messages and alternate branches are excluded from cached snapshots.</p>
 <p>Gzip is compression, not application-layer encryption. Protect your device and browser profile; local storage is not a guarantee against someone who already has access to them.</p>
+<p>The <code>store: false</code> requirement for OpenAI's separate plan-usage inference flow is not a control for Polaris's local history cache or a blanket zero-retention guarantee. Any future official API feature would need its own data-handling disclosure under the applicable provider <a href="https://developers.openai.com/api/docs/guides/your-data">data controls</a>. The local cache described here is part of the current website-reading feature.</p>
 <h2>3. Login Sessions and Browser Permissions</h2>
 <p>Polaris does not ask for your AI password. Complete readers use short-lived authentication data in the website's page context; those credentials are not sent in extension bridge messages, diagnostic logs, persistent caches or settings synchronization.</p>
 <p>The extension requests access to supported AI sites, storage, scripting, tabs and the side panel where supported, plus the disclosed licensing host. The tabs permission is used to select the source tab and coordinate the side panel and can expose open-tab metadata; it should not be described as an inability to see other tabs. Polaris does not request the browser history permission or build a browsing-history database. Review the installed version's permissions and site access in your browser's extension manager.</p>
@@ -47,10 +49,12 @@
     <p>Polaris 如何处理会话内容、浏览器权限与外部连接。</p>
     <h2>1. Polaris 读取什么</h2>
 <p>Polaris 读取受支持 AI 会话页面，用于导航、搜索和阅读。ChatGPT、Gemini 完整模式可通过网页已有登录态请求当前会话更早的消息。这会向 AI 平台发起网络请求；本地处理不等于离线运行，也不代表平台许可该访问方式。</p>
+<p>这些功能不将会话发送至 OpenAI 公共 Responses API 进行推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">官方 OAuth 套餐用量授权</a>不包含读取 ChatGPT 会话的权限。网页登录凭据与 OAuth 套餐用量授权不同；官方 API 文档的存在不构成对网页历史读取的许可。</p>
 <h2>2. 哪些内容留在本机</h2>
 <p>会话正文、索引、搜索及 Markdown/HTML 生成在浏览器中处理，Polaris 不把正文上传给开发者或其他处理服务器。复制会写入系统剪贴板；下载文件及后续分享、云备份由用户和所用应用管理。</p>
 <p>完整读取快照可存于扩展自己的本地 IndexedDB，按确认的身份和会话隔离，压缩总量上限为 100 MiB。关闭页面或完整模式后仍保留，直至清除、淘汰或卸载。身份未知及隐私窗口跳过持久化。ChatGPT 页面桥接的短期快照先经过过滤，最长 60 秒失效。缓存排除隐藏推理、工具消息和其他分支。</p>
 <p>gzip 是压缩而非应用层加密。请保护设备及浏览器配置；本地存储无法保证抵御已能访问设备或浏览器的人。</p>
+<p>OpenAI 独立套餐推理流程中的 <code>store: false</code> 要求不控制 Polaris 的本地历史缓存，也不是全面零留存保证。未来若增加官方 API 功能，须依据适用的厂商<a href="https://developers.openai.com/api/docs/guides/your-data">数据控制规则</a>另行披露数据处理方式；此处本地缓存属于当前网页读取功能。</p>
 <h2>3. 登录态与浏览器权限</h2>
 <p>Polaris 不索要 AI 账号密码。完整读取使用网页环境中的短期鉴权信息，不将其写入扩展桥接消息、诊断日志、持久缓存或设置同步。</p>
 <p>扩展请求受支持 AI 网站访问、存储、脚本注入、标签页，以及浏览器支持的侧栏权限，并联系已披露的许可服务域名。标签页权限用于选择来源标签页和协调侧栏，能够涉及已打开标签页的元数据，因此不能表述成“完全看不到其他标签页”。Polaris 不请求浏览历史权限，也不建立浏览历史数据库。请在扩展管理页核对所装版本的实际权限与网站访问范围。</p>
