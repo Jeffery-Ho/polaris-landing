@@ -16,7 +16,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 ## SEO
 
 - The homepage canonical URL is `https://polaris-ai.work/` and its page title is `Polaris AI — AI Chat Navigator for Long Answers`.
-- `robots.txt` permits crawling, while `sitemap.xml` lists the homepage and privacy page for submission in Google Search Console.
+- `robots.txt` permits crawling, while `sitemap.xml` lists the homepage and privacy, terms, security and refund pages for submission in Google Search Console.
 - The homepage emits Organization and SoftwareApplication/WebApplication JSON-LD. The reserved `/support/` path is intentionally excluded from indexing until its content is ready.
 - [SEARCH_CONSOLE.md](SEARCH_CONSOLE.md) records the remaining account-only indexing steps and the 7/28/90-day brand-query baseline.
 
@@ -24,6 +24,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 - The page does not initialize or send analytics through Google Analytics or SLS until a visitor explicitly chooses “Allow analytics”.
 - Once enabled, GA4 receives only the support-entry arrival from Polaris and a click on the video recovery play button; automatic page views are disabled. SLS records landing-page arrivals and local ZIP download actions, including UTM attribution when available, a same-origin extension-entry fallback, and `direct_share` attribution for homepage visits without source parameters. This direct category also includes bookmarks, manually entered URLs, and links whose parameters were removed. Events include normalized device, browser, operating-system, viewport, and language categories. A download action means the visitor triggered the browser download control; it does not confirm that the file was saved. Neither service receives raw User-Agent values, device models, IP addresses, full URLs, AI conversation content, extension settings, or PayPal payment details as event fields.
+- Bilingual [Privacy Policy](privacy.html), [Terms of Use](terms.html), [Security](safety.html) and [Refund Policy](refund.html) describe extension and website data handling, third-party service boundaries, permissions and purchase support. The voluntary refund policy permits requests within 14 days for unactivated licenses, with specified exceptions after activation and mandatory consumer rights preserved. Legal pages initialize no analytics and reuse only homepage language/theme preferences.
 - Visitors can change this choice from “Analytics settings” in the footer. The full disclosure is available at [privacy.html](privacy.html).
 - SLS event definitions, query examples, and the Aliyun deployment checklist are documented in [Doc/sls-analytics.md](Doc/sls-analytics.md).
 

@@ -71,7 +71,7 @@ test("release script switches atomically and retains only the current and previo
   const siteRoot = join(temporaryRoot, "site");
   const releaseScript = new URL("../deploy/release.sh", import.meta.url).pathname;
   const entries = ["assets", "entry", "fonts", "icons", "support", "vendor"];
-  const files = ["index.html", "privacy.html", "robots.txt", "sitemap.xml", "support-config.js"];
+  const files = ["index.html", "privacy.html", "terms.html", "safety.html", "refund.html", "robots.txt", "sitemap.xml", "support-config.js"];
   const first = "a".repeat(40);
   const second = "b".repeat(40);
   const third = "c".repeat(40);
@@ -88,6 +88,9 @@ test("release script switches atomically and retains only the current and previo
 
     assert.equal(release(first).status, 0);
     assert.equal(await readFile(join(siteRoot, "current", "index.html"), "utf8"), "first");
+    for (const name of ["privacy.html", "terms.html", "safety.html", "refund.html"]) {
+      assert.equal(await readFile(join(siteRoot, "current", name), "utf8"), "fixture");
+    }
     assert.equal(((await stat(join(siteRoot, "current", "index.html"))).mode & 0o444) !== 0, true);
     assert.equal(await readlink(join(siteRoot, "current")), join(await realpath(siteRoot), "releases", first));
 

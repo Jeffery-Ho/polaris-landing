@@ -1,0 +1,22 @@
+@font-face { font-family: "Polaris Sans"; font-style: normal; font-weight: 100 1000; font-display: swap; src: url("../fonts/roboto-flex-latin.woff2") format("woff2"); }
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: Canvas; color: CanvasText; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-platform="windows"] { font-family: "Polaris Sans", "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(760px, calc(100% - 40px)); margin: auto; padding: 36px 0 64px; }
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+.language { display: flex; gap: 8px; }
+button { font: inherit; padding: 8px 12px; border: 1px solid color-mix(in srgb, CanvasText 25%, Canvas); border-radius: 8px; background: Canvas; color: CanvasText; cursor: pointer; }
+button[aria-pressed="true"] { background: CanvasText; color: Canvas; }
+a { color: LinkText; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid Highlight; outline-offset: 4px; }
+h1 { margin: 0; font-size: clamp(34px, 6vw, 52px); line-height: 1.2; letter-spacing: -0.04em; }
+h2 { margin: 38px 0 12px; font-size: 23px; line-height: 1.35; }
+h3 { font-size: 18px; line-height: 1.4; }
+p, li { line-height: 1.75; overflow-wrap: anywhere; color: color-mix(in srgb, CanvasText 86%, Canvas); }
+ul { padding-left: 24px; }
+.updated { font-size: 14px; color: color-mix(in srgb, CanvasText 65%, Canvas); }
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, CanvasText 20%, Canvas); font-size: 14px; line-height: 1.8; }
+[hidden] { display: none !important; }

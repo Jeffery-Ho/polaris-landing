@@ -1,49 +1,365 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Privacy information for Polaris AI Navigator, a Chrome extension for navigating long AI answers.">
-    <link rel="canonical" href="https://polaris-ai.work/privacy.html">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png">
-    <title>Privacy · Polaris AI Navigator</title>
-    <script>
-      if (/^Win/i.test(navigator.userAgentData?.platform || navigator.platform || "")) {
-        document.documentElement.dataset.platform = "windows";
-      }
-    </script>
-    <style>
-      @font-face { font-family: "Polaris Sans"; font-style: normal; font-weight: 100 1000; font-stretch: 100%; font-display: swap; src: url("fonts/roboto-flex-latin.woff2") format("woff2"); }
-      :root { color: #15161a; background: #f8f8fb; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
-      :root[data-platform="windows"] { font-family: "Polaris Sans", "Segoe UI", sans-serif; }
-      * { box-sizing: border-box; }
-      body { margin: 0; }
-      main { width: min(720px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0; }
-      a { color: #2450c7; }
-      h1 { margin: 0; font-size: clamp(38px, 7vw, 56px); letter-spacing: -0.06em; }
-      h2 { margin: 36px 0 10px; font-size: 21px; letter-spacing: -0.035em; }
-      p, li { color: #4d5e7e; line-height: 1.65; }
-      .back { display: inline-block; margin-bottom: 28px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-      .updated { margin-top: 30px; font-size: 14px; }
-    </style>
-  </head>
-  <body>
-    <main>
-      <a class="back" href="./">Back to Polaris AI</a>
-      <h1>Privacy</h1>
-      <h2>Extension data</h2>
-      <p>Polaris reads the content of the AI chat pages you already have open in your browser, locally on your device, to build section markers and navigation. Your conversation content is processed locally and cached in your browser's local storage. It is not uploaded to our servers. Polaris does not require an account, and we do not sell or share your data. If you contact us at <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>, we will only use your email to reply to you.</p>
-      <h2>Support-page analytics</h2>
-      <p>Only after you choose “Allow analytics” on the Polaris support page, the page initializes and sends data through Google Analytics 4 and the Aliyun SLS WebTracking SDK. The SDK files may be loaded by the page, but no analytics event is initialized or sent before consent. Automatic page views are disabled.</p>
-      <p>Google Analytics measures visits arriving through the Polaris extension support link and clicks on the video recovery play button. SLS records a consented landing-page arrival and when a visitor triggers the local ZIP download action. UTM values are used when available; the extension also has a same-origin entry path that can provide the fixed source category <code>polaris_extension</code> when a browser removes UTM parameters. Homepage visits without source parameters use <code>direct_share</code> and <code>direct</code>; this category also includes bookmarks, manually entered URLs, and links whose parameters were removed. Normalized device, browser, operating-system, viewport, and language categories support source-to-download analysis. A download action does not confirm that the file was saved successfully.</p>
-      <p>We do not include raw User-Agent values, device models, IP addresses, full URLs, AI conversation content, extension settings, account information, or PayPal payment details as event fields for either analytics service. Your choice is saved locally in your browser and can be changed from “Analytics settings” in the support-page footer.</p>
-      <h2>Payments and external links</h2>
-      <p>The PayPal button opens PayPal in a new tab. Any payment information you provide is handled by PayPal under its own privacy terms.</p>
-      <h2>Google Analytics</h2>
-      <p>Google may process information according to its <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>. You can decline analytics and continue using the support page.</p>
-      <h2>Aliyun SLS</h2>
-      <p>Aliyun may process the SLS event data according to its <a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html" target="_blank" rel="noreferrer">third-party SDK privacy description</a>. The landing page uses temporary STS credentials for browser-side log delivery.</p>
-      <p class="updated">Last updated: October 29, 2026.</p>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy Policy for the Polaris browser extension and website.">
+  <link rel="canonical" href="https://polaris-ai.work/privacy.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png">
+  <link rel="stylesheet" href="assets/legal.css">
+  <script src="assets/legal.js" defer></script>
+  <title>Privacy Policy · Polaris AI</title>
+</head>
+<body>
+<main>
+  <nav aria-label="Legal pages">
+    <a href="./">Polaris AI</a>
+    <div class="language" role="group" aria-label="Language / 语言">
+      <button type="button" data-legal-language="en" lang="en">English</button>
+      <button type="button" data-legal-language="zh-CN" lang="zh-CN">简体中文</button>
+    </div>
+  </nav>
+  <article lang="en" data-legal-locale="en">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: November 4, 2026</p>
+    <p>This policy covers the Polaris browser extension and website. The website analytics disclosures below supplement the extension’s data-handling policy.</p>
+    <h2>1. Information We Process</h2>
+
+      <h3>Website Content</h3>
+      <p>
+        Polaris: AI Chat Navigator accesses the text and document structure of AI-generated responses
+        displayed on supported websites. When complete indexing is enabled for ChatGPT or Gemini, it also requests the current conversation's
+        active branch of user-visible messages through the selected site's same-origin session to build a complete
+        outline and full-text search index. This index stays in memory across DOM removal and
+        is cleared on conversation changes, page refresh or closure, or disabling complete indexing.
+        While complete mode is enabled, the ChatGPT page bridge may also keep filtered snapshots
+        of recently opened conversations for up to 60 seconds to reuse the site's own loading work,
+        limited to three snapshots per private or shared conversation type. These temporary snapshots
+        contain only the active branch's user-visible messages, are invalidated when an account or workspace
+        change is detected, and are cleared when complete mode is disabled or the page closes.
+        Complete indexing also stores a gzip-compressed snapshot of the active branch's user-visible messages
+        and parsed records in the extension's own local IndexedDB, isolated by a confirmed account,
+        workspace, and conversation. These snapshots are not synchronized or uploaded. Unknown
+        identities and private windows skip persistent caching. Hidden reasoning, tool messages,
+        alternate branches, and downloaded attachments are not included in the cache.
+        This access is necessary to identify headings and
+        list structures, generate navigation markers, scroll to selected sections, and show
+        AI response content in the full-screen text-selection feature, and support user-initiated
+        conversation copying and file export.
+      </p>
+      <p>
+        Website content is processed locally within the user's browser. It is not transmitted
+        to the developer or to any third-party server. Complete ChatGPT and Gemini indexing uses the existing page session to authenticate same-origin requests to the selected site.
+        Short-lived authentication data remains in the page context and is never placed in extension
+        messages, diagnostic logs, persistent storage, or synchronization. Polaris does not ask for passwords.
+      </p>
+
+      <h3>Extension Settings</h3>
+      <p>
+        Polaris: AI Chat Navigator stores user preferences such as top and right spacing, the maximum
+        number of visible markers, tooltip width, enabled heading levels, and unordered-list
+        marker preferences. The complete-conversation reading preference applies to ChatGPT and
+        Gemini across subsequent conversations. It is synchronized with the other preferences;
+        when browser synchronization is enabled, it can enable complete reading in other signed-in
+        browsers where the feature is available. Conversation snapshots themselves are never synchronized.
+      </p>
+      <p>
+        These settings are stored using the Chrome Storage Sync API. If browser synchronization
+        is enabled, the settings may be synchronized across the user's signed-in Chrome browsers
+        by Google under Google's applicable privacy terms. The developer cannot access these
+        synchronized settings.
+      </p>
+
+      <h3>Trials, Purchases and Licenses</h3>
+      <p>
+        Polaris can contact its license service to initialize a seven-day trial, obtain available
+        plans and validate an existing license. It generates a random installation identifier and
+        independent credential; these, device activation credentials and pending purchase claims
+        are stored in Chrome Storage Local and are not synchronized. Free platform choices stay
+        on the device. No Polaris account or hardware fingerprint is required.
+      </p>
+      <p>
+        When you choose to purchase, Stripe-hosted Checkout processes payment and collects your
+        checkout email. Card information is not stored by the extension or license service.
+        The Cloudflare Worker and D1 service store the order, license and activation records needed
+        for fulfillment and validation. License and activation verifiers are hashed; email and
+        license delivery material are encrypted separately for delivery and recovery. Configured
+        transactional email delivery uses Resend. Neither payment nor licensing includes AI
+        conversations, prompts, browsing history, full browsing URLs or hardware fingerprints.
+      </p>
+      <p>
+        A recovery request uses the checkout email and returns the same confirmation whether or
+        not a matching purchase exists. The service uses short-lived hashed-IP counters and
+        delivery throttling to limit abuse. The test integration is separate from a production
+        billing rollout, and local UI previews do not charge a payment method.
+      </p>
+
+      <h3>Diagnostic Logs</h3>
+      <p>
+        If the user explicitly selects a diagnostic action in About &amp; Settings, Polaris: AI Chat Navigator
+        records a bounded session-only log for the current tab. The log contains the extension
+        version, coarse platform and browser summaries, viewport measurements, pointer-drag
+        lifecycle outcomes, route and render counts, and error type names. It is designed to
+        exclude AI response text, marker titles, full URLs, account information, prompts, cookies,
+        tokens, error messages, and stack traces. Complete-reading events may also include
+        a cache-hit flag, stage durations, and a count of additional history-page requests.
+      </p>
+      <p>
+        The log is stored only in the current tab's session storage until the tab is closed or the
+        session is cleared. "Download only" saves a redacted JSON file locally. "Send diagnostic
+        log" also opens a pre-addressed email draft to
+        <a href="mailto:jefferyho.build@gmail.com">jefferyho.build@gmail.com</a>; the browser does
+        not automatically attach the local file, so the user chooses whether to attach and send it.
+        Polaris: AI Chat Navigator does not upload diagnostic logs or add a background upload service.
+      </p>
+
+      <h3>Clipboard</h3>
+      <p>
+        When the user activates a copy action, Polaris: AI Chat Navigator writes the selected text,
+        a chapter, or conversation text to the system clipboard. Full-conversation copying includes
+        user messages and AI replies in the active branch and is independent of chapter filters or
+        folding. Complete-index copying is available only after reading finishes; page-based copying
+        includes only content already read from the page. The extension does not read existing
+        clipboard content or upload copied text. Clipboard contents are managed by the user's
+        operating system and any clipboard tools the user has enabled.
+      </p>
+
+      <h3>Conversation File Export</h3>
+      <p>
+        After copying a conversation, the user can explicitly save the same message scope as Markdown
+        or HTML. Files are generated locally in the browser and downloaded to a location managed by
+        the user; conversation text is not sent to a processing server. Exported images are represented
+        by text labels, and raw message HTML is sanitized or escaped. Normal links remain clickable;
+        following them contacts their destination. Downloaded files remain until the user deletes them,
+        independently of the extension's cache. Any sharing or cloud backup of these files is controlled
+        by the user and the applications or services they choose.
+      </p>
+
+      <h2>2. How We Use Information</h2>
+      <p>
+        Information accessed by Polaris: AI Chat Navigator is used solely to provide its user-facing
+        features, including section detection, navigation markers, click-to-scroll navigation,
+        display customization, full-conversation indexing and search, full-screen text selection,
+        chapter or conversation copying, and local Markdown or HTML file export.
+      </p>
+      <p>The extension does not use information for:</p>
+      <ul>
+        <li>Advertising or personalized advertising;</li>
+        <li>Analytics or behavioral tracking within the extension;</li>
+        <li>User profiling;</li>
+        <li>Creditworthiness or lending decisions;</li>
+        <li>Selling or licensing user data; or</li>
+        <li>Unrelated product research.</li>
+      </ul>
+
+      <h2>3. Data Sharing and Disclosure</h2>
+      <p>
+        Polaris: AI Chat Navigator does not sell, rent or trade personal information. AI website
+        content is not shared with the developer, advertisers, data brokers or other third parties.
+        Payment and license information is processed only by the services described above to
+        provide the requested purchase, authorization, delivery and recovery features.
+      </p>
+      <p>
+        External processing includes license-service requests, user-initiated Stripe Checkout and
+        license email delivery, optional synchronization of extension settings through Chrome
+        Storage Sync, and the user's explicit choice to open a diagnostic file or email draft. The settings synchronization
+        service is provided and controlled by Google. The extension does not include third-party
+        analytics, telemetry, or advertising services, and it does not automatically transmit
+        diagnostic logs.
+      </p>
+      <p>
+        Polaris also links to a separate support webpage. That webpage loads Google Analytics only
+        after the visitor explicitly allows analytics. It measures only a support-page arrival from
+        Polaris and a video-loading play-button click; it does not receive AI conversation content,
+        extension settings, or PayPal payment details. The support page provides its own privacy
+        information and a way to change the analytics choice.
+      </p>
+
+      <h2>4. Data Retention</h2>
+      <p>
+        Default mode does not persist AI responses or user prompts. Opt-in complete ChatGPT and Gemini indexing
+        caches user-visible conversation text and parsed records locally, with a total compressed limit of
+        100 MiB. Least-recently-used entries are removed when space is needed. Snapshots remain after
+        closing a tab or disabling complete mode until the user selects Clear conversation cache in
+        Preferences, entries are evicted, or the extension is removed. Clearing also invalidates pending
+        old cache writes. The cache does not retain Maker navigation history or authentication credentials.
+      </p>
+      <p>
+        Extension settings remain in Chrome storage until they are reset or removed by the user
+        through the browser or extension settings. Synced settings may also be managed through
+        the user's Google Chrome synchronization settings.
+      </p>
+      <p>
+        Diagnostic events remain in session storage for the current tab, are bounded in count and
+        size, and are cleared when the tab session ends or when the browser clears session storage.
+        A downloaded copy remains under the user's control, and any email retention is governed by
+        the user's mail provider and choices.
+      </p>
+
+      <p>
+        Local installation and activation credentials remain until the extension is removed or
+        its local storage is cleared. Device deactivation revokes its activation credential but
+        retains the installation identity and trial deadline. Test license delivery ciphertext and
+        order records remain for the lifetime of that test license; delivery retry metadata does
+        not contain plaintext credentials. Short-lived rate-limit counters are periodically deleted.
+        Contact the developer about deleting server-side test purchase and license records.
+      </p>
+
+      <h2>5. Browser Permissions</h2>
+      <ul>
+        <li><strong>Storage permission:</strong> used to save and synchronize extension preferences. Complete-conversation snapshots use extension-owned local IndexedDB and are not synchronized.</li>
+        <li><strong>Host permissions:</strong> used to run the extension on supported AI chat websites, locally inspect AI response content for navigation, and contact the disclosed license-service host for trial and license operations.</li>
+      </ul>
+      <p>The extension requests only the permissions needed to provide its disclosed functionality.</p>
+
+      <h2>6. Data Security</h2>
+      <p>
+        Because website content is processed locally and is not transmitted to the developer,
+        Polaris: AI Chat Navigator does not maintain external databases containing user content. Any
+        synchronization of extension settings is handled through Chrome's Storage Sync service
+        and its associated security mechanisms. Local gzip compression is not application-layer encryption and does not replace device and browser access protection.
+      </p>
+
+      <h2>7. Chrome Web Store Limited Use Compliance</h2>
+      <p>
+        Polaris: AI Chat Navigator's use of information complies with the Chrome Web Store User Data Policy,
+        including the Limited Use requirements. Information accessed by the extension is used only
+        to provide or improve its disclosed single purpose. It is not used or transferred for
+        personalized advertising, profiling, data brokerage, creditworthiness decisions, or any
+        unrelated purpose.
+      </p>
+      <p>
+        No human is permitted to read user website content through Polaris: AI Chat Navigator because that
+        content is never transmitted to or stored by the developer.
+      </p>
+
+      <h2>8. User Choices</h2>
+      <p>
+        Users may stop all processing by disabling or uninstalling Polaris: AI Chat Navigator. Users may reset
+        extension preferences from the extension's settings interface, clear the current tab's
+        diagnostic session by closing the tab or clearing session storage, and may manage
+        synchronized data through their Chrome synchronization settings. Diagnostic export is
+        optional and user initiated.
+      </p>
+
+      <h2>9. Independent Tool and Third-Party AI Services</h2>
+      <p>
+        Polaris: AI Chat Navigator is an independently developed browser extension. It is not
+        affiliated with, endorsed by, or sponsored by OpenAI, Google, Anthropic, or the operators
+        of other supported AI services. Third-party product names and trademarks belong to their
+        respective owners and are used to identify the services with which Polaris works.
+      </p>
+      <p>
+        Polaris processes content from conversations the user can access through the supported
+        website. Complete ChatGPT and Gemini indexing can request additional history for the
+        current conversation using that website's existing signed-in session. These website-session
+        requests are not presented as an integration through an official developer API. Installing
+        Polaris, granting browser permissions, or enabling complete reading does not itself establish
+        permission from the AI service provider for any particular access method.
+      </p>
+      <p>
+        The AI service provider continues to control its accounts, content delivery, access restrictions,
+        and handling of data sent to that service. Its terms and privacy policy apply separately from
+        this policy and may vary by region, account type, or feature. For example, see
+        <a href="https://openai.com/policies/terms-of-use/">OpenAI's Terms of Use</a> and
+        <a href="https://openai.com/policies/privacy-policy/">Privacy Policy</a>, and
+        <a href="https://policies.google.com/terms">Google's Terms of Service</a> and
+        <a href="https://policies.google.com/privacy">Privacy Policy</a>.
+        For other supported platforms, consult the policies published by that provider.
+        This policy describes Polaris's data handling; it does not amend a provider's terms,
+        grant rights to its services, or authorize bypassing its access controls or restrictions.
+      </p>
+      <p>
+        Local reading, copying, and exporting do not transfer ownership of conversation content
+        to the developer or grant users additional rights in that content. Users should access,
+        export, and share only content they are authorized to use, with regard to applicable law,
+        third-party rights, confidentiality obligations, and the relevant service's terms.
+      </p>
+      <p>
+        Polaris features depend on third-party websites and the user's permitted access to them.
+        Changes to website interfaces, endpoints, policies, account permissions, or service availability
+        may temporarily or permanently affect reading, navigation, and export. Polaris does not
+        control those services and cannot guarantee continued compatibility or continued access to
+        them. Nothing in this policy excludes or limits rights or remedies that cannot be excluded
+        or limited under applicable law.
+      </p>
+
+      <h2>10. Changes to This Privacy Policy</h2>
+      <p>
+        This Privacy Policy may be updated if the extension's functionality or data-handling
+        practices change. Any material change to the types of information processed or how
+        information is used will be disclosed through an updated Privacy Policy and, where required,
+        through the extension interface or Chrome Web Store listing before the new practices take effect.
+      </p>
+
+
+<h2>11. Website Analytics, Hosting and External Links</h2>
+<p>On the Polaris website, Google Analytics 4 and Aliyun SLS analytics are initialized and send events only after you choose “Allow analytics”. SDK files may be loaded before that choice, but no analytics event is initialized or sent before consent. Automatic Google Analytics page views are disabled. You can decline analytics and continue using the site, or change your choice through “Analytics settings” in the homepage footer.</p>
+<p>Google Analytics measures support-entry arrivals from the extension and clicks on the video recovery play button. SLS records consented landing-page arrivals and local ZIP download actions. Events can include UTM attribution, a fixed <code>polaris_extension</code> source from the same-origin extension-entry path, or <code>direct_share</code>/<code>direct</code> when source parameters are absent, plus normalized device, browser, operating-system, viewport and language categories. Direct attribution also covers bookmarks, typed URLs and links with removed parameters. A download event records the action, not successful saving of the file.</p>
+<p>These event fields do not include raw User-Agent values, device models, IP addresses, full URLs, AI conversations, extension settings, account information or payment details. Network requests still expose connection information, such as the IP address, to the hosting, security or analytics provider receiving the request. Hosting and security providers, including Alibaba Cloud and Cloudflare where used in the delivery path, may process request metadata and necessary security cookies to deliver and protect the website. These network-level operations are separate from optional analytics events.</p>
+<p>The website stores your language, theme and analytics choice in your browser. The legal pages do not initialize analytics or request conversation content. Opening the PayPal support link sends you to PayPal; payment information you provide there is handled by PayPal under its own policies. Website pricing information does not create an extension trial or start payment collection.</p>
+<p>Provider information: <a href="https://policies.google.com/privacy">Google Privacy Policy</a>, <a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html">Aliyun SLS SDK privacy description</a>, <a href="https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy">Alibaba Cloud privacy information</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>, and <a href="https://www.paypal.com/legalhub/privacy-full">PayPal Privacy Statement</a>. SLS browser delivery uses temporary STS credentials.</p>
+
+      <h2>12. Contact</h2>
+      <p>
+        For privacy questions or requests, email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a> or contact the developer through
+        <a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues">Polaris: AI Chat Navigator GitHub Issues</a>.
+      </p>
+  </article>
+  <article lang="zh-CN" data-legal-locale="zh-CN">
+    <h1>隐私政策</h1>
+    <p class="updated">更新日期：2026 年 11 月 4 日</p>
+    <p>本政策涵盖 Polaris 浏览器扩展与官网。下方官网分析说明补充扩展的数据处理政策。</p>
+    <h2>1. 我们处理的信息</h2>
+<h3>会话内容与完整读取</h3>
+<p>Polaris 在浏览器本地读取受支持 AI 网页的回复内容与文档结构，用于目录、导航、搜索和阅读。开启 ChatGPT 或 Gemini 完整读取后，会使用当前网页已有登录态，通过同源请求补全当前会话活动分支中用户可见的消息。这里的“用户可见”不表示私人会话被公开。</p>
+<p>当前索引保留在内存中，切换会话、刷新或关闭页面、关闭完整读取时清除。完整模式开启期间，ChatGPT 页面桥接还可短暂保留最近打开会话的已过滤快照，以复用原站加载结果；私人和分享会话各最多三份，最长 60 秒，检测到账号或工作区变化后失效，关闭完整模式或页面时清除。</p>
+<p>完整读取会将活动分支的用户可见消息及解析记录以 gzip 压缩快照存入扩展自己的本地 IndexedDB。缓存按确认的账号、工作区和会话隔离，不同步、不上传；身份未知或隐私窗口跳过持久化。缓存不包含隐藏推理、工具消息、其他分支或下载的附件内容。正文不发送给开发者或第三方处理服务器。短期鉴权信息留在网页环境中，不进入扩展消息、诊断日志、持久化存储或同步；Polaris 不索要密码。</p>
+<h3>扩展设置</h3>
+<p>间距、显示数量、提示宽度、识别范围等偏好存于 Chrome Storage Sync。完整读取偏好适用于 ChatGPT、Gemini 及后续会话；开启浏览器同步后，也可在其他已登录且具备相应功能的浏览器生效。会话快照本身不会同步。同步由 Google 按其适用政策处理，开发者不能访问同步设置。</p>
+<h3>试用、购买与许可证</h3>
+<p>扩展可联系许可服务以初始化七天试用、获取方案和验证许可证。随机安装标识、独立凭据、设备激活凭据及待确认购买信息存于 Chrome Storage Local，不同步；免费平台选择留在本机。无需 Polaris 账号，不使用硬件指纹。</p>
+<p>用户选择购买后，由 Stripe 托管 Checkout 处理支付并收集结账邮箱，扩展与许可服务不保存银行卡信息。Cloudflare Worker 和 D1 保存履约、验证所需的订单、许可及激活记录；许可和激活验证值经过哈希处理，邮箱与许可交付材料分别加密。配置的事务邮件由 Resend 发送。这些流程不包含 AI 会话、提示词、浏览历史、完整浏览网址或硬件指纹。</p>
+<p>找回请求使用结账邮箱，无论是否存在匹配购买均返回相同确认；短期 IP 哈希计数与发送限速用于防滥用。测试集成与正式收款发布分开，本地界面预览不会扣款。</p>
+<h3>诊断日志</h3>
+<p>用户在设置中主动选择诊断操作后，扩展为当前标签页记录有条数和大小上限的会话日志，包括版本、粗粒度平台与浏览器信息、视口、指针拖动结果、路由和渲染次数、错误类型；完整读取事件还可包含缓存命中、阶段耗时和额外分页请求数。白名单设计排除正文、目录标题、完整网址、账号、提示词、Cookie、令牌、错误消息和堆栈。</p>
+<p>日志仅存于当前标签页 sessionStorage。“仅下载”保存脱敏 JSON；“发送诊断日志”另打开预填至 <a href="mailto:jefferyho.build@gmail.com">jefferyho.build@gmail.com</a> 的邮件草稿，不自动附加文件，由用户自行决定附件和发送。扩展不自动上传日志。</p>
+<h3>剪贴板与导出</h3>
+<p>用户主动复制时，扩展将所选文本、本章或会话文本写入系统剪贴板，不读取原有剪贴板、不上传复制正文。会话复制包含活动分支的用户消息与 AI 回复，不受章节筛选或折叠影响；完整索引读取结束后方可复制，页面来源仅包含已读取内容。剪贴板由系统及用户启用的剪贴板工具管理。</p>
+<p>复制后可主动保存相同范围的 Markdown 或 HTML，由浏览器本地生成下载，不发送至处理服务器。图片转为文字标签，原始 HTML 经清洗或转义；普通链接仍可点击，点击后会访问其目标。下载文件由用户保存和删除，不受扩展清缓存操作影响；分享及云备份由用户选择的应用或服务处理。</p>
+<h2>2. 信息用途</h2>
+<p>信息仅用于已说明的目录识别、导航、显示、完整索引与搜索、阅读、章节或会话复制及本地文件导出。不用于广告、扩展内行为追踪、用户画像、信用或贷款判断、出售或许可用户数据，以及无关产品研究。</p>
+<h2>3. 共享与披露</h2>
+<p>我们不出售、出租或交易个人信息；会话正文不共享给开发者、广告商、数据经纪商或其他第三方。支付和许可信息只由前述服务用于购买、授权、交付和找回。扩展不内置第三方分析、遥测或广告服务。许可请求、用户发起的结账与邮件交付、可选的设置同步，以及用户主动选择分享的诊断文件或邮件，分别按上述范围处理。官网的可选分析另见第 11 节。</p>
+<h2>4. 保留与清除</h2>
+<p>默认模式不持久化 AI 回复或提示词。完整读取的本地压缩缓存总量上限为 100 MiB，空间不足时按最近使用情况淘汰。关闭标签页或完整模式不会删除该缓存；用户可在偏好设置中“清除会话缓存”，或等待淘汰、卸载扩展。清除同时使旧的待写入任务失效。缓存不保存 Maker 导航历史或鉴权凭据。</p>
+<p>扩展设置保留至重置、清除或卸载；同步设置也可在浏览器同步设置中管理。诊断日志随标签页会话结束或 sessionStorage 清除而删除；已下载文件及已发送邮件由用户和邮件服务商管理。</p>
+<p>本机安装和激活凭据保留至卸载或清除本地存储。停用设备会撤销激活凭据，但保留安装标识和试用截止时间。测试许可证交付密文及订单记录保留至该测试许可证生命周期结束；邮件重试元数据不含明文凭据，短期限速计数定期删除。可联系开发者申请删除服务器上的测试购买和许可记录。</p>
+<h2>5. 浏览器权限</h2>
+<p>存储权限用于设置和本地会话缓存；网站权限用于在受支持网页提供已披露的功能，以及联系许可服务进行试用和授权操作。扩展仅请求提供已披露功能所需的权限。</p>
+<h2>6. 数据安全</h2>
+<p>会话正文在本地处理，开发者不维护保存会话正文的外部数据库。设置同步由 Chrome Storage Sync 及其安全机制处理。本地压缩不等于应用层加密，也不替代用户对设备和浏览器的访问保护。</p>
+<h2>7. Chrome 商店有限使用要求</h2>
+<p>Polaris 对信息的使用遵循 Chrome Web Store User Data Policy，包括 Limited Use 要求，仅用于提供或改善已披露的单一用途，不用于个性化广告、画像、数据经纪、信用判断或其他无关用途。开发者不接收或存储会话正文，也不通过该服务安排人工阅读用户网页内容。</p>
+<h2>8. 用户选择</h2>
+<p>用户可关闭完整模式、清除会话缓存、重置设置、管理浏览器同步、关闭标签页清除诊断会话，或停用、卸载扩展。诊断分享、复制和导出均由用户主动触发；官网分析可拒绝并随时调整。</p>
+<h2>9. 独立工具与第三方 AI 服务</h2>
+<p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Google、Anthropic 或其他受支持 AI 服务商，也未获得其背书或赞助。第三方名称和商标属于各自权利人，仅用于说明兼容服务。</p>
+<p>完整读取使用网页已有会话及同源请求，不以官方开发者 API 集成的名义提供。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。平台自己的条款和隐私政策独立适用，具体版本取决于地区、账号及功能。例如 <a href="https://openai.com/policies/terms-of-use/">OpenAI 使用条款</a>、<a href="https://openai.com/policies/privacy-policy/">隐私政策</a>与 <a href="https://policies.google.com/terms">Google 服务条款</a>、<a href="https://policies.google.com/privacy">隐私政策</a>。本政策不修改厂商条款、不授予其服务权利，也不授权绕过访问控制或限制。</p>
+<p>本地读取、复制和导出不会将内容所有权转给开发者，也不会授予用户额外内容权利。用户应仅处理有权访问、导出及分享的内容，并遵守适用法律、第三方权利、保密义务和相关平台条款。</p>
+<p>界面、端点、政策、账号权限或服务可用性的变化可能暂时或永久影响功能。Polaris 不控制第三方服务，无法保证持续兼容或持续访问。本政策不排除或限制法律不可排除的用户权利和救济。</p>
+<h2>10. 政策变更</h2>
+<p>功能或数据处理方式变化时，我们会更新本政策。涉及处理信息类型或用途的重大变化，会在新做法生效前通过政策及法律要求的扩展界面或商店入口告知。</p>
+<h2>11. 官网分析、托管与外部链接</h2>
+<p>仅在用户选择“允许分析”后，官网才初始化 Google Analytics 4 和阿里云 SLS 分析并发送事件。SDK 文件可提前加载，但同意前不初始化或发送分析事件；GA 自动页面访问关闭。用户可拒绝并继续使用网站，或从首页页脚“分析设置”更改选择。</p>
+<p>GA 仅统计扩展支持入口到达及视频恢复播放按钮点击；SLS 统计已同意的页面到达和本地 ZIP 下载操作。事件可含 UTM、固定扩展来源 <code>polaris_extension</code> 或无参数时的 <code>direct_share</code>/<code>direct</code>，以及归一化设备、浏览器、系统、视口和语言类别。直接来源也包括书签、输入网址及参数被移除的链接；下载事件不证明文件已成功保存。</p>
+<p>上述事件字段不含原始 User-Agent、设备型号、IP、完整网址、AI 会话、扩展设置、账号或支付详情。但网络连接仍会向接收请求的托管、安全或分析服务商暴露 IP 等连接信息。阿里云及交付链路中使用的 Cloudflare 等托管、安全服务商可为网站交付和保护处理请求元数据及必要安全 Cookie；这与可选分析事件不同。</p>
+<p>语言、主题和分析选择保存在本地浏览器；法律页面不初始化分析，也不请求会话内容。PayPal 赞赏入口打开 PayPal，支付信息由 PayPal 按其政策处理。官网价格介绍不初始化扩展试用，也不直接开启收款。</p>
+<p>第三方政策：<a href="https://policies.google.com/privacy">Google</a>、<a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html">阿里云 SLS SDK</a>、<a href="https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy">阿里云隐私信息</a>、<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>、<a href="https://www.paypal.com/legalhub/privacy-full">PayPal</a>。SLS 浏览器日志投递使用临时 STS 凭据。</p>
+<h2>12. 联系我们</h2>
+<p>隐私问题或请求请联系 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>，或通过 <a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues">GitHub Issues</a> 联系开发者。请勿在公开 Issue 中提交会话、凭据等敏感信息。</p>
+  </article>
+<footer><a href="privacy.html">Privacy / 隐私政策</a> · <a href="terms.html">Terms / 使用条款</a> · <a href="safety.html">Security / 安全说明</a> · <a href="refund.html">Refunds / 退款政策</a></footer>
+</main>
+</body>
 </html>
