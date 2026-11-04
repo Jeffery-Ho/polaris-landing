@@ -258,6 +258,23 @@
         permission from the AI service provider for any particular access method.
       </p>
       <p>
+        The current navigation, reading, search, copying, and export features do not send
+        conversations to OpenAI's public Responses API for model inference and do not offer
+        Sign in with ChatGPT or ChatGPT plan usage. OpenAI's
+        <a href="https://developers.openai.com/siwc/token-sharing-open-source">ChatGPT plan usage documentation</a>
+        describes a separate OAuth permission for eligible inference requests; that permission
+        does not grant access to ChatGPT conversations. An existing website login session is
+        not that OAuth authorization, and official API documentation does not authorize Polaris's
+        website-history access.
+      </p>
+      <p>
+        Provider terms may restrict automated or programmatic extraction of data or output,
+        and bypassing access controls, rate limits, or other service restrictions, even where
+        content is visible to the user. Local processing, content ownership, and user consent
+        do not by themselves resolve these restrictions. This policy is a disclosure of data
+        handling, not a representation that a provider has approved or authorized an access method.
+      </p>
+      <p>
         The AI service provider continues to control its accounts, content delivery, access restrictions,
         and handling of data sent to that service. Its terms and privacy policy apply separately from
         this policy and may vary by region, account type, or feature. For example, see
@@ -345,6 +362,8 @@
 <p>用户可关闭完整模式、清除会话缓存、重置设置、管理浏览器同步、关闭标签页清除诊断会话，或停用、卸载扩展。诊断分享、复制和导出均由用户主动触发；官网分析可拒绝并随时调整。</p>
 <h2>9. 独立工具与第三方 AI 服务</h2>
 <p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Google、Anthropic 或其他受支持 AI 服务商，也未获得其背书或赞助。第三方名称和商标属于各自权利人，仅用于说明兼容服务。</p>
+<p>当前导航、阅读、搜索、复制和导出功能不将会话发送至 OpenAI 公共 Responses API 进行模型推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">套餐用量文档</a>说明的是针对合资格推理请求的独立 OAuth 授权，不授予读取 ChatGPT 会话的权限。网页已有登录态不等于该 OAuth 授权，官方 API 文档也不构成对 Polaris 网页历史读取方式的许可。</p>
+<p>即使内容对用户可见，平台条款仍可能限制自动或程序化提取数据、输出，以及绕过访问控制、限流或其他服务限制。本地处理、内容所有权及用户同意本身不能消除这些限制。本政策披露数据处理方式，不表示平台已批准或授权某种访问方式。</p>
 <p>完整读取使用网页已有会话及同源请求，不以官方开发者 API 集成的名义提供。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。平台自己的条款和隐私政策独立适用，具体版本取决于地区、账号及功能。例如 <a href="https://openai.com/policies/terms-of-use/">OpenAI 使用条款</a>、<a href="https://openai.com/policies/privacy-policy/">隐私政策</a>与 <a href="https://policies.google.com/terms">Google 服务条款</a>、<a href="https://policies.google.com/privacy">隐私政策</a>。本政策不修改厂商条款、不授予其服务权利，也不授权绕过访问控制或限制。</p>
 <p>本地读取、复制和导出不会将内容所有权转给开发者，也不会授予用户额外内容权利。用户应仅处理有权访问、导出及分享的内容，并遵守适用法律、第三方权利、保密义务和相关平台条款。</p>
 <p>界面、端点、政策、账号权限或服务可用性的变化可能暂时或永久影响功能。Polaris 不控制第三方服务，无法保证持续兼容或持续访问。本政策不排除或限制法律不可排除的用户权利和救济。</p>
