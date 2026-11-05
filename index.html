@@ -4768,6 +4768,72 @@
         line-height: 1.65;
       }
 
+      /* Store card: switch between the three official listings. */
+      .store-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .store-switch {
+        display: inline-flex;
+        flex: none;
+        gap: 2px;
+        padding: 3px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 999px;
+        background: var(--polaris-bg-subtle);
+      }
+
+      .store-option {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+        opacity: .55;
+        transition: background-color 150ms ease, opacity 150ms ease, box-shadow 150ms ease;
+      }
+
+      .store-option:hover,
+      .store-option:focus-visible { opacity: 1; }
+
+      .store-option[aria-pressed="true"] {
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 1px 3px color-mix(in srgb, var(--polaris-text) 18%, transparent);
+        opacity: 1;
+      }
+
+      .store-logo {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+
+      .store-logo--chrome {
+        background:
+          radial-gradient(circle, #4285f4 0 31%, #fff 32% 42%, transparent 43%),
+          conic-gradient(from -60deg, #db4437 0 120deg, #0f9d58 0 240deg, #f4b400 0);
+      }
+
+      .store-logo--edge {
+        background:
+          radial-gradient(circle at 38% 66%, #fff 0 20%, transparent 21%),
+          conic-gradient(from 210deg, #0c59a4, #1b9de2 35%, #35c1f1 55%, #52d17a 75%, #0c59a4);
+      }
+
+      .store-logo--firefox {
+        background:
+          radial-gradient(circle at 42% 46%, #7542e5 0 28%, transparent 29%),
+          conic-gradient(from 150deg, #ff3750, #ff980e 30%, #ffbd4f 50%, #ff980e 70%, #e31587 90%, #ff3750);
+      }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
@@ -5421,12 +5487,19 @@
               </ol>
             </article>
 
-            <article class="install-card install-card--store">
-              <h3 class="install-card-title" data-i18n="install.store.title">Chrome Web Store</h3>
-              <p class="install-card-copy" data-i18n="install.store.copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>
-              <a class="install-card-button" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span class="install-card-button-label" data-i18n="install.store.button">Install from Chrome Web Store</span></a>
+            <article class="install-card install-card--store" data-store-card>
+              <div class="store-head">
+                <h3 class="install-card-title" data-i18n="install.store.title" data-store-text="title">Chrome Web Store</h3>
+                <div class="store-switch" role="group" aria-label="Browser">
+                  <button type="button" class="store-option" data-store="chrome" aria-pressed="true" aria-label="Chrome" title="Chrome"><span class="store-logo store-logo--chrome" aria-hidden="true"></span></button>
+                  <button type="button" class="store-option" data-store="edge" aria-pressed="false" aria-label="Microsoft Edge" title="Microsoft Edge"><span class="store-logo store-logo--edge" aria-hidden="true"></span></button>
+                  <button type="button" class="store-option" data-store="firefox" aria-pressed="false" aria-label="Firefox" title="Firefox"><span class="store-logo store-logo--firefox" aria-hidden="true"></span></button>
+                </div>
+              </div>
+              <p class="install-card-copy" data-i18n="install.store.copy" data-store-text="copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>
+              <a class="install-card-button" data-store-link href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span class="install-card-button-label" data-i18n="install.store.button" data-store-text="button">Install from Chrome Web Store</span></a>
               <p class="install-note" data-i18n="install.store.versionNote">The store and ZIP versions differ; features may vary.</p>
-              <p class="install-note" data-i18n="install.store.note">The extension will be added to Chrome after you confirm the installation in the store.</p>
+              <p class="install-note" data-i18n="install.store.note" data-store-text="note">The extension will be added to Chrome after you confirm the installation in the store.</p>
             </article>
           </div>
         </section>
@@ -5802,6 +5875,15 @@
           "install.store.copy": "Requires access to the Google Chrome Web Store. Install Polaris with one click.",
           "install.store.button": "Install from Chrome Web Store",
           "install.store.note": "The extension will be added to Chrome after you confirm the installation in the store.",
+          "install.store.switch": "Browser",
+          "install.store.edge.title": "Microsoft Edge Add-ons",
+          "install.store.edge.copy": "Install Polaris for Microsoft Edge from the official Edge Add-ons store.",
+          "install.store.edge.button": "Install from Edge Add-ons",
+          "install.store.edge.note": "The extension will be added to Edge after you confirm the installation in the store.",
+          "install.store.firefox.title": "Firefox Add-ons",
+          "install.store.firefox.copy": "Install Polaris for Firefox from the official Firefox Add-ons site.",
+          "install.store.firefox.button": "Add to Firefox",
+          "install.store.firefox.note": "The add-on will be added to Firefox after you confirm the installation.",
           "updates.title": "Release notes",
           "updates.showMore": "View all updates",
           "updates.collapse": "Collapse updates",
@@ -6030,6 +6112,15 @@
           "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
           "install.store.button": "从谷歌商店安装",
           "install.store.note": "在商店确认安装后，插件会自动添加到 Chrome。",
+          "install.store.switch": "浏览器",
+          "install.store.edge.title": "Edge 加载项商店",
+          "install.store.edge.copy": "从微软官方 Edge 加载项商店为 Microsoft Edge 安装 Polaris。",
+          "install.store.edge.button": "从 Edge 加载项安装",
+          "install.store.edge.note": "在商店确认安装后，插件会自动添加到 Edge。",
+          "install.store.firefox.title": "Firefox 附加组件",
+          "install.store.firefox.copy": "从 Firefox 官方附加组件站点为 Firefox 安装 Polaris。",
+          "install.store.firefox.button": "添加到 Firefox",
+          "install.store.firefox.note": "确认安装后，附加组件会添加到 Firefox。",
           "updates.title": "更新记录",
           "updates.showMore": "查看更多更新记录",
           "updates.collapse": "收起更新记录",
@@ -7328,6 +7419,31 @@
         });
         howDemo = initHowDemo(howStage);
       }
+      // Store card: one install card, three official listings.
+      const storeCard = document.querySelector("[data-store-card]");
+      if (storeCard) {
+        const stores = {
+          chrome: { href: "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb", prefix: "install.store." },
+          edge: { href: "https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi", prefix: "install.store.edge." },
+          firefox: { href: "https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/", prefix: "install.store.firefox." }
+        };
+        const selectStore = (key) => {
+          const store = stores[key] || stores.chrome;
+          const strings = translations[document.documentElement.lang === "zh-CN" ? "zh-CN" : "en"] || {};
+          storeCard.querySelectorAll("[data-store]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.store === key)));
+          storeCard.querySelector("[data-store-link]").href = store.href;
+          storeCard.querySelectorAll("[data-store-text]").forEach((element) => {
+            const i18nKey = store.prefix + element.dataset.storeText;
+            element.dataset.i18n = i18nKey;
+            if (strings[i18nKey]) element.textContent = strings[i18nKey];
+          });
+          storeCard.dataset.store = key;
+        };
+        storeCard.querySelectorAll("[data-store]").forEach((button) => button.addEventListener("click", () => selectStore(button.dataset.store)));
+        const agent = navigator.userAgent || "";
+        selectStore(/Edg\//.test(agent) ? "edge" : /Firefox\//.test(agent) ? "firefox" : "chrome");
+      }
+
       initFeatureDemos();
       initHowAutoplay(howDemo);
     </script>

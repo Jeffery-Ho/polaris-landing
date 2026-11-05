@@ -67,6 +67,7 @@
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
 - Add a compact “Recommended in Mainland China” badge beside the local-installation title; use the theme-aware text, border and panel tokens.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
+- The store card covers all three official listings. A small pill switch at its top right shows Chrome, Microsoft Edge and Firefox marks; the selected browser changes the card title, copy, button label, note and link together, in both languages. The default follows the visitor's browser (Edge, then Firefox, otherwise Chrome).
 - After the local ZIP action is clicked, show a short loading state with a spinner and ignore repeat clicks while the browser starts the native download; restore the normal label automatically because native downloads do not expose completion to the page.
 
 ## Pricing section
