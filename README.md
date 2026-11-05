@@ -11,7 +11,7 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 - `assets/polaris-introduction.mp4` is a 1440×916, 30fps H.264 muted autoplay video with a fast-start MP4 index.
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
 - The local-installation button uses the stable [latest GitHub Release ZIP asset](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip). The extension release workflow publishes that fixed asset name alongside the versioned ZIP only after validating the archive, so landing downloads do not depend on the GitHub API. The existing `assets/Polaris-for-Web-0.48.3-build-196.zip` file remains archived for compatibility.
-- `fonts/roboto-flex-latin.woff2` is the self-hosted Windows typeface; `fonts/OFL.txt` contains its license.
+- `fonts/` includes the self-hosted Inter, Newsreader and Lora assets with their OFL licenses; the older Roboto Flex asset remains for compatibility.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, PayPal URL, GA4 Measurement ID, and deployed SLS endpoint configuration.
 
@@ -33,11 +33,11 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Design
 
-The homepage follows a restrained black-and-white visual system. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows the Polaris Clay visual system, with warm Paper / Ink surfaces and a single terracotta accent. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, bordered installation panels, and support. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
-- macOS uses the browser's native system font stack.
-- Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
-- The header is a centered floating pill with How it works and Updates. The hero Free trial action leads to installation until the visitor scrolls past it, then the same Free trial label appears as a separate pill on the right. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use the shared gradient label/border treatment with solid interiors; the header Free trial pill does not. Hero banner actions remain monochrome, the hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
+- Self-hosted Inter handles body copy and controls, Newsreader Regular handles headings, and Lora SemiBold Italic handles Polaris wordmarks. Chinese uses the corresponding system sans-serif / serif fallbacks.
+- `assets/theme.css` provides the shared font faces and light/dark semantic palette for the homepage, footer and policy pages, with local OFL licenses and no Google Fonts requests.
+- The header is a centered floating pill with How it works and Updates. The hero Free trial action leads to installation until the visitor scrolls past it, then the same Free trial label appears as a separate pill on the right. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use solid Clay borders and labels. Hero and support actions use a solid Clay surface with a contrasting label. The hero starts with the headline, and the video follows its actions at a responsive 28–48px gap. The video frame and failure-recovery play control keep their existing behavior.
 
 - The full-width footer groups the Polaris introduction, Product, Install & help, and Legal links. Its Product group currently shows only Features and What's new; the attribution retains its heart icon. Browser actions use “Install for Chrome / Edge / Firefox” and link to their official listings. It follows the existing language/theme preferences, preserves Analytics settings, and reflows into two link columns on small screens.
 
