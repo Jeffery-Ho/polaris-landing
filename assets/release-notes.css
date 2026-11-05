@@ -1,0 +1,69 @@
+/* Release notes page, layered on theme.css and legal.css. */
+main { width: min(820px, calc(100% - 40px)); }
+.rn-intro { margin: 12px 0 0; color: var(--polaris-text-secondary); }
+
+.rn-months {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 8px;
+  padding: 12px 0;
+  background: var(--polaris-bg);
+}
+
+.rn-months a {
+  padding: 4px 12px;
+  border: 1px solid var(--polaris-border);
+  border-radius: 999px;
+  background: var(--polaris-bg-elevated);
+  color: var(--polaris-text-secondary);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.rn-months a:hover,
+.rn-months a:focus-visible { border-color: var(--polaris-accent); color: var(--polaris-accent-text); }
+
+.rn-month { scroll-margin-top: 64px; }
+
+.rn-month h2 {
+  margin: 40px 0 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--polaris-border);
+  font-size: 26px;
+}
+
+.rn-entry {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  column-gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--polaris-border) 60%, transparent);
+  scroll-margin-top: 72px;
+}
+
+.rn-entry:target { background: linear-gradient(90deg, var(--polaris-accent-subtle), transparent 70%); }
+
+.rn-meta {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  margin: 2px 0 0;
+  line-height: 1.4;
+}
+
+.rn-version { color: var(--polaris-accent-text); font-family: var(--polaris-font-mono); font-size: 13px; }
+.rn-meta time { color: var(--polaris-text-tertiary); font-size: 13px; }
+
+.rn-entry h3 { grid-column: 2; margin: 0; font-size: 17px; line-height: 1.4; }
+.rn-entry ul { grid-column: 2; margin: 6px 0 0; padding-left: 18px; }
+.rn-entry li { font-size: 15px; line-height: 1.65; }
+
+@media (max-width: 560px) {
+  .rn-entry { grid-template-columns: minmax(0, 1fr); }
+  .rn-meta { display: flex; gap: 10px; }
+  .rn-entry h3, .rn-entry ul { grid-column: 1; }
+}

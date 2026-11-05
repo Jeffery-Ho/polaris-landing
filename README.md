@@ -22,6 +22,10 @@ Website and extension purchases use the Polaris license Worker in the extension 
 - **Get Pro** opens Stripe Checkout directly (see Payments). **Continue for free** leads to installation. In the extension, the price stays $12.90 for seven days after first opening Polaris, then $19.99.
 - `assets/pricing.css`, the font files and their OFL licenses, and `icons/pro-entry-star.svg` are included by the existing public-assets deployment allowlist. Run `node --test test/*.test.js` for deployment and download regressions. The site is buildless static HTML/CSS/JavaScript.
 
+## Release notes
+
+Run `node scripts/sync-release-notes.mjs [path/to/Polaris-AI-Chat-Navigator]` after each extension release. It reads `src/release-notes.js`, dates every version from the extension's git history (uncommitted versions get today's date), renames Chapter View wording to Table of Contents / Outline, and regenerates `assets/release-notes.js` (homepage list) and `release-notes/index.html` (full history by month).
+
 ## Assets
 
 - Brand icons are synchronized from the extension's `dist/icons` output. The homepage logo, product illustration, footer, structured data and all policy-page favicons use the current Clay star icon, with content-versioned URLs to refresh browser caches.

@@ -50,9 +50,9 @@
 
 ## Release notes
 
-- Place a release-notes section below the installation panels and above the footer. Put the fine divider on the footer's top edge, separating the update cards from the bottom information.
-- Mirror the feature releases from `Polaris-for-Web/src/release-notes.js`, sorted newest first. Show the latest five in the same bordered-card style as the installation tutorials; provide a button to reveal the complete list and replace it with a collapse action at the bottom of the expanded list.
-- Render version labels as compact accent text, then show the source release title and explanatory copy.
+- Data comes from the extension's `src/release-notes.js` through `node scripts/sync-release-notes.mjs`, which dates each version by the commit that added it, applies the Table of Contents / Outline naming rule and writes `assets/release-notes.js` and the static `release-notes/index.html`. Do not edit either output by hand.
+- The homepage shows the latest six versions as a compact list: version, date and title on one line and a one-line summary below, each row linking to that version on the full page, then a single "See all release notes" pill. No cards and no expand/collapse.
+- `/release-notes/` uses the policy-page layout in both languages: a sticky row of month links, then months newest first, each entry with version, date, title and its full list of changes. It is indexable and listed in the sitemap.
 
 ## Visual system
 

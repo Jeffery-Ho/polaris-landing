@@ -4928,6 +4928,59 @@
 
       .floating-cta { height: 56px; }
 
+      /* Release notes: a compact list on the homepage; the full history lives at /release-notes/. */
+      .updates-section .updates-list {
+        display: block;
+        width: min(820px, 100%);
+        margin: 24px auto 0;
+        padding: 0;
+        border-top: 1px solid var(--polaris-border);
+        list-style: none;
+      }
+
+      .updates-list li { border-bottom: 1px solid var(--polaris-border); }
+
+      .update-row {
+        display: grid;
+        grid-template-columns: 76px 64px minmax(0, 1fr);
+        grid-template-areas: "version date title" ". . summary";
+        column-gap: 16px;
+        row-gap: 2px;
+        padding: 14px 8px;
+        color: var(--polaris-text);
+        text-decoration: none;
+        transition: background-color 150ms ease;
+      }
+
+      .update-row:hover,
+      .update-row:focus-visible { background: var(--polaris-bg-subtle); }
+
+      .update-row .update-version { grid-area: version; color: var(--polaris-accent-text); font-family: var(--polaris-font-mono); font-size: 13px; line-height: 22px; }
+      .update-row .update-date { grid-area: date; color: var(--polaris-text-tertiary); font-size: 13px; line-height: 22px; }
+      .update-row .update-title { grid-area: title; margin: 0; font-size: 15.5px; font-weight: 600; line-height: 22px; }
+      .update-row .update-summary { grid-area: summary; overflow: hidden; color: var(--polaris-text-secondary); font-size: 14px; line-height: 21px; text-overflow: ellipsis; white-space: nowrap; }
+
+      .updates-all {
+        display: flex;
+        width: fit-content;
+        gap: 6px;
+        margin: 20px auto 0;
+        padding: 10px 18px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 999px;
+        color: var(--polaris-text);
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .updates-all:hover,
+      .updates-all:focus-visible { border-color: var(--polaris-accent); color: var(--polaris-accent-text); }
+
+      @media (max-width: 560px) {
+        .update-row { grid-template-columns: auto auto minmax(0, 1fr); grid-template-areas: "version date ." "title title title" "summary summary summary"; column-gap: 10px; }
+      }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
@@ -5583,11 +5636,8 @@
 
         <section class="updates-section" id="updates" aria-labelledby="updates-title">
           <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
-          <div class="updates-list" id="updates-list" data-updates-list></div>
-          <div class="updates-actions">
-            <button class="updates-toggle" data-updates-show-more type="button" aria-controls="updates-list" aria-expanded="false" data-i18n="updates.showMore">View all updates</button>
-            <button class="updates-toggle" data-updates-collapse type="button" aria-controls="updates-list" hidden data-i18n="updates.collapse">Collapse updates</button>
-          </div>
+          <ol class="updates-list" id="updates-list" data-updates-list></ol>
+          <a class="updates-all" href="release-notes/"><span data-i18n="updates.seeAll">See all release notes</span> <span aria-hidden="true">→</span></a>
         </section>
 
       </div>
@@ -5655,6 +5705,7 @@
     <script src="./vendor/aliyun-sls-web-sts-plugin-0.3.9.js"></script>
     <script type="module">
       import { supportConfig } from "./support-config.js";
+      import { RELEASE_NOTES } from "./assets/release-notes.js";
       import { startCheckout } from "./assets/checkout.js";
       import { initFeatureDemos, initHowAutoplay } from "./assets/feature-demos.js";
 
@@ -5705,8 +5756,6 @@
       const floatingCtaBlockers = [...document.querySelectorAll("#install, [data-closing-cta], .site-footer")];
       const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
-      const updatesShowMore = document.querySelector("[data-updates-show-more]");
-      const updatesCollapse = document.querySelector("[data-updates-collapse]");
       const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], #pricing a[href^="#"], .closing-note a[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
@@ -5714,29 +5763,8 @@
       const analyticsConsentStorageKey = "polaris-landing-analytics-consent";
       const localeStorageKey = "polaris-landing-locale";
       const themeStorageKey = "polaris-landing-theme";
-      const updatesPreviewCount = 5;
-      const releaseNotes = Object.freeze([
-        { version: "0.51.0", en: { title: "Grok navigation", copy: "Grok now supports Polaris navigation for user groups, headings, lists, tables, streaming updates, search, and the Outline." }, zh: { title: "支持 Grok 导航", copy: "Grok 现支持用户分组、标题、列表、表格、流式更新、搜索与大纲。" } },
-        { version: "0.50.0", en: { title: "Google Gemini navigation", copy: "Google Gemini now supports Polaris navigation for user groups, headings, lists, tables, streaming updates, search, and the Outline." }, zh: { title: "支持 Google Gemini 导航", copy: "Google Gemini 现支持用户分组、标题、列表、表格、流式更新、搜索与大纲。" } },
-        { version: "0.49.0", en: { title: "Drag recovery and diagnostic export", copy: "Pointer dragging now recovers after lost capture, window or page transitions, and route changes. About & Settings can download a redacted session log and open a pre-addressed email for manual attachment." }, zh: { title: "导航拖动恢复与诊断日志导出", copy: "导航拖动现在会在指针捕获丢失、窗口或页面切换以及路由变化后自动清理并恢复。关于与设置新增脱敏会话日志下载和邮件入口，附件需要手动添加。" } },
-        { version: "0.48.0", en: { title: "Support entry in update notes", copy: "Update notes now include a heart-shaped support button next to email feedback." }, zh: { title: "更新说明新增赞赏入口", copy: "更新说明的邮件反馈旁新增心形赞赏按钮，可在新标签页打开赞赏页。" } },
-        { version: "0.47.0", en: { title: "Ordered-list marker filter", copy: "Ordered lists can now generate markers when enabled in settings, and are disabled by default for every platform." }, zh: { title: "有序列表 Marker 筛选", copy: "设置现可单独启用有序列表 Marker；所有平台默认关闭。" } },
-        { version: "0.46.0", en: { title: "Bold-text marker filter", copy: "Bold text can now generate markers when enabled in settings, and is disabled by default for every platform." }, zh: { title: "加粗文本 Marker 筛选", copy: "设置现可单独启用加粗文本 Marker；所有平台默认关闭。" } },
-        { version: "0.45.0", en: { title: "Claude.ai navigation", copy: "Claude.ai now supports Polaris navigation for user groups, headings, unordered lists, tables, and the Outline." }, zh: { title: "支持 Claude.ai 导航", copy: "Claude.ai 现支持用户分组、标题、无序列表、表格 Maker 与大纲。" } },
-        { version: "0.44.0", en: { title: "Maker groups expanded by default", copy: "User groups and Maker stacks now stay expanded by default. You can still collapse either one manually, and scrolling no longer changes that choice." }, zh: { title: "Maker 分组默认展开", copy: "用户分组和 Maker 堆叠现默认展开；仍可手动收起，滚动不会再改写你的分组状态。" } },
-        { version: "0.40.0", en: { title: "Optional support-page analytics", copy: "The support link now identifies Polaris as its source. The separate support page measures that arrival and its video loading play control only after you allow analytics." }, zh: { title: "可选的赞赏页分析", copy: "赞赏入口会标记 Polaris 来源；独立赞赏页仅在你同意分析后记录该到访和视频加载播放按钮点击。" } },
-        { version: "0.39.0", en: { title: "A support entry in settings", copy: "A heart button at the right edge of the Polaris settings header opens the support page in a new tab." }, zh: { title: "修正赞赏入口位置", copy: "Polaris 设置面板 Header 右侧新增心形入口，可在新标签页打开赞赏页。" } },
-        { version: "0.38.0", en: { title: "A new Polaris support page", copy: "The Polaris website now includes a focused support page with the extension link, issue tracker, introduction video area, and a direct PayPal option." }, zh: { title: "新增 Polaris 赞赏页", copy: "Polaris 网站新增独立赞赏页，集中提供扩展入口、问题反馈、介绍视频区域和 PayPal 直达入口。" } },
-        { version: "0.37.0", en: { title: "Stable Maker lists while streaming", copy: "Existing Makers stay stable while responses stream, so the list remains scrollable and collapsible; wheel, trackpad, or list-drag input takes control immediately so Makers can remain outside the visible list without being pulled back." }, zh: { title: "Maker 列表流式稳定化", copy: "回答流式生成时复用已有 Maker，列表仍可持续滚动与折叠；滚轮、触摸板或列表拖动会立即接管滚动，Maker 可保持在列表不可见区域，不再闪烁或被自动拉回。" } },
-        { version: "0.36.0", en: { title: "Progressive Maker rendering", copy: "Makers now appear during streaming output as soon as the first valid section is available, without waiting for the response to finish." }, zh: { title: "Maker 流式渐进渲染", copy: "流式输出识别到首个有效 Maker 后即开始渐进渲染，不再等待整段回答结束。" } },
-        { version: "0.35.0", en: { title: "Table markers across AI chats", copy: "Visible response tables now create one navigation marker from their first row on every supported platform." }, zh: { title: "全平台表格 Maker", copy: "所有支持平台的可见回复表格现在都会按首行生成一个导航 Maker。" } },
-        { version: "0.34.0", en: { title: "Mixed raw Markdown in the Outline", copy: "The Outline now safely formats raw mixed Markdown, including nested task lists, inline styles, code, tables, and Unicode characters." }, zh: { title: "大纲支持混排 Markdown 与特殊字符", copy: "大纲现可安全格式化原始混排 Markdown，支持嵌套任务列表、行内格式、代码、表格及 Unicode 特殊字符。" } },
-        { version: "0.33.0", en: { title: "Raw Markdown tables in the Outline", copy: "The Outline now formats complete pipe tables even when the source page leaves them as raw Markdown text." }, zh: { title: "大纲支持原始 Markdown 表格", copy: "网页未渲染的完整管道表格现在会在大纲中格式化显示。" } },
-        { version: "0.32.0", en: { title: "Jump back from empty Outline sections", copy: "Empty Outline sections can now take you directly to their original conversation position." }, zh: { title: "大纲空小节可跳回原会话", copy: "大纲中没有可显示正文的小节现在可直接跳转到其在原会话中的位置。" } },
-        { version: "0.31.0", en: { title: "Richer Markdown in the Outline", copy: "The Outline now renders headings, task lists, images, nested content, and complex tables safely." }, zh: { title: "大纲中更完整的 Markdown 阅读", copy: "大纲现可安全渲染标题、任务列表、图片、嵌套内容与复杂表格。" } },
-        { version: "0.30.0", en: { title: "Review updates anytime", copy: "About & Settings now provides a nearby entry to reopen update notes." }, zh: { title: "随时查看更新说明", copy: "关于与设置面板在版本号旁新增入口，可再次查看更新说明。" } },
-        { version: "0.29.0", en: { title: "What's new notifications", copy: "A version update dialog now summarizes changes and provides direct feedback options." }, zh: { title: "新增版本更新通知", copy: "版本更新弹窗会说明本次改动，并提供直接反馈入口。" } }
-      ]);
+      const updatesPreviewCount = 6;
+      const releaseNotes = RELEASE_NOTES;
       const translations = Object.freeze({
         en: Object.freeze({
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
@@ -5748,6 +5776,7 @@
           "nav.features": "How it works",
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
+          "updates.seeAll": "See all release notes",
           "features.long.label": "Long conversations · Pro",
           "features.long.title": "When the AI forgets, you can still find it.",
           "features.long.copy": "Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.",
@@ -5959,8 +5988,6 @@
           "install.store.firefox.button": "Add to Firefox",
           "install.store.firefox.note": "The add-on will be added to Firefox after you confirm the installation.",
           "updates.title": "Release notes",
-          "updates.showMore": "View all updates",
-          "updates.collapse": "Collapse updates",
           "footer.description": "Navigate long AI conversations. Built and maintained by an independent developer.",
           "footer.product": "Product",
           "footer.features": "Features",
@@ -5997,6 +6024,7 @@
           "nav.features": "功能",
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
+          "updates.seeAll": "查看全部版本说明",
           "features.long.label": "长对话 · Pro",
           "features.long.title": "AI 忘了，你还能找回来。",
           "features.long.copy": "对话一长，AI 会渐渐顾不上你前面说过的话，页面也只保留最近的一部分。Polaris 在浏览器里读取完整对话，前面的每个回答都能一键找回，复制或导出后把上下文交还给 AI。",
@@ -6208,8 +6236,6 @@
           "install.store.firefox.button": "添加到 Firefox",
           "install.store.firefox.note": "确认安装后，附加组件会添加到 Firefox。",
           "updates.title": "更新记录",
-          "updates.showMore": "查看更多更新记录",
-          "updates.collapse": "收起更新记录",
           "footer.description": "为长篇 AI 对话提供清晰导航。由独立开发者打造并持续维护。",
           "footer.product": "产品",
           "footer.features": "功能介绍",
@@ -6245,7 +6271,6 @@
       let slsTracker = null;
       let slsCredentialsReadyPromise = null;
       let slsArrivalTracked = false;
-      let updatesExpanded = false;
       const slsAttributionStorageKey = "polaris-landing-attribution-source";
 
       function setMenuOpen(isOpen, restoreFocus = false) {
@@ -6329,30 +6354,31 @@
       }
 
       function renderReleaseNotes() {
-        const notes = updatesExpanded ? releaseNotes : releaseNotes.slice(0, updatesPreviewCount);
         const localeKey = currentLocale === "zh-CN" ? "zh" : "en";
-        const cards = notes.map((note) => {
-          const card = document.createElement("article");
-          const version = document.createElement("h3");
-          const title = document.createElement("p");
-          const copy = document.createElement("p");
-          const localizedNote = note[localeKey];
-
-          card.className = "update-release";
+        const rows = releaseNotes.slice(0, updatesPreviewCount).map((note) => {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          const version = document.createElement("span");
+          const date = document.createElement("time");
+          const title = document.createElement("span");
+          const summary = document.createElement("span");
+          const [year, month, day] = note.date.split("-").map(Number);
+          link.className = "update-row";
+          link.href = `release-notes/#${localeKey === "zh" ? "zh-" : ""}v${note.version.replaceAll(".", "-")}`;
           version.className = "update-version";
-          title.className = "update-title";
-          copy.className = "update-copy";
           version.textContent = `v${note.version}`;
-          title.textContent = localizedNote.title;
-          copy.textContent = localizedNote.copy;
-          card.append(version, title, copy);
-          return card;
+          date.className = "update-date";
+          date.dateTime = note.date;
+          date.textContent = localeKey === "zh" ? `${month} 月 ${day} 日` : new Date(Date.UTC(year, month - 1, day)).toLocaleString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+          title.className = "update-title";
+          title.textContent = note[localeKey].title;
+          summary.className = "update-summary";
+          summary.textContent = note[localeKey].changes[0] || "";
+          link.append(version, date, title, summary);
+          item.append(link);
+          return item;
         });
-
-        updatesList.replaceChildren(...cards);
-        updatesShowMore.hidden = updatesExpanded;
-        updatesShowMore.setAttribute("aria-expanded", String(updatesExpanded));
-        updatesCollapse.hidden = !updatesExpanded;
+        updatesList.replaceChildren(...rows);
       }
 
       const headlinePlatforms = Object.freeze([
@@ -6562,16 +6588,6 @@
       themeOptions.forEach((option) => option.addEventListener("click", () => {
         setTheme(option.dataset.themeOption);
       }));
-      updatesShowMore.addEventListener("click", () => {
-        updatesExpanded = true;
-        renderReleaseNotes();
-        updatesCollapse.focus();
-      });
-      updatesCollapse.addEventListener("click", () => {
-        updatesExpanded = false;
-        renderReleaseNotes();
-        updatesShowMore.focus();
-      });
       document.addEventListener("click", (event) => {
         if (!event.target.closest("[data-language-control]")) {
           setLanguageMenuOpen(false);

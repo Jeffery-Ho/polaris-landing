@@ -60,6 +60,7 @@ trap cleanup EXIT
 public_entries=(
   assets
   checkout-return
+  release-notes
   entry
   fonts
   icons
