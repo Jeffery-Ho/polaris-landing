@@ -86,6 +86,14 @@ for entry in "${public_entries[@]}"; do
   rsync -a "$source_directory/$entry" "$staging_directory/"
 done
 
+# Keep branch previews (deploy/preview.sh) reachable across production releases.
+if [[ -d "$site_root/previews" ]]; then
+  for preview in "$site_root/previews"/*; do
+    [[ -d "$preview" ]] || continue
+    ln -sfn "$preview" "$staging_directory/$(basename "$preview")"
+  done
+fi
+
 mv "$staging_directory" "$release_directory"
 trap - EXIT
 chmod -R a+rX "$release_directory"

@@ -93,3 +93,7 @@ Run the installation in this order:
 5. Configure ESA HTTPS, the root-domain canonical redirect, `www` redirect, and source protection only after the origin responds correctly. Keep automatic ESA IP-list confirmation disabled: copy the current ESA origin IPv4 ranges into an ECS prefix list, allow that prefix list on ports 80/443, and only then remove the public `0.0.0.0/0` rules. When ESA reports a newer list, update the ECS prefix list before confirming the change in ESA.
 
 The repository-scoped runner executes `.github/workflows/deploy-ecs.yml`; `deploy/release.sh` stages only public assets and atomically moves the `current` symlink to the verified release. ESA terminates public HTTPS, while Nginx Proxy Manager maintains the HTTPS origin connection to native Nginx.
+
+## Branch preview
+
+Pushing to `v2` runs `.github/workflows/preview-v2.yml` on the ECS runner: tests, then `deploy/preview.sh v2`, which publishes the branch to `/srv/polaris-landing/previews/v2` with `noindex,nofollow` on every page and links it into the current release, so it is served at https://polaris-ai.work/v2/ without nginx changes. `release.sh` re-links previews on every production release. Production still deploys only from `main`. Delete `previews/v2` on the server to retire the preview.
