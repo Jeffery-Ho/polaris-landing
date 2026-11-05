@@ -3494,6 +3494,756 @@
       :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
         color: var(--polaris-text);
       }
+
+      /* ---------- v2: Dia-style narrative layout on Polaris Clay ---------- */
+      .hero-stage {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+
+      .hero-wordmark {
+        position: absolute;
+        z-index: -1;
+        top: clamp(150px, 19vw, 250px);
+        left: 50%;
+        color: color-mix(in srgb, var(--polaris-accent) 9%, var(--polaris-bg));
+        font-family: var(--polaris-font-wordmark);
+        font-size: clamp(150px, 27vw, 400px);
+        font-style: italic;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 0.8;
+        white-space: nowrap;
+        transform: translateX(-50%);
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .hero-copy {
+        position: relative;
+      }
+
+      .hero-window {
+        position: relative;
+        width: min(1120px, 100%);
+        overflow: hidden;
+        border: 1px solid var(--polaris-border);
+        border-radius: 16px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 30px 80px color-mix(in srgb, var(--polaris-text) 12%, transparent);
+      }
+
+      .hero-window-chrome {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 38px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-subtle);
+      }
+
+      .hero-window-chrome .browser-dots {
+        display: inline-flex;
+        gap: 7px;
+      }
+
+      .hero-window-chrome .browser-dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--polaris-border-strong);
+      }
+
+      .hero-window-address {
+        position: absolute;
+        left: 50%;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 12px;
+        border-radius: 8px;
+        background: var(--polaris-bg);
+        color: var(--polaris-text-tertiary);
+        font-size: 12px;
+        transform: translateX(-50%);
+      }
+
+      .hero-window .video-frame,
+      :root[data-theme="dark"] .hero-window .video-frame {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .hero-arc {
+        position: relative;
+        z-index: 2;
+        height: clamp(56px, 9vw, 140px);
+        margin-top: calc(clamp(56px, 9vw, 140px) * -1);
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-arc::before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 170%;
+        height: 200%;
+        border-top: 1px solid var(--polaris-border);
+        border-radius: 50%;
+        background: var(--polaris-bg);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .hero-arc + .page-shell {
+        padding-top: clamp(48px, 7vw, 96px);
+      }
+
+      .v2-heading {
+        margin: 0 auto;
+        color: var(--polaris-text);
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(34px, 4.2vw, 56px);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+        line-height: 1.08;
+        text-align: center;
+      }
+
+      .how-heading h2 {
+        font-family: var(--polaris-font-serif);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+      }
+
+      .bento-section,
+      .privacy-section {
+        width: min(1120px, 100%);
+        margin: 0 auto clamp(96px, 12vw, 160px);
+        scroll-margin-top: 96px;
+      }
+
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: clamp(36px, 5vw, 56px);
+      }
+
+      .bento-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 28px 28px 24px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 20px;
+        background: var(--polaris-bg-elevated);
+      }
+
+      .bento-label {
+        align-self: flex-start;
+        margin: 0 0 18px;
+        padding: 3px 8px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 6px;
+        color: var(--polaris-text-tertiary);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        line-height: 16px;
+        text-transform: uppercase;
+      }
+
+      .bento-copy {
+        max-width: 30rem;
+        margin: 0 0 24px;
+        color: var(--polaris-text-secondary);
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .bento-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        margin-top: auto;
+        padding: 20px;
+        overflow: hidden;
+        border-radius: 14px;
+        background: var(--polaris-bg-subtle);
+        color: var(--polaris-text);
+      }
+
+      .bento-visual i,
+      .bento-visual b {
+        display: block;
+        font-style: normal;
+      }
+
+      /* Markers */
+      .mk-page,
+      .st-lines {
+        display: grid;
+        gap: 9px;
+        width: min(260px, 70%);
+        padding: 18px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+      }
+
+      .mk-page i,
+      .st-lines i {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--polaris-bg-muted);
+      }
+
+      .mk-page .mk-h,
+      .st-lines .mk-h {
+        width: 55%;
+        height: 8px;
+        background: var(--polaris-border-strong);
+      }
+
+      .mk-page .mk-short {
+        width: 70%;
+      }
+
+      .mk-rail,
+      .st-markers {
+        display: grid;
+        gap: 14px;
+        margin-left: 18px;
+      }
+
+      .mk-rail b,
+      .st-markers b {
+        width: 18px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--polaris-border-strong);
+      }
+
+      .mk-rail b.is-on {
+        width: 26px;
+        background: var(--polaris-accent);
+      }
+
+      .mk-tip {
+        position: absolute;
+        top: calc(50% - 32px);
+        right: calc(50% - 190px);
+        padding: 5px 10px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 8px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 8px 20px color-mix(in srgb, var(--polaris-text) 10%, transparent);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      /* Chapter view */
+      .bento-visual--chapter {
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .ch-list {
+        display: grid;
+        align-content: start;
+        gap: 4px;
+        width: 38%;
+        font-size: 12px;
+      }
+
+      .ch-list span {
+        overflow: hidden;
+        padding: 6px 8px;
+        border-radius: 6px;
+        color: var(--polaris-text-secondary);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .ch-list .is-on {
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
+      }
+
+      .ch-body {
+        display: grid;
+        align-content: start;
+        gap: 10px;
+        flex: 1;
+        min-width: 0;
+        padding: 14px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+        font-size: 13px;
+      }
+
+      .ch-body strong {
+        font-family: var(--polaris-font-serif);
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .ch-table {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow: hidden;
+        border: 1px solid var(--polaris-border);
+        border-radius: 6px;
+      }
+
+      .ch-table i {
+        height: 20px;
+        border-right: 1px solid var(--polaris-border);
+        border-bottom: 1px solid var(--polaris-border);
+      }
+
+      .ch-table i:nth-child(-n + 3) {
+        background: var(--polaris-bg-subtle);
+      }
+
+      .ch-line {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--polaris-bg-muted);
+      }
+
+      .ch-line--short {
+        width: 60%;
+      }
+
+      /* Search */
+      .bento-visual--search {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .sr-field,
+      .sr-results {
+        width: min(300px, 100%);
+      }
+
+      .sr-field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border: 1px solid var(--polaris-accent);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+        font-size: 14px;
+      }
+
+      .sr-field svg {
+        width: 16px;
+        height: 16px;
+        color: var(--polaris-text-tertiary);
+      }
+
+      .sr-caret {
+        width: 1.5px;
+        height: 16px;
+        background: var(--polaris-accent);
+        animation: v2-blink 1.1s steps(1) infinite;
+      }
+
+      .sr-results {
+        display: grid;
+        gap: 4px;
+        padding: 6px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+        font-size: 13px;
+      }
+
+      .sr-results > span {
+        padding: 7px 8px;
+        border-radius: 6px;
+      }
+
+      .sr-results > span:first-child {
+        background: var(--polaris-bg-subtle);
+      }
+
+      .sr-results mark {
+        padding: 0 2px;
+        border-radius: 3px;
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
+      }
+
+      /* Streaming */
+      .st-typing {
+        width: 30%;
+        animation: v2-type 2.4s ease-in-out infinite;
+      }
+
+      .st-markers .st-new {
+        background: var(--polaris-accent);
+        animation: v2-appear 2.4s ease-in-out infinite;
+      }
+
+      /* Platforms */
+      .pf-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px 8px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .pf-grid li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        color: var(--polaris-text-secondary);
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .pf-grid img {
+        width: 34px;
+        height: 34px;
+        padding: 5px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 10px;
+        background: #ffffff;
+      }
+
+      /* Settings */
+      .bento-visual--settings {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .set-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(280px, 100%);
+        padding: 10px 14px;
+        border: 1px solid var(--polaris-border);
+        border-bottom: 0;
+        background: var(--polaris-bg-elevated);
+        font-size: 14px;
+      }
+
+      .set-row:first-child {
+        border-radius: 10px 10px 0 0;
+      }
+
+      .set-row:last-child {
+        border-bottom: 1px solid var(--polaris-border);
+        border-radius: 0 0 10px 10px;
+      }
+
+      .set-switch {
+        position: relative;
+        width: 32px;
+        height: 18px;
+        border-radius: 9px;
+        background: var(--polaris-border-strong);
+      }
+
+      .set-switch::after {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ffffff;
+        content: "";
+      }
+
+      .set-switch.is-on {
+        background: var(--polaris-accent);
+      }
+
+      .set-switch.is-on::after {
+        left: 16px;
+      }
+
+      /* Privacy */
+      .privacy-frame {
+        position: relative;
+        padding: clamp(56px, 7vw, 80px) clamp(20px, 5vw, 64px) clamp(44px, 6vw, 64px);
+        border: 1.5px dashed var(--polaris-border-strong);
+        border-radius: 28px;
+        text-align: center;
+      }
+
+      .privacy-lock {
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 1.5px dashed var(--polaris-border-strong);
+        border-radius: 50%;
+        background: var(--polaris-bg);
+        color: var(--polaris-text-secondary);
+        transform: translateX(-50%);
+      }
+
+      .privacy-lock svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .privacy-marquee {
+        margin: 32px calc(clamp(20px, 5vw, 64px) * -1) 28px;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      }
+
+      .privacy-track {
+        display: flex;
+        width: max-content;
+        animation: v2-marquee 36s linear infinite;
+      }
+
+      .privacy-group {
+        display: flex;
+        gap: 12px;
+        padding-right: 12px;
+      }
+
+      .privacy-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 14px 12px 18px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 14px;
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text);
+        font-size: 15px;
+        white-space: nowrap;
+      }
+
+      .privacy-chip b {
+        padding: 2px 8px;
+        border-radius: 6px;
+        background: var(--polaris-bg-muted);
+        color: var(--polaris-text-secondary);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .privacy-chip b.is-on {
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
+      }
+
+      .privacy-subtitle {
+        margin: 0 auto;
+        color: var(--polaris-text-secondary);
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(26px, 3vw, 40px);
+        font-style: normal;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .privacy-copy {
+        max-width: 40rem;
+        margin: 24px auto 0;
+        color: var(--polaris-text-secondary);
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .privacy-link {
+        display: inline-flex;
+        gap: 6px;
+        min-height: 44px;
+        align-items: center;
+        margin-top: 12px;
+        color: var(--polaris-accent-text);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .privacy-link:hover,
+      .privacy-link:focus-visible {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      /* Closing CTA */
+      .closing-cta {
+        padding: clamp(32px, 6vw, 72px) 0 0;
+        text-align: center;
+      }
+
+      .closing-arc {
+        margin-top: clamp(36px, 5vw, 56px);
+        padding: clamp(56px, 8vw, 88px) 24px clamp(64px, 9vw, 104px);
+        border-top: 1px solid var(--polaris-border);
+        border-radius: 50% 50% 0 0 / clamp(56px, 9vw, 140px) clamp(56px, 9vw, 140px) 0 0;
+        background: var(--polaris-bg-subtle);
+      }
+
+      .closing-button,
+      .floating-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 52px;
+        padding: 0 26px;
+        border-radius: 999px;
+        background: var(--polaris-accent);
+        box-shadow: 0 12px 28px color-mix(in srgb, var(--polaris-text) 16%, transparent);
+        color: var(--polaris-accent-foreground);
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        transition: background-color 160ms ease, opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+      }
+
+      .closing-button:hover,
+      .closing-button:focus-visible,
+      .floating-cta:hover,
+      .floating-cta:focus-visible {
+        background: var(--polaris-accent-hover);
+        color: var(--polaris-accent-foreground);
+      }
+
+      .closing-note {
+        margin: 16px 0 0;
+        color: var(--polaris-text-tertiary);
+        font-size: 14px;
+      }
+
+      .closing-note a {
+        color: var(--polaris-text-secondary);
+        text-underline-offset: 3px;
+      }
+
+      .closing-cta + * {
+        margin-top: 0;
+      }
+
+      /* Floating bottom pill */
+      .floating-cta {
+        position: fixed;
+        z-index: 25;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: 50%;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(-50%, 16px);
+      }
+
+      .floating-cta svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .floating-cta[data-visible="true"] {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-50%, 0);
+        transition: background-color 160ms ease, opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
+      }
+
+      @keyframes v2-marquee {
+        to { transform: translateX(-50%); }
+      }
+
+      @keyframes v2-blink {
+        50% { opacity: 0; }
+      }
+
+      @keyframes v2-type {
+        0% { width: 0; }
+        60%, 100% { width: 45%; }
+      }
+
+      @keyframes v2-appear {
+        0%, 45% { opacity: 0; transform: translateX(-6px); }
+        60%, 100% { opacity: 1; transform: none; }
+      }
+
+      @media (max-width: 800px) {
+        .bento-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .bento-card {
+          padding: 22px 20px 20px;
+        }
+
+        .bento-copy {
+          font-size: 16px;
+        }
+
+        .mk-tip {
+          right: 12px;
+        }
+
+        .hero-window-chrome {
+          height: 30px;
+        }
+
+        .hero-window-address {
+          display: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body:has(.analytics-consent:not([hidden])) .floating-cta {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .privacy-track,
+        .sr-caret,
+        .st-typing,
+        .st-markers .st-new {
+          animation: none;
+        }
+
+        .privacy-marquee {
+          overflow-x: auto;
+        }
+
+        .floating-cta,
+        .floating-cta[data-visible="true"] {
+          transform: translate(-50%, 0);
+          transition: none;
+        }
+      }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=cf7bea86">
   </head>
@@ -3509,8 +4259,11 @@
           <a class="header-link" href="#capabilities">
             <span data-i18n="nav.features">How it works</span>
           </a>
-          <a class="header-link" href="#updates">
-            <span data-i18n="nav.updates">Updates</span>
+          <a class="header-link" href="#features">
+            <span data-i18n="nav.featureGrid">Features</span>
+          </a>
+          <a class="header-link" href="#privacy">
+            <span data-i18n="nav.privacy">Privacy</span>
           </a>
           <a class="header-link header-link--drawer" href="#install">
             <span data-i18n="nav.install">Free trial</span>
@@ -3518,9 +4271,6 @@
         </nav>
       </div>
       <div class="header-utilities">
-        <a class="header-download" href="#install" data-header-download aria-hidden="true" tabindex="-1">
-          <span data-i18n="nav.install">Free trial</span>
-        </a>
         <div class="header-preferences">
           <div class="language-control" data-language-control>
             <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
@@ -3557,6 +4307,7 @@
     </header>
     <main id="main-content">
       <section class="hero-stage">
+        <span class="hero-wordmark" aria-hidden="true">Polaris</span>
         <div class="hero-copy">
           <h1 id="hero-title" aria-label="Navigate long AI conversations."><span class="sr-only" data-i18n="hero.title">Navigate long AI conversations.</span><span class="headline-line" data-hero-line aria-hidden="true">Navigate <span class="platform-slot" data-platform-slot aria-hidden="true"></span> long</span><span class="headline-line" data-hero-line aria-hidden="true">AI <span class="platform-slot" data-platform-slot aria-hidden="true"></span> conversations.</span></h1>
           <div class="hero-actions">
@@ -3564,19 +4315,26 @@
             <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
           </div>
         </div>
-        <section class="video-frame" aria-label="Polaris introduction video">
-          <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
-          <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
-          <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
-          <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
-          </button>
-        </section>
+        <div class="hero-window">
+          <div class="hero-window-chrome" aria-hidden="true">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+            <span class="hero-window-address"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="14" height="14">polaris-ai.work</span>
+          </div>
+          <section class="video-frame" aria-label="Polaris introduction video">
+            <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
+            <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
+            <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
+            <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+            </button>
+          </section>
+        </div>
       </section>
+      <div class="hero-arc" aria-hidden="true"></div>
       <div class="page-shell">
         <section class="how-section" id="capabilities" aria-labelledby="capabilities-title">
           <div class="how-heading">
-            <h2 id="capabilities-title" data-i18n="capabilities.title">Find the section you need</h2>
+            <h2 id="capabilities-title" data-i18n="capabilities.title">Polaris reads between the headings</h2>
           </div>
           <div class="how-stage" data-how-stage data-mode="toc" data-active-scene="toc" data-active="decision">
             <div class="how-selector-rail">
@@ -3691,6 +4449,102 @@
           </div>
         </section>
 
+        <section class="bento-section" id="features" aria-labelledby="features-title">
+          <h2 class="v2-heading" id="features-title" data-i18n="features.title">Built for long AI answers</h2>
+          <div class="bento-grid">
+            <article class="bento-card" aria-labelledby="bento-markers-label">
+              <p class="bento-label" id="bento-markers-label" data-i18n="features.markers.label">Markers</p>
+              <p class="bento-copy" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
+              <div class="bento-visual bento-visual--markers" aria-hidden="true">
+                <div class="mk-page"><i class="mk-h"></i><i></i><i></i><i class="mk-h"></i><i></i><i class="mk-short"></i><i class="mk-h"></i><i></i></div>
+                <div class="mk-rail"><b></b><b class="is-on"></b><b></b><b></b><b></b></div>
+                <span class="mk-tip" data-i18n="how.h.slips">The release details</span>
+              </div>
+            </article>
+            <article class="bento-card" aria-labelledby="bento-chapter-label">
+              <p class="bento-label" id="bento-chapter-label" data-i18n="features.chapter.label">Chapter view</p>
+              <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.</p>
+              <div class="bento-visual bento-visual--chapter" aria-hidden="true">
+                <div class="ch-list"><span class="is-on" data-i18n="how.h.decision">The decision</span><span data-i18n="how.h.slips">The release details</span><span data-i18n="how.h.checkin">The next check-in</span></div>
+                <div class="ch-body"><strong data-i18n="how.h.slips">The release details</strong><div class="ch-table"><i></i><i></i><i></i><i></i><i></i><i></i></div><i class="ch-line"></i><i class="ch-line ch-line--short"></i></div>
+              </div>
+            </article>
+            <article class="bento-card" aria-labelledby="bento-search-label">
+              <p class="bento-label" id="bento-search-label" data-i18n="features.search.label">Search</p>
+              <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.</p>
+              <div class="bento-visual bento-visual--search" aria-hidden="true">
+                <div class="sr-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg><span data-i18n="features.search.query">release</span><i class="sr-caret"></i></div>
+                <div class="sr-results"><span><mark data-i18n="features.search.hit1">Release</mark> <span data-i18n="features.search.rest1">timing</span></span><span><span data-i18n="features.search.pre2">The</span> <mark data-i18n="features.search.hit2">release</mark> <span data-i18n="features.search.rest2">details</span></span></div>
+              </div>
+            </article>
+            <article class="bento-card" aria-labelledby="bento-stream-label">
+              <p class="bento-label" id="bento-stream-label" data-i18n="features.stream.label">While it streams</p>
+              <p class="bento-copy" data-i18n="features.stream.copy">Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.</p>
+              <div class="bento-visual bento-visual--stream" aria-hidden="true">
+                <div class="st-lines"><i class="mk-h"></i><i></i><i></i><i class="mk-h"></i><i></i><i class="st-typing"></i></div>
+                <div class="st-markers"><b></b><b></b><b class="st-new"></b></div>
+              </div>
+            </article>
+            <article class="bento-card" aria-labelledby="bento-platforms-label">
+              <p class="bento-label" id="bento-platforms-label" data-i18n="features.platforms.label">Where it works</p>
+              <p class="bento-copy" data-i18n="features.platforms.copy">One navigator across the AI chats you already use.</p>
+              <div class="bento-visual bento-visual--platforms">
+                <ul class="pf-grid" aria-label="Supported platforms">
+                  <li><img src="icons/platforms/platform-chatgpt.png" alt="" width="28" height="28"><span>ChatGPT</span></li>
+                  <li><img src="icons/platforms/platform-claude.png" alt="" width="28" height="28"><span>Claude</span></li>
+                  <li><img src="icons/platforms/platform-gemini.png" alt="" width="28" height="28"><span>Gemini</span></li>
+                  <li><img src="icons/platforms/platform-grok.png" alt="" width="28" height="28"><span>Grok</span></li>
+                  <li><img src="icons/platforms/platform-deepseek.png" alt="" width="28" height="28"><span>DeepSeek</span></li>
+                  <li><img src="icons/platforms/platform-doubao.png" alt="" width="28" height="28"><span>Doubao</span></li>
+                  <li><img src="icons/platforms/platform-kimi.png" alt="" width="28" height="28"><span>Kimi</span></li>
+                  <li><img src="icons/platforms/platform-qianwen.png" alt="" width="28" height="28"><span>Qwen</span></li>
+                  <li><img src="icons/platforms/platform-yuanbao.png" alt="" width="28" height="28"><span>Yuanbao</span></li>
+                  <li><img src="icons/platforms/platform-xiaohongshu.png" alt="" width="28" height="28"><span>Diandian AI</span></li>
+                  <li><img src="icons/platforms/platform-manus.png" alt="" width="28" height="28"><span>Manus</span></li>
+                </ul>
+              </div>
+            </article>
+            <article class="bento-card" aria-labelledby="bento-settings-label">
+              <p class="bento-label" id="bento-settings-label" data-i18n="features.settings.label">Your markers</p>
+              <p class="bento-copy" data-i18n="features.settings.copy">Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.</p>
+              <div class="bento-visual bento-visual--settings" aria-hidden="true">
+                <div class="set-row"><span data-i18n="features.settings.headings">Headings</span><i class="set-switch is-on"></i></div>
+                <div class="set-row"><span data-i18n="features.settings.tables">Tables</span><i class="set-switch is-on"></i></div>
+                <div class="set-row"><span data-i18n="features.settings.bold">Bold text</span><i class="set-switch"></i></div>
+                <div class="set-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="set-switch"></i></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="privacy-section" id="privacy" aria-labelledby="privacy-title">
+          <div class="privacy-frame">
+            <span class="privacy-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+            <h2 class="v2-heading" id="privacy-title" data-i18n="privacy.title">Private by design</h2>
+            <div class="privacy-marquee" aria-hidden="true">
+              <div class="privacy-track">
+                <div class="privacy-group">
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.local">Processed in your browser</span><b class="is-on" data-i18n="privacy.on">On</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.upload">Sent to our servers</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.snapshots">Conversation sync</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.password">Password access</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.analytics">Website analytics</span><b data-i18n="privacy.ask">Ask first</b></span>
+                </div>
+                <div class="privacy-group">
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.local">Processed in your browser</span><b class="is-on" data-i18n="privacy.on">On</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.upload">Sent to our servers</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.snapshots">Conversation sync</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.password">Password access</span><b data-i18n="privacy.off">Off</b></span>
+                  <span class="privacy-chip"><span data-i18n="privacy.chip.analytics">Website analytics</span><b data-i18n="privacy.ask">Ask first</b></span>
+                </div>
+              </div>
+            </div>
+            <p class="privacy-subtitle" data-i18n="privacy.subtitle">and stays in your browser</p>
+            <p class="privacy-copy" data-i18n="privacy.copy">Polaris reads the answer on the page you have open and builds its navigation locally. Conversation content is never sent to the developer or a third-party server, and the website only measures visits after you allow it.</p>
+            <a class="privacy-link" href="privacy.html"><span data-i18n="privacy.link">Read the privacy policy</span> <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
 
         <section class="install-section" id="install" aria-labelledby="install-title">
           <h2 class="install-heading" id="install-title" data-i18n="install.title">Install Polaris AI</h2>
@@ -3736,7 +4590,15 @@
         </section>
 
       </div>
+      <section class="closing-cta" data-closing-cta aria-labelledby="closing-title">
+        <h2 class="v2-heading" id="closing-title" data-i18n="closing.title">Ready to stop scrolling?</h2>
+        <div class="closing-arc">
+          <a class="closing-button" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span data-i18n="closing.cta">Add Polaris to Chrome</span></a>
+          <p class="closing-note"><span data-i18n="closing.note">Also on Edge and Firefox.</span> <a href="#install" data-i18n="closing.other">Other ways to install</a></p>
+        </div>
+      </section>
     </main>
+    <a class="floating-cta" href="#install" data-floating-cta aria-hidden="true" tabindex="-1"><span data-i18n="nav.install">Free trial</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14m0 0-5-5m5 5 5-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
 
     <footer class="site-footer" id="footer">
       <div class="footer-inner">
@@ -3748,7 +4610,7 @@
           </div>
           <nav class="footer-nav" aria-labelledby="product-title"><h2 id="product-title" data-i18n="footer.product">Product</h2>
             <ul>
-              <li><a href="#capabilities" data-i18n="footer.features">Features</a></li>
+              <li><a href="#features" data-i18n="footer.features">Features</a></li>
               <li><a href="#updates" data-i18n="footer.updates">What's new</a></li>
             </ul>
           </nav>
@@ -3811,12 +4673,13 @@
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const menuPanel = document.querySelector("[data-menu-panel]");
       const siteHeader = document.querySelector(".site-header");
-      const headerDownload = document.querySelector("[data-header-download]");
+      const headerDownload = document.querySelector("[data-floating-cta]");
+      const floatingCtaBlockers = [...document.querySelectorAll("#install, [data-closing-cta], .site-footer")];
       const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
       const updatesShowMore = document.querySelector("[data-updates-show-more]");
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
-      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .header-download[href^="#"], .hero-link[href^="#"]');
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], .closing-note a[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -3857,6 +4720,47 @@
           "nav.install": "Free trial",
           "nav.features": "How it works",
           "nav.updates": "Updates",
+          "nav.featureGrid": "Features",
+          "nav.privacy": "Privacy",
+          "features.title": "Built for long AI answers",
+          "features.markers.label": "Markers",
+          "features.markers.copy": "Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.",
+          "features.chapter.label": "Chapter view",
+          "features.chapter.copy": "Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.",
+          "features.search.label": "Search",
+          "features.search.copy": "Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.",
+          "features.search.query": "release",
+          "features.search.hit1": "Release",
+          "features.search.rest1": "timing",
+          "features.search.pre2": "The",
+          "features.search.hit2": "release",
+          "features.search.rest2": "details",
+          "features.stream.label": "While it streams",
+          "features.stream.copy": "Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.",
+          "features.platforms.label": "Where it works",
+          "features.platforms.copy": "One navigator across the AI chats you already use.",
+          "features.settings.label": "Your markers",
+          "features.settings.copy": "Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.",
+          "features.settings.headings": "Headings",
+          "features.settings.tables": "Tables",
+          "features.settings.bold": "Bold text",
+          "features.settings.ordered": "Ordered lists",
+          "privacy.title": "Private by design",
+          "privacy.subtitle": "and stays in your browser",
+          "privacy.chip.local": "Processed in your browser",
+          "privacy.chip.upload": "Sent to our servers",
+          "privacy.chip.snapshots": "Conversation sync",
+          "privacy.chip.password": "Password access",
+          "privacy.chip.analytics": "Website analytics",
+          "privacy.on": "On",
+          "privacy.off": "Off",
+          "privacy.ask": "Ask first",
+          "privacy.copy": "Polaris reads the answer on the page you have open and builds its navigation locally. Conversation content is never sent to the developer or a third-party server, and the website only measures visits after you allow it.",
+          "privacy.link": "Read the privacy policy",
+          "closing.title": "Ready to stop scrolling?",
+          "closing.cta": "Add Polaris to Chrome",
+          "closing.note": "Also on Edge and Firefox.",
+          "closing.other": "Other ways to install",
           "nav.issues": "GitHub Issues",
           "locale.toggle": "中文",
           "locale.toggleAria": "Switch to Simplified Chinese",
@@ -3878,7 +4782,7 @@
           "platforms.title": "Platforms supported by the ZIP version",
           "video.label": "Polaris introduction video",
           "video.playAria": "Play Polaris introduction video",
-          "capabilities.title": "Find the section you need",
+          "capabilities.title": "Polaris reads between the headings",
           "capabilities.intro": "Pick a feature to see the demo.",
           "how.toc.title": "Jump to a section",
           "how.toc.body": "Click a heading to jump to that section in the original answer.",
@@ -3958,6 +4862,47 @@
           "nav.install": "免费试用",
           "nav.features": "功能",
           "nav.updates": "更新记录",
+          "nav.featureGrid": "功能",
+          "nav.privacy": "隐私",
+          "features.title": "为长篇 AI 回答而做",
+          "features.markers.label": "Marker",
+          "features.markers.copy": "每条回答里的标题、列表和表格，都会变成页面边缘的小标记。悬停预览，点击直达那一节。",
+          "features.chapter.label": "章节视图",
+          "features.chapter.copy": "把一条长回答按章节读，表格、任务列表、代码和图片都完整保留。",
+          "features.search.label": "搜索",
+          "features.search.copy": "输入关键词筛选标题和章节，直接跳到匹配的位置，不用再来回翻找。",
+          "features.search.query": "发布",
+          "features.search.hit1": "发布",
+          "features.search.rest1": "时间",
+          "features.search.pre2": "",
+          "features.search.hit2": "发布",
+          "features.search.rest2": "细节",
+          "features.stream.label": "边生成边导航",
+          "features.stream.copy": "写出第一节，Marker 就出现。回答继续变长，列表也不会乱跳。",
+          "features.platforms.label": "支持平台",
+          "features.platforms.copy": "一个导航，覆盖你常用的 AI 对话。",
+          "features.settings.label": "你的 Marker",
+          "features.settings.copy": "自己决定哪些结构生成 Marker。加粗文本和有序列表默认关闭，需要时再打开。",
+          "features.settings.headings": "标题",
+          "features.settings.tables": "表格",
+          "features.settings.bold": "加粗文本",
+          "features.settings.ordered": "有序列表",
+          "privacy.title": "隐私优先",
+          "privacy.subtitle": "内容只留在你的浏览器里",
+          "privacy.chip.local": "在浏览器本地处理",
+          "privacy.chip.upload": "上传到我们的服务器",
+          "privacy.chip.snapshots": "同步对话内容",
+          "privacy.chip.password": "读取密码",
+          "privacy.chip.analytics": "官网分析",
+          "privacy.on": "开",
+          "privacy.off": "关",
+          "privacy.ask": "先征得同意",
+          "privacy.copy": "Polaris 只读取你当前打开页面上的回答，并在本地生成导航。对话内容不会发送给开发者或任何第三方服务器；官网也只有在你同意后才统计访问。",
+          "privacy.link": "阅读隐私政策",
+          "closing.title": "不想再来回翻了？",
+          "closing.cta": "添加到 Chrome",
+          "closing.note": "也支持 Edge 和 Firefox。",
+          "closing.other": "其他安装方式",
           "nav.issues": "GitHub 问题反馈",
           "locale.toggle": "English",
           "locale.toggleAria": "切换到英语",
@@ -3979,7 +4924,7 @@
           "platforms.title": "ZIP 版支持的平台",
           "video.label": "Polaris 介绍视频",
           "video.playAria": "播放 Polaris 介绍视频",
-          "capabilities.title": "找到你要的那一节",
+          "capabilities.title": "Polaris 读懂回答的层次",
           "capabilities.intro": "选一个功能，看看演示。",
           "how.toc.title": "跳到某一节",
           "how.toc.body": "点一个标题，跳到原回答中对应的章节。",
@@ -4078,10 +5023,18 @@
 
         const navClearance = siteHeader.getBoundingClientRect().bottom + 8;
         const pastHero = heroRegion.getBoundingClientRect().bottom <= navClearance;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        // Like Dia's download pill: hidden while another install action is on screen.
+        const blocked = floatingCtaBlockers.some((element) => {
+          const rect = element.getBoundingClientRect();
+          return rect.top < viewportHeight - 40 && rect.bottom > 0;
+        });
+        const visible = pastHero && !blocked;
         siteHeader.dataset.pastHero = String(pastHero);
-        headerDownload.setAttribute("aria-hidden", String(!pastHero));
+        headerDownload.dataset.visible = String(visible);
+        headerDownload.setAttribute("aria-hidden", String(!visible));
 
-        if (pastHero) {
+        if (visible) {
           headerDownload.removeAttribute("tabindex");
         } else {
           headerDownload.tabIndex = -1;

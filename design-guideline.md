@@ -6,11 +6,13 @@
 - Start with a two-line headline at display scale, without a supporting sentence above it. Do not spend the hero on a four-line headline, and do not add a decorative wordmark that is not the Polaris name.
 - For Simplified Chinese, keep the concise two-line headline with an explicit line break so no character is stranded.
 - Give the hero one solid Clay Free trial pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
-- Place the large introduction video directly after the action group, with 28–48px of responsive spacing. Do not push it down with an automatic margin. Keep its source, thumbnail, and failure-recovery play control.
+- Place the large introduction video directly after the action group, with 28–48px of responsive spacing, inside a product window: a 38px chrome bar with three neutral dots and a centered polaris-ai.work address, a 16px radius, a fine border and a soft shadow. Do not push it down with an automatic margin. Keep its source, thumbnail, and failure-recovery play control.
+- Behind the headline, set a very large Lora SemiBold Italic “Polaris” wordmark in the accent mixed at 9% into the page color, like Dia's oversized name. It is decorative and hidden from assistive technology.
+- Close the hero with a wide Paper arc that overlaps the lower edge of the product window, with a fine border on its curve.
 - Match the extension conversation cover: paper `#fafaf8` in light and `#1a1918` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
-- Keep the sequence as full-bleed hero, How it works, installation panels, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
-- How it works is a left–right row: the headline, short explanation, and TOC / Outline switch sit on the left, and a browser-chrome illustration sits on the right. On narrow screens, stack the copy above the window. The browser mock uses a wide window, about the same proportion as a product screenshot (roughly 737:545), large beside a narrow copy column. The window stays a fixed size when TOC and Outline switch. The picker expands the selected feature over 300ms, with a quiet wash and an accent bar, and the side list fades. The other feature collapses to its title. Inside the window, margin markers sit on a long answer and a Polaris side panel switches between TOC (a jump list) and Outline (the same answer as a nested structure). Use the conversation-cover paper and terracotta for that mock in both themes.
+- Keep the sequence as full-bleed hero, How it works, Features, Privacy, installation panels, release notes, the closing CTA, then the footer. Platform names stay in the headline marks and in the accessible platform list.
+- How it works is headed “Polaris reads between the headings” in Newsreader. It is a left–right row: the headline, short explanation, and TOC / Outline switch sit on the left, and a browser-chrome illustration sits on the right. On narrow screens, stack the copy above the window. The browser mock uses a wide window, about the same proportion as a product screenshot (roughly 737:545), large beside a narrow copy column. The window stays a fixed size when TOC and Outline switch. The picker expands the selected feature over 300ms, with a quiet wash and an accent bar, and the side list fades. The other feature collapses to its title. Inside the window, margin markers sit on a long answer and a Polaris side panel switches between TOC (a jump list) and Outline (the same answer as a nested structure). Use the conversation-cover paper and terracotta for that mock in both themes.
 - Headline platform marks are opaque rounded tiles, white or black, with the mark inset from the tile edge. Align each headline row on the text baseline, keep the icon at 0.72em, and avoid a downward slot transform so the tile’s optical center lines up with the glyph center.
 
 ## Typography
@@ -24,11 +26,17 @@
 ## Header
 
 - On desktop, use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not add a header bottom border. At 800px and below, use a full-width opaque header in the current theme's page color, covering the top safe area; remove the brand wrapper and control backgrounds while preserving control positions, touch targets, menus, and keyboard focus feedback.
-- Inside the pill, show the logo mark with a minimal wordmark and two quiet text links — How it works and Updates — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill.
-- At the top of the page, the hero Free trial action owns the install section. After the visitor scrolls past the hero, reveal a separate floating Free trial pill on the right that matches the nav pill and uses the same label. Do not use the gradient outline treatment on that header control.
+- Inside the pill, show the logo mark with a minimal wordmark and quiet text links — How it works, Features, Privacy — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill. Release notes stay reachable from the footer.
+- At the top of the page, the hero Free trial action owns the install section. After the visitor scrolls past the hero, show one Free trial pill fixed at the bottom center, like Dia's download pill: solid Clay with a down arrow. Hide it while the installation section, the closing CTA or the footer is on screen, and on narrow screens while the analytics prompt is open. Do not add a second Free trial pill to the header.
 - Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.
 - On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Free trial so the install section stays reachable. GitHub Issues lives in the footer.
 - In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
+
+## Features, privacy and closing
+
+- Follow How it works with a Features bento: a Newsreader heading and six bordered cards in two columns (one column at 800px and below). Each card has a small uppercase label, one short sentence, and a Clay-colored illustration drawn in HTML/CSS: Markers, Chapter view, Search, While it streams, Where it works (platform marks with their names), and Your markers (switches, with bold text and ordered lists off).
+- Privacy follows Features: a dashed rounded frame with a dashed lock badge on its top edge, the heading, a slowly scrolling row of On/Off chips, a serif subtitle, one paragraph and a link to the privacy policy. Every chip must match `privacy.html`. Reduced motion stops the scroll and lets the row scroll by hand.
+- End the page with a closing CTA: a Newsreader question, then a wide subtle arc holding one solid Clay pill to the Chrome Web Store and a quiet line naming Edge and Firefox with a link to the installation section.
 
 ## Release notes
 
@@ -68,6 +76,6 @@
 ## Footer
 
 - Use a full-width Paper-subtle surface in light mode and Ink-subtle in dark mode, with a fine top divider and a 1200px content width.
-- Desktop has a wider brand column followed by Product, Install & help, and Legal. Keep the existing Polaris mark, independent-developer introduction, support email, copyright, and author link.
+- Desktop has a wider brand column followed by Product, Install & help, and Legal. Group headings are small uppercase labels in the tertiary text color. Keep the existing Polaris mark, independent-developer introduction, support email, copyright, and author link.
 - Use plain labels: Features, What's new, and Install for Chrome / Edge / Firefox. Footer Pricing and Free trial entries stay hidden for now. Keep the red heart in the author attribution. Preserve the official destination URLs and the existing Analytics settings action.
 - Below 950px, put the brand above three link columns; below 560px, use two link columns with 44px targets and a stacked bottom row. Localize with the homepage dictionaries and preserve theme and keyboard focus behavior.

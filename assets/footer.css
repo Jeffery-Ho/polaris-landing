@@ -60,9 +60,12 @@
 
 .footer-nav h2 {
   margin: 8px 0 22px;
-  font-size: 15px;
-  font-weight: 650;
+  color: var(--polaris-text-tertiary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   line-height: 24px;
+  text-transform: uppercase;
 }
 .footer-nav ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .footer-nav li { min-width: 0; }
