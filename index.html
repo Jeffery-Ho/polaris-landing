@@ -3676,315 +3676,685 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 200px;
+        gap: 12px;
+        height: 260px;
         margin-top: auto;
-        padding: 20px;
+        padding: 22px;
         overflow: hidden;
         border-radius: 14px;
         background: var(--polaris-bg-subtle);
         color: var(--polaris-text);
+        font-size: 13px;
+        line-height: 1.45;
       }
 
-      .bento-visual i,
-      .bento-visual b {
+      .demo i,
+      .demo b {
         display: block;
         font-style: normal;
       }
 
-      /* Markers */
-      .mk-page,
-      .st-lines {
-        display: grid;
-        gap: 9px;
-        width: min(260px, 70%);
-        padding: 18px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 10px;
-        background: var(--polaris-bg-elevated);
+      .demo h5,
+      .demo p {
+        margin: 0;
       }
 
-      .mk-page i,
-      .st-lines i {
+      .demo button {
+        font: inherit;
+      }
+
+      .ds-src {
+        display: none;
+      }
+
+      /* Shared demo chrome: a cropped Polaris window and a scripted cursor. */
+      .dm-window {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid var(--polaris-border);
+        border-radius: 12px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 10px 30px color-mix(in srgb, var(--polaris-text) 7%, transparent);
+      }
+
+      .demo-markers .dm-window,
+      .demo-stream .dm-window {
+        width: min(340px, 100%);
+      }
+
+      .dm-chat {
+        position: absolute;
+        inset: 0 38px 0 0;
+        overflow: hidden;
+      }
+
+      .dm-track {
+        padding: 16px 18px 40px;
+        transition: transform 700ms cubic-bezier(.65, 0, .35, 1);
+      }
+
+      .dm-user {
+        width: fit-content;
+        max-width: 85%;
+        margin: 0 0 14px auto !important;
+        padding: 6px 11px;
+        border-radius: 12px;
+        background: var(--polaris-bg-muted);
+        font-size: 12px;
+      }
+
+      .dm-track h5,
+      .dp-answer h5,
+      .dc-body strong {
+        margin: 12px 0 5px;
+        color: var(--polaris-text);
+        font-family: var(--polaris-font-serif);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.3;
+        border-radius: 4px;
+        transition: background-color 400ms ease, box-shadow 400ms ease;
+      }
+
+      .dm-track h5.is-hit {
+        background: var(--polaris-accent-subtle);
+        box-shadow: 0 0 0 4px var(--polaris-accent-subtle);
+      }
+
+      .dm-track p,
+      .dc-body p {
+        color: var(--polaris-text-secondary);
+      }
+
+      .dm-track > i,
+      .dp-answer > i,
+      .dg-preview > i {
         height: 6px;
+        margin: 7px 0;
         border-radius: 3px;
         background: var(--polaris-bg-muted);
       }
 
-      .mk-page .mk-h,
-      .st-lines .mk-h {
-        width: 55%;
-        height: 8px;
-        background: var(--polaris-border-strong);
-      }
+      .demo .w80 { width: 80%; }
+      .demo .w70 { width: 70%; }
+      .demo .w60 { width: 60%; }
+      .demo .w50 { width: 50%; }
 
-      .mk-page .mk-short {
-        width: 70%;
-      }
-
-      .mk-rail,
-      .st-markers {
+      .dm-rail {
+        position: absolute;
+        top: 50%;
+        right: 12px;
         display: grid;
-        gap: 14px;
-        margin-left: 18px;
+        gap: 12px;
+        transform: translateY(-50%);
       }
 
-      .mk-rail b,
-      .st-markers b {
-        width: 18px;
+      .dm-rail b {
+        width: 16px;
         height: 4px;
+        margin-left: auto;
         border-radius: 2px;
         background: var(--polaris-border-strong);
+        transition: width 250ms ease, background-color 250ms ease, opacity 300ms ease, transform 300ms ease;
       }
 
-      .mk-rail b.is-on {
-        width: 26px;
+      .dm-rail b.is-on {
+        width: 24px;
         background: var(--polaris-accent);
       }
 
-      .mk-tip {
+      .dm-tip {
         position: absolute;
-        top: calc(50% - 32px);
-        right: calc(50% - 190px);
+        right: 46px;
         padding: 5px 10px;
         border: 1px solid var(--polaris-border);
         border-radius: 8px;
         background: var(--polaris-bg-elevated);
-        box-shadow: 0 8px 20px color-mix(in srgb, var(--polaris-text) 10%, transparent);
+        box-shadow: 0 8px 20px color-mix(in srgb, var(--polaris-text) 12%, transparent);
         font-size: 12px;
         white-space: nowrap;
+        opacity: 0;
+        transform: translateX(6px);
+        transition: opacity 200ms ease, transform 200ms ease;
+        pointer-events: none;
+      }
+
+      .dm-tip.is-on {
+        opacity: 1;
+        transform: none;
+      }
+
+      .demo-cursor {
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 22px;
+        height: 22px;
+        opacity: 0;
+        transform: translate(var(--cx, 70%), var(--cy, 80%));
+        transition: transform 650ms cubic-bezier(.45, 0, .2, 1), opacity 250ms ease;
+        pointer-events: none;
+      }
+
+      .demo.is-playing .demo-cursor {
+        opacity: 1;
+      }
+
+      .demo-cursor svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .18));
+      }
+
+      .demo-cursor::after {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 22px;
+        height: 22px;
+        margin: -11px 0 0 -11px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--polaris-accent) 35%, transparent);
+        content: "";
+        opacity: 0;
+        transform: scale(.3);
+      }
+
+      .demo-cursor.is-click::after {
+        animation: demo-click 380ms ease-out;
+      }
+
+      .dm-panel-title {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--polaris-text-tertiary);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        text-transform: uppercase;
       }
 
       /* Chapter view */
-      .bento-visual--chapter {
-        align-items: stretch;
-        gap: 12px;
+      .dm-split {
+        display: flex;
+        width: 100%;
       }
 
-      .ch-list {
-        display: grid;
-        align-content: start;
-        gap: 4px;
+      .dc-list {
+        flex: none;
         width: 38%;
-        font-size: 12px;
+        padding: 14px 10px;
+        border-right: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-subtle);
       }
 
-      .ch-list span {
+      .dc-list button {
+        display: block;
+        width: 100%;
         overflow: hidden;
-        padding: 6px 8px;
-        border-radius: 6px;
+        margin: 2px 0;
+        padding: 7px 9px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
         color: var(--polaris-text-secondary);
+        font-size: 12px;
+        text-align: left;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor: default;
+        transition: background-color 250ms ease, color 250ms ease;
       }
 
-      .ch-list .is-on {
+      .dc-list button.is-on {
         background: var(--polaris-accent-subtle);
         color: var(--polaris-accent-text);
       }
 
-      .ch-body {
-        display: grid;
-        align-content: start;
-        gap: 10px;
+      .dc-body {
+        position: relative;
         flex: 1;
         min-width: 0;
-        padding: 14px;
+      }
+
+      .dc-body section {
+        position: absolute;
+        inset: 0;
+        padding: 6px 16px 14px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 350ms ease, transform 350ms ease;
+      }
+
+      .dc-body section.is-on {
+        opacity: 1;
+        transform: none;
+      }
+
+      .dc-body strong {
+        display: block;
+      }
+
+      .dc-body blockquote {
+        margin: 10px 0 0;
+        padding-left: 10px;
+        border-left: 2px solid var(--polaris-accent);
+        color: var(--polaris-text-secondary);
+        font-style: italic;
+      }
+
+      .dc-body table {
+        width: 100%;
+        margin-top: 6px;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      .dc-body th,
+      .dc-body td {
+        padding: 5px 6px;
         border: 1px solid var(--polaris-border);
-        border-radius: 10px;
-        background: var(--polaris-bg-elevated);
-        font-size: 13px;
+        text-align: left;
       }
 
-      .ch-body strong {
-        font-family: var(--polaris-font-serif);
-        font-size: 16px;
-        font-weight: 400;
-      }
-
-      .ch-table {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        overflow: hidden;
-        border: 1px solid var(--polaris-border);
-        border-radius: 6px;
-      }
-
-      .ch-table i {
-        height: 20px;
-        border-right: 1px solid var(--polaris-border);
-        border-bottom: 1px solid var(--polaris-border);
-      }
-
-      .ch-table i:nth-child(-n + 3) {
+      .dc-body th {
         background: var(--polaris-bg-subtle);
+        font-weight: 600;
       }
 
-      .ch-line {
-        height: 6px;
-        border-radius: 3px;
-        background: var(--polaris-bg-muted);
+      .dc-body ul {
+        margin: 6px 0 0;
+        padding: 0;
+        list-style: none;
       }
 
-      .ch-line--short {
-        width: 60%;
+      .dc-body li {
+        position: relative;
+        margin: 6px 0;
+        padding-left: 22px;
+        color: var(--polaris-text-secondary);
+      }
+
+      .dc-body li::before {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid var(--polaris-border-strong);
+        border-radius: 4px;
+        content: "";
+      }
+
+      .dc-body li.done {
+        text-decoration: line-through;
+      }
+
+      .dc-body li.done::before {
+        border-color: var(--polaris-accent);
+        background: var(--polaris-accent);
       }
 
       /* Search */
-      .bento-visual--search {
-        flex-direction: column;
-        gap: 10px;
+      .dm-panel {
+        width: min(280px, 100%);
+        padding: 14px;
       }
 
-      .sr-field,
-      .sr-results {
-        width: min(300px, 100%);
-      }
-
-      .sr-field {
+      .ds-head {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 10px 12px;
-        border: 1px solid var(--polaris-accent);
-        border-radius: 10px;
-        background: var(--polaris-bg-elevated);
+        gap: 7px;
+        margin-bottom: 10px;
+        font-family: var(--polaris-font-wordmark);
         font-size: 14px;
+        font-style: italic;
+        font-weight: 600;
       }
 
-      .sr-field svg {
-        width: 16px;
-        height: 16px;
+      .ds-head img {
+        border-radius: 5px;
+      }
+
+      .ds-field {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 34px;
+        padding: 0 10px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 9px;
+        background: var(--polaris-bg);
+        transition: border-color 200ms ease;
+      }
+
+      .demo-search.is-typing .ds-field {
+        border-color: var(--polaris-accent);
+      }
+
+      .ds-field svg {
+        flex: none;
+        width: 14px;
+        height: 14px;
         color: var(--polaris-text-tertiary);
       }
 
-      .sr-caret {
+      .ds-placeholder {
+        position: absolute;
+        left: 31px;
+        color: var(--polaris-text-tertiary);
+      }
+
+      .ds-query:not(:empty) ~ .ds-placeholder {
+        display: none;
+      }
+
+      .ds-caret {
         width: 1.5px;
-        height: 16px;
+        height: 15px;
         background: var(--polaris-accent);
-        animation: v2-blink 1.1s steps(1) infinite;
+        opacity: 0;
       }
 
-      .sr-results {
+      .demo-search.is-typing .ds-caret {
+        animation: demo-blink 1s steps(1) infinite;
+      }
+
+      .ds-list {
         display: grid;
-        gap: 4px;
-        padding: 6px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 10px;
-        background: var(--polaris-bg-elevated);
-        font-size: 13px;
+        gap: 2px;
+        margin-top: 8px;
       }
 
-      .sr-results > span {
-        padding: 7px 8px;
-        border-radius: 6px;
+      .ds-item {
+        overflow: hidden;
+        max-height: 30px;
+        padding: 6px 8px;
+        border-radius: 7px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        transition: max-height 300ms ease, padding 300ms ease, opacity 250ms ease, background-color 250ms ease;
       }
 
-      .sr-results > span:first-child {
-        background: var(--polaris-bg-subtle);
+      .ds-item.is-hidden {
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        opacity: 0;
       }
 
-      .sr-results mark {
-        padding: 0 2px;
-        border-radius: 3px;
+      .ds-item.is-on {
         background: var(--polaris-accent-subtle);
+      }
+
+      .ds-item mark {
+        padding: 0 1px;
+        border-radius: 3px;
+        background: color-mix(in srgb, var(--polaris-accent) 22%, transparent);
         color: var(--polaris-accent-text);
       }
 
       /* Streaming */
-      .st-typing {
-        width: 30%;
-        animation: v2-type 2.4s ease-in-out infinite;
+      .dt-block {
+        display: none;
       }
 
-      .st-markers .st-new {
+      .dt-block.is-on {
+        display: block;
+        animation: demo-fade 300ms ease;
+      }
+
+      .dt-block [data-typed]::after {
+        display: inline-block;
+        width: 6px;
+        height: 12px;
+        margin-left: 2px;
+        border-radius: 1px;
+        background: var(--polaris-text-tertiary);
+        content: "";
+        vertical-align: -1px;
+        opacity: 0;
+      }
+
+      .dt-block.is-typing [data-typed]::after {
+        opacity: 1;
+      }
+
+      .demo-stream .dm-rail b {
+        opacity: 0;
+        transform: translateX(8px);
+      }
+
+      .demo-stream .dm-rail b.is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .demo-stream .dm-rail b.is-new {
+        width: 24px;
         background: var(--polaris-accent);
-        animation: v2-appear 2.4s ease-in-out infinite;
       }
 
       /* Platforms */
-      .pf-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px 8px;
+      .demo-platforms {
+        flex-direction: column;
+      }
+
+      .dp-browser {
+        flex: 1;
         width: 100%;
+        min-height: 0;
+      }
+
+      .dp-chrome {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 32px;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-subtle);
+        font-size: 11px;
+      }
+
+      .dp-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 10px 3px 6px;
+        border-radius: 7px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 1px 2px color-mix(in srgb, var(--polaris-text) 10%, transparent);
+      }
+
+      .dp-tab img {
+        border-radius: 3px;
+        background: #fff;
+      }
+
+      .dp-address {
+        color: var(--polaris-text-tertiary);
+      }
+
+      .dp-tab,
+      .dp-address {
+        transition: opacity 200ms ease;
+      }
+
+      .demo-platforms.is-switching .dp-tab,
+      .demo-platforms.is-switching .dp-address,
+      .demo-platforms.is-switching .dp-answer {
+        opacity: 0;
+      }
+
+      .dp-page {
+        position: relative;
+        height: calc(100% - 32px);
+      }
+
+      .dp-answer {
+        position: absolute;
+        inset: 0 40px 0 0;
+        padding: 10px 16px;
+        transition: opacity 200ms ease;
+      }
+
+      .dp-answer .dm-user {
+        margin-bottom: 4px !important;
+      }
+
+      .dp-answer h5 {
+        margin-top: 6px;
+      }
+
+      .pf-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
         margin: 0;
         padding: 0;
         list-style: none;
       }
 
-      .pf-grid li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        min-width: 0;
-        color: var(--polaris-text-secondary);
-        font-size: 11px;
-        text-align: center;
+      .pf-strip li {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 9px;
+        background: #fff;
+        transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
       }
 
-      .pf-grid img {
-        width: 34px;
-        height: 34px;
-        padding: 5px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 10px;
-        background: #ffffff;
+      .pf-strip li span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      .pf-strip li.is-on {
+        border-color: var(--polaris-accent);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--polaris-accent) 20%, transparent);
+        transform: translateY(-2px);
       }
 
       /* Settings */
-      .bento-visual--settings {
-        flex-direction: column;
-        gap: 0;
+      .dg-panel {
+        width: 56%;
+        height: auto;
       }
 
-      .set-row {
+      .dg-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: min(280px, 100%);
-        padding: 10px 14px;
-        border: 1px solid var(--polaris-border);
-        border-bottom: 0;
-        background: var(--polaris-bg-elevated);
-        font-size: 14px;
+        padding: 8px 2px;
+        border-top: 1px solid var(--polaris-border);
       }
 
-      .set-row:first-child {
-        border-radius: 10px 10px 0 0;
-      }
-
-      .set-row:last-child {
-        border-bottom: 1px solid var(--polaris-border);
-        border-radius: 0 0 10px 10px;
-      }
-
-      .set-switch {
+      .dg-switch {
         position: relative;
-        width: 32px;
-        height: 18px;
+        width: 30px;
+        height: 17px;
         border-radius: 9px;
         background: var(--polaris-border-strong);
+        transition: background-color 250ms ease;
       }
 
-      .set-switch::after {
+      .dg-switch::after {
         position: absolute;
         top: 2px;
         left: 2px;
-        width: 14px;
-        height: 14px;
+        width: 13px;
+        height: 13px;
         border-radius: 50%;
-        background: #ffffff;
+        background: #fff;
         content: "";
+        transition: transform 250ms ease;
       }
 
-      .set-switch.is-on {
+      .dg-switch.is-on {
         background: var(--polaris-accent);
       }
 
-      .set-switch.is-on::after {
-        left: 16px;
+      .dg-switch.is-on::after {
+        transform: translateX(13px);
       }
+
+      .dg-preview {
+        position: relative;
+        width: 40%;
+        height: auto;
+        padding: 12px 44px 12px 12px;
+      }
+
+      .dg-preview > .mk-h {
+        width: 70%;
+        height: 7px;
+        background: var(--polaris-border-strong);
+      }
+
+      .dg-bold {
+        width: 55%;
+        height: 6px;
+        margin: 7px 0;
+        border-radius: 3px;
+        background: var(--polaris-text-tertiary);
+      }
+
+      .dg-preview .dm-rail .dg-extra {
+        height: 0;
+        margin-top: -12px;
+        opacity: 0;
+      }
+
+      .demo-settings.is-bold .dg-preview .dm-rail .dg-extra {
+        height: 4px;
+        margin-top: 0;
+        background: var(--polaris-accent);
+        opacity: 1;
+      }
+
+      .demo-settings.is-bold .dg-bold {
+        box-shadow: 0 0 0 3px var(--polaris-accent-subtle);
+      }
+
+      @keyframes demo-click {
+        0% { opacity: .9; transform: scale(.3); }
+        100% { opacity: 0; transform: scale(1.6); }
+      }
+
+      @keyframes demo-blink {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+
+      @keyframes demo-fade {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: none; }
+      }
+
+      /* How it works, after Dia's list: serif titles, muted until active, one short line. */
+      .how-note { padding: 18px 22px; }
+      .how-note-name { font-family: var(--polaris-font-serif); font-size: 26px; font-weight: 400; letter-spacing: -.02em; line-height: 1.2; }
+      .how-note-body { font-size: 15px; line-height: 1.55; }
+      .how-note-points,
+      .how-mobile-copy .how-note-points { display: none; }
+      .how-enhanced .how-note[data-expanded="true"]::before { background: var(--polaris-accent); }
+      .how-section .browser { position: relative; }
+      .how-section [data-how-enter] .browser,
+      .how-section [data-how-enter] { opacity: 1 !important; transform: none !important; }
+      .how-section .browser .demo-cursor { width: 22px; height: 22px; }
+      .how-section .browser.is-playing .demo-cursor { opacity: 1; }
+      .how-scene-title { font-family: var(--polaris-font-serif); font-weight: 400; }
 
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
@@ -4186,19 +4556,6 @@
       }
 
 
-      @keyframes v2-blink {
-        50% { opacity: 0; }
-      }
-
-      @keyframes v2-type {
-        0% { width: 0; }
-        60%, 100% { width: 45%; }
-      }
-
-      @keyframes v2-appear {
-        0%, 45% { opacity: 0; transform: translateX(-6px); }
-        60%, 100% { opacity: 1; transform: none; }
-      }
 
       @media (max-width: 800px) {
         .bento-grid {
@@ -4211,10 +4568,6 @@
 
         .bento-copy {
           font-size: 16px;
-        }
-
-        .mk-tip {
-          right: 12px;
         }
 
         .hero-window-chrome {
@@ -4233,10 +4586,11 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .sr-caret,
-        .st-typing,
-        .st-markers .st-new {
-          animation: none;
+        .demo-cursor,
+        .dm-track,
+        .dc-body section,
+        .ds-item {
+          transition: none;
         }
 
         .floating-cta,
@@ -4257,9 +4611,6 @@
           <span class="brand-name">Polaris</span>
         </a>
         <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
-          <a class="header-link" href="#capabilities">
-            <span data-i18n="nav.features">How it works</span>
-          </a>
           <a class="header-link" href="#features">
             <span data-i18n="nav.featureGrid">Features</span>
           </a>
@@ -4459,63 +4810,88 @@
             <article class="bento-card" aria-labelledby="bento-markers-label">
               <p class="bento-label" id="bento-markers-label" data-i18n="features.markers.label">Markers</p>
               <p class="bento-copy" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
-              <div class="bento-visual bento-visual--markers" aria-hidden="true">
-                <div class="mk-page"><i class="mk-h"></i><i></i><i></i><i class="mk-h"></i><i></i><i class="mk-short"></i><i class="mk-h"></i><i></i></div>
-                <div class="mk-rail"><b></b><b class="is-on"></b><b></b><b></b><b></b></div>
-                <span class="mk-tip" data-i18n="how.h.slips">The release details</span>
+              <div class="bento-visual demo demo-markers" data-demo="markers" aria-hidden="true">
+                <div class="dm-window">
+                  <div class="dm-chat"><div class="dm-track" data-track>
+                    <p class="dm-user" data-i18n="how.prompt">What is the release plan?</p>
+                    <h5 data-sec="decision"><span data-i18n="how.h.decision">The decision</span></h5><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><i></i><i class="w80"></i><i class="w60"></i>
+                    <h5 data-sec="slips"><span data-i18n="how.h.slips">The release details</span></h5><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><i></i><i class="w70"></i>
+                    <h5 data-sec="timeline"><span data-i18n="how.h.timeline">Release timing</span></h5><i></i><i class="w80"></i><i class="w50"></i>
+                    <h5 data-sec="checkin"><span data-i18n="how.h.checkin">The next check-in</span></h5><p data-i18n="how.p.checkin">Review feedback on Monday.</p><i></i><i class="w70"></i><i></i><i class="w60"></i>
+                  </div></div>
+                  <div class="dm-rail"><b data-target="decision"></b><b data-target="slips"></b><b data-target="timeline"></b><b data-target="checkin"></b></div>
+                  <span class="dm-tip"></span>
+                </div>
+                <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-chapter-label">
               <p class="bento-label" id="bento-chapter-label" data-i18n="features.chapter.label">Chapter view</p>
               <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.</p>
-              <div class="bento-visual bento-visual--chapter" aria-hidden="true">
-                <div class="ch-list"><span class="is-on" data-i18n="how.h.decision">The decision</span><span data-i18n="how.h.slips">The release details</span><span data-i18n="how.h.checkin">The next check-in</span></div>
-                <div class="ch-body"><strong data-i18n="how.h.slips">The release details</strong><div class="ch-table"><i></i><i></i><i></i><i></i><i></i><i></i></div><i class="ch-line"></i><i class="ch-line ch-line--short"></i></div>
+              <div class="bento-visual demo demo-chapter" data-demo="chapter" aria-hidden="true">
+                <div class="dm-window dm-split">
+                  <div class="dc-list"><span class="dm-panel-title" data-i18n="demo.chapters">Chapters</span><button type="button" tabindex="-1" data-chapter="decision" class="is-on"><span data-i18n="how.h.decision">The decision</span></button><button type="button" tabindex="-1" data-chapter="slips"><span data-i18n="how.h.slips">The release details</span></button><button type="button" tabindex="-1" data-chapter="checkin"><span data-i18n="how.h.checkin">The next check-in</span></button></div>
+                  <div class="dc-body">
+                    <section data-panel="decision" class="is-on"><strong><span data-i18n="how.h.decision">The decision</span></strong><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><blockquote data-i18n="demo.quote">Smaller and on time beats bigger and late.</blockquote></section>
+                    <section data-panel="slips"><strong><span data-i18n="how.h.slips">The release details</span></strong><table><thead><tr><th data-i18n="demo.table.item">Item</th><th data-i18n="demo.table.owner">Owner</th><th data-i18n="demo.table.day">Day</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Release notes</td><td>Maya</td><td data-i18n="demo.table.thu">Thu</td></tr><tr><td data-i18n="demo.table.r2">QA sign-off</td><td>Leo</td><td data-i18n="demo.table.fri">Fri</td></tr></tbody></table></section>
+                    <section data-panel="checkin"><strong><span data-i18n="how.h.checkin">The next check-in</span></strong><ul><li class="done" data-i18n="demo.task1">Collect user feedback</li><li data-i18n="demo.task2">Review crash reports</li><li data-i18n="demo.task3">Plan the next release</li></ul></section>
+                  </div>
+                </div>
+                <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-search-label">
               <p class="bento-label" id="bento-search-label" data-i18n="features.search.label">Search</p>
               <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.</p>
-              <div class="bento-visual bento-visual--search" aria-hidden="true">
-                <div class="sr-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg><span data-i18n="features.search.query">release</span><i class="sr-caret"></i></div>
-                <div class="sr-results"><span><mark data-i18n="features.search.hit1">Release</mark> <span data-i18n="features.search.rest1">timing</span></span><span><span data-i18n="features.search.pre2">The</span> <mark data-i18n="features.search.hit2">release</mark> <span data-i18n="features.search.rest2">details</span></span></div>
+              <div class="bento-visual demo demo-search" data-demo="search" aria-hidden="true">
+                <div class="dm-window dm-panel">
+                  <div class="ds-head"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="18" height="18"><span>Polaris</span></div>
+                  <div class="ds-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg><span class="ds-query" data-query></span><i class="ds-caret"></i><span class="ds-placeholder" data-i18n="how.search.toc">Search headings</span><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div>
+                  <div class="ds-list"><span class="ds-item" data-item><span class="ds-src" data-i18n="how.h.decision">The decision</span><span class="ds-label"></span></span><span class="ds-item" data-item><span class="ds-src" data-i18n="how.h.slips">The release details</span><span class="ds-label"></span></span><span class="ds-item" data-item><span class="ds-src" data-i18n="how.h.timeline">Release timing</span><span class="ds-label"></span></span><span class="ds-item" data-item><span class="ds-src" data-i18n="how.h.owners">Team roles</span><span class="ds-label"></span></span><span class="ds-item" data-item><span class="ds-src" data-i18n="how.h.checkin">The next check-in</span><span class="ds-label"></span></span></div>
+                </div>
+                <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-stream-label">
               <p class="bento-label" id="bento-stream-label" data-i18n="features.stream.label">While it streams</p>
               <p class="bento-copy" data-i18n="features.stream.copy">Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.</p>
-              <div class="bento-visual bento-visual--stream" aria-hidden="true">
-                <div class="st-lines"><i class="mk-h"></i><i></i><i></i><i class="mk-h"></i><i></i><i class="st-typing"></i></div>
-                <div class="st-markers"><b></b><b></b><b class="st-new"></b></div>
+              <div class="bento-visual demo demo-stream" data-demo="stream" aria-hidden="true">
+                <div class="dm-window">
+                  <div class="dm-chat"><div class="dm-track">
+                    <p class="dm-user" data-i18n="how.prompt">What is the release plan?</p>
+                    <div class="dt-block" data-block><h5><span data-i18n="how.h.decision">The decision</span></h5><p><span class="ds-src" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</span><span data-typed></span></p></div>
+                    <div class="dt-block" data-block><h5><span data-i18n="how.h.slips">The release details</span></h5><p><span class="ds-src" data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</span><span data-typed></span></p></div>
+                    <div class="dt-block" data-block><h5><span data-i18n="how.h.checkin">The next check-in</span></h5><p><span class="ds-src" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</span><span data-typed></span></p></div>
+                  </div></div>
+                  <div class="dm-rail"><b></b><b></b><b></b></div>
+                </div>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-platforms-label">
               <p class="bento-label" id="bento-platforms-label" data-i18n="features.platforms.label">Where it works</p>
               <p class="bento-copy" data-i18n="features.platforms.copy">One navigator across the AI chats you already use.</p>
-              <div class="bento-visual bento-visual--platforms">
-                <ul class="pf-grid" aria-label="Supported platforms">
-                  <li><img src="icons/platforms/platform-chatgpt.png" alt="" width="28" height="28"><span>ChatGPT</span></li>
-                  <li><img src="icons/platforms/platform-claude.png" alt="" width="28" height="28"><span>Claude</span></li>
-                  <li><img src="icons/platforms/platform-gemini.png" alt="" width="28" height="28"><span>Gemini</span></li>
-                  <li><img src="icons/platforms/platform-grok.png" alt="" width="28" height="28"><span>Grok</span></li>
-                  <li><img src="icons/platforms/platform-deepseek.png" alt="" width="28" height="28"><span>DeepSeek</span></li>
-                  <li><img src="icons/platforms/platform-doubao.png" alt="" width="28" height="28"><span>Doubao</span></li>
-                  <li><img src="icons/platforms/platform-kimi.png" alt="" width="28" height="28"><span>Kimi</span></li>
-                  <li><img src="icons/platforms/platform-qianwen.png" alt="" width="28" height="28"><span>Qwen</span></li>
-                  <li><img src="icons/platforms/platform-yuanbao.png" alt="" width="28" height="28"><span>Yuanbao</span></li>
-                  <li><img src="icons/platforms/platform-xiaohongshu.png" alt="" width="28" height="28"><span>Diandian AI</span></li>
-                  <li><img src="icons/platforms/platform-manus.png" alt="" width="28" height="28"><span>Manus</span></li>
-                </ul>
+              <div class="bento-visual demo demo-platforms" data-demo="platforms">
+                <div class="dm-window dp-browser" aria-hidden="true">
+                  <div class="dp-chrome"><span class="dp-tab"><img data-tab-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"><span data-tab-name>ChatGPT</span></span><span class="dp-address" data-tab-host>chatgpt.com</span></div>
+                  <div class="dp-page"><div class="dp-answer"><p class="dm-user" data-i18n="how.prompt">What is the release plan?</p><h5><span data-i18n="how.h.decision">The decision</span></h5><i></i><i class="w70"></i><h5><span data-i18n="how.h.slips">The release details</span></h5><i></i><i class="w60"></i></div><div class="dm-rail"><b class="is-on"></b><b></b><b></b></div></div>
+                </div>
+                <ul class="pf-strip" aria-label="Supported platforms"><li data-platform="chatgpt" data-host="chatgpt.com"><img src="icons/platforms/platform-chatgpt.png" alt="" width="22" height="22"><span>ChatGPT</span></li><li data-platform="claude" data-host="claude.ai"><img src="icons/platforms/platform-claude.png" alt="" width="22" height="22"><span>Claude</span></li><li data-platform="gemini" data-host="gemini.google.com"><img src="icons/platforms/platform-gemini.png" alt="" width="22" height="22"><span>Gemini</span></li><li data-platform="grok" data-host="grok.com"><img src="icons/platforms/platform-grok.png" alt="" width="22" height="22"><span>Grok</span></li><li data-platform="deepseek" data-host="chat.deepseek.com"><img src="icons/platforms/platform-deepseek.png" alt="" width="22" height="22"><span>DeepSeek</span></li><li data-platform="doubao" data-host="doubao.com"><img src="icons/platforms/platform-doubao.png" alt="" width="22" height="22"><span>Doubao</span></li><li data-platform="kimi" data-host="kimi.com"><img src="icons/platforms/platform-kimi.png" alt="" width="22" height="22"><span>Kimi</span></li><li data-platform="qianwen" data-host="qianwen.com"><img src="icons/platforms/platform-qianwen.png" alt="" width="22" height="22"><span>Qwen</span></li><li data-platform="yuanbao" data-host="yuanbao.tencent.com"><img src="icons/platforms/platform-yuanbao.png" alt="" width="22" height="22"><span>Yuanbao</span></li><li data-platform="xiaohongshu" data-host="diandian.ai"><img src="icons/platforms/platform-xiaohongshu.png" alt="" width="22" height="22"><span>Diandian AI</span></li><li data-platform="manus" data-host="manus.im"><img src="icons/platforms/platform-manus.png" alt="" width="22" height="22"><span>Manus</span></li></ul>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-settings-label">
               <p class="bento-label" id="bento-settings-label" data-i18n="features.settings.label">Your markers</p>
               <p class="bento-copy" data-i18n="features.settings.copy">Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.</p>
-              <div class="bento-visual bento-visual--settings" aria-hidden="true">
-                <div class="set-row"><span data-i18n="features.settings.headings">Headings</span><i class="set-switch is-on"></i></div>
-                <div class="set-row"><span data-i18n="features.settings.tables">Tables</span><i class="set-switch is-on"></i></div>
-                <div class="set-row"><span data-i18n="features.settings.bold">Bold text</span><i class="set-switch"></i></div>
-                <div class="set-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="set-switch"></i></div>
+              <div class="bento-visual demo demo-settings" data-demo="settings" aria-hidden="true">
+                <div class="dm-window dm-panel dg-panel">
+                  <span class="dm-panel-title" data-i18n="features.settings.label">Your markers</span>
+                  <div class="dg-row"><span data-i18n="features.settings.headings">Headings</span><i class="dg-switch is-on"></i></div>
+                  <div class="dg-row"><span data-i18n="features.settings.tables">Tables</span><i class="dg-switch is-on"></i></div>
+                  <div class="dg-row" data-toggle-row><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div>
+                  <div class="dg-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div>
+                </div>
+                <div class="dm-window dg-preview"><i class="mk-h"></i><i></i><b class="dg-bold"></b><i class="w70"></i><i class="mk-h"></i><i></i><b class="dg-bold"></b><i class="w60"></i>
+                  <div class="dm-rail"><b></b><b class="dg-extra"></b><b></b><b class="dg-extra"></b></div></div>
+                <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
             </article>
           </div>
@@ -4706,6 +5082,7 @@
     <script type="module">
       import { supportConfig } from "./support-config.js";
       import { startCheckout } from "./assets/checkout.js";
+      import { initFeatureDemos, initHowAutoplay } from "./assets/feature-demos.js";
 
       // Get Pro opens Stripe Checkout directly; without the Worker it keeps its #install fallback.
       document.querySelectorAll("[data-web-checkout]").forEach((link) => {
@@ -4808,11 +5185,21 @@
           "features.search.label": "Search",
           "features.search.copy": "Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.",
           "features.search.query": "release",
-          "features.search.hit1": "Release",
-          "features.search.rest1": "timing",
-          "features.search.pre2": "The",
-          "features.search.hit2": "release",
-          "features.search.rest2": "details",
+          "demo.chapters": "Chapters",
+          "demo.stream.p1": "Ship the smaller release on Friday so the team learns from real usage first.",
+          "demo.stream.p2": "Confirm the timing and who owns each step before Friday.",
+          "demo.stream.p3": "Review feedback together on Monday morning.",
+          "demo.quote": "Smaller and on time beats bigger and late.",
+          "demo.table.item": "Item",
+          "demo.table.owner": "Owner",
+          "demo.table.day": "Day",
+          "demo.table.r1": "Release notes",
+          "demo.table.r2": "QA sign-off",
+          "demo.table.thu": "Thu",
+          "demo.table.fri": "Fri",
+          "demo.task1": "Collect user feedback",
+          "demo.task2": "Review crash reports",
+          "demo.task3": "Plan the next release",
           "features.stream.label": "While it streams",
           "features.stream.copy": "Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.",
           "features.platforms.label": "Where it works",
@@ -4978,11 +5365,21 @@
           "features.search.label": "搜索",
           "features.search.copy": "输入关键词筛选标题和章节，直接跳到匹配的位置，不用再来回翻找。",
           "features.search.query": "发布",
-          "features.search.hit1": "发布",
-          "features.search.rest1": "时间",
-          "features.search.pre2": "",
-          "features.search.hit2": "发布",
-          "features.search.rest2": "细节",
+          "demo.chapters": "章节",
+          "demo.stream.p1": "周五先发一个小版本，让团队尽早从真实使用中学习。",
+          "demo.stream.p2": "周五前确认时间安排和每一步的负责人。",
+          "demo.stream.p3": "周一上午一起看用户反馈。",
+          "demo.quote": "小而准时，胜过大而延期。",
+          "demo.table.item": "事项",
+          "demo.table.owner": "负责人",
+          "demo.table.day": "时间",
+          "demo.table.r1": "发布说明",
+          "demo.table.r2": "测试签收",
+          "demo.table.thu": "周四",
+          "demo.table.fri": "周五",
+          "demo.task1": "收集用户反馈",
+          "demo.task2": "查看崩溃报告",
+          "demo.task3": "规划下个版本",
           "features.stream.label": "边生成边导航",
           "features.stream.copy": "写出第一节，Marker 就出现。回答继续变长，列表也不会乱跳。",
           "features.platforms.label": "支持平台",
@@ -6396,6 +6793,8 @@
         });
         howDemo = initHowDemo(howStage);
       }
+      initFeatureDemos();
+      initHowAutoplay(howDemo);
     </script>
   </body>
 </html>
