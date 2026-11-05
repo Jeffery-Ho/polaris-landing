@@ -67,3 +67,10 @@
 - Keep the thumbnail visible until the video can play its first segment; do not show a playback button while it loads or plays normally.
 - Do not display loading, buffering, playback-failure, or other video state text. Show a centered black play button only when playback cannot proceed.
 - The consent prompt is a compact white card with a fine border and shadow fixed to the lower edge. It must clearly state that analytics is optional, keep the decline action equally reachable, and allow a later withdrawal from the footer.
+
+## Footer
+
+- Use a full-width pale-gray surface in light mode and near-black in dark mode, with a fine top divider and a 1200px content width.
+- Desktop has a wider brand column followed by Product, Install & help, and Legal. Keep the existing Polaris mark, independent-developer introduction, support email, copyright, and author link.
+- Use plain labels: Features, Free trial, What's new, and Install for Chrome / Edge / Firefox. Add Pricing only when its destination is published. Preserve the official destination URLs and the existing Analytics settings action.
+- Below 950px, put the brand above three link columns; below 560px, use two link columns with 44px targets and a stacked bottom row. Localize with the homepage dictionaries and preserve theme and keyboard focus behavior.

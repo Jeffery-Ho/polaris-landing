@@ -4234,6 +4234,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="assets/footer.css">
   </head>
   <body>
     <a class="skip-link" href="#main-content" data-i18n="nav.skip">Skip to content</a>
@@ -4503,11 +4504,50 @@
           </div>
         </section>
 
-      <footer class="site-footer">
-        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="terms.html" data-i18n="footer.terms">Terms of Use</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="safety.html" data-i18n="footer.safety">Security</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="refund.html" data-i18n="footer.refund">Refund Policy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer" data-i18n="nav.issues">GitHub Issues</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
-      </footer>
       </div>
     </main>
+
+    <footer class="site-footer" id="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="footer-brand-link" href="./" aria-label="Polaris home"><img src="icons/gpt-voyager-icon-96.png" width="36" height="36" alt=""><span>Polaris</span></a>
+            <p class="footer-description" data-i18n="footer.description">Navigate long AI conversations. Built and maintained by an independent developer.</p>
+            <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
+          </div>
+          <nav class="footer-nav" aria-labelledby="product-title"><h2 id="product-title" data-i18n="footer.product">Product</h2>
+            <ul>
+              <li><a href="#capabilities" data-i18n="footer.features">Features</a></li>
+              <li><a href="#install" data-i18n="footer.trial">Free trial</a></li>
+              <li><a href="#updates" data-i18n="footer.updates">What's new</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-nav" aria-labelledby="help-title"><h2 id="help-title" data-i18n="footer.help">Install &amp; help</h2>
+            <ul>
+              <li><a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer" data-i18n="footer.chrome">Install for Chrome</a></li>
+              <li><a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer" data-i18n="footer.edge">Install for Edge</a></li>
+              <li><a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer" data-i18n="footer.firefox">Install for Firefox</a></li>
+              <li><a href="#install" data-i18n="footer.local">Local installation</a></li>
+              <li><a href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+              <li><a href="mailto:support@polaris-ai.work" data-i18n="footer.contact">Contact</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-nav" aria-labelledby="legal-title"><h2 id="legal-title" data-i18n="footer.legal">Legal</h2>
+            <ul>
+              <li><a href="privacy.html" data-i18n="footer.privacy">Privacy policy</a></li>
+              <li><a href="safety.html" data-i18n="footer.safety">Security</a></li>
+              <li><a href="terms.html" data-i18n="footer.terms">Terms of use</a></li>
+              <li><a href="refund.html" data-i18n="footer.refund">Refund policy</a></li>
+              <li><button type="button" data-i18n="footer.analytics" class="analytics-settings-button" data-analytics-settings>Analytics settings</button></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Polaris</p>
+          <p><span data-i18n="footer.made">Made by</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+        </div>
+      </div>
+    </footer>
 
     <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
       <p class="analytics-consent-title" id="analytics-consent-title" data-i18n="analytics.title">Help improve Polaris</p>
@@ -4656,13 +4696,25 @@
           "updates.title": "Release notes",
           "updates.showMore": "View all updates",
           "updates.collapse": "Collapse updates",
-          "footer.made": "Made with",
-          "footer.by": "by",
-          "footer.privacy": "Privacy",
-          "footer.terms": "Terms of Use",
+          "footer.description": "Navigate long AI conversations. Built and maintained by an independent developer.",
+          "footer.product": "Product",
+          "footer.features": "Features",
+          "footer.pricing": "Pricing",
+          "footer.trial": "Free trial",
+          "footer.updates": "What's new",
+          "footer.help": "Install & help",
+          "footer.chrome": "Install for Chrome",
+          "footer.edge": "Install for Edge",
+          "footer.firefox": "Install for Firefox",
+          "footer.local": "Local installation",
+          "footer.contact": "Contact",
+          "footer.legal": "Legal",
+          "footer.privacy": "Privacy policy",
           "footer.safety": "Security",
-          "footer.refund": "Refund Policy",
+          "footer.terms": "Terms of use",
+          "footer.refund": "Refund policy",
           "footer.analytics": "Analytics settings",
+          "footer.made": "Made by",
           "analytics.title": "Help improve Polaris",
           "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure support-page interactions and anonymous source, device, and download totals. You can change this anytime.",
           "analytics.allow": "Allow analytics",
@@ -4748,13 +4800,25 @@
           "updates.title": "更新记录",
           "updates.showMore": "查看更多更新记录",
           "updates.collapse": "收起更新记录",
-          "footer.made": "Made with",
-          "footer.by": "作者",
+          "footer.description": "为长篇 AI 对话提供清晰导航。由独立开发者打造并持续维护。",
+          "footer.product": "产品",
+          "footer.features": "功能介绍",
+          "footer.pricing": "价格方案",
+          "footer.trial": "免费试用",
+          "footer.updates": "更新日志",
+          "footer.help": "安装与帮助",
+          "footer.chrome": "Chrome 安装",
+          "footer.edge": "Edge 安装",
+          "footer.firefox": "Firefox 安装",
+          "footer.local": "本地安装",
+          "footer.contact": "联系我们",
+          "footer.legal": "法律",
           "footer.privacy": "隐私政策",
-          "footer.terms": "使用条款",
           "footer.safety": "安全说明",
+          "footer.terms": "使用条款",
           "footer.refund": "退款政策",
           "footer.analytics": "分析设置",
+          "footer.made": "作者",
           "analytics.title": "帮助改进 Polaris",
           "analytics.copy": "允许 Google Analytics 和阿里云 SLS 统计支持页面互动，以及匿名来源、设备和下载汇总数据。你可以随时修改此选择。",
           "analytics.allow": "允许分析",
@@ -5026,8 +5090,9 @@
             structuredData.textContent = JSON.stringify(data);
           }
         }
-        document.querySelector(".brand").setAttribute("aria-label", dictionary["aria.home"]);
-        document.querySelector(".heart").setAttribute("aria-label", dictionary["aria.love"]);
+        document.querySelectorAll(".brand, .footer-brand-link").forEach((link) => {
+          link.setAttribute("aria-label", dictionary["aria.home"]);
+        });
         document.querySelector(".header-links").setAttribute("aria-label", currentLocale === "zh-CN" ? "Polaris 链接" : "Polaris links");
         document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
         document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
