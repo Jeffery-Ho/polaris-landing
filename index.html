@@ -4546,6 +4546,12 @@
       .how-section .chat-block strong { color: var(--polaris-text); font-weight: 600; }
       .pz-composer { position: absolute; z-index: 2; bottom: 16px; left: 24px; width: calc(64% - 48px); padding: 11px 18px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-bg-elevated); box-shadow: 0 6px 18px color-mix(in srgb, var(--polaris-text) 8%, transparent); color: var(--polaris-text-tertiary); font-size: 13px; pointer-events: none; }
       .how-section .browser-body { grid-template-columns: minmax(0, 1fr) clamp(220px, 34%, 272px); }
+      @media (width < 800px) {
+        /* Phones keep the original stack: side panel above, answer below. */
+        .how-section .browser-body { grid-template-columns: minmax(0, 1fr); }
+        .how-section .side-panel { border-left: 0; border-bottom: 1px solid var(--polaris-border); }
+        .pz-composer { left: 16px; width: calc(100% - 32px); }
+      }
       .how-section .side-panel { padding: 0; border-left: 1px solid var(--polaris-border); background-color: var(--polaris-bg); background-image: radial-gradient(color-mix(in srgb, var(--polaris-text) 16%, transparent) .8px, transparent 1.2px); background-size: 12px 12px; font-size: 12.5px; }
       .how-section .side-stack { gap: 0; }
       .how-section .sp-wrap { display: block; }
@@ -4909,6 +4915,18 @@
       @media (max-width: 800px) {
         .bento-card--wide { grid-template-columns: minmax(0, 1fr); }
       }
+
+      /* Free trial buttons: wide pills like Dia's download button (443×56). */
+      .hero-stage .hero-actions .hero-link--primary,
+      .floating-cta {
+        box-sizing: border-box;
+        width: min(440px, calc(100vw - 32px));
+        min-height: 56px;
+        justify-content: center;
+        font-size: 17px;
+      }
+
+      .floating-cta { height: 56px; }
 
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
