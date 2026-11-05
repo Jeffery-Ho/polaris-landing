@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+- Pricing：按新方案改写 Free／Pro 权益，两栏同为六项逐行对照（平台数、TOC、Outline 导出 Markdown／HTML、对话留本机、深浅色、可调设置），Pro 的「全部平台」和「完整长对话 TOC」加粗突出；卡片下方新增长对话说明区，并排对比 Free 只见已加载回复与 Pro 可见全部回复，注明完整读取目前支持 ChatGPT 和 Gemini。
+
 - Features：六张卡片的插图从静态骨架改为真实界面的自动操作演示（新增 assets/feature-demos.js），光标依次演示 Marker 跳转、章节切换、搜索筛选、流式生成、平台切换和 Marker 开关；只在卡片可见时播放，减少动态效果时显示静态画面。
 - How it works：左侧列表改为 Dia 式衬线标题、未选中项灰显、去掉勾选清单；窗口进入视口即显示；自动光标在真实的目录和大纲窗口里点击演示，用户操作后暂停 12 秒。导航栏去掉 How it works，只保留 Features、Privacy、Pricing。
 

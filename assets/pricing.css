@@ -104,3 +104,55 @@
 }
 .pricing-checkout-error { max-width: 60ch; margin: 12px auto 0; color: var(--polaris-accent-text); font-size: 14px; text-align: center; }
 .pricing-button[aria-busy="true"] { opacity: 0.75; cursor: progress; }
+
+/* Plan rows mirror each other; Pro's differences carry the Clay accent. */
+.pricing-features li.pricing-feature-pro { color: var(--pricing-ink); font-weight: 600; }
+.pricing-features li.pricing-feature-pro::before { border-width: 0 0 2px 2px; }
+
+/* Long-conversation spotlight under the plans. */
+.pricing-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  margin-top: 24px;
+  padding: 32px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 16px;
+  background: var(--pricing-paper);
+}
+.pricing-spotlight-label { margin: 0 0 10px; color: var(--pricing-clay-ink); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.pricing-spotlight h3 { margin: 0; color: var(--pricing-ink); font-family: var(--polaris-font-serif); font-size: clamp(24px, 3vw, 30px); font-weight: 400; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+.pricing-spotlight-copy p:not(.pricing-spotlight-label) { margin: 14px 0 0; color: var(--pricing-muted); font-size: 14px; }
+.pricing-spotlight-copy .pricing-spotlight-note { font-size: 12px; }
+.pricing-spotlight-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pricing-toc {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 12px;
+  background: var(--polaris-bg-subtle);
+  font-size: 12px;
+}
+.pricing-toc > span:not(.pricing-toc-name):not(.pricing-toc-count):not(.pricing-toc-fade):not(.pricing-toc-gap) {
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--polaris-bg-elevated);
+  color: var(--pricing-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 22px;
+}
+.pricing-toc > span:not(.pricing-toc-name):not(.pricing-toc-count):not(.pricing-toc-fade):not(.pricing-toc-gap)::before { content: "#"; color: var(--polaris-text-tertiary); }
+.pricing-toc-name { margin-bottom: 4px; color: var(--pricing-ink); font-family: var(--polaris-font-serif); font-size: 16px; }
+.pricing-toc-pro .pricing-toc-name { font-family: var(--polaris-font-wordmark); font-style: italic; font-weight: 600; color: var(--pricing-clay-ink); }
+.pricing-toc-pro { border-color: var(--pricing-clay); background: var(--pricing-wash); }
+.pricing-toc-fade { padding: 18px 6px; border: 1px dashed var(--pricing-line); border-radius: 6px; color: var(--polaris-text-tertiary); text-align: center; }
+.pricing-toc-gap { color: var(--polaris-text-tertiary); text-align: center; line-height: 1; }
+.pricing-toc-count { margin-top: 4px; color: var(--polaris-text-tertiary); font-size: 11px; }
+.pricing-toc-pro .pricing-toc-count { color: var(--pricing-clay-ink); font-weight: 600; }
+@media (max-width: 760px) {
+  .pricing-spotlight { grid-template-columns: minmax(0, 1fr); padding: 24px; }
+}

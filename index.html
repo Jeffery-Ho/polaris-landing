@@ -4937,11 +4937,14 @@
               <div class="pricing-price-row"><strong class="pricing-price">$0</strong></div>
               <p class="pricing-term" data-i18n="pricing.free.term">Free to use</p>
               <p class="pricing-assurance" data-i18n="pricing.free.assurance">No payment details needed.</p>
-              <h4 class="pricing-includes" data-i18n="pricing.free.includes">Included with Free</h4>
+              <h4 class="pricing-includes" data-i18n="pricing.free.includes">Included</h4>
               <ul class="pricing-features">
-                <li data-i18n="pricing.free.platforms">Any two platforms</li>
-                <li data-i18n="pricing.free.switch">Switch platforms anytime</li>
-                <li data-i18n="pricing.free.data">Keep your local data</li>
+                <li data-i18n="pricing.free.platforms">Use 2 platforms at a time</li>
+                <li data-i18n="pricing.free.toc">TOC: jump within the messages already loaded</li>
+                <li data-i18n="pricing.plan.outline">Outline: export Markdown / HTML to keep going with another assistant</li>
+                <li data-i18n="pricing.plan.local">Conversations stay on your device, never uploaded</li>
+                <li data-i18n="pricing.plan.theme">Light and dark mode</li>
+                <li data-i18n="pricing.plan.settings">Adjustable settings</li>
               </ul>
               <a class="pricing-button pricing-button-secondary" href="#install" data-i18n="pricing.free.cta">Continue for free</a>
             </article>
@@ -4950,18 +4953,42 @@
                 <h3 class="pricing-plan-name" id="pricing-pro-title">Pro</h3>
                 <span class="pricing-saving" data-i18n="pricing.pro.saving">Save $7.09</span>
               </div>
-              <p class="pricing-plan-description" data-i18n="pricing.pro.description">Read across platforms. Index long conversations.</p>
+              <p class="pricing-plan-description" data-i18n="pricing.pro.description">For very long chats, on every platform.</p>
               <div class="pricing-price-row"><strong class="pricing-price">$12.90</strong><s class="pricing-original-price">$19.99</s></div>
               <p class="pricing-term" data-i18n="pricing.pro.term">USD · One-time payment · Lifetime access</p>
               <p class="pricing-assurance" data-i18n="pricing.pro.offer">Welcome price on this site. In Polaris, $12.90 for the first 7 days, then $19.99.</p>
-              <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Everything in Free, plus</h4>
+              <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Included</h4>
               <ul class="pricing-features">
-                <li data-i18n="pricing.pro.platforms">Every supported platform</li>
-                <li data-i18n="pricing.pro.index">Long-conversation indexing</li>
-                <li data-i18n="pricing.pro.devices">Unlimited devices</li>
+                <li class="pricing-feature-pro" data-i18n="pricing.pro.platforms">Every supported platform</li>
+                <li class="pricing-feature-pro" data-i18n="pricing.pro.toc">TOC: jump across the full conversation, built for very long chats</li>
+                <li data-i18n="pricing.plan.outline">Outline: export Markdown / HTML to keep going with another assistant</li>
+                <li data-i18n="pricing.plan.local">Conversations stay on your device, never uploaded</li>
+                <li data-i18n="pricing.plan.theme">Light and dark mode</li>
+                <li data-i18n="pricing.plan.settings">Adjustable settings</li>
               </ul>
               <a class="pricing-button pricing-button-primary" href="#install" aria-describedby="pricing-purchase-note" data-web-checkout><span data-i18n="pricing.pro.cta">Get Pro</span></a>
             </article>
+          </div>
+          <div class="pricing-spotlight">
+            <div class="pricing-spotlight-copy">
+              <p class="pricing-spotlight-label" data-i18n="pricing.long.label">Pro · Long conversations</p>
+              <h3 data-i18n="pricing.long.title">See the whole conversation, not just what is loaded.</h3>
+              <p data-i18n="pricing.long.copy">In a long chat, the page only keeps part of the conversation at a time. Free jumps within what is loaded. Pro reads the full conversation in your browser, so the TOC lists every section from the very first message.</p>
+              <p class="pricing-spotlight-note" data-i18n="pricing.long.note">Full-conversation reading currently works on ChatGPT and Gemini. Nothing is uploaded.</p>
+            </div>
+            <div class="pricing-spotlight-visual" aria-hidden="true">
+              <div class="pricing-toc">
+                <span class="pricing-toc-name">Free</span>
+                <span class="pricing-toc-fade" data-i18n="pricing.long.notLoaded">Earlier messages not loaded</span>
+                <span>28</span><span>29</span><span>30</span>
+                <span class="pricing-toc-count" data-i18n="pricing.long.freeCount">3 of 30 replies</span>
+              </div>
+              <div class="pricing-toc pricing-toc-pro">
+                <span class="pricing-toc-name">Pro</span>
+                <span>1</span><span>2</span><span>3</span><span class="pricing-toc-gap">⋮</span><span>28</span><span>29</span><span>30</span>
+                <span class="pricing-toc-count" data-i18n="pricing.long.proCount">30 of 30 replies</span>
+              </div>
+            </div>
           </div>
           <p class="pricing-purchase-note" id="pricing-purchase-note" data-i18n="pricing.purchaseNote">Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.</p>
           <p class="pricing-checkout-error" data-checkout-error role="alert" hidden></p>
@@ -5276,19 +5303,28 @@
           "pricing.free.term": "Free to use",
           "pricing.free.assurance": "No payment details needed.",
           "pricing.free.cta": "Continue for free",
-          "pricing.free.includes": "Included with Free",
-          "pricing.free.platforms": "Any two platforms",
-          "pricing.free.switch": "Switch platforms anytime",
-          "pricing.free.data": "Keep your local data",
           "pricing.pro.saving": "Save $7.09",
-          "pricing.pro.description": "Read across platforms. Index long conversations.",
           "pricing.pro.term": "USD · One-time payment · Lifetime access",
           "pricing.pro.offer": "Welcome price on this site. In Polaris, $12.90 for the first 7 days, then $19.99.",
           "pricing.pro.cta": "Get Pro",
-          "pricing.pro.includes": "Everything in Free, plus",
+          "pricing.free.includes": "Included",
+          "pricing.pro.includes": "Included",
+          "pricing.pro.description": "For very long chats, on every platform.",
+          "pricing.free.platforms": "Use 2 platforms at a time",
+          "pricing.free.toc": "TOC: jump within the messages already loaded",
           "pricing.pro.platforms": "Every supported platform",
-          "pricing.pro.index": "Long-conversation indexing",
-          "pricing.pro.devices": "Unlimited devices",
+          "pricing.pro.toc": "TOC: jump across the full conversation, built for very long chats",
+          "pricing.plan.outline": "Outline: export Markdown / HTML to keep going with another assistant",
+          "pricing.plan.local": "Conversations stay on your device, never uploaded",
+          "pricing.plan.theme": "Light and dark mode",
+          "pricing.plan.settings": "Adjustable settings",
+          "pricing.long.label": "Pro · Long conversations",
+          "pricing.long.title": "See the whole conversation, not just what is loaded.",
+          "pricing.long.copy": "In a long chat, the page only keeps part of the conversation at a time. Free jumps within what is loaded. Pro reads the full conversation in your browser, so the TOC lists every section from the very first message.",
+          "pricing.long.note": "Full-conversation reading currently works on ChatGPT and Gemini. Nothing is uploaded.",
+          "pricing.long.notLoaded": "Earlier messages not loaded",
+          "pricing.long.freeCount": "3 of 30 replies",
+          "pricing.long.proCount": "30 of 30 replies",
           "pricing.purchaseNote": "Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.",
           "pricing.checkout.loading": "Opening checkout…",
           "pricing.checkout.error": "Checkout is unavailable right now. Try again in a moment, or install Polaris and buy in Settings.",
@@ -5456,19 +5492,28 @@
           "pricing.free.term": "免费使用",
           "pricing.free.assurance": "无需填写支付信息。",
           "pricing.free.cta": "继续免费使用",
-          "pricing.free.includes": "Free 包含",
-          "pricing.free.platforms": "任意两个平台",
-          "pricing.free.switch": "可随时更换平台",
-          "pricing.free.data": "保留本地数据",
           "pricing.pro.saving": "省 $7.09",
-          "pricing.pro.description": "跨平台阅读，完整索引长对话。",
           "pricing.pro.term": "USD · 一次买断 · 永久使用",
           "pricing.pro.offer": "官网优惠价。在 Polaris 内购买：首次打开后 7 天内 $12.90，之后 $19.99。",
           "pricing.pro.cta": "Get Pro",
-          "pricing.pro.includes": "Free 的全部功能，以及",
-          "pricing.pro.platforms": "全部支持的平台",
-          "pricing.pro.index": "长对话索引",
-          "pricing.pro.devices": "不限设备",
+          "pricing.free.includes": "包含",
+          "pricing.pro.includes": "包含",
+          "pricing.pro.description": "为超长对话而做，覆盖所有平台。",
+          "pricing.free.platforms": "同时使用 2 个平台",
+          "pricing.free.toc": "TOC：在已加载的消息里快速跳转",
+          "pricing.pro.platforms": "全部已支持平台",
+          "pricing.pro.toc": "TOC：完整长对话列表里快速跳转（更适合超长聊天）",
+          "pricing.plan.outline": "Outline：导出 Markdown / HTML，方便和别的助手继续聊",
+          "pricing.plan.local": "对话留在本机，不上传",
+          "pricing.plan.theme": "深浅色模式",
+          "pricing.plan.settings": "可调节设置",
+          "pricing.long.label": "Pro · 长对话",
+          "pricing.long.title": "看到整段对话，而不只是已加载的部分。",
+          "pricing.long.copy": "聊得越长，页面同一时间只保留其中一部分。Free 在已加载的消息里跳转；Pro 在浏览器里读取完整对话，TOC 从第一条消息起列出每一节。",
+          "pricing.long.note": "完整对话读取目前支持 ChatGPT 和 Gemini，内容不会上传。",
+          "pricing.long.notLoaded": "更早的消息未加载",
+          "pricing.long.freeCount": "30 条回复中的 3 条",
+          "pricing.long.proCount": "30 条回复全部可见",
           "pricing.purchaseNote": "由 Stripe 安全结账。付款后立即显示许可证，在任意设备的 Polaris → 设置中兑换即可。",
           "pricing.checkout.loading": "正在打开结账页…",
           "pricing.checkout.error": "暂时无法打开结账页。请稍后重试，或安装 Polaris 后在设置中购买。",
