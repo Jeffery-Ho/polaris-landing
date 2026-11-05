@@ -127,7 +127,6 @@
       .brand,
       .header-links,
       .header-link,
-      .support-button,
       .footer-copy {
         display: flex;
         align-items: center;
@@ -304,39 +303,6 @@
 
       .video-play-button[hidden] {
         display: none;
-      }
-
-      .support-button {
-        justify-content: center;
-        width: fit-content;
-        min-width: min(100%, 320px);
-        min-height: 64px;
-        margin: 28px auto 0;
-        padding: 14px 30px;
-        border: 1px solid rgba(255, 255, 255, 0.72);
-        border-radius: 28px;
-        background: var(--polaris-accent);
-        box-shadow: none;
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 750;
-        letter-spacing: -0.04em;
-        text-decoration: none;
-        text-shadow: 0 1px 1px rgba(0, 45, 105, 0.24);
-        transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        background: var(--polaris-accent-hover);
-        box-shadow: none;
-        transform: translateY(-2px);
-      }
-
-      .support-button[aria-disabled="true"] {
-        cursor: not-allowed;
-        opacity: 0.48;
-        pointer-events: none;
       }
 
       .install-section {
@@ -694,11 +660,6 @@
           min-height: 0;
         }
 
-        .support-button {
-          width: 100%;
-          font-size: 18px;
-        }
-
         .footer-copy {
           flex-wrap: wrap;
           font-size: 14px;
@@ -917,9 +878,7 @@
       .section-heading,
       .section-copy,
       .capability-title,
-      .capability-copy,
-      .support-title,
-      .support-copy {
+      .capability-copy {
         margin: 0;
       }
 
@@ -1064,60 +1023,6 @@
         color: #e879d2;
       }
 
-      .support-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        max-width: 980px;
-        margin: clamp(72px, 9vw, 112px) auto 0;
-        padding: 24px 0;
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        text-align: left;
-      }
-
-      .support-title {
-        color: #111111;
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-      }
-
-      .support-copy {
-        margin-top: 6px;
-        color: #666666;
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .support-button {
-        flex: none;
-        justify-content: center;
-        min-height: 40px;
-        min-width: 0;
-        margin: 0;
-        padding: 9px 14px;
-        border: 1px solid #d9d9d9;
-        border-radius: 8px;
-        background: #ffffff;
-        box-shadow: none;
-        color: #111111;
-        font-size: 14px;
-        font-weight: 650;
-        text-shadow: none;
-        transition: border-color 160ms ease, color 160ms ease;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: #e879d2;
-        background: #ffffff;
-        box-shadow: none;
-        color: #e879d2;
-        transform: none;
-      }
-
       .site-footer {
         padding-top: 30px;
       }
@@ -1196,15 +1101,6 @@
         .capability-card {
           min-height: 0;
         }
-
-        .support-section {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .support-button {
-          width: auto;
-        }
       }
 
       /* Vercel-inspired dark surface */
@@ -1267,8 +1163,7 @@
       .section-heading,
       .install-heading,
       .install-card-title,
-      .capability-title,
-      .support-title {
+      .capability-title {
         color: #ffffff;
       }
 
@@ -1276,8 +1171,7 @@
       .section-copy,
       .install-intro,
       .install-card-copy,
-      .install-note,
-      .support-copy {
+      .install-note {
         color: #a1a1a1;
       }
 
@@ -1384,32 +1278,6 @@
 
       .install-steps a {
         color: #e879d2;
-      }
-
-      .support-section {
-        border-top-color: #2a2a2a;
-        border-bottom-color: #2a2a2a;
-      }
-
-      .support-button {
-        min-width: 212px;
-        min-height: 48px;
-        border-color: var(--polaris-accent);
-        border-radius: 10px;
-        background: var(--polaris-accent);
-        box-shadow: 0 12px 30px rgba(255, 122, 0, 0.28);
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 750;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: var(--polaris-accent-hover);
-        background: var(--polaris-accent-hover);
-        box-shadow: 0 15px 34px rgba(255, 122, 0, 0.38);
-        color: #ffffff;
-        transform: translateY(-2px);
       }
 
       .footer-copy,
@@ -1577,7 +1445,6 @@
       .header-link,
       .hero-link,
       .install-card-button,
-      .support-button,
       button {
         touch-action: manipulation;
       }
@@ -2199,48 +2066,6 @@
         color: var(--logo-accent);
       }
 
-      .support-section {
-        max-width: none;
-        margin-top: 88px;
-        padding: 28px 0;
-        border-top-color: var(--line);
-        border-bottom-color: var(--line);
-      }
-
-      .support-title {
-        color: var(--text-primary);
-        font-size: 18px;
-        font-weight: 650;
-      }
-
-      .support-copy {
-        color: var(--text-secondary);
-      }
-
-      .support-button {
-        min-width: 212px;
-        min-height: 44px;
-        padding: 10px 16px;
-        border: 1px solid var(--polaris-accent);
-        border-radius: var(--control-radius);
-        background: var(--polaris-accent);
-        box-shadow: none;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 700;
-        text-shadow: none;
-        transition: border-color var(--transition), background var(--transition), transform var(--transition);
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: var(--polaris-accent-hover);
-        background: var(--polaris-accent-hover);
-        box-shadow: none;
-        color: #ffffff;
-        transform: translateY(-1px);
-      }
-
       .updates-section {
         margin-top: 72px;
         text-align: left;
@@ -2470,7 +2295,6 @@
       .header-link,
       .hero-link,
       .install-card-button,
-      .support-button,
       .language-toggle,
       .language-option,
       .theme-toggle,
@@ -2612,16 +2436,6 @@
           border-bottom: 0;
         }
 
-        .support-section {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .support-button {
-          width: auto;
-        }
-
         .platform-banner {
           align-items: center;
           flex-direction: column;
@@ -2752,8 +2566,7 @@
 
         .hero-link,
         .video-play-button,
-        .install-card-button,
-        .support-button {
+        .install-card-button {
           transition: none;
         }
       }
@@ -4135,11 +3948,6 @@
       :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
         color: var(--polaris-text);
       }
-      .support-button,
-      .support-button:hover,
-      .support-button:focus-visible {
-        color: var(--polaris-accent-foreground);
-      }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=cf7bea86">
   </head>
@@ -4386,14 +4194,6 @@
           </div>
         </section>
 
-        <section class="support-section" aria-labelledby="support-title">
-          <div>
-            <h2 class="support-title" id="support-title" data-i18n="support.title">Support independent software</h2>
-            <p class="support-copy" data-i18n="support.copy">Polaris is free to use. Support helps keep it maintained.</p>
-          </div>
-          <a class="support-button" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal" data-i18n="support.button">Support on PayPal</a>
-        </section>
-
         <section class="updates-section" id="updates" aria-labelledby="updates-title">
           <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
           <div class="updates-list" id="updates-list" data-updates-list></div>
@@ -4465,7 +4265,6 @@
       const videoThumbnail = document.querySelector("[data-video-thumbnail]");
       const placeholder = document.querySelector("[data-video-placeholder]");
       const videoPlayButton = document.querySelector("[data-video-play-button]");
-      const paypalLink = document.querySelector("[data-paypal-link]");
       const analyticsConsent = document.querySelector("[data-analytics-consent]");
       const analyticsAccept = document.querySelector("[data-analytics-accept]");
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
@@ -4587,9 +4386,6 @@
           "install.store.copy": "Requires access to the Google Chrome Web Store. Install Polaris with one click.",
           "install.store.button": "Install from Chrome Web Store",
           "install.store.note": "The extension will be added to Chrome after you confirm the installation in the store.",
-          "support.title": "Support independent software",
-          "support.copy": "Polaris is free to use. Support helps keep it maintained.",
-          "support.button": "Support on PayPal",
           "updates.title": "Release notes",
           "updates.showMore": "View all updates",
           "updates.collapse": "Collapse updates",
@@ -4690,9 +4486,6 @@
           "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
           "install.store.button": "从谷歌商店安装",
           "install.store.note": "在商店确认安装后，插件会自动添加到 Chrome。",
-          "support.title": "支持独立软件",
-          "support.copy": "Polaris 免费使用，你的支持有助于持续维护。",
-          "support.button": "通过 PayPal 支持",
           "updates.title": "更新记录",
           "updates.showMore": "查看更多更新记录",
           "updates.collapse": "收起更新记录",
@@ -4991,7 +4784,6 @@
         });
         document.querySelector(".header-links").setAttribute("aria-label", currentLocale === "zh-CN" ? "Polaris 链接" : "Polaris links");
         document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
-        document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         renderReleaseNotes();
         initHeadlinePlatforms();
@@ -5531,13 +5323,6 @@
           showVideoPlayButton();
         });
         video.load();
-      }
-
-      if (supportConfig.paypalUrl) {
-        paypalLink.href = supportConfig.paypalUrl;
-        paypalLink.target = "_blank";
-        paypalLink.rel = "noreferrer";
-        paypalLink.removeAttribute("aria-disabled");
       }
 
       const howStage = document.querySelector("[data-how-stage]");

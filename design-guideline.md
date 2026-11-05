@@ -9,7 +9,7 @@
 - Place the large introduction video directly after the action group, with 28–48px of responsive spacing. Do not push it down with an automatic margin. Keep its source, thumbnail, and failure-recovery play control.
 - Match the extension conversation cover: paper `#fafaf8` in light and `#1a1918` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
-- Keep the sequence as full-bleed hero, How it works, installation panels, support, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
+- Keep the sequence as full-bleed hero, How it works, installation panels, release notes, then the footer. Platform names stay in the headline marks and in the accessible platform list.
 - How it works is a left–right row: the headline, short explanation, and TOC / Outline switch sit on the left, and a browser-chrome illustration sits on the right. On narrow screens, stack the copy above the window. The browser mock uses a wide window, about the same proportion as a product screenshot (roughly 737:545), large beside a narrow copy column. The window stays a fixed size when TOC and Outline switch. The picker expands the selected feature over 300ms, with a quiet wash and an accent bar, and the side list fades. The other feature collapses to its title. Inside the window, margin markers sit on a long answer and a Polaris side panel switches between TOC (a jump list) and Outline (the same answer as a nested structure). Use the conversation-cover paper and terracotta for that mock in both themes.
 - Headline platform marks are opaque rounded tiles, white or black, with the mark inset from the tile edge. Align each headline row on the text baseline, keep the icon at 0.72em, and avoid a downward slot transform so the tile’s optical center lines up with the glyph center.
 
@@ -32,7 +32,7 @@
 
 ## Release notes
 
-- Place a release-notes section below the support block and above the footer. Put the fine divider on the footer's top edge, separating the update cards from the bottom information.
+- Place a release-notes section below the installation panels and above the footer. Put the fine divider on the footer's top edge, separating the update cards from the bottom information.
 - Mirror the feature releases from `Polaris-for-Web/src/release-notes.js`, sorted newest first. Show the latest five in the same bordered-card style as the installation tutorials; provide a button to reveal the complete list and replace it with a collapse action at the bottom of the expanded list.
 - Render version labels as compact accent text, then show the source release title and explanatory copy.
 
@@ -40,7 +40,7 @@
 
 - Use the Polaris Clay semantic palette throughout the homepage, footer and policy pages. Light: Paper `#fafaf8`, elevated `#ffffff`, text `#2a2724`, secondary `#57534c`, border `#e0ddd7`, accent `#b85c3a`. Dark: Ink `#1a1918`, elevated `#222120`, text `#f3f1ed`, secondary `#c4c0b8`, border `#3a3835`, accent `#e69a78`.
 - Keep colors in `assets/theme.css`; section-specific aliases must refer to those tokens. Do not use the old orange/pink/blue gradient for text, borders or interaction states. Preserve the official colors of third-party platform marks and the red author-attribution heart.
-- Main product and support actions use a solid Clay surface with theme-aware foreground: white in light mode and `#271812` in dark mode. Installation actions use a solid surface, a single Clay border and readable Clay labels.
+- Main product actions use a solid Clay surface with theme-aware foreground: white in light mode and `#271812` in dark mode. Installation actions use a solid surface, a single Clay border and readable Clay labels.
 - Keep existing panel and button geometry, grid dividers, spacing, hero radial wash and floating-navigation blur. Hover uses a subtle theme-aware surface or the Clay hover tone, stable text and no vertical lift.
 - Focus and selection use the shared Clay tokens. Selection foreground must follow the accent foreground in each theme; body and control text must meet 4.5:1 contrast.
 - Keep language and theme controls, persistence and system-preference behavior. Theme-color metadata follows the Paper / Ink page background.
@@ -58,10 +58,6 @@
 
 - Support English and Simplified Chinese through a small page-local translation dictionary.
 - Follow the browser language only on first visit; persist a manual choice locally and update the document language, title, description, and control labels together.
-
-## PayPal CTA
-
-- Keep the PayPal action prominent with a solid Clay button and theme-aware contrasting text, while keeping installation as the primary product action.
 
 ## Video loading and analytics consent
 
