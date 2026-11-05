@@ -4776,6 +4776,140 @@
 
       .hd-rail img { width: 28px; height: 28px; margin: -3px; border-radius: 7px; }
 
+      /* Long conversations: the lead Features card, spanning both columns. */
+      .bento-card--wide {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        align-items: center;
+        gap: clamp(24px, 3vw, 40px);
+        border-color: color-mix(in srgb, var(--polaris-accent) 35%, var(--polaris-border));
+      }
+
+      .bento-card--wide .bento-label {
+        border-color: color-mix(in srgb, var(--polaris-accent) 40%, transparent);
+        color: var(--polaris-accent-text);
+      }
+
+      .bento-title {
+        margin: 0 0 14px;
+        color: var(--polaris-text);
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(26px, 2.6vw, 34px);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        text-wrap: balance;
+      }
+
+      .bento-card--wide .bento-copy { margin-bottom: 0; }
+      .bento-card--wide .bento-visual { margin-top: 0; }
+
+      .demo-longchat .pv-stage { height: calc(460px * var(--k, .7)); }
+      .demo-longchat .pv-stage > .pv-window { width: 760px; height: 460px; font-size: 12.5px; }
+      .demo-longchat .sp { flex-basis: 268px; }
+      .demo-longchat .pv-sec h6 { font-size: 13.5px; }
+      .demo-longchat .pv-user { margin-top: 18px; }
+
+      .lc-loading {
+        position: absolute;
+        z-index: 2;
+        top: 10px;
+        left: calc((100% - 268px) / 2);
+        padding: 5px 14px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 999px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 6px 16px color-mix(in srgb, var(--polaris-text) 10%, transparent);
+        color: var(--polaris-text-secondary);
+        font-size: 11.5px;
+        opacity: 0;
+        transform: translate(-50%, -6px);
+        transition: opacity 200ms ease, transform 200ms ease;
+        pointer-events: none;
+      }
+
+      .demo-longchat.is-loading .lc-loading { opacity: 1; transform: translate(-50%, 0); }
+      .demo-longchat.is-loading .pv-track { opacity: .35; }
+
+      .lc-full {
+        display: block;
+        flex: none;
+        width: fit-content;
+        margin: 0 0 6px auto;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
+        font-size: 10.5px;
+        font-weight: 600;
+      }
+
+      .demo-longchat .sp-toc { overflow: hidden; }
+
+      .lc-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        transform: translateY(var(--lc-shift, 0px));
+        transition: transform 1100ms cubic-bezier(.45, 0, .2, 1);
+      }
+
+      .demo-longchat .sp-group { margin-top: 4px; }
+
+      .lc-export {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 7px;
+      }
+
+      .lc-export .sp-export { margin: 0; }
+
+      .lc-menu {
+        position: absolute;
+        z-index: 3;
+        top: calc(100% + 4px);
+        right: 0;
+        display: grid;
+        min-width: 104px;
+        padding: 4px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 9px;
+        background: var(--polaris-bg-elevated);
+        box-shadow: 0 10px 24px color-mix(in srgb, var(--polaris-text) 14%, transparent);
+        font-size: 11.5px;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 160ms ease, transform 160ms ease;
+        pointer-events: none;
+      }
+
+      .lc-menu span { padding: 5px 8px; border-radius: 6px; }
+      .lc-menu span.is-hover { background: var(--polaris-accent-subtle); color: var(--polaris-accent-text); }
+      .demo-longchat.is-menu .lc-menu { opacity: 1; transform: none; }
+
+      .lc-toast {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 4px);
+        padding: 5px 10px;
+        border-radius: 8px;
+        background: var(--polaris-text);
+        color: var(--polaris-bg);
+        font-size: 11.5px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 200ms ease;
+        pointer-events: none;
+      }
+
+      .demo-longchat.is-copied .lc-toast { opacity: 1; }
+
+      @media (max-width: 800px) {
+        .bento-card--wide { grid-template-columns: minmax(0, 1fr); }
+      }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
@@ -5202,6 +5336,14 @@
         <section class="bento-section" id="features" aria-labelledby="features-title">
           <h2 class="v2-heading" id="features-title" data-i18n="features.title">Built for long AI answers</h2>
           <div class="bento-grid">
+            <article class="bento-card bento-card--wide" aria-labelledby="bento-long-title">
+              <div class="bento-wide-copy">
+                <p class="bento-label" data-i18n="features.long.label">Long conversations · Pro</p>
+                <h3 class="bento-title" id="bento-long-title" data-i18n="features.long.title">When the AI forgets, you can still find it.</h3>
+                <p class="bento-copy" data-i18n="features.long.copy">Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.</p>
+              </div>
+              <div class="bento-visual demo pv-demo demo-longchat" data-demo="longchat" data-design-width="760" aria-hidden="true"><div class="pv-stage"><div class="pv-window" data-tab="navigation"><div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div><div class="pv-body"><div class="lc-loading" aria-hidden="true"><span data-i18n="lc.loading">Loading earlier messages…</span></div><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p></div><p class="pv-user" data-i18n="lc.q2">Where should we stay in Paris?</p><div class="pv-sec" data-sec="paris"><h6><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span></h6><p data-i18n="lc.a2">Le Marais puts you within walking distance of the Louvre and the Seine.</p></div><div class="pv-sec" data-sec="transport"><h6><span data-i18n="lc.h2b">Getting around</span></h6><p data-i18n="lc.a2b">Buy a Navigo week pass; the metro covers everything on your list.</p></div><p class="pv-user" data-i18n="lc.q3">Can we swap Florence for Venice?</p><div class="pv-sec" data-sec="venice"><h6><span data-i18n="lc.h3a">Train from Interlaken</span></h6><p data-i18n="lc.a3">Yes. Take the morning train to Venice via Milan, about six hours.</p></div><div class="pv-sec" data-sec="revised"><h6><span data-i18n="lc.h3b">Revised days 8–10</span></h6><p data-i18n="lc.a3b">Two nights in Venice, then a fast train to Rome for the last four days.</p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><span class="lc-full"><span data-i18n="lc.full">Full conversation</span></span><div class="lc-list"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q2">Where should we stay in Paris?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="paris"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2a">Le Marais or Saint-Germain</span></span><span class="sp-item" data-target="transport"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2b">Getting around</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q3">Can we swap Florence for Venice?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="venice"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3a">Train from Interlaken</span></span><span class="sp-item" data-target="revised"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3b">Revised days 8–10</span></span></div></div><div class="sp-outline"><div class="lc-export"><span class="sp-export" data-lc-export data-i18n="demo.export">Export</span><div class="lc-menu"><span data-lc-markdown>Markdown</span><span>HTML</span></div><span class="lc-toast"><span data-i18n="lc.copied">Copied as Markdown</span></span></div><div class="sp-card"><div class="sp-ch" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Route overview</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Day-by-day itinerary</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Budget and booking</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="paris"><div class="sp-ch-title"><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="venice"><div class="sp-ch-title"><span data-i18n="lc.h3a">Train from Interlaken</span><i>⋯</i></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div></div></div><span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span></div>
+            </article>
             <article class="bento-card" aria-labelledby="bento-markers-label">
               <p class="bento-label" id="bento-markers-label" data-i18n="features.markers.label">Markers</p>
               <p class="bento-copy" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
@@ -5347,8 +5489,7 @@
             <div class="pricing-spotlight-copy">
               <p class="pricing-spotlight-label" data-i18n="pricing.long.label">Pro · Long conversations</p>
               <h3 data-i18n="pricing.long.title">See the whole conversation, not just what is loaded.</h3>
-              <p data-i18n="pricing.long.copy">In a long chat, the page only keeps part of the conversation at a time. Free jumps within what is loaded. Pro reads the full conversation in your browser, so the TOC lists every section from the very first message.</p>
-              <p class="pricing-spotlight-note" data-i18n="pricing.long.note">Full-conversation reading currently works on ChatGPT and Gemini. Nothing is uploaded.</p>
+              <p class="pricing-spotlight-note" data-i18n="pricing.long.note">Works on every supported platform, with more on the way. Nothing is uploaded.</p>
             </div>
             <div class="pricing-spotlight-visual" aria-hidden="true">
               <div class="pricing-toc">
@@ -5590,6 +5731,22 @@
           "nav.features": "How it works",
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
+          "features.long.label": "Long conversations · Pro",
+          "features.long.title": "When the AI forgets, you can still find it.",
+          "features.long.copy": "Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.",
+          "lc.q2": "Where should we stay in Paris?",
+          "lc.h2a": "Le Marais or Saint-Germain",
+          "lc.a2": "Le Marais puts you within walking distance of the Louvre and the Seine.",
+          "lc.h2b": "Getting around",
+          "lc.a2b": "Buy a Navigo week pass; the metro covers everything on your list.",
+          "lc.q3": "Can we swap Florence for Venice?",
+          "lc.h3a": "Train from Interlaken",
+          "lc.a3": "Yes. Take the morning train to Venice via Milan, about six hours.",
+          "lc.h3b": "Revised days 8–10",
+          "lc.a3b": "Two nights in Venice, then a fast train to Rome for the last four days.",
+          "lc.loading": "Loading earlier messages…",
+          "lc.full": "Full conversation",
+          "lc.copied": "Copied as Markdown",
           "demo.route.legs": "Each train leg stays under five hours, so no day is lost to travel.",
           "demo.days.paris": "Days 1–4: the Louvre, Musée d'Orsay, an evening Seine cruise and a day trip to Versailles.",
           "demo.days.alps": "Days 5–7: stay in Interlaken, walk the Lauterbrunnen valley and take the railway up to Jungfraujoch.",
@@ -5752,8 +5909,7 @@
           "pricing.plan.settings": "Adjustable settings",
           "pricing.long.label": "Pro · Long conversations",
           "pricing.long.title": "See the whole conversation, not just what is loaded.",
-          "pricing.long.copy": "In a long chat, the page only keeps part of the conversation at a time. Free jumps within what is loaded. Pro reads the full conversation in your browser, so the TOC lists every section from the very first message.",
-          "pricing.long.note": "Full-conversation reading currently works on ChatGPT and Gemini. Nothing is uploaded.",
+          "pricing.long.note": "Works on every supported platform, with more on the way. Nothing is uploaded.",
           "pricing.long.notLoaded": "Earlier messages not loaded",
           "pricing.long.freeCount": "3 of 30 replies",
           "pricing.long.proCount": "30 of 30 replies",
@@ -5824,6 +5980,22 @@
           "nav.features": "功能",
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
+          "features.long.label": "长对话 · Pro",
+          "features.long.title": "AI 忘了，你还能找回来。",
+          "features.long.copy": "对话一长，AI 会渐渐顾不上你前面说过的话，页面也只保留最近的一部分。Polaris 在浏览器里读取完整对话，前面的每个回答都能一键找回，复制或导出后把上下文交还给 AI。",
+          "lc.q2": "巴黎住哪个区比较好？",
+          "lc.h2a": "玛黑区还是圣日耳曼",
+          "lc.a2": "住玛黑区，步行就能到卢浮宫和塞纳河。",
+          "lc.h2b": "市内交通",
+          "lc.a2b": "买一张 Navigo 周票，清单上的地方地铁都能到。",
+          "lc.q3": "能把佛罗伦萨换成威尼斯吗？",
+          "lc.h3a": "从因特拉肯坐火车",
+          "lc.a3": "可以。坐早班火车经米兰到威尼斯，约 6 小时。",
+          "lc.h3b": "调整后的第 8–10 天",
+          "lc.a3b": "威尼斯住两晚，再坐高铁去罗马度过最后四天。",
+          "lc.loading": "正在加载更早的消息…",
+          "lc.full": "完整对话",
+          "lc.copied": "已复制为 Markdown",
           "demo.route.legs": "每段火车都控制在 5 小时以内，不会整天耗在路上。",
           "demo.days.paris": "第 1–4 天：卢浮宫、奥赛博物馆、塞纳河夜游，再加凡尔赛一日游。",
           "demo.days.alps": "第 5–7 天：住因特拉肯，徒步劳特布伦嫩山谷，乘登山火车上少女峰。",
@@ -5986,8 +6158,7 @@
           "pricing.plan.settings": "可调节设置",
           "pricing.long.label": "Pro · 长对话",
           "pricing.long.title": "看到整段对话，而不只是已加载的部分。",
-          "pricing.long.copy": "聊得越长，页面同一时间只保留其中一部分。Free 在已加载的消息里跳转；Pro 在浏览器里读取完整对话，TOC 从第一条消息起列出每一节。",
-          "pricing.long.note": "完整对话读取目前支持 ChatGPT 和 Gemini，内容不会上传。",
+          "pricing.long.note": "适用于所有支持的平台，后续还会增加更多；内容不会上传。",
           "pricing.long.notLoaded": "更早的消息未加载",
           "pricing.long.freeCount": "30 条回复中的 3 条",
           "pricing.long.proCount": "30 条回复全部可见",

@@ -324,6 +324,75 @@ const demos = {
     }
   },
 
+  longchat: {
+    // Start at the latest exchange, as a long chat does; the earliest answer is out of reach.
+    toLatest(root) {
+      const list = root.querySelector(".lc-list");
+      const toc = root.querySelector(".sp-toc");
+      const label = root.querySelector(".lc-full");
+      const room = toc.clientHeight - label.offsetHeight - 6;
+      list.style.setProperty("--lc-shift", `${-Math.max(0, list.scrollHeight - room)}px`);
+      const scroll = root.querySelector(".pv-scroll");
+      const track = root.querySelector("[data-track]");
+      track.style.transform = `translateY(${-Math.max(0, track.scrollHeight - scroll.clientHeight)}px)`;
+    },
+    reset(root) {
+      resetShell(root);
+      root.classList.remove("is-loading", "is-menu", "is-copied");
+      root.querySelectorAll(".lc-menu span").forEach((option) => option.classList.remove("is-hover"));
+      this.toLatest(root);
+    },
+    still(root) {
+      this.reset(root);
+      root.querySelector(".lc-list").style.setProperty("--lc-shift", "0px");
+      setActive(root, itemFor(root, "decision"));
+      scrollChat(root, "decision");
+    },
+    async play(root, signal) {
+      const cursor = cursorApi(root, signal);
+      await wait(900, signal);
+      // Scroll the Table of Contents back to the first question of the conversation.
+      await cursor.moveTo(root.querySelector(".lc-list"), 0.5, 0.75);
+      root.querySelector(".lc-list").style.setProperty("--lc-shift", "0px");
+      await wait(1300, signal);
+      const first = itemFor(root, "decision");
+      await cursor.moveTo(first, 0.3, 0.55);
+      first.classList.add("is-hover");
+      await wait(350, signal);
+      await cursor.click();
+      first.classList.remove("is-hover");
+      setActive(root, first);
+      root.classList.add("is-loading");
+      await wait(900, signal);
+      scrollChat(root, "decision");
+      root.classList.remove("is-loading");
+      await wait(1800, signal);
+      // Hand the context back: export the conversation as Markdown.
+      await cursor.moveTo(root.querySelector('[data-tab-btn="chapters"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "chapters");
+      await wait(800, signal);
+      await cursor.moveTo(root.querySelector("[data-lc-export]"), 0.5, 0.6);
+      await cursor.click();
+      root.classList.add("is-menu");
+      await wait(500, signal);
+      const markdown = root.querySelector("[data-lc-markdown]");
+      await cursor.moveTo(markdown, 0.4, 0.55);
+      markdown.classList.add("is-hover");
+      await wait(300, signal);
+      await cursor.click();
+      root.classList.remove("is-menu");
+      markdown.classList.remove("is-hover");
+      root.classList.add("is-copied");
+      await wait(1800, signal);
+      root.classList.remove("is-copied");
+      await cursor.moveTo(root.querySelector('[data-tab-btn="navigation"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "navigation");
+      await wait(1600, signal);
+    }
+  },
+
   settings: {
     set(root, on) {
       root.querySelector("[data-toggle]").classList.toggle("is-on", on);
