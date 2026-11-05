@@ -3986,97 +3986,121 @@
         left: 16px;
       }
 
-      /* Privacy */
-      .privacy-frame {
+      /* Privacy: a full-bleed warm band, after the Speed Booster layout */
+      main {
+        overflow-x: clip;
+      }
+
+      .privacy-section {
         position: relative;
-        padding: clamp(56px, 7vw, 80px) clamp(20px, 5vw, 64px) clamp(44px, 6vw, 64px);
-        border: 1.5px dashed var(--polaris-border-strong);
-        border-radius: 28px;
-        text-align: center;
+        isolation: isolate;
+        padding: clamp(72px, 9vw, 128px) 0;
+        margin-bottom: clamp(64px, 8vw, 112px);
       }
 
-      .privacy-lock {
+      .privacy-section::before {
         position: absolute;
-        top: -22px;
-        left: 50%;
+        z-index: -1;
+        inset: 0 auto 0 calc(50% - 50vw);
+        width: 100vw;
+        background: linear-gradient(180deg, var(--polaris-accent-subtle), color-mix(in srgb, var(--polaris-accent-subtle) 45%, var(--polaris-bg)) 60%, var(--polaris-bg));
+        content: "";
+      }
+
+      .privacy-head {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(18px, 2.4vw, 28px);
+      }
+
+      .privacy-badge {
         display: grid;
+        flex: none;
         place-items: center;
-        width: 44px;
-        height: 44px;
-        border: 1.5px dashed var(--polaris-border-strong);
-        border-radius: 50%;
-        background: var(--polaris-bg);
-        color: var(--polaris-text-secondary);
-        transform: translateX(-50%);
+        width: clamp(56px, 6vw, 72px);
+        height: clamp(56px, 6vw, 72px);
+        margin-top: 6px;
+        border-radius: 18px;
+        background: var(--polaris-accent);
+        box-shadow: 0 10px 24px color-mix(in srgb, var(--polaris-accent) 28%, transparent);
+        color: var(--polaris-accent-foreground);
       }
 
-      .privacy-lock svg {
-        width: 20px;
-        height: 20px;
+      .privacy-badge svg {
+        width: 46%;
+        height: 46%;
       }
 
-      .privacy-marquee {
-        margin: 32px calc(clamp(20px, 5vw, 64px) * -1) 28px;
-        overflow: hidden;
-        -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-        mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-      }
-
-      .privacy-track {
-        display: flex;
-        width: max-content;
-        animation: v2-marquee 36s linear infinite;
-      }
-
-      .privacy-group {
-        display: flex;
-        gap: 12px;
-        padding-right: 12px;
-      }
-
-      .privacy-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 14px;
-        padding: 12px 14px 12px 18px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 14px;
-        background: var(--polaris-bg-elevated);
+      .privacy-title {
+        max-width: 17em;
+        margin: 0;
         color: var(--polaris-text);
-        font-size: 15px;
-        white-space: nowrap;
-      }
-
-      .privacy-chip b {
-        padding: 2px 8px;
-        border-radius: 6px;
-        background: var(--polaris-bg-muted);
-        color: var(--polaris-text-secondary);
-        font-size: 12px;
-        font-weight: 600;
-      }
-
-      .privacy-chip b.is-on {
-        background: var(--polaris-accent-subtle);
-        color: var(--polaris-accent-text);
-      }
-
-      .privacy-subtitle {
-        margin: 0 auto;
-        color: var(--polaris-text-secondary);
         font-family: var(--polaris-font-serif);
-        font-size: clamp(26px, 3vw, 40px);
-        font-style: normal;
-        letter-spacing: -0.02em;
-        line-height: 1.15;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+        line-height: 1.1;
       }
 
-      .privacy-copy {
-        max-width: 40rem;
-        margin: 24px auto 0;
+      .privacy-mark {
+        text-decoration: underline;
+        text-decoration-color: var(--polaris-accent);
+        text-decoration-thickness: 0.07em;
+        text-underline-offset: 0.14em;
+      }
+
+      .privacy-title-rest {
+        color: var(--polaris-text-tertiary);
+      }
+
+      .privacy-lead {
+        margin: 18px 0 0;
         color: var(--polaris-text-secondary);
         font-size: 17px;
         line-height: 1.55;
+      }
+
+      .privacy-lead strong {
+        color: var(--polaris-text);
+        font-weight: 650;
+      }
+
+      .privacy-points {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(24px, 3vw, 40px);
+        margin-top: clamp(40px, 5vw, 64px);
+      }
+
+      .privacy-point-icon {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid color-mix(in srgb, var(--polaris-accent) 22%, transparent);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-accent-text);
+      }
+
+      .privacy-point-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .privacy-point h3 {
+        margin: 16px 0 8px;
+        color: var(--polaris-text);
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+
+      .privacy-point p {
+        margin: 0;
+        color: var(--polaris-text-secondary);
+        font-size: 15px;
+        line-height: 1.6;
       }
 
       .privacy-link {
@@ -4084,8 +4108,9 @@
         gap: 6px;
         min-height: 44px;
         align-items: center;
-        margin-top: 12px;
+        margin-top: clamp(24px, 3vw, 36px);
         color: var(--polaris-accent-text);
+        font-size: 15px;
         font-weight: 600;
         text-decoration: none;
       }
@@ -4094,6 +4119,18 @@
       .privacy-link:focus-visible {
         text-decoration: underline;
         text-underline-offset: 4px;
+      }
+
+      @media (max-width: 800px) {
+        .privacy-points {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .privacy-head {
+          flex-direction: column;
+        }
       }
 
       /* Closing CTA */
@@ -4177,9 +4214,6 @@
         transition: background-color 160ms ease, opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
       }
 
-      @keyframes v2-marquee {
-        to { transform: translateX(-50%); }
-      }
 
       @keyframes v2-blink {
         50% { opacity: 0; }
@@ -4228,15 +4262,10 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .privacy-track,
         .sr-caret,
         .st-typing,
         .st-markers .st-new {
           animation: none;
-        }
-
-        .privacy-marquee {
-          overflow-x: auto;
         }
 
         .floating-cta,
@@ -4522,31 +4551,31 @@
         </section>
 
         <section class="privacy-section" id="privacy" aria-labelledby="privacy-title">
-          <div class="privacy-frame">
-            <span class="privacy-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></span>
-            <h2 class="v2-heading" id="privacy-title" data-i18n="privacy.title">Private by design</h2>
-            <div class="privacy-marquee" aria-hidden="true">
-              <div class="privacy-track">
-                <div class="privacy-group">
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.local">Processed in your browser</span><b class="is-on" data-i18n="privacy.on">On</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.upload">Sent to our servers</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.snapshots">Conversation sync</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.password">Password access</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.analytics">Website analytics</span><b data-i18n="privacy.ask">Ask first</b></span>
-                </div>
-                <div class="privacy-group">
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.local">Processed in your browser</span><b class="is-on" data-i18n="privacy.on">On</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.upload">Sent to our servers</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.snapshots">Conversation sync</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.password">Password access</span><b data-i18n="privacy.off">Off</b></span>
-                  <span class="privacy-chip"><span data-i18n="privacy.chip.analytics">Website analytics</span><b data-i18n="privacy.ask">Ask first</b></span>
-                </div>
-              </div>
+          <div class="privacy-head">
+            <span class="privacy-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></span>
+            <div>
+              <h2 class="privacy-title" id="privacy-title" data-i18n="privacy.title">Your conversations stay <span class="privacy-mark">private</span>. <span class="privacy-title-rest">Nothing you read is uploaded.</span></h2>
+              <p class="privacy-lead" data-i18n="privacy.lead">Some AI chat extensions send your conversations to their own servers. <strong>Polaris never does.</strong></p>
             </div>
-            <p class="privacy-subtitle" data-i18n="privacy.subtitle">and stays in your browser</p>
-            <p class="privacy-copy" data-i18n="privacy.copy">Polaris reads the answer on the page you have open and builds its navigation locally. Conversation content is never sent to the developer or a third-party server, and the website only measures visits after you allow it.</p>
-            <a class="privacy-link" href="privacy.html"><span data-i18n="privacy.link">Read the privacy policy</span> <span aria-hidden="true">→</span></a>
           </div>
+          <div class="privacy-points">
+            <div class="privacy-point">
+              <span class="privacy-point-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"></rect><path d="M8 20h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg></span>
+              <h3 data-i18n="privacy.local.title">It all happens in your browser</h3>
+              <p data-i18n="privacy.local.copy">Polaris reads the answer on the page you have open and builds its navigation right there. What you read is never sent to us or to any third party.</p>
+            </div>
+            <div class="privacy-point">
+              <span class="privacy-point-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="2.8" fill="none" stroke="currentColor" stroke-width="1.7"></ellipse><path d="M5 6.5v11c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-11M5 12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8" fill="none" stroke="currentColor" stroke-width="1.7"></path></svg></span>
+              <h3 data-i18n="privacy.cache.title">Saved here, never synced</h3>
+              <p data-i18n="privacy.cache.copy">When complete indexing keeps a copy of a conversation, it stays in this browser only. It is never synced to other devices or uploaded.</p>
+            </div>
+            <div class="privacy-point">
+              <span class="privacy-point-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 5 6v5.5c0 4.3 2.9 7.7 7 9 4.1-1.3 7-4.7 7-9V6l-7-2.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              <h3 data-i18n="privacy.control.title">You stay in control</h3>
+              <p data-i18n="privacy.control.copy">Polaris never asks for a password. This website only measures visits after you allow it, and you can change that anytime.</p>
+            </div>
+          </div>
+          <a class="privacy-link" href="privacy.html"><span data-i18n="privacy.link">Read the privacy policy</span> <span aria-hidden="true">→</span></a>
         </section>
 
         <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
@@ -4825,18 +4854,15 @@
           "features.settings.tables": "Tables",
           "features.settings.bold": "Bold text",
           "features.settings.ordered": "Ordered lists",
-          "privacy.title": "Private by design",
-          "privacy.subtitle": "and stays in your browser",
-          "privacy.chip.local": "Processed in your browser",
-          "privacy.chip.upload": "Sent to our servers",
-          "privacy.chip.snapshots": "Conversation sync",
-          "privacy.chip.password": "Password access",
-          "privacy.chip.analytics": "Website analytics",
-          "privacy.on": "On",
-          "privacy.off": "Off",
-          "privacy.ask": "Ask first",
-          "privacy.copy": "Polaris reads the answer on the page you have open and builds its navigation locally. Conversation content is never sent to the developer or a third-party server, and the website only measures visits after you allow it.",
           "privacy.link": "Read the privacy policy",
+          "privacy.title": "Your conversations stay <span class=\"privacy-mark\">private</span>. <span class=\"privacy-title-rest\">Nothing you read is uploaded.</span>",
+          "privacy.lead": "Some AI chat extensions send your conversations to their own servers. <strong>Polaris never does.</strong>",
+          "privacy.local.title": "It all happens in your browser",
+          "privacy.local.copy": "Polaris reads the answer on the page you have open and builds its navigation right there. What you read is never sent to us or to any third party.",
+          "privacy.cache.title": "Saved here, never synced",
+          "privacy.cache.copy": "When complete indexing keeps a copy of a conversation, it stays in this browser only. It is never synced to other devices or uploaded.",
+          "privacy.control.title": "You stay in control",
+          "privacy.control.copy": "Polaris never asks for a password. This website only measures visits after you allow it, and you can change that anytime.",
           "closing.title": "Ready to stop scrolling?",
           "closing.cta": "Add Polaris to Chrome",
           "closing.note": "Also on Edge and Firefox.",
@@ -4998,18 +5024,15 @@
           "features.settings.tables": "表格",
           "features.settings.bold": "加粗文本",
           "features.settings.ordered": "有序列表",
-          "privacy.title": "隐私优先",
-          "privacy.subtitle": "内容只留在你的浏览器里",
-          "privacy.chip.local": "在浏览器本地处理",
-          "privacy.chip.upload": "上传到我们的服务器",
-          "privacy.chip.snapshots": "同步对话内容",
-          "privacy.chip.password": "读取密码",
-          "privacy.chip.analytics": "官网分析",
-          "privacy.on": "开",
-          "privacy.off": "关",
-          "privacy.ask": "先征得同意",
-          "privacy.copy": "Polaris 只读取你当前打开页面上的回答，并在本地生成导航。对话内容不会发送给开发者或任何第三方服务器；官网也只有在你同意后才统计访问。",
           "privacy.link": "阅读隐私政策",
+          "privacy.title": "你的对话<span class=\"privacy-mark\">只属于你</span>。<span class=\"privacy-title-rest\">读到的内容不会被上传。</span>",
+          "privacy.lead": "有些 AI 对话扩展会把你的对话发到自己的服务器。<strong>Polaris 从不这样做。</strong>",
+          "privacy.local.title": "全部在浏览器里完成",
+          "privacy.local.copy": "Polaris 只读取你当前打开页面上的回答，并在本地生成导航。你读到的内容不会发送给我们，也不会发给任何第三方。",
+          "privacy.cache.title": "只存本机，从不同步",
+          "privacy.cache.copy": "开启完整索引时保存的对话副本只留在当前浏览器，不会同步到其他设备，也不会上传。",
+          "privacy.control.title": "由你掌控",
+          "privacy.control.copy": "Polaris 从不索要密码。官网只有在你同意后才统计访问，之后也可以随时更改。",
           "closing.title": "不想再来回翻了？",
           "closing.cta": "添加到 Chrome",
           "closing.note": "也支持 Edge 和 Firefox。",

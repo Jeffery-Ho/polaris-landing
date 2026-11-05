@@ -51,7 +51,7 @@ Website and extension purchases use the Polaris license Worker in the extension 
 
 ## Design
 
-The homepage follows the Polaris Clay visual system, with warm Paper / Ink surfaces and a single terracotta accent. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, a Features bento, a Privacy panel, Pricing, bordered installation panels, release notes and a closing CTA. The layout borrows the narrative structure of diabrowser.com while keeping Polaris Clay. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows the Polaris Clay visual system, with warm Paper / Ink surfaces and a single terracotta accent. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, a Features bento, a Privacy band (laid out after gptspeedbooster.com), Pricing, bordered installation panels, release notes and a closing CTA. The layout borrows the narrative structure of diabrowser.com while keeping Polaris Clay. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
 - Self-hosted Inter handles body copy and controls, Newsreader Regular handles headings, and Lora SemiBold Italic handles Polaris wordmarks. Chinese uses the corresponding system sans-serif / serif fallbacks.
 - `assets/theme.css` provides the shared font faces and light/dark semantic palette for the homepage, footer and policy pages, with local OFL licenses and no Google Fonts requests.

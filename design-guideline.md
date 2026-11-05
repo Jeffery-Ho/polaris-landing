@@ -35,7 +35,7 @@
 ## Features, privacy and closing
 
 - Follow How it works with a Features bento: a Newsreader heading and six bordered cards in two columns (one column at 800px and below). Each card has a small uppercase label, one short sentence, and a Clay-colored illustration drawn in HTML/CSS: Markers, Chapter view, Search, While it streams, Where it works (platform marks with their names), and Your markers (switches, with bold text and ordered lists off).
-- Privacy follows Features: a dashed rounded frame with a dashed lock badge on its top edge, the heading, a slowly scrolling row of On/Off chips, a serif subtitle, one paragraph and a link to the privacy policy. Every chip must match `privacy.html`. Reduced motion stops the scroll and lets the row scroll by hand.
+- Privacy follows Features as a full-bleed band that fades from the Clay accent-subtle tint into the page color, laid out after gptspeedbooster.com rather than Dia: a left-aligned row with a solid Clay rounded-square lock badge beside a two-tone Newsreader heading (the key word underlined in Clay, the second sentence in tertiary text), one contrasting lead line ending in a bold claim, then three columns of small outlined icon, bold title and two-line copy, and a link to the privacy policy. Every statement must match `privacy.html`. Stack the columns at 800px and the badge above the heading at 560px.
 - End the page with a closing CTA: a Newsreader question, then a wide subtle arc holding one solid Clay pill to the Chrome Web Store and a quiet line naming Edge and Firefox with a link to the installation section.
 
 ## Release notes
