@@ -6,6 +6,8 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Assets
 
+- Brand icons are synchronized from the extension's `dist/icons` output. The homepage logo, product illustration, footer, structured data and all policy-page favicons use the current Clay star icon, with content-versioned URLs to refresh browser caches.
+
 - `assets/polaris-introduction.mp4` is a 1440×916, 30fps H.264 muted autoplay video with a fast-start MP4 index.
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
 - The local-installation button uses the stable [latest GitHub Release ZIP asset](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip). The extension release workflow publishes that fixed asset name alongside the versioned ZIP only after validating the archive, so landing downloads do not depend on the GitHub API. The existing `assets/Polaris-for-Web-0.48.3-build-196.zip` file remains archived for compatibility.
