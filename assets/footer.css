@@ -1,9 +1,9 @@
 /* Shared homepage footer, matching the approved standalone preview. */
 .site-footer {
-  --footer-surface: #f7f8fa;
-  --footer-ink: #171717;
-  --footer-muted: #626b77;
-  --footer-line: #dde1e6;
+  --footer-surface: var(--polaris-bg-subtle);
+  --footer-ink: var(--polaris-text);
+  --footer-muted: var(--polaris-text-secondary);
+  --footer-line: var(--polaris-border);
   margin-top: 72px;
   padding: 0;
   border-top: 1px solid var(--footer-line);
@@ -12,12 +12,6 @@
   text-align: left;
 }
 
-:root[data-theme="dark"] .site-footer {
-  --footer-surface: #101112;
-  --footer-ink: #ededed;
-  --footer-muted: #a1a8b1;
-  --footer-line: #303236;
-}
 
 .footer-inner {
   width: min(1200px, calc(100% - 64px));
@@ -38,10 +32,12 @@
   align-items: center;
   gap: 12px;
   color: var(--footer-ink);
+  font-family: var(--polaris-font-wordmark);
   font-size: 24px;
-  font-weight: 650;
+  font-style: italic;
+  font-weight: 600;
   line-height: 40px;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
   text-decoration: none;
 }
 .footer-brand-link img { width: 36px; height: 36px; }
@@ -88,8 +84,8 @@
 }
 .footer-nav a:hover,
 .footer-nav .analytics-settings-button:hover { color: var(--footer-ink); text-decoration: underline; }
-.site-footer :focus-visible { outline: 2px solid var(--footer-ink); outline-offset: 5px; }
-.site-footer ::selection { background: var(--footer-ink); color: var(--footer-surface); }
+.site-footer :focus-visible { outline: 2px solid var(--polaris-accent); outline-offset: 5px; }
+.site-footer ::selection { background: var(--polaris-accent); color: var(--polaris-accent-foreground); }
 
 .footer-bottom {
   display: flex;
