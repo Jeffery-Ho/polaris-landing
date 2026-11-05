@@ -3230,7 +3230,8 @@
 
       .headline-line {
         display: flex;
-        align-items: center;
+        /* The icon follows the glyph baseline, not the font line-box center. */
+        align-items: baseline;
         justify-content: center;
         line-height: inherit;
       }
@@ -3385,7 +3386,7 @@
         width: 0;
         height: 0.72em;
         margin-inline: 0;
-        transform: translateY(0.06em);
+        transform: none;
         transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1), margin-inline 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
       }
 
