@@ -90,9 +90,9 @@ export const RELEASE_NOTES = Object.freeze([
       ]
     },
     "zh": {
-      "title": "在 Outline 查看回复正文",
+      "title": "在 大纲 查看回复正文",
       "changes": [
-        "TOC 无回复目录项时，可通过提示直接调整设置中的显示范围，或切换 Outline 查看正文。"
+        "目录 无回复目录项时，可通过提示直接调整设置中的显示范围，或切换 大纲 查看正文。"
       ]
     }
   },
@@ -349,7 +349,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "图片标签，无需下载",
       "changes": [
-        "TOC 与 Outline 中的全部 AI 图片消息仅显示图片标签，保留源消息定位，不再下载预览或进行采样。",
+        "目录 与 大纲 中的全部 AI 图片消息仅显示图片标签，保留源消息定位，不再下载预览或进行采样。",
         "修复 Gemini 在设置读取期间替换页面 body 时的初始化错误。"
       ]
     }
@@ -366,7 +366,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "目录支持 AI 图片回复",
       "changes": [
-        "全文读取的 TOC 现显示 AI 图片回复，支持按需预览和打开原图；原始会话及分享会话中的 Markdown sandbox 图片也可读取。"
+        "全文读取的 目录 现显示 AI 图片回复，支持按需预览和打开原图；原始会话及分享会话中的 Markdown sandbox 图片也可读取。"
       ]
     }
   },
@@ -414,7 +414,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "仅在目录和大纲列表显示滚动按钮",
       "changes": [
-        "仅当 TOC 或 Outline 实际显示列表条目时显示底部滚动按钮；设置页、空列表及其他状态均隐藏。"
+        "仅当 目录 或 大纲 实际显示列表条目时显示底部滚动按钮；设置页、空列表及其他状态均隐藏。"
       ]
     }
   },
@@ -526,7 +526,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "滚动停稳后再高亮",
       "changes": [
-        "等待滚动和布局停稳后再显示整条回复高亮，范围限制在顶部栏下方的正文区域；再次滚动时先隐藏，沿用 Outline 配色。"
+        "等待滚动和布局停稳后再显示整条回复高亮，范围限制在顶部栏下方的正文区域；再次滚动时先隐藏，沿用 大纲 配色。"
       ]
     }
   },
@@ -542,7 +542,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "高亮 ChatGPT 完整回复",
       "changes": [
-        "支持 ChatGPT 新界面的整条回复 ID，修复工具活动或多段正文导致定位失败的问题；高亮覆盖整条回复，沿用 Outline 现有配色。"
+        "支持 ChatGPT 新界面的整条回复 ID，修复工具活动或多段正文导致定位失败的问题；高亮覆盖整条回复，沿用 大纲 现有配色。"
       ]
     }
   },
@@ -558,7 +558,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "高亮完整回复",
       "changes": [
-        "Maker 跳转后高亮所属的整条 AI 回复及其内容分段，滚动仍定位到点击的标题或表格，沿用 Outline 现有配色。"
+        "Maker 跳转后高亮所属的整条 AI 回复及其内容分段，滚动仍定位到点击的标题或表格，沿用 大纲 现有配色。"
       ]
     }
   },
@@ -574,7 +574,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "高亮跟随 Maker 目标",
       "changes": [
-        "跳转目标进入视口即显示高亮，并跟随滚动和布局变化，沿用 Outline 现有配色；修复 ChatGPT 隐藏记忆引用导致定位失败的问题。"
+        "跳转目标进入视口即显示高亮，并跟随滚动和布局变化，沿用 大纲 现有配色；修复 ChatGPT 隐藏记忆引用导致定位失败的问题。"
       ]
     }
   },
@@ -590,7 +590,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "看清 Maker 跳转位置",
       "changes": [
-        "点击页面右侧 Maker 后，目标停稳时会显示与 Outline 相同的赤陶色描边和浅色填充，短暂停留后淡出，适配浅色、深色页面及减少动态效果设置。"
+        "点击页面右侧 Maker 后，目标停稳时会显示与 大纲 相同的赤陶色描边和浅色填充，短暂停留后淡出，适配浅色、深色页面及减少动态效果设置。"
       ]
     }
   },
@@ -622,7 +622,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "点一下就开始读取",
       "changes": [
-        "开启完整对话后，点击任意会话即可开始读取，无需刷新页面；ChatGPT 首页会提示你从会话列表中选择。加载页结束后，Maker 列表与对话同时出现。从目录或 Outline 定位时会平滑滚动，并短暂高亮目标位置；Outline 不再多出“全文”小节。"
+        "开启完整对话后，点击任意会话即可开始读取，无需刷新页面；ChatGPT 首页会提示你从会话列表中选择。加载页结束后，Maker 列表与对话同时出现。从目录或 大纲 定位时会平滑滚动，并短暂高亮目标位置；大纲 不再多出“全文”小节。"
       ]
     }
   },
@@ -654,7 +654,7 @@ export const RELEASE_NOTES = Object.freeze([
     "zh": {
       "title": "完整对话数据与独立阅读",
       "changes": [
-        "目录与搜索结果定位 ChatGPT 会话正文，Outline 保持独立阅读。ChatGPT 尚未显示的历史消息，仍在完善会话内定位支持。"
+        "目录与搜索结果定位 ChatGPT 会话正文，大纲 保持独立阅读。ChatGPT 尚未显示的历史消息，仍在完善会话内定位支持。"
       ]
     }
   },

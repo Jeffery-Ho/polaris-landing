@@ -18,7 +18,7 @@ export function siteHeader(p = "") {
     </a>
     <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
       <a class="header-link" href="${home(p)}#features">${t("Features", "功能")}</a>
-      <a class="header-link" href="${home(p)}#pricing">${t("Pricing", "Pricing")}</a>
+      <a class="header-link" href="${home(p)}#pricing">${t("Pricing", "价格")}</a>
       <a class="header-link" href="${p}blog/">${t("Blog", "博客")}</a>
       <a class="header-link" href="${p}contact/">${t("Contact", "联系我们")}</a>
       <a class="header-link header-link--drawer" href="${home(p)}#install">${t("Free trial", "免费试用")}</a>
@@ -72,20 +72,20 @@ export function siteFooter(p = "") {
       </div>
       <nav class="footer-nav" aria-label="Product"><h2>${t("Product", "产品")}</h2>
         <ul>
-          ${li(`${h}#capabilities`, "How it works", "工作方式")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}${li(`${p}blog/`, "Blog", "博客")}
+          ${li(`${h}#capabilities`, "How it works", "工作原理")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}${li(`${p}blog/`, "Blog", "博客")}
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Install &amp; help"><h2>${t("Install &amp; help", "安装与帮助")}</h2>
         <ul>
-          ${li(CWS, "Install for Chrome", "Chrome 安装", true)}
-          ${li(EDGE, "Install for Edge", "Edge 安装", true)}
-          ${li(FIREFOX, "Install for Firefox", "Firefox 安装", true)}
+          ${li(CWS, "Install for Chrome", "安装 Chrome 版", true)}
+          ${li(EDGE, "Install for Edge", "安装 Edge 版", true)}
+          ${li(FIREFOX, "Install for Firefox", "安装 Firefox 版", true)}
           ${li(`${h}#install`, "Local installation", "本地安装")}
           <li><a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
           ${li(`${p}contact/`, "Contact", "联系我们")}
         </ul>
       </nav>
-      <nav class="footer-nav" aria-label="Legal"><h2>${t("Legal", "法律")}</h2>
+      <nav class="footer-nav" aria-label="Legal"><h2>${t("Legal", "法律信息")}</h2>
         <ul>
           ${li(`${p}privacy.html`, "Privacy policy", "隐私政策")}
           ${li(`${p}safety.html`, "Security", "安全说明")}

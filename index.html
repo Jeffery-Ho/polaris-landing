@@ -146,10 +146,10 @@
         },
         {
           "@type": "Question",
-          "name": "How do I install it in Mainland China?",
+          "name": "Can I install Polaris without a browser store?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page."
+            "text": "Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page."
           }
         },
         {
@@ -4953,6 +4953,8 @@
       .floating-cta { height: 56px; }
 
       /* Release notes: a compact list on the homepage; the full history lives at /release-notes/. */
+      .updates-section .updates-heading.v2-heading { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.08; text-align: center; }
+
       .updates-section .updates-list {
         display: block;
         width: min(820px, 100%);
@@ -5135,27 +5137,25 @@
         justify-items: center;
         width: min(1180px, 100%);
         margin: 0 auto;
-        padding: clamp(72px, 10vw, 128px) 24px clamp(64px, 9vw, 112px);
-        overflow: hidden;
-        border-radius: 28px;
-        border: 1px solid var(--polaris-border);
-        background: var(--polaris-bg-subtle);
-        color: var(--polaris-text);
+        padding: clamp(40px, 6vw, 72px) 0 0;
         text-align: center;
       }
 
-      /* Vector North Star and a faint constellation; no photography. */
-      .closing-art {
+      /* A fading dot field behind the title only. */
+      .closing-panel::before {
         position: absolute;
         z-index: -1;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        color: var(--polaris-accent);
-        pointer-events: none;
+        top: 0;
+        left: 50%;
+        width: min(760px, 100%);
+        height: clamp(220px, 22vw, 280px);
+        background-image: radial-gradient(color-mix(in srgb, var(--polaris-text) 26%, transparent) 1px, transparent 1.5px);
+        background-size: 11px 11px;
+        -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, transparent 75%);
+        mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, transparent 75%);
+        transform: translateX(-50%);
+        content: "";
       }
-
-      .closing-art .faint { color: var(--polaris-text-tertiary); }
 
       .closing-title {
         margin: 0;
@@ -5623,7 +5623,7 @@
                 <h3 class="pricing-plan-name" id="pricing-free-title">Free</h3>
               </div>
               <p class="pricing-plan-description" data-i18n="pricing.free.description">Everyday reading on your go-to platforms.</p>
-              <div class="pricing-price-row"><strong class="pricing-price">$0</strong></div>
+              <div class="pricing-price-row"><strong class="pricing-price" data-i18n="pricing.free.price">$0</strong></div>
               <p class="pricing-term" data-i18n="pricing.free.term">Free to use</p>
               <p class="pricing-assurance" data-i18n="pricing.free.assurance">No payment details needed.</p>
               <h4 class="pricing-includes" data-i18n="pricing.free.includes">Included</h4>
@@ -5642,7 +5642,7 @@
                 <h3 class="pricing-plan-name" id="pricing-pro-title">Pro</h3>
               </div>
               <p class="pricing-plan-description" data-i18n="pricing.pro.description">For very long chats, on every platform.</p>
-              <div class="pricing-price-row"><strong class="pricing-price">$12.90</strong><span class="pricing-was"><span class="pricing-saving" data-i18n="pricing.pro.saving">Save $7.09</span><s class="pricing-original-price">$19.99</s></span></div>
+              <div class="pricing-price-row"><strong class="pricing-price" data-i18n="pricing.pro.price">$12.90</strong><span class="pricing-was"><span class="pricing-saving" data-i18n="pricing.pro.saving">Save $7.09</span><s class="pricing-original-price" data-i18n="pricing.pro.was">$19.99</s></span></div>
               <p class="pricing-term" data-i18n="pricing.pro.term">USD · One-time payment · Lifetime access</p>
               <p class="pricing-assurance" data-i18n="pricing.pro.offer">Welcome price on this site. In Polaris, $12.90 for the first 7 days, then $19.99.</p>
               <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Included</h4>
@@ -5688,7 +5688,6 @@
             <article class="install-card install-card--local">
               <h3 class="install-card-title">
                 <span data-i18n="install.local.title">Local installation</span>
-                <span class="install-card-badge"><span data-i18n="install.local.badge">Recommended in Mainland China</span></span>
               </h3>
               <p class="install-card-copy" data-i18n="install.local.copy">Download the ZIP, unzip it, then load the folder in Chrome extensions.</p>
               <a class="install-card-button" href="https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip" data-analytics-event="zip_download">
@@ -5727,7 +5726,7 @@
             <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.</p></details>
             <details class="faq-item" id="platforms"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
-            <details class="faq-item"><summary data-i18n="faq.china.q">How do I install it in Mainland China?</summary><p data-i18n="faq.china.a">Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.zip.q">Can I install Polaris without a browser store?</summary><p data-i18n="faq.zip.a">Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
             <details class="faq-item"><summary data-i18n="faq.chapter.q">What are Table of Contents and Outline?</summary><p data-i18n="faq.chapter.a">Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.</p></details>
             <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats.</p></details>
             <details class="faq-item"><summary data-i18n="faq.browsers.q">Does it work on Edge or Firefox?</summary><p data-i18n="faq.browsers.a">Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.</p></details>
@@ -5737,7 +5736,7 @@
         </section>
 
         <section class="updates-section" id="updates" aria-labelledby="updates-title">
-          <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
+          <h2 class="updates-heading v2-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
           <ol class="updates-list" id="updates-list" data-updates-list></ol>
           <a class="updates-all" href="release-notes/"><span data-i18n="updates.seeAll">See all release notes</span> <span aria-hidden="true">→</span></a>
         </section>
@@ -5745,14 +5744,6 @@
       </div>
       <section class="closing-cta" data-closing-cta aria-labelledby="closing-title">
         <div class="closing-panel">
-          <svg class="closing-art" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-            <g class="faint" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 6" opacity=".8"><circle cx="600" cy="-140" r="420"/><circle cx="600" cy="-140" r="560"/></g>
-            <g class="faint" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".75"><path d="M130 330 L205 262 L300 288 L372 214 L468 236"/><path d="M1010 120 L1080 180 L1150 150"/></g>
-            <g class="faint" fill="currentColor" opacity=".9"><circle cx="130" cy="330" r="2.6"/><circle cx="205" cy="262" r="2.6"/><circle cx="300" cy="288" r="2.6"/><circle cx="372" cy="214" r="2.6"/><circle cx="468" cy="236" r="2.6"/><circle cx="1010" cy="120" r="2.6"/><circle cx="1080" cy="180" r="2.6"/><circle cx="1150" cy="150" r="2.6"/></g>
-            <g class="faint" fill="currentColor" opacity=".7"><path d="M90 85 Q90.7 89.3 95 90 Q90.7 90.7 90 95 Q89.3 90.7 85 90 Q89.3 89.3 90 85Z"/><path d="M260 116 Q260.56 119.44 264 120 Q260.56 120.56 260 124 Q259.44 120.56 256 120 Q259.44 119.44 260 116Z"/><path d="M560 76.5 Q560.49 79.51 563.5 80 Q560.49 80.49 560 83.5 Q559.51 80.49 556.5 80 Q559.51 79.51 560 76.5Z"/><path d="M760 416 Q760.56 419.44 764 420 Q760.56 420.56 760 424 Q759.44 420.56 756 420 Q759.44 419.44 760 416Z"/><path d="M940 325 Q940.7 329.3 945 330 Q940.7 330.7 940 335 Q939.3 330.7 935 330 Q939.3 329.3 940 325Z"/><path d="M1100 416.5 Q1100.49 419.51 1103.5 420 Q1100.49 420.49 1100 423.5 Q1099.51 420.49 1096.5 420 Q1099.51 419.51 1100 416.5Z"/><path d="M640 497 Q640.42 499.58 643 500 Q640.42 500.42 640 503 Q639.58 500.42 637 500 Q639.58 499.58 640 497Z"/><path d="M1170 276 Q1170.56 279.44 1174 280 Q1170.56 280.56 1170 284 Q1169.44 280.56 1166 280 Q1169.44 279.44 1170 276Z"/><path d="M60 476.5 Q60.49 479.51 63.5 480 Q60.49 480.49 60 483.5 Q59.51 480.49 56.5 480 Q59.51 479.51 60 476.5Z"/><path d="M380 447 Q380.42 449.58 383 450 Q380.42 450.42 380 453 Q379.58 450.42 377 450 Q379.58 449.58 380 447Z"/></g>
-            <g fill="currentColor" opacity=".9"><path d="M1010 104 Q1012.24 117.76 1026 120 Q1012.24 122.24 1010 136 Q1007.76 122.24 994 120 Q1007.76 117.76 1010 104Z"/></g>
-            <circle cx="1010" cy="120" r="34" fill="currentColor" opacity=".1"/>
-          </svg>
           <h2 class="closing-title" id="closing-title" data-i18n="closing.title">Ready to stop scrolling?</h2>
           <p class="closing-lead" data-i18n="closing.lead">Free to start. Install Polaris from the official store for your browser.</p>
           <ul class="closing-stores">
@@ -5885,6 +5876,9 @@
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
           "hero.titleAria": "Navigate long AI conversations.",
           "nav.skip": "Skip to content",
+          "pricing.free.price": "$0",
+          "pricing.pro.price": "$12.90",
+          "pricing.pro.was": "$19.99",
           "nav.menu.open": "Open menu",
           "nav.menu.close": "Close menu",
           "nav.install": "Free trial",
@@ -5937,8 +5931,8 @@
           "faq.sites.a": "Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.",
           "faq.upload.q": "Does Polaris upload my chat content?",
           "faq.upload.a": "No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.",
-          "faq.china.q": "How do I install it in Mainland China?",
-          "faq.china.a": "Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.",
+          "faq.zip.q": "Can I install Polaris without a browser store?",
+          "faq.zip.a": "Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.",
           "faq.chapter.q": "What are Table of Contents and Outline?",
           "faq.chapter.a": "Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.",
           "faq.free.q": "Is Polaris free?",
@@ -6087,7 +6081,6 @@
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
-          "install.local.badge": "Recommended in Mainland China",
           "install.local.copy": "Download the ZIP, unzip it, then load the folder in Chrome extensions.",
           "install.local.download": "Download ZIP",
           "install.local.download.loading": "Downloading…",
@@ -6139,13 +6132,16 @@
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
           "hero.titleAria": "长篇 AI 对话，一键跳转。",
           "nav.skip": "跳到正文",
+          "pricing.pro.was": "US$19.99",
+          "pricing.pro.price": "US$12.90",
+          "pricing.free.price": "¥0",
           "nav.menu.open": "打开菜单",
           "nav.menu.close": "关闭菜单",
           "nav.install": "免费试用",
           "nav.features": "功能",
-          "nav.pricing": "Pricing",
+          "nav.pricing": "价格",
           "nav.updates": "更新记录",
-          "closing.lead": "免费开始。从你所用浏览器的官方商店安装 Polaris。",
+          "closing.lead": "免费开始使用，从你浏览器的官方商店安装即可。",
           "closing.chrome": "添加到 Chrome",
           "closing.edge": "获取 Edge 版",
           "closing.firefox": "获取 Firefox 版",
@@ -6156,7 +6152,7 @@
           "updates.seeAll": "查看全部版本说明",
           "features.long.label": "长对话 · Pro",
           "features.long.title": "AI 忘了，你还能找回来。",
-          "features.long.copy": "对话一长，AI 会渐渐顾不上你前面说过的话，页面也只保留最近的一部分。Polaris 在浏览器里读取完整对话，前面的每个回答都能一键找回，复制或导出后把上下文交还给 AI。",
+          "features.long.copy": "对话一长，AI 就容易忘记你前面说过的话，页面也只显示最近的一段。Polaris 在浏览器本地读取完整对话，早先的每个回答都能一键找回，复制或导出后，再把上下文交还给 AI。",
           "lc.q2": "巴黎住哪个区比较好？",
           "lc.h2a": "玛黑区还是圣日耳曼",
           "lc.a2": "住玛黑区，步行就能到卢浮宫和塞纳河。",
@@ -6176,38 +6172,38 @@
           "demo.days.florence": "第 8–10 天：乌菲兹美术馆、登圣母百花大教堂穹顶，下午去基安蒂酒庄。",
           "demo.days.rome": "第 11–14 天：斗兽场与古罗马广场、梵蒂冈博物馆、在特拉斯提弗列吃晚饭，最后从罗马回国。",
           "demo.budget.split": "两人大致分配：火车 600 欧元，住宿 3,200 欧元，餐饮和门票 3,200 欧元。",
-          "hero.description": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记、目录和大纲跳到任意一节。支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
+          "hero.description": "Polaris 是一款免费的 Chrome 扩展：它能识别 AI 回答里的标题，让你通过页面边缘的标记、目录和大纲，直接跳到任意一节。支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
           "hero.subtitle": "为长篇 AI 对话而做的浏览器扩展，支持 Chrome、Edge 和 Firefox",
           "demo.table.r1b": "卢浮宫",
           "demo.table.r2b": "凡尔赛宫",
           "hero.mockAlt": "Polaris 在 Chrome 中运行：侧边栏列出回答的各节，可跳转、搜索并打开大纲。",
           "faq.title": "常见问题",
-          "footer.how": "工作方式",
+          "footer.how": "工作原理",
           "footer.platforms": "支持平台",
           "footer.faq": "常见问题",
           "faq.what.q": "什么是 Polaris AI？",
-          "faq.what.a": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记、目录和大纲跳到任意一节。悬停标记即可预览，大纲可按节阅读一条长回答。",
+          "faq.what.a": "Polaris 是一款免费的 Chrome 扩展：它能识别 AI 回答里的标题，让你通过页面边缘的标记、目录和大纲，直接跳到任意一节。悬停标记可以预览内容，在大纲里可以逐节阅读一条长回答。",
           "faq.sites.q": "支持哪些 AI 对话网站？",
           "faq.sites.a": "支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
           "faq.upload.q": "Polaris 会上传我的对话内容吗？",
           "faq.upload.a": "不会。Polaris 只读取你当前打开页面上的回答，并在浏览器本地生成导航；对话内容不会发送给开发者或任何第三方服务器。Pro 许可证校验只使用随机的安装标识，不涉及对话内容。详见隐私政策。",
-          "faq.china.q": "在中国大陆怎么安装？",
-          "faq.china.a": "在本页下载 ZIP 安装包并解压；打开 chrome://extensions，开启开发者模式，点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹，然后刷新 AI 对话页面。",
+          "faq.zip.q": "不通过应用商店，也能安装吗？",
+          "faq.zip.a": "可以。在本页下载 ZIP 安装包并解压；打开 chrome://extensions，开启开发者模式，点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹，然后刷新 AI 对话页面。",
           "faq.chapter.q": "目录和大纲是什么？",
           "faq.chapter.a": "目录列出回答里的每个标题，点一下就跳到对应位置；大纲把同一条回答按层级展开，可以逐节阅读、搜索、复制，或导出为 Markdown 或 HTML。",
           "faq.free.q": "Polaris 免费吗？",
-          "faq.free.a": "免费。Free 版可同时使用 2 个平台；Pro 一次买断 $12.90，解锁全部已支持平台，并可在完整长对话里用目录跳转。",
+          "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断 US$12.90（约 ¥93），解锁全部已支持平台，并能在完整的长对话里用目录跳转。",
           "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
           "faq.browsers.a": "支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。",
           "faq.devices.q": "Pro 能在其他设备上使用吗？",
-          "faq.devices.a": "可以。在其他设备的 Polaris 中输入许可证即可使用，不限设备数。兑换与找回入口都在 Polaris 设置里。",
+          "faq.devices.a": "可以。在其他设备的 Polaris 里输入同一个许可证即可，不限设备数量。兑换和找回许可证都在 Polaris 设置里。",
           "faq.renewal.q": "Pro 需要续费吗？",
           "faq.renewal.a": "不需要。Pro 只需购买一次，没有订阅或自动续费。",
           "nav.featureGrid": "功能",
           "nav.privacy": "隐私",
-          "features.title": "为长篇 AI 回答而做",
+          "features.title": "专为长篇 AI 回答设计",
           "features.markers.label": "Marker",
-          "features.markers.copy": "每条回答里的标题、列表和表格，都会变成页面边缘的小标记。悬停预览，点击直达那一节。",
+          "features.markers.copy": "每条回答里的标题、列表和表格，都会在页面边缘生成一个 Marker。悬停可预览，点击直达那一节。",
           "features.chapter.label": "大纲",
           "features.chapter.copy": "在大纲里逐节阅读一条长回答，表格、任务列表、代码和图片都完整保留。",
           "features.search.label": "搜索",
@@ -6218,8 +6214,8 @@
           "demo.tab.toc": "目录",
           "demo.tab.outline": "大纲",
           "demo.tab.settings": "关于与设置",
-          "demo.searchMarkers": "搜索 marker",
-          "demo.searchChapters": "搜索章节",
+          "demo.searchMarkers": "搜索 Marker",
+          "demo.searchChapters": "搜索大纲",
           "demo.copy": "复制",
           "demo.markerTypes": "Marker 类型",
           "demo.unordered": "无序列表",
@@ -6241,11 +6237,11 @@
           "demo.task2": "预约卢浮宫门票",
           "demo.task3": "购买欧铁通票",
           "features.stream.label": "边生成边导航",
-          "features.stream.copy": "写出第一节，Marker 就出现。回答继续变长，列表也不会乱跳。",
+          "features.stream.copy": "回答刚写出第一节，Marker 就已出现；回答越写越长，列表也不会乱跳。",
           "features.platforms.label": "支持平台",
-          "features.platforms.copy": "一个导航，覆盖你常用的 AI 对话。",
-          "features.settings.label": "你的 Marker",
-          "features.settings.copy": "自己决定哪些结构生成 Marker。加粗文本和有序列表默认关闭，需要时再打开。",
+          "features.platforms.copy": "一个扩展，覆盖你常用的 AI 对话平台。",
+          "features.settings.label": "自定义 Marker",
+          "features.settings.copy": "自己决定哪些内容生成 Marker。加粗文本和有序列表默认关闭，需要时再打开。",
           "features.settings.headings": "标题",
           "features.settings.tables": "表格",
           "features.settings.bold": "加粗文本",
@@ -6258,7 +6254,7 @@
           "privacy.cache.title": "只存本机，从不同步",
           "privacy.cache.copy": "开启完整索引时保存的对话副本只留在当前浏览器，不会同步到其他设备，也不会上传。",
           "privacy.control.title": "由你掌控",
-          "privacy.control.copy": "Polaris 从不索要密码。官网只有在你同意后才统计访问，之后也可以随时更改。",
+          "privacy.control.copy": "Polaris 从不索要密码。本网站只有在你同意后才统计访问数据，你也可以随时更改。",
           "closing.title": "不想再来回翻了？",
           "closing.other": "其他安装方式",
           "nav.issues": "GitHub 问题反馈",
@@ -6270,8 +6266,8 @@
           "theme.light": "浅色",
           "theme.dark": "深色",
           "theme.group": "主题",
-          "theme.optionDark": "深",
-          "theme.optionLight": "浅",
+          "theme.optionDark": "深色",
+          "theme.optionLight": "浅色",
           "theme.toLight": "切换到浅色模式",
           "theme.toDark": "切换到深色模式",
           "aria.home": "Polaris 首页",
@@ -6288,7 +6284,7 @@
           "how.toc.b1": "快速找到要读的部分",
           "how.toc.b2": "一键跳到原文",
           "how.toc.b3": "看清选中的标题",
-          "how.outline.title": "看结构",
+          "how.outline.title": "看清结构",
           "how.outline.body": "大纲按层级展示同一条回答里的各节和小节。",
           "how.outline.b1": "看清各节和小节的关系",
           "how.outline.b2": "展开需要的小节",
@@ -6306,42 +6302,41 @@
           "how.toc": "目录",
           "how.outline": "大纲",
           "how.search.toc": "搜索标题",
-          "how.search.outline": "搜索章节",
+          "how.search.outline": "搜索大纲",
           "pricing.title": "<span class=\"pricing-title-line\">免费开始，</span> <span class=\"pricing-title-line\">一次解锁 Pro。</span>",
-          "pricing.intro": "7 天完整功能试用，无需支付信息，不自动扣款。",
-          "pricing.free.description": "日常浏览，从常用平台开始。",
+          "pricing.intro": "所有功能免费试用 7 天，无需绑卡，到期不会自动扣款。",
+          "pricing.free.description": "日常使用，覆盖你最常用的平台。",
           "pricing.free.term": "免费使用",
           "pricing.free.assurance": "无需填写支付信息。",
-          "pricing.free.cta": "继续免费使用",
-          "pricing.pro.saving": "省 $7.09",
-          "pricing.pro.term": "USD · 一次买断 · 永久使用",
-          "pricing.pro.offer": "官网优惠价。在 Polaris 内购买：首次打开后 7 天内 $12.90，之后 $19.99。",
-          "pricing.pro.cta": "Get Pro",
+          "pricing.free.cta": "免费使用",
+          "pricing.pro.saving": "立省 US$7.09",
+          "pricing.pro.term": "约 ¥93 · 一次买断 · 永久使用",
+          "pricing.pro.offer": "官网优惠价。在扩展内购买：首次打开后 7 天内为 US$12.90，之后恢复 US$19.99。人民币金额按 1 美元约 7.2 元估算，以实际扣款为准。",
+          "pricing.pro.cta": "购买 Pro",
           "pricing.free.includes": "包含",
           "pricing.pro.includes": "包含",
-          "pricing.pro.description": "为超长对话而做，覆盖所有平台。",
-          "pricing.free.platforms": "同时使用 2 个平台",
-          "pricing.free.toc": "TOC：在已加载的消息里快速跳转",
+          "pricing.pro.description": "为超长对话设计，覆盖全部平台。",
+          "pricing.free.platforms": "可同时在 2 个平台使用",
+          "pricing.free.toc": "目录：在已加载的消息中快速跳转",
           "pricing.pro.platforms": "全部已支持平台",
-          "pricing.pro.toc": "TOC：完整长对话列表里快速跳转（更适合超长聊天）",
-          "pricing.plan.outline": "Outline：导出 Markdown / HTML，方便和别的助手继续聊",
-          "pricing.plan.local": "对话留在本机，不上传",
+          "pricing.pro.toc": "目录：在完整的长对话中快速跳转，适合超长聊天",
+          "pricing.plan.outline": "大纲：导出 Markdown / HTML，方便换个 AI 助手接着聊",
+          "pricing.plan.local": "对话只留在本机，不会上传",
           "pricing.plan.theme": "深浅色模式",
-          "pricing.plan.settings": "可调节设置",
+          "pricing.plan.settings": "可自定义设置",
           "pricing.long.label": "Pro · 长对话",
-          "pricing.long.title": "看到整段对话，而不只是已加载的部分。",
-          "pricing.long.note": "适用于所有支持的平台，后续还会增加更多；内容不会上传。",
+          "pricing.long.title": "看到完整对话，而不只是已加载的部分。",
+          "pricing.long.note": "适用于全部已支持的平台，更多平台陆续加入；内容不会上传。",
           "pricing.long.notLoaded": "更早的消息未加载",
-          "pricing.long.freeCount": "30 条回复中的 3 条",
+          "pricing.long.freeCount": "仅显示 30 条回复中的 3 条",
           "pricing.long.proCount": "30 条回复全部可见",
-          "pricing.purchaseNote": "由 Stripe 安全结账。付款后立即显示许可证，在任意设备的 Polaris → 设置中兑换即可。",
+          "pricing.purchaseNote": "通过 Stripe 安全支付。付款后会立即显示许可证，在任意设备的 Polaris「设置」中兑换即可。",
           "pricing.checkout.loading": "正在打开结账页…",
           "pricing.checkout.error": "暂时无法打开结账页。请稍后重试，或安装 Polaris 后在设置中购买。",
           "pricing.checkout.storage": "当前浏览器禁止网站存储，付款后将无法显示许可证。请允许存储或换一个浏览器。",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
-          "install.local.title": "本地安装浏览器插件",
-          "install.local.badge": "中国大陆推荐",
+          "install.local.title": "本地安装（ZIP）",
           "install.local.copy": "下载 ZIP，解压后在 Chrome 扩展程序中加载文件夹。",
           "install.local.download": "下载 ZIP 安装包",
           "install.local.download.loading": "下载中…",
@@ -6349,43 +6344,43 @@
           "install.local.step2": "打开 <code>chrome://extensions</code>，开启“开发者模式”。",
           "install.local.step3": "点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹。",
           "install.local.step4": "刷新 AI 对话页面即可使用 Polaris。",
-          "install.store.title": "谷歌商店安装",
-          "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
-          "install.store.button": "从谷歌商店安装",
-          "install.store.note": "在商店确认安装后，插件会自动添加到 Chrome。",
+          "install.store.title": "Chrome 应用商店",
+          "install.store.copy": "需要能访问 Chrome 应用商店的网络环境，点击下方按钮即可安装。",
+          "install.store.button": "从 Chrome 应用商店安装",
+          "install.store.note": "在商店确认后，扩展会自动添加到 Chrome。",
           "install.store.switch": "浏览器",
           "install.store.edge.title": "Edge 加载项商店",
-          "install.store.edge.copy": "从微软官方 Edge 加载项商店为 Microsoft Edge 安装 Polaris。",
+          "install.store.edge.copy": "从 Microsoft Edge 官方加载项商店安装 Polaris。",
           "install.store.edge.button": "从 Edge 加载项安装",
-          "install.store.edge.note": "在商店确认安装后，插件会自动添加到 Edge。",
+          "install.store.edge.note": "在商店确认后，扩展会自动添加到 Edge。",
           "install.store.firefox.title": "Firefox 附加组件",
-          "install.store.firefox.copy": "从 Firefox 官方附加组件站点为 Firefox 安装 Polaris。",
+          "install.store.firefox.copy": "从 Firefox 官方附加组件网站安装 Polaris。",
           "install.store.firefox.button": "添加到 Firefox",
           "install.store.firefox.note": "确认安装后，附加组件会添加到 Firefox。",
           "updates.title": "更新记录",
           "footer.description": "为长篇 AI 对话提供清晰导航。由独立开发者打造并持续维护。",
           "footer.product": "产品",
           "footer.features": "功能介绍",
-          "footer.updates": "更新日志",
+          "footer.updates": "更新记录",
           "footer.help": "安装与帮助",
-          "footer.chrome": "Chrome 安装",
-          "footer.edge": "Edge 安装",
-          "footer.firefox": "Firefox 安装",
+          "footer.chrome": "安装 Chrome 版",
+          "footer.edge": "安装 Edge 版",
+          "footer.firefox": "安装 Firefox 版",
           "footer.local": "本地安装",
           "footer.contact": "联系我们",
-          "footer.legal": "法律",
+          "footer.legal": "法律信息",
           "footer.privacy": "隐私政策",
           "footer.safety": "安全说明",
           "footer.terms": "使用条款",
           "footer.refund": "退款政策",
-          "footer.analytics": "分析设置",
+          "footer.analytics": "统计设置",
           "footer.made": "Made with",
           "footer.love": "爱心",
           "footer.by": "作者",
           "analytics.title": "帮助改进 Polaris",
-          "analytics.copy": "允许 Google Analytics 和阿里云 SLS 统计支持页面互动，以及匿名来源、设备和下载汇总数据。你可以随时修改此选择。",
+          "analytics.copy": "允许使用 Google Analytics 和阿里云 SLS 统计本站的页面互动，以及匿名的来源、设备和下载汇总数据。你可以随时更改此选择。",
           "analytics.allow": "允许分析",
-          "analytics.decline": "暂不允许",
+          "analytics.decline": "暂不",
           "meta.title": "Polaris AI — 浏览长篇 AI 对话的 Chrome 扩展",
           "meta.description": "Polaris 为 ChatGPT、Claude、Gemini、Grok、DeepSeek 等平台的长回答加上标题标记和一键跳转，本地处理，可从 Chrome 应用商店或 ZIP 安装。"
         })

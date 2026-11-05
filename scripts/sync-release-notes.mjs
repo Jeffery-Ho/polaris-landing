@@ -54,7 +54,10 @@ const rules = {
     [/导航与章节/g, "目录与大纲"],
     [/导航、章节和设置/g, "目录、大纲和设置"],
     [/章节视图/g, "大纲"],
-    [/章节/g, "小节"]
+    [/章节/g, "小节"],
+    [/Table of Contents/g, "目录"],
+    [/Outline/g, "大纲"],
+    [/\bTOC\b/g, "目录"]
   ]
 };
 const rename = (text, locale) => rules[locale].reduce((value, [pattern, next]) => value.replace(pattern, next), text);
