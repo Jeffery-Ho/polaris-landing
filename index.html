@@ -5,53 +5,254 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1a1918">
     <meta name="color-scheme" content="dark light">
-    <meta name="description" content="Polaris AI Navigator is a Chrome extension for navigating long AI answers with section markers and one-click jumps.">
+    <meta name="description" content="Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more. Local processing. Install from Chrome Web Store or ZIP.">
     <link rel="canonical" href="https://polaris-ai.work/">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png?v=73794ca8">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/polaris-icon-32.png?v=73794ca8">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Polaris AI">
-    <meta property="og:title" content="Polaris AI — AI Chat Navigator for Long Answers">
-    <meta property="og:description" content="Navigate long AI answers with section markers and one-click jumps in Chrome.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
+    <meta property="og:description" content="Navigate long AI answers with heading markers, Chapter View, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
     <meta property="og:url" content="https://polaris-ai.work/">
     <meta property="og:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
+    <meta property="og:image:width" content="1698">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Polaris AI — AI Chat Navigator for Long Answers">
-    <meta name="twitter:description" content="Navigate long AI answers with section markers and one-click jumps in Chrome.">
+    <meta name="twitter:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
+    <meta name="twitter:description" content="Navigate long AI answers with heading markers, Chapter View, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
     <meta name="twitter:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
-    <title>Polaris AI — AI Chat Navigator for Long Answers</title>
+    <meta name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer">
+    <title>Polaris AI — Chrome Extension to Navigate Long AI Chats</title>
     <link rel="stylesheet" href="assets/theme.css?v=15e667bb">
     <link rel="stylesheet" href="assets/pricing.css?v=0229de2b">
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://polaris-ai.work/#organization",
-            "name": "Polaris AI",
-            "url": "https://polaris-ai.work/",
-            "logo": "https://polaris-ai.work/icons/gpt-voyager-icon-96.png?v=e79cc968",
-            "sameAs": [
-              "https://github.com/Jeffery-Ho/Polaris-for-Web"
-            ]
-          },
-          {
-            "@type": ["SoftwareApplication", "WebApplication"],
-            "@id": "https://polaris-ai.work/#application",
-            "name": "Polaris AI Navigator",
-            "alternateName": "Polaris AI",
-            "applicationCategory": "BrowserApplication",
-            "operatingSystem": "Chrome",
-            "description": "A Chrome extension that adds section markers and one-click navigation to long AI answers.",
-            "url": "https://polaris-ai.work/",
-            "downloadUrl": "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb",
-            "image": "https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg",
-            "publisher": {
-              "@id": "https://polaris-ai.work/#organization"
-            }
-          }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://polaris-ai.work/#organization",
+      "name": "Polaris AI",
+      "url": "https://polaris-ai.work/",
+      "logo": "https://polaris-ai.work/icons/polaris-icon-96.png",
+      "email": "support@polaris-ai.work",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@polaris-ai.work",
+        "availableLanguage": [
+          "English",
+          "Chinese"
         ]
+      },
+      "sameAs": [
+        "https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator",
+        "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://polaris-ai.work/#website",
+      "url": "https://polaris-ai.work/",
+      "name": "Polaris AI",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://polaris-ai.work/#organization"
       }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://polaris-ai.work/#application",
+      "name": "Polaris AI",
+      "alternateName": "Polaris: AI Chat Navigator",
+      "description": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.",
+      "url": "https://polaris-ai.work/",
+      "applicationCategory": "BrowserApplication",
+      "applicationSubCategory": "Browser extension",
+      "operatingSystem": "Windows, macOS, Linux, ChromeOS",
+      "browserRequirements": "Requires Google Chrome, Microsoft Edge or Firefox",
+      "isAccessibleForFree": true,
+      "softwareVersion": "0.88.0",
+      "downloadUrl": "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb",
+      "installUrl": "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb",
+      "screenshot": "https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg",
+      "image": "https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg",
+      "featureList": [
+        "Heading, list and table markers on the edge of AI chat answers",
+        "One-click jumps to any section",
+        "Chapter View for reading long answers section by section",
+        "Search across headings and chapters",
+        "Copy or export a chapter or full answer as Markdown or HTML",
+        "Local processing in the browser",
+        "Light and dark mode",
+        "Works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, DeepSeek"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "USD",
+          "url": "https://polaris-ai.work/#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "12.90",
+          "priceCurrency": "USD",
+          "description": "One-time purchase. Every supported platform and a table of contents across the full conversation.",
+          "url": "https://polaris-ai.work/#pricing"
+        }
+      ],
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb",
+        "https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi",
+        "https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/",
+        "https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator"
+      ],
+      "publisher": {
+        "@id": "https://polaris-ai.work/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://polaris-ai.work/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Polaris AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI chat sites does it support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Polaris upload my chat content?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I install it in Mainland China?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Chapter View?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Polaris free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work on Edge or Firefox?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Pro on another device?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Pro need renewing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Pro is a one-time purchase, with no subscription or automatic renewal."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://polaris-ai.work/#install-store",
+      "name": "Install Polaris AI from the Chrome Web Store",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Open the store listing",
+          "text": "Open Polaris: AI Chat Navigator on the Chrome Web Store.",
+          "url": "https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Add to Chrome",
+          "text": "Click Add to Chrome and confirm the installation."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Open an AI chat",
+          "text": "Open or refresh a supported AI chat page to start using Polaris."
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://polaris-ai.work/#install-zip",
+      "name": "Install Polaris AI from the ZIP package (Load unpacked)",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Download the ZIP",
+          "text": "Download and unzip the offline ZIP package.",
+          "url": "https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Enable Developer mode",
+          "text": "Open chrome://extensions and turn on Developer mode."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Load unpacked",
+          "text": "Click Load unpacked and select the unzipped Polaris folder."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Refresh",
+          "text": "Refresh the AI chat page to start using Polaris."
+        }
+      ]
+    }
+  ]
+}
     </script>
     <script>
       if (/^Win/i.test(navigator.userAgentData?.platform || navigator.platform || "")) {
@@ -4459,6 +4660,114 @@
       .how-section .side-children { display: flex; flex-direction: column; gap: 6px; margin: 0 0 0 16px; }
       .how-section .browser-tab img { border-radius: 3px; }
 
+      /* Definition, platforms and transcript: crawlable text right under the hero. */
+      .intro-section {
+        width: min(760px, 100%);
+        margin: 0 auto clamp(64px, 8vw, 104px);
+        text-align: center;
+      }
+
+      .intro-definition {
+        margin: 0;
+        color: var(--polaris-text);
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(22px, 2.4vw, 28px);
+        letter-spacing: -.015em;
+        line-height: 1.35;
+        text-wrap: balance;
+      }
+
+      .intro-platforms {
+        margin-top: 28px;
+        scroll-margin-top: 96px;
+      }
+
+      .intro-platforms h3 {
+        margin: 0 0 12px;
+        color: var(--polaris-text-tertiary);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .intro-platform-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .intro-platform-list li {
+        padding: 4px 12px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 999px;
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text-secondary);
+        font-size: 14px;
+      }
+
+      .video-transcript {
+        margin-top: 24px;
+        color: var(--polaris-text-secondary);
+        font-size: 14px;
+        text-align: left;
+      }
+
+      .video-transcript summary {
+        width: fit-content;
+        margin: 0 auto;
+        color: var(--polaris-accent-text);
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .video-transcript ol {
+        margin: 14px auto 0;
+        padding: 16px 20px 16px 40px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 14px;
+        background: var(--polaris-bg-elevated);
+        line-height: 1.6;
+      }
+
+      .faq-section {
+        width: min(760px, 100%);
+        margin: clamp(96px, 12vw, 152px) auto clamp(80px, 10vw, 128px);
+        scroll-margin-top: 96px;
+      }
+
+      .faq-list {
+        margin-top: clamp(28px, 4vw, 44px);
+        border-top: 1px solid var(--polaris-border);
+      }
+
+      .faq-item {
+        border-bottom: 1px solid var(--polaris-border);
+      }
+
+      .faq-item summary {
+        padding: 18px 28px 18px 0;
+        color: var(--polaris-text);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .faq-item summary::marker {
+        color: var(--polaris-accent);
+      }
+
+      .faq-item p {
+        margin: 0 0 20px;
+        color: var(--polaris-text-secondary);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
@@ -4707,7 +5016,7 @@
     <header class="site-header" data-past-hero="false">
       <div class="nav-pill">
         <a class="brand" href="./" aria-label="Polaris home">
-          <img class="brand-icon" src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="">
+          <img class="brand-icon" src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo">
           <span class="brand-name">Polaris</span>
         </a>
         <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
@@ -4773,11 +5082,11 @@
         <div class="hero-window">
           <div class="hero-window-chrome" aria-hidden="true">
             <span class="browser-dots"><i></i><i></i><i></i></span>
-            <span class="hero-window-address"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="14" height="14">polaris-ai.work</span>
+            <span class="hero-window-address"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="14" height="14">polaris-ai.work</span>
           </div>
           <section class="video-frame" aria-label="Polaris introduction video">
             <video class="support-video" data-support-video autoplay muted loop playsinline preload="auto" hidden></video>
-            <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="" aria-hidden="true">
+            <img class="video-thumbnail" data-video-thumbnail src="assets/polaris-introduction-thumbnail.jpg" alt="Polaris AI edge markers on a long AI chat answer">
             <div class="video-placeholder" data-video-placeholder aria-hidden="true"></div>
             <button class="video-play-button" data-video-play-button type="button" aria-label="Play Polaris introduction video" hidden>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
@@ -4787,6 +5096,25 @@
       </section>
       <div class="hero-arc" aria-hidden="true"></div>
       <div class="page-shell">
+        <section class="intro-section" aria-labelledby="intro-title">
+          <h2 class="sr-only" id="intro-title" data-i18n="intro.title">What is Polaris AI?</h2>
+          <p class="intro-definition" data-i18n="intro.definition">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.</p>
+          <div class="intro-platforms" id="platforms">
+            <h3 data-i18n="intro.platforms">Supported platforms</h3>
+            <ul class="intro-platform-list"><li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Grok</li><li>Doubao</li><li>Kimi</li><li>Qwen</li><li>Yuanbao</li><li>Diandian AI</li><li>Manus</li><li>DeepSeek</li></ul>
+          </div>
+          <details class="video-transcript">
+            <summary data-i18n="intro.transcript">Video transcript</summary>
+            <ol>
+              <li data-i18n="transcript.1">Here is Polaris, a long AI answer navigator that keeps your place.</li>
+              <li data-i18n="transcript.2">Click a marker on the right to jump directly to that section. The active marker updates as you read.</li>
+              <li data-i18n="transcript.3">Click Chapter View or press Cmd/Ctrl + Shift + F to read long responses one section at a time.</li>
+              <li data-i18n="transcript.4">Copy the current chapter or the entire response with one click.</li>
+              <li data-i18n="transcript.5">Adjust the settings to your liking, and if you enjoy Polaris, please leave a review.</li>
+              <li data-i18n="transcript.6">Polaris automatically adapts its interface to match the current page theme.</li>
+            </ol>
+          </details>
+        </section>
         <section class="how-section" id="capabilities" aria-labelledby="capabilities-title">
           <div class="how-heading">
             <h2 id="capabilities-title" data-i18n="capabilities.title">Polaris reads between the headings</h2>
@@ -4823,13 +5151,13 @@
                 <div class="browser">
                   <div class="browser-chrome" aria-hidden="true">
                     <span class="browser-dots"><i></i><i></i><i></i></span>
-                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span>ChatGPT</span></div>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="16" height="16"></span><span>ChatGPT</span></div>
                     <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
                   </div>
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
+                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
                         <div class="side-mode" id="toc-mode" data-i18n="how.toc">TOC</div>
                         <div class="side-list" id="toc-panel" data-how-panel="toc" role="group" aria-labelledby="toc-mode"><div class="sp-group" aria-hidden="true"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div>
                           <a class="side-item" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
@@ -4865,13 +5193,13 @@
                 <div class="browser">
                   <div class="browser-chrome" aria-hidden="true">
                     <span class="browser-dots"><i></i><i></i><i></i></span>
-                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span>ChatGPT</span></div>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="16" height="16"></span><span>ChatGPT</span></div>
                     <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
                   </div>
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchChapters">Search chapters</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters" class="is-active"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
+                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchChapters">Search chapters</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters" class="is-active"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
                         <div class="side-mode" id="outline-mode" data-i18n="how.outline">Outline</div>
                         <div class="side-list" id="outline-panel" data-how-panel="outline" role="group" aria-labelledby="outline-mode"><div class="sp-group" aria-hidden="true"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div>
                           <a class="side-item" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
@@ -4908,8 +5236,8 @@
               <p class="bento-copy" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
               <div class="bento-visual demo pv-demo demo-markers" data-demo="markers" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -4919,8 +5247,8 @@
               <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.</p>
               <div class="bento-visual demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-outline"><span class="sp-export" data-i18n="demo.export">Export</span><div class="sp-card"><div class="sp-ch is-open" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">The decision</span><i>⋯</i></div><div class="sp-ch-body"><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><blockquote data-i18n="demo.quote">Smaller and on time beats bigger and late.</blockquote></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">The release details</span><i>⋯</i></div><div class="sp-ch-body"><table><thead><tr><th data-i18n="demo.table.item">Item</th><th data-i18n="demo.table.owner">Owner</th><th data-i18n="demo.table.day">Day</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Release notes</td><td>Maya</td><td data-i18n="demo.table.thu">Thu</td></tr><tr><td data-i18n="demo.table.r2">QA sign-off</td><td>Leo</td><td data-i18n="demo.table.fri">Fri</td></tr></tbody></table></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">The next check-in</span><i>⋯</i></div><div class="sp-ch-body"><ol><li data-i18n="demo.task1">Collect user feedback</li><li data-i18n="demo.task2">Review crash reports</li><li data-i18n="demo.task3">Plan the next release</li></ol></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-outline"><span class="sp-export" data-i18n="demo.export">Export</span><div class="sp-card"><div class="sp-ch is-open" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">The decision</span><i>⋯</i></div><div class="sp-ch-body"><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><blockquote data-i18n="demo.quote">Smaller and on time beats bigger and late.</blockquote></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">The release details</span><i>⋯</i></div><div class="sp-ch-body"><table><thead><tr><th data-i18n="demo.table.item">Item</th><th data-i18n="demo.table.owner">Owner</th><th data-i18n="demo.table.day">Day</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Release notes</td><td>Maya</td><td data-i18n="demo.table.thu">Thu</td></tr><tr><td data-i18n="demo.table.r2">QA sign-off</td><td>Leo</td><td data-i18n="demo.table.fri">Fri</td></tr></tbody></table></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">The next check-in</span><i>⋯</i></div><div class="sp-ch-body"><ol><li data-i18n="demo.task1">Collect user feedback</li><li data-i18n="demo.task2">Review crash reports</li><li data-i18n="demo.task3">Plan the next release</li></ol></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -4930,8 +5258,8 @@
               <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.</p>
               <div class="bento-visual demo pv-demo demo-search" data-demo="search" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-query" data-query></span><i class="sp-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-query" data-query></span><i class="sp-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -4941,8 +5269,8 @@
               <p class="bento-copy" data-i18n="features.stream.copy">Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.</p>
               <div class="bento-visual demo pv-demo demo-stream" data-demo="stream" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision" data-block><h6><span data-i18n="how.h.decision">The decision</span></h6><p><span class="ds-src" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="slips" data-block><h6><span data-i18n="how.h.slips">The release details</span></h6><p><span class="ds-src" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="checkin" data-block><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p><span class="ds-src" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</span><span data-typed></span></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision" data-block><h6><span data-i18n="how.h.decision">The decision</span></h6><p><span class="ds-src" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="slips" data-block><h6><span data-i18n="how.h.slips">The release details</span></h6><p><span class="ds-src" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="checkin" data-block><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p><span class="ds-src" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</span><span data-typed></span></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -4952,10 +5280,10 @@
               <p class="bento-copy" data-i18n="features.platforms.copy">One navigator across the AI chats you already use.</p>
               <div class="bento-visual demo pv-demo demo-platforms" data-demo="platforms">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation" aria-hidden="true">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
-                <ul class="pf-strip" aria-label="Supported platforms"><li data-platform="chatgpt" data-host="chatgpt.com"><img src="icons/platforms/platform-chatgpt.png" alt="" width="22" height="22"><span>ChatGPT</span></li><li data-platform="claude" data-host="claude.ai"><img src="icons/platforms/platform-claude.png" alt="" width="22" height="22"><span>Claude</span></li><li data-platform="gemini" data-host="gemini.google.com"><img src="icons/platforms/platform-gemini.png" alt="" width="22" height="22"><span>Gemini</span></li><li data-platform="grok" data-host="grok.com"><img src="icons/platforms/platform-grok.png" alt="" width="22" height="22"><span>Grok</span></li><li data-platform="deepseek" data-host="chat.deepseek.com"><img src="icons/platforms/platform-deepseek.png" alt="" width="22" height="22"><span>DeepSeek</span></li><li data-platform="doubao" data-host="doubao.com"><img src="icons/platforms/platform-doubao.png" alt="" width="22" height="22"><span>Doubao</span></li><li data-platform="kimi" data-host="kimi.com"><img src="icons/platforms/platform-kimi.png" alt="" width="22" height="22"><span>Kimi</span></li><li data-platform="qianwen" data-host="qianwen.com"><img src="icons/platforms/platform-qianwen.png" alt="" width="22" height="22"><span>Qwen</span></li><li data-platform="yuanbao" data-host="yuanbao.tencent.com"><img src="icons/platforms/platform-yuanbao.png" alt="" width="22" height="22"><span>Yuanbao</span></li><li data-platform="xiaohongshu" data-host="diandian.ai"><img src="icons/platforms/platform-xiaohongshu.png" alt="" width="22" height="22"><span>Diandian AI</span></li><li data-platform="manus" data-host="manus.im"><img src="icons/platforms/platform-manus.png" alt="" width="22" height="22"><span>Manus</span></li></ul>
+                <ul class="pf-strip" aria-label="Supported platforms"><li data-platform="chatgpt" data-host="chatgpt.com"><img src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="22" height="22"><span>ChatGPT</span></li><li data-platform="claude" data-host="claude.ai"><img src="icons/platforms/platform-claude.png" alt="Claude logo" width="22" height="22"><span>Claude</span></li><li data-platform="gemini" data-host="gemini.google.com"><img src="icons/platforms/platform-gemini.png" alt="Gemini logo" width="22" height="22"><span>Gemini</span></li><li data-platform="grok" data-host="grok.com"><img src="icons/platforms/platform-grok.png" alt="Grok logo" width="22" height="22"><span>Grok</span></li><li data-platform="deepseek" data-host="chat.deepseek.com"><img src="icons/platforms/platform-deepseek.png" alt="DeepSeek logo" width="22" height="22"><span>DeepSeek</span></li><li data-platform="doubao" data-host="doubao.com"><img src="icons/platforms/platform-doubao.png" alt="Doubao logo" width="22" height="22"><span>Doubao</span></li><li data-platform="kimi" data-host="kimi.com"><img src="icons/platforms/platform-kimi.png" alt="Kimi logo" width="22" height="22"><span>Kimi</span></li><li data-platform="qianwen" data-host="qianwen.com"><img src="icons/platforms/platform-qianwen.png" alt="Qwen logo" width="22" height="22"><span>Qwen</span></li><li data-platform="yuanbao" data-host="yuanbao.tencent.com"><img src="icons/platforms/platform-yuanbao.png" alt="Yuanbao logo" width="22" height="22"><span>Yuanbao</span></li><li data-platform="xiaohongshu" data-host="diandian.ai"><img src="icons/platforms/platform-xiaohongshu.png" alt="Diandian AI logo" width="22" height="22"><span>Diandian AI</span></li><li data-platform="manus" data-host="manus.im"><img src="icons/platforms/platform-manus.png" alt="Manus logo" width="22" height="22"><span>Manus</span></li></ul>
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-settings-label">
@@ -4963,8 +5291,8 @@
               <p class="bento-copy" data-i18n="features.settings.copy">Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.</p>
               <div class="bento-visual demo pv-demo demo-settings" data-demo="settings" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
-                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="slips" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold1">Freeze scope on Wednesday.</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span><span class="sp-item" data-target="checkin" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold2">Roll back if crash reports rise.</span></span></div><div class="sp-settings"><span class="sp-settings-title" data-i18n="demo.markerTypes">Marker types</span><div class="sp-row"><span data-i18n="demo.unordered">Unordered list</span><i class="dg-switch is-on"></i></div><div class="sp-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div><div class="sp-row"><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
+                  <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="slips" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold1">Freeze scope on Wednesday.</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span><span class="sp-item" data-target="checkin" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold2">Roll back if crash reports rise.</span></span></div><div class="sp-settings"><span class="sp-settings-title" data-i18n="demo.markerTypes">Marker types</span><div class="sp-row"><span data-i18n="demo.unordered">Unordered list</span><i class="dg-switch is-on"></i></div><div class="sp-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div><div class="sp-row"><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5067,12 +5395,6 @@
           </div>
           <p class="pricing-purchase-note" id="pricing-purchase-note" data-i18n="pricing.purchaseNote">Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.</p>
           <p class="pricing-checkout-error" data-checkout-error role="alert" hidden></p>
-          <div class="pricing-faq">
-            <h3 data-i18n="pricing.faq">A few things to know</h3>
-            <details><summary data-i18n="pricing.faq.trial">What happens after my trial?</summary><p data-i18n="pricing.faq.trialAnswer">Your 7-day trial starts when you first open Polaris. After it ends, you switch to Free with any two platforms. You won’t be charged, and your local data stays on your device.</p></details>
-            <details><summary data-i18n="pricing.faq.renewal">Does lifetime access need renewing?</summary><p data-i18n="pricing.faq.renewalAnswer">No. Pro is a one-time purchase, with no subscription or automatic renewal.</p></details>
-            <details><summary data-i18n="pricing.faq.devices">Can I use Pro on another device?</summary><p data-i18n="pricing.faq.devicesAnswer">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Settings → Get Pro.</p></details>
-          </div>
         </section>
 
         <section class="install-section" id="install" aria-labelledby="install-title">
@@ -5109,6 +5431,21 @@
           </div>
         </section>
 
+        <section class="faq-section" id="faq" aria-labelledby="faq-title">
+          <h2 class="v2-heading" id="faq-title" data-i18n="faq.title">Frequently asked questions</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.china.q">How do I install it in Mainland China?</summary><p data-i18n="faq.china.a">Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.chapter.q">What is Chapter View?</summary><p data-i18n="faq.chapter.a">Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.browsers.q">Does it work on Edge or Firefox?</summary><p data-i18n="faq.browsers.a">Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.devices.q">Can I use Pro on another device?</summary><p data-i18n="faq.devices.a">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.renewal.q">Does Pro need renewing?</summary><p data-i18n="faq.renewal.a">No. Pro is a one-time purchase, with no subscription or automatic renewal.</p></details>
+          </div>
+        </section>
+
         <section class="updates-section" id="updates" aria-labelledby="updates-title">
           <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
           <div class="updates-list" id="updates-list" data-updates-list></div>
@@ -5133,13 +5470,13 @@
       <div class="footer-inner">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="footer-brand-link" href="./" aria-label="Polaris home"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" width="36" height="36" alt=""><span>Polaris</span></a>
+            <a class="footer-brand-link" href="./" aria-label="Polaris home"><img src="icons/polaris-icon-96.png?v=e79cc968" width="36" height="36" alt="Polaris AI logo"><span>Polaris</span></a>
             <p class="footer-description" data-i18n="footer.description">Navigate long AI conversations. Built and maintained by an independent developer.</p>
             <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
           </div>
           <nav class="footer-nav" aria-labelledby="product-title"><h2 id="product-title" data-i18n="footer.product">Product</h2>
             <ul>
-              <li><a href="#features" data-i18n="footer.features">Features</a></li>
+              <li><a href="#capabilities" data-i18n="footer.how">How it works</a></li><li><a href="#features" data-i18n="footer.features">Features</a></li><li><a href="#platforms" data-i18n="footer.platforms">Supported platforms</a></li><li><a href="#faq" data-i18n="footer.faq">FAQ</a></li>
               <li><a href="#updates" data-i18n="footer.updates">What's new</a></li>
             </ul>
           </nav>
@@ -5149,7 +5486,7 @@
               <li><a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer" data-i18n="footer.edge">Install for Edge</a></li>
               <li><a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer" data-i18n="footer.firefox">Install for Firefox</a></li>
               <li><a href="#install" data-i18n="footer.local">Local installation</a></li>
-              <li><a href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+              <li><a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
               <li><a href="mailto:support@polaris-ai.work" data-i18n="footer.contact">Contact</a></li>
             </ul>
           </nav>
@@ -5277,6 +5614,38 @@
           "nav.features": "How it works",
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
+          "intro.title": "What is Polaris AI?",
+          "intro.definition": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.",
+          "intro.platforms": "Supported platforms",
+          "intro.transcript": "Video transcript",
+          "transcript.1": "Here is Polaris, a long AI answer navigator that keeps your place.",
+          "transcript.2": "Click a marker on the right to jump directly to that section. The active marker updates as you read.",
+          "transcript.3": "Click Chapter View or press Cmd/Ctrl + Shift + F to read long responses one section at a time.",
+          "transcript.4": "Copy the current chapter or the entire response with one click.",
+          "transcript.5": "Adjust the settings to your liking, and if you enjoy Polaris, please leave a review.",
+          "transcript.6": "Polaris automatically adapts its interface to match the current page theme.",
+          "faq.title": "Frequently asked questions",
+          "footer.how": "How it works",
+          "footer.platforms": "Supported platforms",
+          "footer.faq": "FAQ",
+          "faq.what.q": "What is Polaris AI?",
+          "faq.what.a": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section.",
+          "faq.sites.q": "Which AI chat sites does it support?",
+          "faq.sites.a": "Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.",
+          "faq.upload.q": "Does Polaris upload my chat content?",
+          "faq.upload.a": "No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.",
+          "faq.china.q": "How do I install it in Mainland China?",
+          "faq.china.a": "Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.",
+          "faq.chapter.q": "What is Chapter View?",
+          "faq.chapter.a": "Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML.",
+          "faq.free.q": "Is Polaris free?",
+          "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats.",
+          "faq.browsers.q": "Does it work on Edge or Firefox?",
+          "faq.browsers.a": "Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.",
+          "faq.devices.q": "Can I use Pro on another device?",
+          "faq.devices.a": "Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.",
+          "faq.renewal.q": "Does Pro need renewing?",
+          "faq.renewal.a": "No. Pro is a one-time purchase, with no subscription or automatic renewal.",
           "nav.featureGrid": "Features",
           "nav.privacy": "Privacy",
           "features.title": "Built for long AI answers",
@@ -5418,13 +5787,6 @@
           "pricing.checkout.loading": "Opening checkout…",
           "pricing.checkout.error": "Checkout is unavailable right now. Try again in a moment, or install Polaris and buy in Settings.",
           "pricing.checkout.storage": "This browser blocks site storage, so your key could not be shown after payment. Allow storage or use another browser.",
-          "pricing.faq": "A few things to know",
-          "pricing.faq.trial": "What happens after my trial?",
-          "pricing.faq.trialAnswer": "Your 7-day trial starts when you first open Polaris. After it ends, you switch to Free with any two platforms. You won’t be charged, and your local data stays on your device.",
-          "pricing.faq.renewal": "Does lifetime access need renewing?",
-          "pricing.faq.renewalAnswer": "No. Pro is a one-time purchase, with no subscription or automatic renewal.",
-          "pricing.faq.devices": "Can I use Pro on another device?",
-          "pricing.faq.devicesAnswer": "Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Settings → Get Pro.",
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
@@ -5466,8 +5828,8 @@
           "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure support-page interactions and anonymous source, device, and download totals. You can change this anytime.",
           "analytics.allow": "Allow analytics",
           "analytics.decline": "Not now",
-          "meta.title": "Polaris AI — AI Chat Navigator for Long Answers",
-          "meta.description": "Navigate long AI answers with section markers and one-click jumps in Chrome."
+          "meta.title": "Polaris AI — Chrome Extension to Navigate Long AI Chats",
+          "meta.description": "Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more. Local processing. Install from Chrome Web Store or ZIP."
         }),
         "zh-CN": Object.freeze({
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
@@ -5480,6 +5842,38 @@
           "nav.features": "功能",
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
+          "intro.title": "什么是 Polaris AI？",
+          "intro.definition": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记和章节视图跳到任意一节。",
+          "intro.platforms": "支持平台",
+          "intro.transcript": "视频文字稿",
+          "transcript.1": "这是 Polaris，一款帮你在长篇 AI 回答里不迷路的导航工具。",
+          "transcript.2": "点击右侧的标记，直接跳到对应章节；阅读时当前标记会自动更新。",
+          "transcript.3": "点击章节视图，或按 Cmd/Ctrl + Shift + F，按章节阅读长回答。",
+          "transcript.4": "一键复制当前章节或整条回答。",
+          "transcript.5": "按自己的习惯调整设置；如果喜欢 Polaris，欢迎留下评价。",
+          "transcript.6": "Polaris 会自动适配当前页面的主题。",
+          "faq.title": "常见问题",
+          "footer.how": "工作方式",
+          "footer.platforms": "支持平台",
+          "footer.faq": "常见问题",
+          "faq.what.q": "什么是 Polaris AI？",
+          "faq.what.a": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记和章节视图跳到任意一节。悬停标记即可预览，章节视图可按节阅读一条长回答。",
+          "faq.sites.q": "支持哪些 AI 对话网站？",
+          "faq.sites.a": "支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
+          "faq.upload.q": "Polaris 会上传我的对话内容吗？",
+          "faq.upload.a": "不会。Polaris 只读取你当前打开页面上的回答，并在浏览器本地生成导航；对话内容不会发送给开发者或任何第三方服务器。Pro 许可证校验只使用随机的安装标识，不涉及对话内容。详见隐私政策。",
+          "faq.china.q": "在中国大陆怎么安装？",
+          "faq.china.a": "在本页下载 ZIP 安装包并解压；打开 chrome://extensions，开启开发者模式，点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹，然后刷新 AI 对话页面。",
+          "faq.chapter.q": "什么是章节视图？",
+          "faq.chapter.a": "章节视图把一条长回答拆成可读的章节，可以搜索、切换章节，复制单章或整条回答，也可以导出为 Markdown 或 HTML。",
+          "faq.free.q": "Polaris 免费吗？",
+          "faq.free.a": "免费。Free 版可同时使用 2 个平台；Pro 一次买断 $12.90，解锁全部已支持平台，并可在完整长对话里用目录跳转。",
+          "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
+          "faq.browsers.a": "支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。",
+          "faq.devices.q": "Pro 能在其他设备上使用吗？",
+          "faq.devices.a": "可以。在其他设备的 Polaris 中输入许可证即可使用，不限设备数。兑换与找回入口都在 Polaris 设置里。",
+          "faq.renewal.q": "Pro 需要续费吗？",
+          "faq.renewal.a": "不需要。Pro 只需购买一次，没有订阅或自动续费。",
           "nav.featureGrid": "功能",
           "nav.privacy": "隐私",
           "features.title": "为长篇 AI 回答而做",
@@ -5621,13 +6015,6 @@
           "pricing.checkout.loading": "正在打开结账页…",
           "pricing.checkout.error": "暂时无法打开结账页。请稍后重试，或安装 Polaris 后在设置中购买。",
           "pricing.checkout.storage": "当前浏览器禁止网站存储，付款后将无法显示许可证。请允许存储或换一个浏览器。",
-          "pricing.faq": "常见问题",
-          "pricing.faq.trial": "试用结束后会怎样？",
-          "pricing.faq.trialAnswer": "首次打开 Polaris 即开始 7 天试用。结束后自动转为 Free，可使用任意两个平台，不会扣款，也不会删除本地数据。",
-          "pricing.faq.renewal": "买断是否需要续费？",
-          "pricing.faq.renewalAnswer": "不需要。Pro 只需购买一次，没有订阅或自动续费。",
-          "pricing.faq.devices": "许可证如何用于其他设备？",
-          "pricing.faq.devicesAnswer": "在其他设备的 Polaris 中输入许可证即可使用，不限制设备数。兑换与找回入口均位于“设置 → Get Pro”。",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",
@@ -5669,8 +6056,8 @@
           "analytics.copy": "允许 Google Analytics 和阿里云 SLS 统计支持页面互动，以及匿名来源、设备和下载汇总数据。你可以随时修改此选择。",
           "analytics.allow": "允许分析",
           "analytics.decline": "暂不允许",
-          "meta.title": "Polaris AI — 长篇 AI 对话导航助手",
-          "meta.description": "使用章节标记和一键跳转，更轻松地浏览 Chrome 中的长篇 AI 回答。"
+          "meta.title": "Polaris AI — 浏览长篇 AI 对话的 Chrome 扩展",
+          "meta.description": "Polaris 为 ChatGPT、Claude、Gemini、Grok、DeepSeek 等平台的长回答加上标题标记和一键跳转，本地处理，可从 Chrome 应用商店或 ZIP 安装。"
         })
       });
       let howDemo = null;
@@ -5839,7 +6226,7 @@
         image.srcset = `${platform.src} 3x`;
         image.width = 88;
         image.height = 88;
-        image.alt = "";
+        image.alt = `${platform.name} logo`;
         image.decoding = "sync";
         image.draggable = false;
         icon.append(image);

@@ -40,6 +40,9 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
   assert.match(nginx, /server_name www\.polaris-ai\.work;/);
   assert.match(nginx, /return 301 https:\/\/polaris-ai\.work\$request_uri;/);
   assert.match(internalNginx, /listen 172\.17\.0\.1:8080;/);
+  assert.match(internalNginx, /absolute_redirect off;/);
+  assert.doesNotMatch(sitemap, /\/support\//);
+  assert.match(sitemap, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
   assert.match(npmNginx, /proxy_pass http:\/\/__ORIGIN_UPSTREAM__;/);
   assert.match(npmNginx, /ssl_certificate \/etc\/letsencrypt\/live\/polaris-ai\.work\/fullchain\.pem;/);
   assert.doesNotMatch(npmAcmeNginx, /listen 443/);

@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+- SEO／AEO：按 spec 改写 title、description、OG／Twitter（含图片尺寸、alt 与 og:locale）；首屏下新增定义句、11 个支持平台列表（#platforms）与依视频字幕整理的文字稿；新增 #faq 常见问题（含原 Pricing FAQ），与 FAQPage JSON-LD 逐字一致；JSON-LD 补全 Organization 联系方式、WebSite、SoftwareApplication（别名、版本 0.88.0、功能列表、Free／Pro 报价、商店 sameAs）、两条 HowTo；全站图片补描述性 alt，图标改名为 polaris-icon-*；sitemap 加 lastmod；仓库链接改为 Polaris-AI-Chat-Navigator；源站 Nginx 加 absolute_redirect off 修复 /support 跳转；新增 test/seo.test.js。
+
 - 演示界面：按产品截图改为真实的 Chrome 侧边栏形态（标题栏、Polaris 字标与平台图标、设置齿轮、搜索框、目录｜大纲分段标签、点状底纹、灰色提问分组与白色卡片列表、当前项浅赤陶、底部 ↑ ◎ ↓ 浮钮；大纲为 Export 加可展开章节卡片；设置由齿轮进入），Features 六张卡片与 How it works 两个窗口统一使用。
 
 - How it works：去掉左侧 01／02 序号；窗口改为真实界面：ChatGPT 页面补全正文与输入框，侧边栏换成扩展同款的目录／大纲／关于与设置胶囊、搜索 marker、用户提问胶囊和 marker 胶囊（当前项赤陶色），原有点击跳转、大纲折叠与自动演示保持不变。

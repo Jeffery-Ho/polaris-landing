@@ -33,12 +33,17 @@ Website and extension purchases use the Polaris license Worker in the extension 
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, GA4 Measurement ID, and deployed SLS endpoint configuration.
 
-## SEO
+## SEO and AEO
 
-- The homepage canonical URL is `https://polaris-ai.work/` and its page title is `Polaris AI — AI Chat Navigator for Long Answers`.
-- `robots.txt` permits crawling, while `sitemap.xml` lists the homepage and privacy, terms, security and refund pages for submission in Google Search Console.
-- The homepage emits Organization and SoftwareApplication/WebApplication JSON-LD. The reserved `/support/` path is intentionally excluded from indexing until its content is ready.
-- [SEARCH_CONSOLE.md](SEARCH_CONSOLE.md) records the remaining account-only indexing steps and the 7/28/90-day brand-query baseline.
+The homepage follows the Polaris SEO + AEO spec (audit baseline 2026-11-05).
+
+- Brand entity: product brand **Polaris AI**, store name **Polaris: AI Chat Navigator**. Do not use "Polaris for Web" or "Polaris AI Navigator" as a main name, or `gpt-voyager` file names; icons are `icons/polaris-icon-*.png`.
+- Title `Polaris AI — Chrome Extension to Navigate Long AI Chats`, the agreed meta / OG / Twitter descriptions, `og:locale`, image size and image alt. English is the indexed language; the Simplified Chinese UI has no separate URL, so there is no hreflang.
+- Visible, crawlable blocks under the hero: the definition sentence (verbatim from the spec), the 11-platform list at `#platforms`, and a video transcript taken from the video's own captions. `#faq` holds the FAQ; its questions and answers match the `FAQPage` JSON-LD word for word.
+- JSON-LD graph: Organization (support ContactPoint, `sameAs` to the GitHub repository `Jeffery-Ho/Polaris-AI-Chat-Navigator` and the Chrome Web Store), WebSite, SoftwareApplication (alternateName, definition, version 0.88.0, featureList, screenshot, Free and Pro offers, store `sameAs`), FAQPage and two HowTo install paths (store and ZIP). No `aggregateRating` until there are stable public ratings.
+- Every `<img>` has descriptive alt text. `sitemap.xml` lists the indexable pages with `lastmod` and excludes the noindex `/support/` and `/checkout-return/`. `test/seo.test.js` guards these rules.
+- Origin Nginx uses `absolute_redirect off` so `/support` redirects to `/support/` without leaking `http://` or `:8080`.
+- Outside this repository: make ESA redirect HTTP apex and www to `https://polaris-ai.work/` (Always Use HTTPS), raise HSTS to at least 15552000 only after that is stable, verify Search Console and Bing and submit the sitemap, update the store listings, and rename the extension README title to Polaris AI. [SEARCH_CONSOLE.md](SEARCH_CONSOLE.md) records the account-only indexing steps and the brand-query baseline.
 
 ## Analytics and privacy
 

@@ -33,6 +33,12 @@
 - On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Free trial so the install section stays reachable. GitHub Issues lives in the footer.
 - In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
 
+## SEO and AEO content
+
+- Directly under the hero, show the spec's definition sentence verbatim in Newsreader, the Supported platforms list (11 names, spec order) at `#platforms`, and a collapsible video transcript built from the video's captions.
+- Put the FAQ at `#faq` after installation: native disclosures with the spec's questions plus the pricing questions. Keep the visible text identical to the FAQPage JSON-LD. Pricing no longer has its own FAQ.
+- Every image needs descriptive alt text; decorative demo windows stay `aria-hidden`. The footer links How it works, Features, Supported platforms and FAQ.
+
 ## Features, privacy and closing
 
 - Follow How it works with a Features bento: a Newsreader heading and six bordered cards in two columns (one column at 800px and below). Each card has a small uppercase label, one short sentence and a live demo of the real product: an AI chat page on the left and the real Polaris Chrome side panel as in the product screenshots: a side-panel title bar (Polaris: AI Chat Navigator, close), a header with the Polaris wordmark, the current platform icon and a settings gear, a search field, and equal Table of Contents | Outline tabs whose active tab is Clay-tinted with a Clay border; below, a dotted body with a grey user-question group and white rounded cards, the current one Clay-tinted, plus the ↑ ◎ ↓ float; Outline shows an Export button and a card of bulleted, expandable chapters; settings open from the gear, with the extension's real labels in both languages. The window is laid out at 600×360 and scaled to the card. A scripted cursor operates it: Markers (hover, preview, jump), Outline (switch tab, expand chapters, switch back), Search (type, filter, open), Streaming (markers appear as text streams), Platforms (the site cycles through every supported platform, names kept accessible) and Your markers (open settings from the gear, turn on Bold text, then jump to the new markers). Demos run only on screen and show a still frame under reduced motion.
