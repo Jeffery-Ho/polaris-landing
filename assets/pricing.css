@@ -156,3 +156,9 @@
 @media (max-width: 760px) {
   .pricing-spotlight { grid-template-columns: minmax(0, 1fr); padding: 24px; }
 }
+
+/* The saving sits right above the struck-through regular price. */
+.pricing-was { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.pricing-was .pricing-saving { padding: 2px 8px; font-size: 11.5px; line-height: 1.4; white-space: nowrap; }
+.pricing-plan-pro .pricing-price-row { align-items: flex-end; }
+.pricing-plan-pro .pricing-original-price { line-height: 1.2; }
