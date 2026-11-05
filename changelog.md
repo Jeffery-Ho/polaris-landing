@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+- 命名统一：站内文案、OG 描述、定义句、FAQ、JSON-LD 功能列表、Features 卡片与视频文字稿中的 Chapter View／章节视图统一改为目录（Table of Contents）与大纲（Outline）；移除安装区「ZIP 版概念演示，目录／大纲对应导航／章节」的过时说明；更新记录历史条目保持原文。
+
 - 安装区：商店切换改用 Chrome、Edge、Firefox 官方 SVG 图标（来自 MIT 许可的 alrra/browser-logos），替换此前的 CSS 示意图形。
 
 - 安装区：商店卡片右上角新增 Chrome／Edge／Firefox 切换，标题、说明、按钮文字与链接随之切到对应官方商店，默认跟随访问者的浏览器，中英文同步。

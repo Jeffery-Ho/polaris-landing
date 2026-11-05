@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const definition = "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.";
+const definition = "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.";
 const platforms = ["ChatGPT", "Claude", "Gemini", "Grok", "Doubao", "Kimi", "Qwen", "Yuanbao", "Diandian AI", "Manus", "DeepSeek"];
 const decode = (value) => value.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 

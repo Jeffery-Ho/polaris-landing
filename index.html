@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="Polaris AI">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
-    <meta property="og:description" content="Navigate long AI answers with heading markers, Chapter View, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
+    <meta property="og:description" content="Navigate long AI answers with heading markers, a Table of Contents, an Outline, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
     <meta property="og:url" content="https://polaris-ai.work/">
     <meta property="og:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <meta property="og:image:width" content="1698">
@@ -20,7 +20,7 @@
     <meta property="og:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
-    <meta name="twitter:description" content="Navigate long AI answers with heading markers, Chapter View, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
+    <meta name="twitter:description" content="Navigate long AI answers with heading markers, a Table of Contents, an Outline, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
     <meta name="twitter:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <meta name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <title>Polaris AI — Chrome Extension to Navigate Long AI Chats</title>
@@ -66,7 +66,7 @@
       "@id": "https://polaris-ai.work/#application",
       "name": "Polaris AI",
       "alternateName": "Polaris: AI Chat Navigator",
-      "description": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.",
+      "description": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.",
       "url": "https://polaris-ai.work/",
       "applicationCategory": "BrowserApplication",
       "applicationSubCategory": "Browser extension",
@@ -81,9 +81,10 @@
       "featureList": [
         "Heading, list and table markers on the edge of AI chat answers",
         "One-click jumps to any section",
-        "Chapter View for reading long answers section by section",
-        "Search across headings and chapters",
-        "Copy or export a chapter or full answer as Markdown or HTML",
+        "Table of Contents that jumps to any section, including across the full conversation",
+        "Outline for reading a long answer section by section",
+        "Search the Table of Contents and the Outline",
+        "Copy or export a section or a full answer as Markdown or HTML",
         "Local processing in the browser",
         "Light and dark mode",
         "Works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, DeepSeek"
@@ -124,7 +125,7 @@
           "name": "What is Polaris AI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section."
+            "text": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section."
           }
         },
         {
@@ -153,10 +154,10 @@
         },
         {
           "@type": "Question",
-          "name": "What is Chapter View?",
+          "name": "What are Table of Contents and Outline?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML."
+            "text": "Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML."
           }
         },
         {
@@ -5145,7 +5146,7 @@
       <div class="page-shell">
         <section class="intro-section" aria-labelledby="intro-title">
           <h2 class="sr-only" id="intro-title" data-i18n="intro.title">What is Polaris AI?</h2>
-          <p class="intro-definition" data-i18n="intro.definition">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.</p>
+          <p class="intro-definition" data-i18n="intro.definition">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.</p>
           <div class="intro-platforms" id="platforms">
             <h3 data-i18n="intro.platforms">Supported platforms</h3>
             <ul class="intro-platform-list"><li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Grok</li><li>Doubao</li><li>Kimi</li><li>Qwen</li><li>Yuanbao</li><li>Diandian AI</li><li>Manus</li><li>DeepSeek</li></ul>
@@ -5155,8 +5156,8 @@
             <ol>
               <li data-i18n="transcript.1">Here is Polaris, a long AI answer navigator that keeps your place.</li>
               <li data-i18n="transcript.2">Click a marker on the right to jump directly to that section. The active marker updates as you read.</li>
-              <li data-i18n="transcript.3">Click Chapter View or press Cmd/Ctrl + Shift + F to read long responses one section at a time.</li>
-              <li data-i18n="transcript.4">Copy the current chapter or the entire response with one click.</li>
+              <li data-i18n="transcript.3">Open the Outline or press Cmd/Ctrl + Shift + F to read long responses one section at a time.</li>
+              <li data-i18n="transcript.4">Copy the current section or the entire response with one click.</li>
               <li data-i18n="transcript.5">Adjust the settings to your liking, and if you enjoy Polaris, please leave a review.</li>
               <li data-i18n="transcript.6">Polaris automatically adapts its interface to match the current page theme.</li>
             </ol>
@@ -5290,8 +5291,8 @@
               </div>
             </article>
             <article class="bento-card" aria-labelledby="bento-chapter-label">
-              <p class="bento-label" id="bento-chapter-label" data-i18n="features.chapter.label">Chapter view</p>
-              <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.</p>
+              <p class="bento-label" id="bento-chapter-label" data-i18n="features.chapter.label">Outline</p>
+              <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.</p>
               <div class="bento-visual demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
@@ -5302,7 +5303,7 @@
             </article>
             <article class="bento-card" aria-labelledby="bento-search-label">
               <p class="bento-label" id="bento-search-label" data-i18n="features.search.label">Search</p>
-              <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.</p>
+              <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter the Table of Contents and Outline, then jump straight to the match instead of scrolling for it.</p>
               <div class="bento-visual demo pv-demo demo-search" data-demo="search" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
@@ -5459,7 +5460,6 @@
                 <span class="install-card-button-label install-card-button-label--loading" data-download-loading-label data-i18n="install.local.download.loading" aria-hidden="true">Downloading…</span>
                 <span class="install-card-button-spinner" aria-hidden="true"></span>
               </a>
-              <p class="install-note" data-i18n="how.demo.note">ZIP-version concept demo. TOC (table of contents) and Outline correspond to Navigation and Chapters in the extension.</p>
               <ol class="install-steps">
                 <li data-i18n="install.local.step1">Download and unzip the offline ZIP package.</li>
                 <li data-i18n="install.local.step2">Open <code>chrome://extensions</code> and turn on Developer mode.</li>
@@ -5488,11 +5488,11 @@
         <section class="faq-section" id="faq" aria-labelledby="faq-title">
           <h2 class="v2-heading" id="faq-title" data-i18n="faq.title">Frequently asked questions</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.</p></details>
             <details class="faq-item"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
             <details class="faq-item"><summary data-i18n="faq.china.q">How do I install it in Mainland China?</summary><p data-i18n="faq.china.a">Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
-            <details class="faq-item"><summary data-i18n="faq.chapter.q">What is Chapter View?</summary><p data-i18n="faq.chapter.a">Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.chapter.q">What are Table of Contents and Outline?</summary><p data-i18n="faq.chapter.a">Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.</p></details>
             <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats.</p></details>
             <details class="faq-item"><summary data-i18n="faq.browsers.q">Does it work on Edge or Firefox?</summary><p data-i18n="faq.browsers.a">Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.</p></details>
             <details class="faq-item"><summary data-i18n="faq.devices.q">Can I use Pro on another device?</summary><p data-i18n="faq.devices.a">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.</p></details>
@@ -5659,7 +5659,6 @@
       const translations = Object.freeze({
         en: Object.freeze({
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
-          "how.demo.note": "ZIP-version concept demo. TOC (table of contents) and Outline correspond to Navigation and Chapters in the extension.",
           "hero.titleAria": "Navigate long AI conversations.",
           "nav.skip": "Skip to content",
           "nav.menu.open": "Open menu",
@@ -5669,13 +5668,13 @@
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
           "intro.title": "What is Polaris AI?",
-          "intro.definition": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View.",
+          "intro.definition": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.",
           "intro.platforms": "Supported platforms",
           "intro.transcript": "Video transcript",
           "transcript.1": "Here is Polaris, a long AI answer navigator that keeps your place.",
           "transcript.2": "Click a marker on the right to jump directly to that section. The active marker updates as you read.",
-          "transcript.3": "Click Chapter View or press Cmd/Ctrl + Shift + F to read long responses one section at a time.",
-          "transcript.4": "Copy the current chapter or the entire response with one click.",
+          "transcript.3": "Open the Outline or press Cmd/Ctrl + Shift + F to read long responses one section at a time.",
+          "transcript.4": "Copy the current section or the entire response with one click.",
           "transcript.5": "Adjust the settings to your liking, and if you enjoy Polaris, please leave a review.",
           "transcript.6": "Polaris automatically adapts its interface to match the current page theme.",
           "faq.title": "Frequently asked questions",
@@ -5683,15 +5682,15 @@
           "footer.platforms": "Supported platforms",
           "footer.faq": "FAQ",
           "faq.what.q": "What is Polaris AI?",
-          "faq.what.a": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers and Chapter View. Markers sit on the edge of the page so you can preview and jump to any section, and Chapter View lets you read one long answer section by section.",
+          "faq.what.a": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.",
           "faq.sites.q": "Which AI chat sites does it support?",
           "faq.sites.a": "Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.",
           "faq.upload.q": "Does Polaris upload my chat content?",
           "faq.upload.a": "No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.",
           "faq.china.q": "How do I install it in Mainland China?",
           "faq.china.a": "Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.",
-          "faq.chapter.q": "What is Chapter View?",
-          "faq.chapter.a": "Chapter View splits a long answer into readable chapters. You can search chapters, switch between them, and copy a single chapter or the whole response, or export it as Markdown or HTML.",
+          "faq.chapter.q": "What are Table of Contents and Outline?",
+          "faq.chapter.a": "Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.",
           "faq.free.q": "Is Polaris free?",
           "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time $12.90 purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats.",
           "faq.browsers.q": "Does it work on Edge or Firefox?",
@@ -5705,12 +5704,11 @@
           "features.title": "Built for long AI answers",
           "features.markers.label": "Markers",
           "features.markers.copy": "Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.",
-          "features.chapter.label": "Chapter view",
-          "features.chapter.copy": "Read one long answer chapter by chapter, with tables, task lists, code and images kept intact.",
+          "features.chapter.label": "Outline",
+          "features.chapter.copy": "Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.",
           "features.search.label": "Search",
-          "features.search.copy": "Type a word to filter headings and chapters, then jump straight to the match instead of scrolling for it.",
+          "features.search.copy": "Type a word to filter the Table of Contents and Outline, then jump straight to the match instead of scrolling for it.",
           "features.search.query": "release",
-          "demo.chapters": "Chapters",
           "demo.ask": "Ask anything",
           "demo.export": "Export",
           "demo.tab.toc": "Table of Contents",
@@ -5719,7 +5717,6 @@
           "demo.searchMarkers": "Search markers",
           "demo.searchChapters": "Search chapters",
           "demo.copy": "Copy",
-          "demo.chapterTip": "Tip: hold Shift + ← / → to switch chapters",
           "demo.markerTypes": "Marker types",
           "demo.unordered": "Unordered list",
           "demo.bold1": "Freeze scope on Wednesday.",
@@ -5896,7 +5893,6 @@
         }),
         "zh-CN": Object.freeze({
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
-          "how.demo.note": "以下为 ZIP 版概念演示；目录／大纲对应扩展中的“导航”／“章节”。",
           "hero.titleAria": "长篇 AI 对话，一键跳转。",
           "nav.skip": "跳到正文",
           "nav.menu.open": "打开菜单",
@@ -5906,13 +5902,13 @@
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
           "intro.title": "什么是 Polaris AI？",
-          "intro.definition": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记和章节视图跳到任意一节。",
+          "intro.definition": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记、目录和大纲跳到任意一节。",
           "intro.platforms": "支持平台",
           "intro.transcript": "视频文字稿",
           "transcript.1": "这是 Polaris，一款帮你在长篇 AI 回答里不迷路的导航工具。",
-          "transcript.2": "点击右侧的标记，直接跳到对应章节；阅读时当前标记会自动更新。",
-          "transcript.3": "点击章节视图，或按 Cmd/Ctrl + Shift + F，按章节阅读长回答。",
-          "transcript.4": "一键复制当前章节或整条回答。",
+          "transcript.2": "点击右侧的标记，直接跳到对应位置；阅读时当前标记会自动更新。",
+          "transcript.3": "打开大纲，或按 Cmd/Ctrl + Shift + F，逐节阅读长回答。",
+          "transcript.4": "一键复制当前小节或整条回答。",
           "transcript.5": "按自己的习惯调整设置；如果喜欢 Polaris，欢迎留下评价。",
           "transcript.6": "Polaris 会自动适配当前页面的主题。",
           "faq.title": "常见问题",
@@ -5920,15 +5916,15 @@
           "footer.platforms": "支持平台",
           "footer.faq": "常见问题",
           "faq.what.q": "什么是 Polaris AI？",
-          "faq.what.a": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记和章节视图跳到任意一节。悬停标记即可预览，章节视图可按节阅读一条长回答。",
+          "faq.what.a": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记、目录和大纲跳到任意一节。悬停标记即可预览，大纲可按节阅读一条长回答。",
           "faq.sites.q": "支持哪些 AI 对话网站？",
           "faq.sites.a": "支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
           "faq.upload.q": "Polaris 会上传我的对话内容吗？",
           "faq.upload.a": "不会。Polaris 只读取你当前打开页面上的回答，并在浏览器本地生成导航；对话内容不会发送给开发者或任何第三方服务器。Pro 许可证校验只使用随机的安装标识，不涉及对话内容。详见隐私政策。",
           "faq.china.q": "在中国大陆怎么安装？",
           "faq.china.a": "在本页下载 ZIP 安装包并解压；打开 chrome://extensions，开启开发者模式，点击“加载已解压的扩展程序”，选择解压后的 Polaris 文件夹，然后刷新 AI 对话页面。",
-          "faq.chapter.q": "什么是章节视图？",
-          "faq.chapter.a": "章节视图把一条长回答拆成可读的章节，可以搜索、切换章节，复制单章或整条回答，也可以导出为 Markdown 或 HTML。",
+          "faq.chapter.q": "目录和大纲是什么？",
+          "faq.chapter.a": "目录列出回答里的每个标题，点一下就跳到对应位置；大纲把同一条回答按层级展开，可以逐节阅读、搜索、复制，或导出为 Markdown 或 HTML。",
           "faq.free.q": "Polaris 免费吗？",
           "faq.free.a": "免费。Free 版可同时使用 2 个平台；Pro 一次买断 $12.90，解锁全部已支持平台，并可在完整长对话里用目录跳转。",
           "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
@@ -5942,12 +5938,11 @@
           "features.title": "为长篇 AI 回答而做",
           "features.markers.label": "Marker",
           "features.markers.copy": "每条回答里的标题、列表和表格，都会变成页面边缘的小标记。悬停预览，点击直达那一节。",
-          "features.chapter.label": "章节视图",
-          "features.chapter.copy": "把一条长回答按章节读，表格、任务列表、代码和图片都完整保留。",
+          "features.chapter.label": "大纲",
+          "features.chapter.copy": "在大纲里逐节阅读一条长回答，表格、任务列表、代码和图片都完整保留。",
           "features.search.label": "搜索",
-          "features.search.copy": "输入关键词筛选标题和章节，直接跳到匹配的位置，不用再来回翻找。",
+          "features.search.copy": "输入关键词筛选目录和大纲，直接跳到匹配的位置，不用再来回翻找。",
           "features.search.query": "发布",
-          "demo.chapters": "章节",
           "demo.ask": "有问题，尽管问",
           "demo.export": "导出",
           "demo.tab.toc": "目录",
@@ -5956,7 +5951,6 @@
           "demo.searchMarkers": "搜索 marker",
           "demo.searchChapters": "搜索章节",
           "demo.copy": "复制",
-          "demo.chapterTip": "提示：按住 Shift + ← / → 切换章节",
           "demo.markerTypes": "Marker 类型",
           "demo.unordered": "无序列表",
           "demo.bold1": "周三冻结需求范围。",
@@ -6023,13 +6017,13 @@
           "capabilities.title": "Polaris 读懂回答的层次",
           "capabilities.intro": "选一个功能，看看演示。",
           "how.toc.title": "跳到某一节",
-          "how.toc.body": "点一个标题，跳到原回答中对应的章节。",
-          "how.toc.b1": "快速找到要读的章节",
+          "how.toc.body": "点一个标题，跳到原回答中对应的位置。",
+          "how.toc.b1": "快速找到要读的部分",
           "how.toc.b2": "一键跳到原文",
           "how.toc.b3": "看清选中的标题",
           "how.outline.title": "看结构",
-          "how.outline.body": "大纲按层级展示同一条回答里的章节和小节。",
-          "how.outline.b1": "看清章节和小节的关系",
+          "how.outline.body": "大纲按层级展示同一条回答里的各节和小节。",
+          "how.outline.b1": "看清各节和小节的关系",
           "how.outline.b2": "展开需要的小节",
           "how.outline.b3": "逐节读同一条回答",
           "how.tab": "对话",
