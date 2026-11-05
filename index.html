@@ -5114,34 +5114,39 @@
         padding: clamp(72px, 10vw, 128px) 24px clamp(64px, 9vw, 112px);
         overflow: hidden;
         border-radius: 28px;
-        background: #0c1430 url("assets/blog/cover.jpg") center 38% / cover no-repeat;
-        color: #fff;
+        border: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-subtle);
+        color: var(--polaris-text);
         text-align: center;
       }
 
-      .closing-panel::before {
+      /* Vector North Star and a faint constellation; no photography. */
+      .closing-art {
         position: absolute;
         z-index: -1;
         inset: 0;
-        background: linear-gradient(180deg, rgba(8, 12, 32, .35) 0%, rgba(8, 12, 32, .55) 55%, rgba(8, 12, 32, .82) 100%);
-        content: "";
+        width: 100%;
+        height: 100%;
+        color: var(--polaris-accent);
+        pointer-events: none;
       }
+
+      .closing-art .faint { color: var(--polaris-text-tertiary); }
 
       .closing-title {
         margin: 0;
-        color: #fff;
+        color: var(--polaris-text);
         font-family: var(--polaris-font-serif);
         font-size: clamp(34px, 4.6vw, 60px);
         font-weight: 400;
         letter-spacing: -.025em;
         line-height: 1.08;
-        text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
       }
 
       .closing-lead {
         max-width: 34rem;
         margin: 16px 0 0;
-        color: rgba(255, 255, 255, .82);
+        color: var(--polaris-text-secondary);
         font-size: clamp(16px, 1.5vw, 18px);
         line-height: 1.55;
       }
@@ -5164,24 +5169,23 @@
         min-width: 220px;
         height: 56px;
         padding: 0 24px;
-        border: 1px solid rgba(255, 255, 255, .32);
+        border: 1px solid var(--polaris-border-strong);
         border-radius: 999px;
-        background: rgba(255, 255, 255, .1);
-        color: #fff;
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text);
         font-size: 16px;
         font-weight: 600;
         text-decoration: none;
-        backdrop-filter: blur(10px);
         transition: background-color 150ms ease, border-color 150ms ease;
       }
 
       .closing-store:hover,
-      .closing-store:focus-visible { border-color: rgba(255, 255, 255, .6); background: rgba(255, 255, 255, .18); }
+      .closing-store:focus-visible { border-color: var(--polaris-text-tertiary); background: var(--polaris-bg-muted); }
 
       .closing-store--primary {
         border-color: transparent;
         background: var(--polaris-accent);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+        box-shadow: 0 10px 24px color-mix(in srgb, var(--polaris-accent) 28%, transparent);
         color: var(--polaris-accent-foreground);
       }
 
@@ -5191,8 +5195,8 @@
       .closing-store img { display: block; width: 22px; height: 22px; }
 
       .closing-note { margin: 20px 0 0; font-size: 14px; }
-      .closing-note a { color: rgba(255, 255, 255, .78); text-underline-offset: 3px; }
-      .closing-note a:hover { color: #fff; }
+      .closing-note a { color: var(--polaris-text-secondary); text-underline-offset: 3px; }
+      .closing-note a:hover { color: var(--polaris-text); }
 
       @media (max-width: 560px) {
         .closing-stores { flex-direction: column; width: 100%; }
@@ -5717,6 +5721,14 @@
       </div>
       <section class="closing-cta" data-closing-cta aria-labelledby="closing-title">
         <div class="closing-panel">
+          <svg class="closing-art" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <g class="faint" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 6" opacity=".8"><circle cx="600" cy="-140" r="420"/><circle cx="600" cy="-140" r="560"/></g>
+            <g class="faint" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".75"><path d="M130 330 L205 262 L300 288 L372 214 L468 236"/><path d="M1010 120 L1080 180 L1150 150"/></g>
+            <g class="faint" fill="currentColor" opacity=".9"><circle cx="130" cy="330" r="2.6"/><circle cx="205" cy="262" r="2.6"/><circle cx="300" cy="288" r="2.6"/><circle cx="372" cy="214" r="2.6"/><circle cx="468" cy="236" r="2.6"/><circle cx="1010" cy="120" r="2.6"/><circle cx="1080" cy="180" r="2.6"/><circle cx="1150" cy="150" r="2.6"/></g>
+            <g class="faint" fill="currentColor" opacity=".7"><path d="M90 85 Q90.7 89.3 95 90 Q90.7 90.7 90 95 Q89.3 90.7 85 90 Q89.3 89.3 90 85Z"/><path d="M260 116 Q260.56 119.44 264 120 Q260.56 120.56 260 124 Q259.44 120.56 256 120 Q259.44 119.44 260 116Z"/><path d="M560 76.5 Q560.49 79.51 563.5 80 Q560.49 80.49 560 83.5 Q559.51 80.49 556.5 80 Q559.51 79.51 560 76.5Z"/><path d="M760 416 Q760.56 419.44 764 420 Q760.56 420.56 760 424 Q759.44 420.56 756 420 Q759.44 419.44 760 416Z"/><path d="M940 325 Q940.7 329.3 945 330 Q940.7 330.7 940 335 Q939.3 330.7 935 330 Q939.3 329.3 940 325Z"/><path d="M1100 416.5 Q1100.49 419.51 1103.5 420 Q1100.49 420.49 1100 423.5 Q1099.51 420.49 1096.5 420 Q1099.51 419.51 1100 416.5Z"/><path d="M640 497 Q640.42 499.58 643 500 Q640.42 500.42 640 503 Q639.58 500.42 637 500 Q639.58 499.58 640 497Z"/><path d="M1170 276 Q1170.56 279.44 1174 280 Q1170.56 280.56 1170 284 Q1169.44 280.56 1166 280 Q1169.44 279.44 1170 276Z"/><path d="M60 476.5 Q60.49 479.51 63.5 480 Q60.49 480.49 60 483.5 Q59.51 480.49 56.5 480 Q59.51 479.51 60 476.5Z"/><path d="M380 447 Q380.42 449.58 383 450 Q380.42 450.42 380 453 Q379.58 450.42 377 450 Q379.58 449.58 380 447Z"/></g>
+            <g fill="currentColor" opacity=".9"><path d="M1010 104 Q1012.24 117.76 1026 120 Q1012.24 122.24 1010 136 Q1007.76 122.24 994 120 Q1007.76 117.76 1010 104Z"/></g>
+            <circle cx="1010" cy="120" r="34" fill="currentColor" opacity=".1"/>
+          </svg>
           <h2 class="closing-title" id="closing-title" data-i18n="closing.title">Ready to stop scrolling?</h2>
           <p class="closing-lead" data-i18n="closing.lead">Free to start. Install Polaris from the official store for your browser.</p>
           <ul class="closing-stores">

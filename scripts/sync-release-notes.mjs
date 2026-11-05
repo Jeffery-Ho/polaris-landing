@@ -11,6 +11,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { applyChrome } from "./site-chrome.mjs";
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const extension = resolve(process.argv[2] || join(site, "..", "Polaris-for-Web"));
@@ -127,28 +128,16 @@ const html = `<!doctype html>
   <link rel="stylesheet" href="../assets/theme.css?v=15e667bb">
   <link rel="stylesheet" href="../assets/legal.css?v=71f42098">
   <link rel="stylesheet" href="../assets/release-notes.css">
-  <script src="../assets/legal.js" defer></script>
   <title>Release notes · Polaris AI</title>
 </head>
 <body>
 <main>
-  <nav aria-label="Polaris">
-    <a href="../">Polaris AI</a>
-    <div class="language" role="group" aria-label="Language / 语言">
-      <button type="button" data-legal-language="en" lang="en">English</button>
-      <button type="button" data-legal-language="zh-CN" lang="zh-CN">简体中文</button>
-    </div>
-  </nav>
 ${article("en")}
 ${article("zh")}
-  <footer>
-    <span lang="en" data-legal-locale="en"><a href="../">Home</a> · <a href="../#install">Install</a> · <a href="../privacy.html">Privacy Policy</a></span>
-    <span lang="zh-CN" data-legal-locale="zh-CN"><a href="../">首页</a> · <a href="../#install">安装</a> · <a href="../privacy.html">隐私政策</a></span>
-  </footer>
 </main>
 </body>
 </html>
 `;
 mkdirSync(join(site, "release-notes"), { recursive: true });
-writeFileSync(join(site, "release-notes", "index.html"), html);
+writeFileSync(join(site, "release-notes", "index.html"), applyChrome(html, "../"));
 console.log(`Synced ${data.length} release notes (${data[0].version} on ${data[0].date} … ${data.at(-1).version}).`);

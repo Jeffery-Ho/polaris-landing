@@ -5,7 +5,8 @@ main { width: min(820px, calc(100% - 40px)); }
 .rn-months {
   position: sticky;
   z-index: 2;
-  top: 0;
+  top: 76px;
+  box-shadow: 0 -80px 0 var(--polaris-bg);
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -27,7 +28,7 @@ main { width: min(820px, calc(100% - 40px)); }
 .rn-months a:hover,
 .rn-months a:focus-visible { border-color: var(--polaris-accent); color: var(--polaris-accent-text); }
 
-.rn-month { scroll-margin-top: 64px; }
+.rn-month { scroll-margin-top: 140px; }
 
 .rn-month h2 {
   margin: 40px 0 8px;
@@ -42,7 +43,7 @@ main { width: min(820px, calc(100% - 40px)); }
   column-gap: 20px;
   padding: 18px 0;
   border-bottom: 1px solid color-mix(in srgb, var(--polaris-border) 60%, transparent);
-  scroll-margin-top: 72px;
+  scroll-margin-top: 148px;
 }
 
 .rn-entry:target { background: linear-gradient(90deg, var(--polaris-accent-subtle), transparent 70%); }
