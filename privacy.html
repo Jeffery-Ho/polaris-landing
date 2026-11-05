@@ -100,8 +100,8 @@
         checkout email. Card information is not stored by the extension or license service.
         The Cloudflare Worker and D1 service store the order, license and activation records needed
         for fulfillment and validation. License and activation verifiers are hashed; email and
-        license delivery material are encrypted separately for delivery and recovery. Configured
-        transactional email delivery uses Resend. Neither payment nor licensing includes AI
+        license delivery material are encrypted separately for delivery and recovery. License
+        delivery uses the disclosed license service. Neither payment nor licensing includes AI
         conversations, prompts, browsing history, full browsing URLs or hardware fingerprints.
       </p>
       <p>
@@ -378,15 +378,15 @@
         The developer is not the recipient of that conversation content. For trials, purchases, licenses, and
         recovery, the independent developer who operates polaris-ai.work decides why the checkout email, order,
         license, and activation records described above are used. In privacy-law terms, that developer is the
-        controller, or the equivalent person responsible, for those license records. Stripe, Cloudflare
-        (including the Worker and D1 service), and Resend handle those records to provide checkout, storage,
-        and email. For that work they act as processors or service providers under their own terms. This
+        controller, or the equivalent person responsible, for those license records. Stripe and Cloudflare
+        (including the Worker and D1 service) handle those records to provide checkout, storage, and
+        license delivery. For that work they act as processors or service providers under their own terms. This
         description is not a claim that counsel has matched it to a statute section by section, and it is not
         a certification.
       </p>
       <p>
         License-related personal data may be processed in the United States and in other countries where
-        Stripe, Cloudflare, Resend, and the site’s hosting or security providers operate. The transfer is
+        Stripe, Cloudflare, and the site’s hosting or security providers operate. The transfer is
         made as needed to provide checkout, license delivery, recovery, and operation of the site. Those
         providers’ own terms and contractual protections apply. This policy does not say that a particular
         transfer contract, such as standard contractual clauses, has been signed.
@@ -433,7 +433,7 @@
 <p>间距、显示数量、提示宽度、识别范围等偏好存于 Chrome Storage Sync。完整读取偏好适用于 ChatGPT、Gemini 及后续会话；开启浏览器同步后，也可在其他已登录且具备相应功能的浏览器生效。会话快照本身不会同步。同步由 Google 按其适用政策处理，开发者不能访问同步设置。</p>
 <h3>试用、购买与许可证</h3>
 <p>扩展可联系许可服务以初始化七天试用、获取方案和验证许可证。随机安装标识、独立凭据、设备激活凭据及待确认购买信息存于 Chrome Storage Local，不同步；免费平台选择留在本机。无需 Polaris 账号，不使用硬件指纹。</p>
-<p>用户选择购买后，由 Stripe 托管 Checkout 处理支付并收集结账邮箱，扩展与许可服务不保存银行卡信息。Cloudflare Worker 和 D1 保存履约、验证所需的订单、许可及激活记录；许可和激活验证值经过哈希处理，邮箱与许可交付材料分别加密。配置的事务邮件由 Resend 发送。这些流程不包含 AI 会话、提示词、浏览历史、完整浏览网址或硬件指纹。</p>
+<p>用户选择购买后，由 Stripe 托管 Checkout 处理支付并收集结账邮箱，扩展与许可服务不保存银行卡信息。Cloudflare Worker 和 D1 保存履约、验证所需的订单、许可及激活记录；许可和激活验证值经过哈希处理，邮箱与许可交付材料分别加密。许可证交付由已披露的许可服务完成。这些流程不包含 AI 会话、提示词、浏览历史、完整浏览网址或硬件指纹。</p>
 <p>找回请求使用结账邮箱，无论是否存在匹配购买均返回相同确认；短期 IP 哈希计数与发送限速用于防滥用。测试集成与正式收款发布分开，本地界面预览不会扣款。</p>
 <h3>诊断日志</h3>
 <p>用户在设置中主动选择诊断操作后，扩展为当前标签页记录有条数和大小上限的会话日志，包括版本、粗粒度平台与浏览器信息、视口、指针拖动结果、路由和渲染次数、错误类型；完整读取事件还可包含缓存命中、阶段耗时和额外分页请求数。白名单设计排除正文、目录标题、完整网址、账号、提示词、Cookie、令牌、错误消息和堆栈。</p>
@@ -489,8 +489,8 @@
 <p>语言、主题和分析选择保存在本地浏览器；法律页面不初始化分析，也不请求会话内容。官网价格介绍不初始化扩展试用，也不直接开启收款。</p>
 <p>第三方政策：<a href="https://policies.google.com/privacy">Google</a>、<a href="https://terms.alicdn.com/legal-agreement/terms/privacy_sdk_description/20230526153147195/20230526153147195.html">阿里云 SLS SDK</a>、<a href="https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy">阿里云隐私信息</a>、<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>、<a href="https://www.paypal.com/legalhub/privacy-full">PayPal</a>。SLS 浏览器日志投递使用临时 STS 凭据。</p>
 <h2 id="global-privacy-zh">12. 角色、传输与地区权利</h2>
-<p>导航、索引、搜索、复制和导出的会话内容在用户设备上处理。开发者不是这些会话内容的接收方。试用、购买、许可和找回方面，运营 polaris-ai.work 的独立开发者决定上文所述结账邮箱、订单、许可和激活记录的使用目的。在隐私法律的用语里，该开发者是这些许可记录的控制者，或负有相应责任的人。Stripe、Cloudflare（包括 Worker 和 D1）以及 Resend 为结账、存储和邮件处理这些记录。就这项工作而言，它们按各自条款担任受托处理者或服务提供方。这段说明不是律师逐条对照某一法律条文的结论，也不是认证。</p>
-<p>与许可有关的个人数据，可能在美国以及 Stripe、Cloudflare、Resend 和网站托管或安全服务商运营的其他国家处理。传输是为了结账、许可证交付、找回和网站运行所需要。适用这些服务商自己的条款及其合同保护。本政策不表示已经签署某一具体的跨境传输合同，例如标准合同条款。</p>
+<p>导航、索引、搜索、复制和导出的会话内容在用户设备上处理。开发者不是这些会话内容的接收方。试用、购买、许可和找回方面，运营 polaris-ai.work 的独立开发者决定上文所述结账邮箱、订单、许可和激活记录的使用目的。在隐私法律的用语里，该开发者是这些许可记录的控制者，或负有相应责任的人。Stripe 和 Cloudflare（包括 Worker 和 D1）为结账、存储和许可证交付处理这些记录。就这项工作而言，它们按各自条款担任受托处理者或服务提供方。这段说明不是律师逐条对照某一法律条文的结论，也不是认证。</p>
+<p>与许可有关的个人数据，可能在美国以及 Stripe、Cloudflare 和网站托管或安全服务商运营的其他国家处理。传输是为了结账、许可证交付、找回和网站运行所需要。适用这些服务商自己的条款及其合同保护。本政策不表示已经签署某一具体的跨境传输合同，例如标准合同条款。</p>
 <p>视用户居住地而定，用户可能有权访问、更正或删除个人信息，获得可携带的副本，限制或反对某些处理，在处理基于同意时撤回同意，并向监管机构投诉，包括欧洲经济区或英国的监管机构。居住在加利福尼亚的用户，可能有权知悉、删除和更正个人信息。Polaris 不出售个人信息，也不为跨情境行为广告而共享个人信息。具体权利取决于居住地和所适用的法律。请发邮件至 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>，不要附上会话内容或银行卡号。本页不列欧盟代表或数据保护官，因为此处并未指定。我们会按适用法律答复。</p>
 <p>若用户在中国内地使用网站或扩展，许可相关的个人信息按本政策处理。会话内容仍留在用户设备上。本政策不取代用户所使用的 AI 网站自己的个人信息告知。</p>
 <h2>13. 联系我们</h2>
