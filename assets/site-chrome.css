@@ -627,5 +627,23 @@ body { min-width: 320px; }
 }
 .site-header .header-cta:hover,
 .site-header .header-cta:focus-visible { background: var(--polaris-accent-hover); color: var(--polaris-accent-foreground); }
-@media (min-width: 560px) { .nav-pill .header-link--drawer { display: none !important; } }
-@media (max-width: 559px) { .site-header .header-cta { display: none; } }
+@media (min-width: 360px) { .nav-pill .header-link--drawer { display: none !important; } }
+@media (max-width: 359px) { .site-header .header-cta { display: none; } }
+@media (max-width: 559px) { .site-header .header-cta { height: 36px; margin-left: 4px; padding: 0 14px; font-size: 13px; } }
+
+/* Language switch lives in the footer's bottom row; its menu opens upward. */
+.footer-bottom-start { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.site-footer .language-control { position: relative; }
+.site-footer .language-toggle {
+  display: inline-flex; align-items: center; gap: 6px; width: auto; height: 32px; min-height: 0; padding: 0 10px 0 9px;
+  border: 1px solid var(--footer-line); border-radius: 999px; background: transparent; box-shadow: none;
+  color: var(--footer-ink); font: inherit; font-size: 13px; line-height: 1; cursor: pointer;
+}
+.site-footer .language-toggle:hover,
+.site-footer .language-toggle:focus-visible,
+.site-footer .language-toggle[aria-expanded="true"] { border-color: var(--polaris-border-strong); background: var(--polaris-bg-muted); color: var(--footer-ink); }
+.site-footer .language-toggle-icon { width: 14px; height: 14px; }
+.site-footer .language-toggle-chevron { display: block; width: 12px; height: 12px; }
+.site-footer [data-language-current] { display: inline; }
+.site-footer .language-menu { top: auto; right: auto; bottom: calc(100% + 8px); left: 0; transform: translateY(6px); }
+.site-footer .language-menu[data-menu-open="true"] { transform: none; }

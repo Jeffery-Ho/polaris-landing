@@ -34,7 +34,7 @@
       if (node.dataset.enLabel === undefined) node.dataset.enLabel = node.getAttribute("aria-label") || "";
       node.setAttribute("aria-label", zh ? node.dataset.zhLabel : node.dataset.enLabel);
     });
-    all("[data-language-current]").forEach((node) => { node.textContent = zh ? "中" : "EN"; });
+    all("[data-language-current]").forEach((node) => { node.textContent = zh ? "简体中文" : "English"; });
     all("[data-language-option]").forEach((option) => option.setAttribute("aria-selected", String(option.dataset.languageOption === locale)));
     const heading = document.querySelector(`[data-legal-locale="${locale}"] h1`);
     if (heading) document.title = `${heading.textContent} · Polaris AI`;
