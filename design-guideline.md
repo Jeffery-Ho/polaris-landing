@@ -23,7 +23,7 @@
 
 ## Header
 
-- Use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not use a full-width header bar or a header bottom border.
+- On desktop, use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not add a header bottom border. At 800px and below, use a full-width opaque header in the current theme's page color, covering the top safe area; remove the brand wrapper and control backgrounds while preserving control positions, touch targets, menus, and keyboard focus feedback.
 - Inside the pill, show the logo mark with a minimal wordmark and two quiet text links — How it works and Updates — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill.
 - At the top of the page, the hero Free trial action owns the install section. After the visitor scrolls past the hero, reveal a separate floating Free trial pill on the right that matches the nav pill and uses the same label. Do not use the gradient outline treatment on that header control.
 - Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.

@@ -3064,15 +3064,34 @@
         .site-header {
           display: flex;
           justify-content: space-between;
-          top: max(10px, env(safe-area-inset-top));
+          top: 0;
+          padding-top: max(10px, env(safe-area-inset-top));
           padding-right: max(12px, env(safe-area-inset-right));
+          padding-bottom: 10px;
           padding-left: max(12px, env(safe-area-inset-left));
+          background: var(--polaris-bg);
+          pointer-events: auto;
         }
 
         .nav-pill {
           grid-column: auto;
           height: 48px;
           padding: 0 8px 0 8px;
+          border-color: transparent;
+          box-shadow: none;
+        }
+
+        .nav-pill::before {
+          content: none;
+        }
+
+        .site-header :is(.language-toggle, .theme-toggle, .header-menu-toggle):is(:hover, :focus-visible, [aria-expanded="true"]),
+        .site-header .theme-option:is([aria-pressed="true"], :hover, :focus-visible) {
+          background: transparent;
+        }
+
+        .site-header .theme-option[aria-pressed="true"] {
+          color: var(--text-primary);
         }
 
         .nav-pill .brand {
