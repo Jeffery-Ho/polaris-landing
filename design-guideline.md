@@ -33,7 +33,7 @@
 
 ## SEO and AEO content
 
-- All demo conversations (hero, How it works, Features) use one realistic long answer: a 14-day Europe trip for two in June, with Route overview, a Day-by-day itinerary parent holding Days 1–7 (Paris and the Swiss Alps) and Days 8–14 (Florence and Rome), and Budget and booking. Keep the copy identical across demos and in both languages.
+- All demo conversations (hero, How it works, Features) use one realistic long answer: a 14-day Europe trip for two in June, with Route overview, a Day-by-day itinerary parent holding Days 1–7 (Paris and the Swiss Alps) and Days 8–14 (Florence and Rome), and Budget and booking. Keep the copy identical across demos and in both languages. Do not use skeleton bars or grey placeholder blocks in demos: every line is real itinerary text and every icon is a real glyph.
 
 - Name the two views **Table of Contents** (目录) and **Outline** (大纲) everywhere in site copy, metadata and JSON-LD. Do not use Chapter View, Chapters or Navigation as feature names, including in mirrored release notes (rename them when copying from the extension's release-notes.js); only demo UI may show the extension's own placeholder labels.
 
