@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Polaris Pro checkout status.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/gpt-voyager-icon-32.png?v=73794ca8">
+  <link rel="stylesheet" href="../assets/theme.css?v=15e667bb">
+  <link rel="stylesheet" href="../assets/legal.css?v=71f42098">
+  <link rel="stylesheet" href="../assets/checkout.css">
+  <script src="../assets/legal.js" defer></script>
+  <script type="module" src="../assets/checkout-return.js"></script>
+  <title>Polaris Pro · Polaris AI</title>
+</head>
+<body>
+<main>
+  <nav aria-label="Polaris">
+    <a href="../">Polaris AI</a>
+    <div class="language" role="group" aria-label="Language / 语言">
+      <button type="button" data-legal-language="en" lang="en">English</button>
+      <button type="button" data-legal-language="zh-CN" lang="zh-CN">简体中文</button>
+    </div>
+  </nav>
+
+  <article lang="en" data-legal-locale="en">
+    <h1>Polaris Pro</h1>
+    <section class="checkout-state" data-state="checking" aria-live="polite">
+      <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>Confirming your payment with Stripe…</p>
+      <p>This usually takes a few seconds. Keep this page open.</p>
+    </section>
+    <section class="checkout-state" data-state="paid" hidden>
+      <p class="checkout-lead">Payment received. Here is your license key.</p>
+      <div class="license-box"><code data-license-key></code><button type="button" data-copy-key>Copy</button></div>
+      <ol>
+        <li>Install Polaris for <a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer">Chrome</a>, <a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer">Edge</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer">Firefox</a> if you have not yet.</li>
+        <li>Open Polaris, go to Settings and choose Redeem license.</li>
+        <li>Paste this key. Use the same key on any of your devices.</li>
+      </ol>
+      <p class="checkout-note">Save the key somewhere safe. A copy is also sent to your checkout email once license email is enabled.</p>
+    </section>
+    <section class="checkout-state" data-state="extension" hidden>
+      <p class="checkout-lead">Thanks. Return to Polaris to finish.</p>
+      <p>If you started checkout inside Polaris, it activates Pro on its own once Stripe confirms the payment. If you bought on this website in another browser, open the page in that browser or recover your key below.</p>
+    </section>
+    <section class="checkout-state" data-state="slow" hidden>
+      <p class="checkout-lead">Your payment is still being confirmed.</p>
+      <p>Some payment methods take longer. Reload this page in a few minutes; it keeps your order for 24 hours. You can also recover your key below once it is issued.</p>
+    </section>
+    <section class="checkout-state" data-state="cancel" hidden>
+      <p class="checkout-lead">Checkout canceled. You have not been charged.</p>
+      <p><a href="../#pricing">Back to pricing</a></p>
+    </section>
+    <section class="checkout-state" data-state="failed" hidden>
+      <p class="checkout-lead">This payment did not go through.</p>
+      <p>No license was issued. <a href="../#pricing">Try again</a> or email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>.</p>
+    </section>
+    <section class="checkout-state" data-state="error" hidden>
+      <p class="checkout-lead">We could not check this order right now.</p>
+      <p>Your payment is safe. Reload in a minute, or email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>.</p>
+    </section>
+    <h2>Recover a license key</h2>
+    <form class="recover-form" data-recover-form>
+      <label for="recover-email-en">Checkout email</label>
+      <div class="recover-row"><input id="recover-email-en" type="email" name="email" autocomplete="email" required><button type="submit">Send key</button></div>
+      <p class="checkout-note" data-recover-status aria-live="polite"></p>
+    </form>
+  </article>
+
+  <article lang="zh-CN" data-legal-locale="zh-CN">
+    <h1>Polaris Pro</h1>
+    <section class="checkout-state" data-state="checking" aria-live="polite">
+      <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>正在向 Stripe 确认付款…</p>
+      <p>通常只需几秒，请保持本页打开。</p>
+    </section>
+    <section class="checkout-state" data-state="paid" hidden>
+      <p class="checkout-lead">付款成功，这是你的许可证。</p>
+      <div class="license-box"><code data-license-key></code><button type="button" data-copy-key>复制</button></div>
+      <ol>
+        <li>如未安装，先安装 Polaris：<a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer">Chrome</a>、<a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer">Edge</a> 或 <a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer">Firefox</a>。</li>
+        <li>打开 Polaris → 设置 → 兑换许可证。</li>
+        <li>粘贴这串许可证。同一许可证可在你的所有设备上使用。</li>
+      </ol>
+      <p class="checkout-note">请妥善保存。开启许可证邮件后，也会发送一份到你的结账邮箱。</p>
+    </section>
+    <section class="checkout-state" data-state="extension" hidden>
+      <p class="checkout-lead">感谢购买，请回到 Polaris 完成激活。</p>
+      <p>如果你是在 Polaris 内发起的结账，Stripe 确认付款后会自动开通 Pro。如果你是在其他浏览器的官网购买，请回到那个浏览器打开本页，或在下方找回许可证。</p>
+    </section>
+    <section class="checkout-state" data-state="slow" hidden>
+      <p class="checkout-lead">付款仍在确认中。</p>
+      <p>部分付款方式需要更长时间。几分钟后刷新本页即可，订单会保留 24 小时；许可证签发后也可在下方找回。</p>
+    </section>
+    <section class="checkout-state" data-state="cancel" hidden>
+      <p class="checkout-lead">已取消结账，没有扣款。</p>
+      <p><a href="../#pricing">返回定价</a></p>
+    </section>
+    <section class="checkout-state" data-state="failed" hidden>
+      <p class="checkout-lead">这笔付款没有成功。</p>
+      <p>未签发许可证。<a href="../#pricing">重新购买</a>，或发邮件到 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>。</p>
+    </section>
+    <section class="checkout-state" data-state="error" hidden>
+      <p class="checkout-lead">暂时无法查询这笔订单。</p>
+      <p>你的付款不受影响。请稍后刷新，或发邮件到 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>。</p>
+    </section>
+    <h2>找回许可证</h2>
+    <form class="recover-form" data-recover-form>
+      <label for="recover-email-zh">结账邮箱</label>
+      <div class="recover-row"><input id="recover-email-zh" type="email" name="email" autocomplete="email" required><button type="submit">发送许可证</button></div>
+      <p class="checkout-note" data-recover-status aria-live="polite"></p>
+    </form>
+  </article>
+
+  <footer>
+    <span lang="en" data-legal-locale="en"><a href="../refund.html">Refund Policy</a> · <a href="../terms.html">Terms of Use</a> · <a href="../privacy.html">Privacy Policy</a></span>
+    <span lang="zh-CN" data-legal-locale="zh-CN"><a href="../refund.html">退款政策</a> · <a href="../terms.html">使用条款</a> · <a href="../privacy.html">隐私政策</a></span>
+  </footer>
+</main>
+</body>
+</html>

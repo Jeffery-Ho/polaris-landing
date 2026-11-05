@@ -20,6 +20,7 @@
     <meta name="twitter:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <title>Polaris AI — AI Chat Navigator for Long Answers</title>
     <link rel="stylesheet" href="assets/theme.css?v=15e667bb">
+    <link rel="stylesheet" href="assets/pricing.css?v=0229de2b">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -4265,6 +4266,9 @@
           <a class="header-link" href="#privacy">
             <span data-i18n="nav.privacy">Privacy</span>
           </a>
+          <a class="header-link" href="#pricing">
+            <span data-i18n="nav.pricing">Pricing</span>
+          </a>
           <a class="header-link header-link--drawer" href="#install">
             <span data-i18n="nav.install">Free trial</span>
           </a>
@@ -4545,6 +4549,55 @@
           </div>
         </section>
 
+        <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
+          <div class="pricing-intro">
+            <h2 id="pricing-title" data-i18n="pricing.title"><span class="pricing-title-line">Start free.</span> <span class="pricing-title-line">Unlock Pro once.</span></h2>
+            <p data-i18n="pricing.intro">Try every feature for 7 days. No card needed. No automatic charge.</p>
+          </div>
+          <div class="pricing-plans">
+            <article class="pricing-plan pricing-plan-free" id="pricing-free" aria-labelledby="pricing-free-title">
+              <div class="pricing-plan-heading">
+                <h3 class="pricing-plan-name" id="pricing-free-title">Free</h3>
+              </div>
+              <p class="pricing-plan-description" data-i18n="pricing.free.description">Everyday reading on your go-to platforms.</p>
+              <div class="pricing-price-row"><strong class="pricing-price">$0</strong></div>
+              <p class="pricing-term" data-i18n="pricing.free.term">Free to use</p>
+              <p class="pricing-assurance" data-i18n="pricing.free.assurance">No payment details needed.</p>
+              <h4 class="pricing-includes" data-i18n="pricing.free.includes">Included with Free</h4>
+              <ul class="pricing-features">
+                <li data-i18n="pricing.free.platforms">Any two platforms</li>
+                <li data-i18n="pricing.free.switch">Switch platforms anytime</li>
+                <li data-i18n="pricing.free.data">Keep your local data</li>
+              </ul>
+              <a class="pricing-button pricing-button-secondary" href="#install" data-i18n="pricing.free.cta">Continue for free</a>
+            </article>
+            <article class="pricing-plan pricing-plan-pro" id="pricing-pro" aria-labelledby="pricing-pro-title">
+              <div class="pricing-plan-heading">
+                <h3 class="pricing-plan-name" id="pricing-pro-title">Pro</h3>
+                <span class="pricing-saving" data-i18n="pricing.pro.saving">Save $7.09</span>
+              </div>
+              <p class="pricing-plan-description" data-i18n="pricing.pro.description">Read across platforms. Index long conversations.</p>
+              <div class="pricing-price-row"><strong class="pricing-price">$12.90</strong><s class="pricing-original-price">$19.99</s></div>
+              <p class="pricing-term" data-i18n="pricing.pro.term">USD · One-time payment · Lifetime access</p>
+              <p class="pricing-assurance" data-i18n="pricing.pro.offer">Welcome price on this site. In Polaris, $12.90 for the first 7 days, then $19.99.</p>
+              <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Everything in Free, plus</h4>
+              <ul class="pricing-features">
+                <li data-i18n="pricing.pro.platforms">Every supported platform</li>
+                <li data-i18n="pricing.pro.index">Long-conversation indexing</li>
+                <li data-i18n="pricing.pro.devices">Unlimited devices</li>
+              </ul>
+              <a class="pricing-button pricing-button-primary" href="#install" aria-describedby="pricing-purchase-note" data-web-checkout><span data-i18n="pricing.pro.cta">Get Pro</span></a>
+            </article>
+          </div>
+          <p class="pricing-purchase-note" id="pricing-purchase-note" data-i18n="pricing.purchaseNote">Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.</p>
+          <p class="pricing-checkout-error" data-checkout-error role="alert" hidden></p>
+          <div class="pricing-faq">
+            <h3 data-i18n="pricing.faq">A few things to know</h3>
+            <details><summary data-i18n="pricing.faq.trial">What happens after my trial?</summary><p data-i18n="pricing.faq.trialAnswer">Your 7-day trial starts when you first open Polaris. After it ends, you switch to Free with any two platforms. You won’t be charged, and your local data stays on your device.</p></details>
+            <details><summary data-i18n="pricing.faq.renewal">Does lifetime access need renewing?</summary><p data-i18n="pricing.faq.renewalAnswer">No. Pro is a one-time purchase, with no subscription or automatic renewal.</p></details>
+            <details><summary data-i18n="pricing.faq.devices">Can I use Pro on another device?</summary><p data-i18n="pricing.faq.devicesAnswer">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Settings → Get Pro.</p></details>
+          </div>
+        </section>
 
         <section class="install-section" id="install" aria-labelledby="install-title">
           <h2 class="install-heading" id="install-title" data-i18n="install.title">Install Polaris AI</h2>
@@ -4654,6 +4707,32 @@
     <script src="./vendor/aliyun-sls-web-sts-plugin-0.3.9.js"></script>
     <script type="module">
       import { supportConfig } from "./support-config.js";
+      import { startCheckout } from "./assets/checkout.js";
+
+      // Get Pro opens Stripe Checkout directly; without the Worker it keeps its #install fallback.
+      document.querySelectorAll("[data-web-checkout]").forEach((link) => {
+        const errorLine = document.querySelector("[data-checkout-error]");
+        link.addEventListener("click", async (event) => {
+          if (!supportConfig.billingApiUrl) return;
+          event.preventDefault();
+          if (link.getAttribute("aria-busy") === "true") return;
+          const locale = document.documentElement.lang === "zh-CN" ? "zh-CN" : "en";
+          const strings = translations[locale] || {};
+          const label = link.querySelector("[data-i18n]");
+          const original = label.innerHTML;
+          link.setAttribute("aria-busy", "true");
+          label.textContent = strings["pricing.checkout.loading"] || "Opening checkout…";
+          errorLine.hidden = true;
+          try {
+            await startCheckout(supportConfig.billingApiUrl);
+          } catch (error) {
+            link.removeAttribute("aria-busy");
+            label.innerHTML = original;
+            errorLine.textContent = strings[error.message === "storage_unavailable" ? "pricing.checkout.storage" : "pricing.checkout.error"] || "Checkout is unavailable right now.";
+            errorLine.hidden = false;
+          }
+        });
+      });
 
       const video = document.querySelector("[data-support-video]");
       const videoThumbnail = document.querySelector("[data-video-thumbnail]");
@@ -4679,7 +4758,7 @@
       const updatesList = document.querySelector("[data-updates-list]");
       const updatesShowMore = document.querySelector("[data-updates-show-more]");
       const updatesCollapse = document.querySelector("[data-updates-collapse]");
-      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], .closing-note a[href^="#"]');
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], #pricing a[href^="#"], .closing-note a[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');
@@ -4719,6 +4798,7 @@
           "nav.menu.close": "Close menu",
           "nav.install": "Free trial",
           "nav.features": "How it works",
+          "nav.pricing": "Pricing",
           "nav.updates": "Updates",
           "nav.featureGrid": "Features",
           "nav.privacy": "Privacy",
@@ -4808,6 +4888,36 @@
           "how.outline": "Outline",
           "how.search.toc": "Search headings",
           "how.search.outline": "Search chapters",
+          "pricing.title": "<span class=\"pricing-title-line\">Start free.</span> <span class=\"pricing-title-line\">Unlock Pro once.</span>",
+          "pricing.intro": "Try every feature for 7 days. No card needed. No automatic charge.",
+          "pricing.free.description": "Everyday reading on your go-to platforms.",
+          "pricing.free.term": "Free to use",
+          "pricing.free.assurance": "No payment details needed.",
+          "pricing.free.cta": "Continue for free",
+          "pricing.free.includes": "Included with Free",
+          "pricing.free.platforms": "Any two platforms",
+          "pricing.free.switch": "Switch platforms anytime",
+          "pricing.free.data": "Keep your local data",
+          "pricing.pro.saving": "Save $7.09",
+          "pricing.pro.description": "Read across platforms. Index long conversations.",
+          "pricing.pro.term": "USD · One-time payment · Lifetime access",
+          "pricing.pro.offer": "Welcome price on this site. In Polaris, $12.90 for the first 7 days, then $19.99.",
+          "pricing.pro.cta": "Get Pro",
+          "pricing.pro.includes": "Everything in Free, plus",
+          "pricing.pro.platforms": "Every supported platform",
+          "pricing.pro.index": "Long-conversation indexing",
+          "pricing.pro.devices": "Unlimited devices",
+          "pricing.purchaseNote": "Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.",
+          "pricing.checkout.loading": "Opening checkout…",
+          "pricing.checkout.error": "Checkout is unavailable right now. Try again in a moment, or install Polaris and buy in Settings.",
+          "pricing.checkout.storage": "This browser blocks site storage, so your key could not be shown after payment. Allow storage or use another browser.",
+          "pricing.faq": "A few things to know",
+          "pricing.faq.trial": "What happens after my trial?",
+          "pricing.faq.trialAnswer": "Your 7-day trial starts when you first open Polaris. After it ends, you switch to Free with any two platforms. You won’t be charged, and your local data stays on your device.",
+          "pricing.faq.renewal": "Does lifetime access need renewing?",
+          "pricing.faq.renewalAnswer": "No. Pro is a one-time purchase, with no subscription or automatic renewal.",
+          "pricing.faq.devices": "Can I use Pro on another device?",
+          "pricing.faq.devicesAnswer": "Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Settings → Get Pro.",
           "install.title": "Install Polaris AI",
           "install.intro": "Choose the installation method that works best for you.",
           "install.local.title": "Local installation",
@@ -4861,6 +4971,7 @@
           "nav.menu.close": "关闭菜单",
           "nav.install": "免费试用",
           "nav.features": "功能",
+          "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
           "nav.featureGrid": "功能",
           "nav.privacy": "隐私",
@@ -4950,6 +5061,36 @@
           "how.outline": "大纲",
           "how.search.toc": "搜索标题",
           "how.search.outline": "搜索章节",
+          "pricing.title": "<span class=\"pricing-title-line\">免费开始，</span> <span class=\"pricing-title-line\">一次解锁 Pro。</span>",
+          "pricing.intro": "7 天完整功能试用，无需支付信息，不自动扣款。",
+          "pricing.free.description": "日常浏览，从常用平台开始。",
+          "pricing.free.term": "免费使用",
+          "pricing.free.assurance": "无需填写支付信息。",
+          "pricing.free.cta": "继续免费使用",
+          "pricing.free.includes": "Free 包含",
+          "pricing.free.platforms": "任意两个平台",
+          "pricing.free.switch": "可随时更换平台",
+          "pricing.free.data": "保留本地数据",
+          "pricing.pro.saving": "省 $7.09",
+          "pricing.pro.description": "跨平台阅读，完整索引长对话。",
+          "pricing.pro.term": "USD · 一次买断 · 永久使用",
+          "pricing.pro.offer": "官网优惠价。在 Polaris 内购买：首次打开后 7 天内 $12.90，之后 $19.99。",
+          "pricing.pro.cta": "Get Pro",
+          "pricing.pro.includes": "Free 的全部功能，以及",
+          "pricing.pro.platforms": "全部支持的平台",
+          "pricing.pro.index": "长对话索引",
+          "pricing.pro.devices": "不限设备",
+          "pricing.purchaseNote": "由 Stripe 安全结账。付款后立即显示许可证，在任意设备的 Polaris → 设置中兑换即可。",
+          "pricing.checkout.loading": "正在打开结账页…",
+          "pricing.checkout.error": "暂时无法打开结账页。请稍后重试，或安装 Polaris 后在设置中购买。",
+          "pricing.checkout.storage": "当前浏览器禁止网站存储，付款后将无法显示许可证。请允许存储或换一个浏览器。",
+          "pricing.faq": "常见问题",
+          "pricing.faq.trial": "试用结束后会怎样？",
+          "pricing.faq.trialAnswer": "首次打开 Polaris 即开始 7 天试用。结束后自动转为 Free，可使用任意两个平台，不会扣款，也不会删除本地数据。",
+          "pricing.faq.renewal": "买断是否需要续费？",
+          "pricing.faq.renewalAnswer": "不需要。Pro 只需购买一次，没有订阅或自动续费。",
+          "pricing.faq.devices": "许可证如何用于其他设备？",
+          "pricing.faq.devicesAnswer": "在其他设备的 Polaris 中输入许可证即可使用，不限制设备数。兑换与找回入口均位于“设置 → Get Pro”。",
           "install.title": "安装 Polaris AI",
           "install.intro": "选择适合你的安装方式。",
           "install.local.title": "本地安装浏览器插件",

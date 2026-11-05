@@ -59,6 +59,7 @@ trap cleanup EXIT
 
 public_entries=(
   assets
+  checkout-return
   entry
   fonts
   icons

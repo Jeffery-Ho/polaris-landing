@@ -11,7 +11,7 @@
 - Close the hero with a wide Paper arc that overlaps the lower edge of the product window, with a fine border on its curve.
 - Match the extension conversation cover: paper `#fafaf8` in light and `#1a1918` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
-- Keep the sequence as full-bleed hero, How it works, Features, Privacy, installation panels, release notes, the closing CTA, then the footer. Platform names stay in the headline marks and in the accessible platform list.
+- Keep the sequence as full-bleed hero, How it works, Features, Privacy, Pricing, installation panels, release notes, the closing CTA, then the footer. Platform names stay in the headline marks and in the accessible platform list.
 - How it works is headed “Polaris reads between the headings” in Newsreader. It is a left–right row: the headline, short explanation, and TOC / Outline switch sit on the left, and a browser-chrome illustration sits on the right. On narrow screens, stack the copy above the window. The browser mock uses a wide window, about the same proportion as a product screenshot (roughly 737:545), large beside a narrow copy column. The window stays a fixed size when TOC and Outline switch. The picker expands the selected feature over 300ms, with a quiet wash and an accent bar, and the side list fades. The other feature collapses to its title. Inside the window, margin markers sit on a long answer and a Polaris side panel switches between TOC (a jump list) and Outline (the same answer as a nested structure). Use the conversation-cover paper and terracotta for that mock in both themes.
 - Headline platform marks are opaque rounded tiles, white or black, with the mark inset from the tile edge. Align each headline row on the text baseline, keep the icon at 0.72em, and avoid a downward slot transform so the tile’s optical center lines up with the glyph center.
 
@@ -26,7 +26,7 @@
 ## Header
 
 - On desktop, use a fixed, centered floating pill over the page, about 50px tall with a 16px radius, a 1px low-contrast border, a soft shadow, and a light backdrop blur. Let the page background run behind it. Do not add a header bottom border. At 800px and below, use a full-width opaque header in the current theme's page color, covering the top safe area; remove the brand wrapper and control backgrounds while preserving control positions, touch targets, menus, and keyboard focus feedback.
-- Inside the pill, show the logo mark with a minimal wordmark and quiet text links — How it works, Features, Privacy — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill. Release notes stay reachable from the footer.
+- Inside the pill, show the logo mark with a minimal wordmark and quiet text links — How it works, Features, Privacy, and Pricing — at about 70% opacity, with no underlines. Do not place Free trial or GitHub Issues in that pill. Release notes stay reachable from the footer.
 - At the top of the page, the hero Free trial action owns the install section. After the visitor scrolls past the hero, show one Free trial pill fixed at the bottom center, like Dia's download pill: solid Clay with a down arrow. Hide it while the installation section, the closing CTA or the footer is on screen, and on narrow screens while the analytics prompt is open. Do not add a second Free trial pill to the header.
 - Keep language and theme switches outside the center pill as small controls on the right. On narrow screens they stay beside the menu button.
 - On mobile, collapse the text links behind the menu button. The open panel uses at least 44px touch targets and includes Free trial so the install section stays reachable. GitHub Issues lives in the footer.
@@ -46,7 +46,7 @@
 
 ## Visual system
 
-- Use the Polaris Clay semantic palette throughout the homepage, footer and policy pages. Light: Paper `#fafaf8`, elevated `#ffffff`, text `#2a2724`, secondary `#57534c`, border `#e0ddd7`, accent `#b85c3a`. Dark: Ink `#1a1918`, elevated `#222120`, text `#f3f1ed`, secondary `#c4c0b8`, border `#3a3835`, accent `#e69a78`.
+- Use the Polaris Clay semantic palette throughout the homepage, Pricing, footer and policy pages. Light: Paper `#fafaf8`, elevated `#ffffff`, text `#2a2724`, secondary `#57534c`, border `#e0ddd7`, accent `#b85c3a`. Dark: Ink `#1a1918`, elevated `#222120`, text `#f3f1ed`, secondary `#c4c0b8`, border `#3a3835`, accent `#e69a78`.
 - Keep colors in `assets/theme.css`; section-specific aliases must refer to those tokens. Do not use the old orange/pink/blue gradient for text, borders or interaction states. Preserve the official colors of third-party platform marks and the red author-attribution heart.
 - Main product actions use a solid Clay surface with theme-aware foreground: white in light mode and `#271812` in dark mode. Installation actions use a solid surface, a single Clay border and readable Clay labels.
 - Keep existing panel and button geometry, grid dividers, spacing, hero radial wash and floating-navigation blur. Hover uses a subtle theme-aware surface or the Clay hover tone, stable text and no vertical lift.
@@ -55,12 +55,23 @@
 
 ## Installation section
 
-- Place a two-option installation section after How it works; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
+- Place a two-option installation section after Pricing; Header and Hero in-page CTA links smoothly scroll to their targets without an abrupt jump, unless reduced motion is requested.
 - Use equal 1px bordered panels on desktop and a single-column stack on mobile.
 - Keep the local-installation steps readable as a numbered list and surface `chrome://extensions` in a distinguishable code style.
-- Add a compact “Recommended in Mainland China” badge beside the local-installation title; use a solid theme-aware black or white border and interior.
+- Add a compact “Recommended in Mainland China” badge beside the local-installation title; use the theme-aware text, border and panel tokens.
 - The local ZIP action must use a same-site relative asset path and keep the installation instructions short; the Chrome Web Store action opens the verified store listing in a new tab.
 - After the local ZIP action is clicked, show a short loading state with a spinner and ignore repeat clicks while the browser starts the native download; restore the normal label automatically because native downloads do not expose completion to the page.
+
+## Pricing section
+
+- Use the extension paywall's Clay design within `#pricing` and the same shared palette as the surrounding homepage. Use Inter for interface text, Newsreader for the headline and Free title, and Lora SemiBold Italic for Pro. Self-host all three fonts and their licenses.
+- Start with a narrow 7-day trial information banner, followed by the approved headline “Get long conversation like a pro.”, a concise description, and “Choose your plan”. Do not start a website-only trial or invent a personal countdown.
+- On desktop, show Free on the left and Pro on the right, with their prices and actions aligned. Below 640px use a native Free/Pro radio selector with a gray track and theme-aware raised highlight, and center the selected card at a maximum width of 520px. Default to Pro; preserve keyboard arrow selection. Slide the highlight and fade the newly selected card over 220ms, disabling both effects for reduced motion.
+- Keep 24px outer radii, the inset rounded top under the Pro accent band, terracotta primary action, and secondary Free action. Explain the seven-day $12.90 welcome price and $19.99 regular price next to the amount.
+- Follow with a compact three-column comparison and native disclosure FAQs; place them side by side on desktop and stack on narrow screens. Keep all content within the viewport at 320px.
+- Finish with the approved terracotta dotted card, star asset, pale gradient Get Pro action, and a reachable free-use link. Dots belong only inside this closing card.
+- Get Pro opens Stripe Checkout from the website at the $12.90 welcome price; show a short loading label while it opens and an inline, translated error with the extension fallback if it cannot. Explain next to the price that the extension keeps its own 7-day $12.90 / $19.99 rule, and say before the click that the key appears right after payment.
+- `/checkout-return/` uses the policy-page layout. It shows checking, paid (key with Copy and redeem steps), extension, slow, canceled, failed and error states in both languages, never infers payment from the redirect, and offers key recovery by checkout email. Keep it out of search with `noindex`.
 
 ## Localization
 

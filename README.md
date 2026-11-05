@@ -4,6 +4,24 @@ Static source for the Polaris AI website. The current homepage retains the exist
 
 Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polaris ECS instance through Alibaba Cloud ESA and deployed by its repository-scoped GitHub Actions runner.
 
+## Payments
+
+Website and extension purchases use the Polaris license Worker in the extension repository (`Polaris-for-Web/workers/license-test`), backed by Stripe hosted Checkout. `support-config.js` sets `billingApiUrl`; it currently points at the **Stripe test-mode** Worker, so no real payment can be taken. Replace it with a live Worker before merging this branch into `main`.
+
+- **Get Pro** on the homepage calls `POST /api/checkout/web-session` for the one-time USD 12.90 welcome price and redirects to Stripe Checkout. The Worker returns a purchase ID and a claim token; `assets/checkout.js` keeps the token in this browser's `localStorage` for 24 hours and never puts it in a URL. Without site storage, checkout does not start.
+- Stripe returns to `/checkout-return/`. The page never treats the redirect as proof of payment: it polls `POST /api/web-purchases/claim` with the stored token and shows the license key only after the signed webhook has issued it. Purchases started in the extension land on the same page and are told to return to Polaris, which activates through its own authenticated claim.
+- Buyers redeem the key in Polaris → Settings on any device. The page also offers key recovery by checkout email (`/api/licenses/recover`), which works once the Worker's Cloudflare Email Sending binding is configured.
+- `server/` is an earlier, unused Stripe backend with a legacy USD 12 price. It is kept out of version control and is not deployed.
+
+## Pricing
+
+- The homepage navigation includes **Pricing**, linking to `/#pricing` between How it works and installation. The same link is available in the mobile menu and both languages.
+- The section carries over the extension's approved rounded price cards, feature comparison, FAQ, and dotted terracotta closing card. Desktop shows Free on the left and Pro on the right; below 640px a Free/Pro selector switches the visible card. The homepage and policy pages share self-hosted Inter for interface text, Newsreader for headings, and Lora SemiBold Italic for Polaris wordmarks and the Pro title.
+- Free supports any two platforms, with no long-conversation indexing. Pro unlocks every supported platform, long-conversation indexing, and unlimited devices. The welcome price is USD 12.90 for seven days after first opening Polaris, then USD 19.99, as a one-time purchase.
+- This public section explains the offer; it does not start a trial, create an installation identity, or infer a visitor's eligibility. The 7-day banner is informational, without a fabricated personal countdown. The extension confirms the authoritative price and offer deadline before Checkout.
+- **Get Pro** opens Stripe Checkout directly (see Payments). **Continue for free** leads to installation. In the extension, the price stays $12.90 for seven days after first opening Polaris, then $19.99.
+- `assets/pricing.css`, the font files and their OFL licenses, and `icons/pro-entry-star.svg` are included by the existing public-assets deployment allowlist. Run `node --test test/*.test.js` for deployment and download regressions. The site is buildless static HTML/CSS/JavaScript.
+
 ## Assets
 
 - Brand icons are synchronized from the extension's `dist/icons` output. The homepage logo, product illustration, footer, structured data and all policy-page favicons use the current Clay star icon, with content-versioned URLs to refresh browser caches.
@@ -33,11 +51,11 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Design
 
-The homepage follows the Polaris Clay visual system, with warm Paper / Ink surfaces and a single terracotta accent. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, a Features bento, a Privacy panel, bordered installation panels, release notes and a closing CTA. The layout borrows the narrative structure of diabrowser.com while keeping Polaris Clay. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
+The homepage follows the Polaris Clay visual system, with warm Paper / Ink surfaces and a single terracotta accent. Its first screen is a full-bleed hero with a short two-line headline, inline platform marks, one Free trial pill, and a large introduction video, followed by a How it works browser illustration of TOC and Outline, a Features bento, a Privacy panel, Pricing, bordered installation panels, release notes and a closing CTA. The layout borrows the narrative structure of diabrowser.com while keeping Polaris Clay. Detailed rules are recorded in [design-guideline.md](design-guideline.md).
 
 - Self-hosted Inter handles body copy and controls, Newsreader Regular handles headings, and Lora SemiBold Italic handles Polaris wordmarks. Chinese uses the corresponding system sans-serif / serif fallbacks.
 - `assets/theme.css` provides the shared font faces and light/dark semantic palette for the homepage, footer and policy pages, with local OFL licenses and no Google Fonts requests.
-- The header is a centered floating pill with How it works, Features, Privacy. The hero Free trial action leads to installation until the visitor scrolls past it; then a Free trial pill appears at the bottom center and hides again near installation, the closing CTA and the footer. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use solid Clay borders and labels. Hero and support actions use a solid Clay surface with a contrasting label. The hero starts with the headline over a large faint Polaris wordmark, and the video follows its actions at a responsive 28–48px gap inside a product window that a Paper arc overlaps. The video frame and failure-recovery play control keep their existing behavior.
+- The header is a centered floating pill with How it works, Features, Privacy and Pricing. The hero Free trial action leads to installation until the visitor scrolls past it; then a Free trial pill appears at the bottom center and hides again near installation, the closing CTA and the footer. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use solid Clay borders and labels. Hero and support actions use a solid Clay surface with a contrasting label. The hero starts with the headline over a large faint Polaris wordmark, and the video follows its actions at a responsive 28–48px gap inside a product window that a Paper arc overlaps. The video frame and failure-recovery play control keep their existing behavior.
 
 - The full-width footer groups the Polaris introduction, Product, Install & help, and Legal links. Its Product group currently shows only Features and What's new; the attribution retains its heart icon. Browser actions use “Install for Chrome / Edge / Firefox” and link to their official listings. It follows the existing language/theme preferences, preserves Analytics settings, and reflows into two link columns on small screens.
 
