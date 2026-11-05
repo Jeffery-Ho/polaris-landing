@@ -4952,6 +4952,15 @@
 
       .floating-cta { height: 56px; }
 
+      /* Store card: a gentle ask for a rating, set apart from the version note. */
+      .install-rate {
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--polaris-accent) 8%, transparent);
+        color: var(--polaris-text-secondary);
+      }
+
       /* Release notes: a compact list on the homepage; the full history lives at /release-notes/. */
       .updates-section .updates-heading.v2-heading { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.08; text-align: center; }
 
@@ -5715,8 +5724,14 @@
               </div>
               <p class="install-card-copy" data-i18n="install.store.copy" data-store-text="copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>
               <a class="install-card-button" data-store-link href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span class="install-card-button-label" data-i18n="install.store.button" data-store-text="button">Install from Chrome Web Store</span></a>
+              <ol class="install-steps">
+                <li data-i18n="install.store.step1" data-store-text="step1">Click the button above to open Polaris in the Chrome Web Store.</li>
+                <li data-i18n="install.store.step2" data-store-text="step2">Click Add to Chrome, then confirm with Add extension.</li>
+                <li data-i18n="install.store.step3" data-store-text="step3">Click the puzzle icon in the toolbar and pin Polaris.</li>
+                <li data-i18n="install.store.step4" data-store-text="step4">Open or refresh an AI chat page to start.</li>
+              </ol>
               <p class="install-note" data-i18n="install.store.versionNote">The store and ZIP versions differ; features may vary.</p>
-              <p class="install-note" data-i18n="install.store.note" data-store-text="note">The extension will be added to Chrome after you confirm the installation in the store.</p>
+              <p class="install-note install-rate" data-i18n="install.store.rate" data-store-text="rate">Enjoying Polaris? A rating or a short review on the Chrome Web Store helps an independent developer a lot.</p>
             </article>
           </div>
         </section>
@@ -5877,6 +5892,21 @@
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
           "hero.titleAria": "Navigate long AI conversations.",
           "nav.skip": "Skip to content",
+          "install.store.step1": "Click the button above to open Polaris in the Chrome Web Store.",
+          "install.store.step2": "Click Add to Chrome, then confirm with Add extension.",
+          "install.store.step3": "Click the puzzle icon in the toolbar and pin Polaris.",
+          "install.store.step4": "Open or refresh an AI chat page to start.",
+          "install.store.rate": "Enjoying Polaris? A rating or a short review on the Chrome Web Store helps an independent developer a lot.",
+          "install.store.edge.step1": "Click the button above to open Polaris in Edge Add-ons.",
+          "install.store.edge.step2": "Click Get, then confirm with Add extension.",
+          "install.store.edge.step3": "Click the puzzle icon in the toolbar and show Polaris in the toolbar.",
+          "install.store.edge.step4": "Open or refresh an AI chat page to start.",
+          "install.store.edge.rate": "Enjoying Polaris? A rating or a short review on Edge Add-ons helps an independent developer a lot.",
+          "install.store.firefox.step1": "Click the button above to open Polaris on Firefox Add-ons.",
+          "install.store.firefox.step2": "Click Add to Firefox, then confirm with Add.",
+          "install.store.firefox.step3": "Click the puzzle icon in the toolbar and pin Polaris.",
+          "install.store.firefox.step4": "Open or refresh an AI chat page to start.",
+          "install.store.firefox.rate": "Enjoying Polaris? A rating or a short review on Firefox Add-ons helps an independent developer a lot.",
           "pricing.free.price": "$0",
           "pricing.pro.price": "$12.90",
           "pricing.pro.was": "$19.99",
@@ -6133,6 +6163,21 @@
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
           "hero.titleAria": "长篇 AI 对话，一键跳转。",
           "nav.skip": "跳到正文",
+          "install.store.step1": "点击上方按钮，打开 Chrome 应用商店中的 Polaris 页面。",
+          "install.store.step2": "点击「添加至 Chrome」，在弹窗中选择「添加扩展程序」。",
+          "install.store.step3": "点击工具栏的拼图图标，把 Polaris 固定到工具栏。",
+          "install.store.step4": "打开或刷新 AI 对话页面即可使用。",
+          "install.store.rate": "用着顺手的话，欢迎在 Chrome 应用商店给 Polaris 打个分、写句评价，这对独立开发者帮助很大。",
+          "install.store.edge.step1": "点击上方按钮，打开 Edge 加载项商店中的 Polaris 页面。",
+          "install.store.edge.step2": "点击「获取」，在弹窗中选择「添加扩展」。",
+          "install.store.edge.step3": "点击工具栏的拼图图标，让 Polaris 显示在工具栏中。",
+          "install.store.edge.step4": "打开或刷新 AI 对话页面即可使用。",
+          "install.store.edge.rate": "用着顺手的话，欢迎在 Edge 加载项商店给 Polaris 打个分、写句评价，这对独立开发者帮助很大。",
+          "install.store.firefox.step1": "点击上方按钮，打开 Firefox 附加组件网站中的 Polaris 页面。",
+          "install.store.firefox.step2": "点击「添加到 Firefox」，在弹窗中选择「添加」。",
+          "install.store.firefox.step3": "点击工具栏的拼图图标，把 Polaris 固定到工具栏。",
+          "install.store.firefox.step4": "打开或刷新 AI 对话页面即可使用。",
+          "install.store.firefox.rate": "用着顺手的话，欢迎在 Firefox 附加组件网站给 Polaris 打个分、写句评价，这对独立开发者帮助很大。",
           "pricing.pro.was": "US$19.99",
           "pricing.pro.price": "US$12.90",
           "pricing.free.price": "¥0",
