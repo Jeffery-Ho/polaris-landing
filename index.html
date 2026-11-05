@@ -3791,6 +3791,10 @@
         line-height: 1.45;
       }
 
+      .demo {
+        position: relative;
+      }
+
       .demo i,
       .demo b {
         display: block;
@@ -4387,7 +4391,8 @@
         width: 20px;
         height: 20px;
         opacity: 0;
-        transform: translate(var(--cx, 70%), var(--cy, 80%));
+        /* The arrow tip sits about 4px inside the icon's top-left corner. */
+        transform: translate(calc(var(--cx, 70%) - 4px), calc(var(--cy, 80%) - 3px));
         transition: transform 650ms cubic-bezier(.45, 0, .2, 1), opacity 250ms ease;
         pointer-events: none;
       }
@@ -4726,6 +4731,7 @@
       }
 
       .hero-demo {
+        position: relative;
         height: auto;
         padding: 0;
         overflow: visible;
