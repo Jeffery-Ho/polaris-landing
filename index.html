@@ -5323,6 +5323,48 @@
           transition: none;
         }
       }
+      /* Color pass: Clay is the brand color for links, labels and the product demos; primary
+         actions and Pro emphasis use the design system's honey yellow so red is not everywhere. */
+      .hero-stage .hero-link--primary,
+      :root[data-theme="dark"] .hero-stage .hero-link--primary,
+      .floating-cta,
+      .closing-store--primary {
+        background: var(--polaris-highlight);
+        color: var(--polaris-highlight-foreground);
+      }
+      .hero-stage .hero-link--primary:hover,
+      .hero-stage .hero-link--primary:focus-visible,
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--primary:focus-visible,
+      .floating-cta:hover,
+      .floating-cta:focus-visible,
+      .closing-store--primary:hover,
+      .closing-store--primary:focus-visible {
+        background: var(--polaris-highlight-hover);
+        color: var(--polaris-highlight-foreground);
+      }
+      .closing-store--primary { box-shadow: 0 10px 24px color-mix(in srgb, var(--polaris-highlight) 35%, transparent); }
+      .install-card .install-card-button,
+      .install-card--store .install-card-button {
+        border-color: var(--polaris-border-strong);
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text);
+      }
+      .install-card .install-card-button:hover,
+      .install-card .install-card-button:focus-visible {
+        border-color: var(--polaris-text-tertiary);
+        background: var(--polaris-bg-muted);
+        color: var(--polaris-text);
+      }
+      .install-card-button .install-card-button-label { color: inherit; }
+      .update-row .update-version { color: var(--polaris-text-tertiary); }
+      .bento-card--wide { border-color: color-mix(in srgb, var(--polaris-highlight) 55%, var(--polaris-border)); }
+      .bento-card--wide .bento-label {
+        border-color: color-mix(in srgb, var(--polaris-highlight) 60%, transparent);
+        background: var(--polaris-highlight-subtle);
+        color: var(--polaris-highlight-text);
+      }
+      .install-rate { background: var(--polaris-highlight-subtle); }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=cf7bea86">
   </head>

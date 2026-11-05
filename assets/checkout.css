@@ -6,9 +6,9 @@ h1 { margin-bottom: 28px; font-family: var(--polaris-font-wordmark); font-style:
 .license-box { display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 14px 14px 14px 18px; border: 1px solid var(--polaris-border); border-radius: 14px; background: var(--polaris-bg-elevated); }
 .license-box code { flex: 1; min-width: 0; overflow-wrap: anywhere; font-family: var(--polaris-font-mono); font-size: 14px; line-height: 1.5; }
 .license-box button,
-.recover-row button { flex: none; border: 0; background: var(--polaris-accent); color: var(--polaris-accent-foreground); font-weight: 600; }
+.recover-row button { flex: none; border: 0; background: var(--polaris-highlight); color: var(--polaris-highlight-foreground); font-weight: 600; }
 .license-box button:hover,
-.recover-row button:hover { background: var(--polaris-accent-hover); }
+.recover-row button:hover { background: var(--polaris-highlight-hover); }
 .recover-form label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--polaris-text-secondary); }
 .recover-row { display: flex; gap: 8px; }
 .recover-row input { flex: 1; min-width: 0; min-height: 44px; padding: 8px 12px; border: 1px solid var(--polaris-border-strong); border-radius: 8px; background: var(--polaris-bg-elevated); color: var(--polaris-text); font: inherit; }
