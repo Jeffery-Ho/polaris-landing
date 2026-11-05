@@ -61,6 +61,7 @@ public_entries=(
   assets
   blog
   checkout-return
+  contact
   release-notes
   entry
   fonts

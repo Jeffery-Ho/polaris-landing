@@ -18,9 +18,9 @@ export function siteHeader(p = "") {
     </a>
     <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
       <a class="header-link" href="${home(p)}#features">${t("Features", "功能")}</a>
-      <a class="header-link" href="${home(p)}#privacy">${t("Privacy", "隐私")}</a>
       <a class="header-link" href="${home(p)}#pricing">${t("Pricing", "Pricing")}</a>
       <a class="header-link" href="${p}blog/">${t("Blog", "博客")}</a>
+      <a class="header-link" href="${p}contact/">${t("Contact", "联系我们")}</a>
       <a class="header-link header-link--drawer" href="${home(p)}#install">${t("Free trial", "免费试用")}</a>
     </nav>
   </div>
@@ -82,7 +82,7 @@ export function siteFooter(p = "") {
           ${li(FIREFOX, "Install for Firefox", "Firefox 安装", true)}
           ${li(`${h}#install`, "Local installation", "本地安装")}
           <li><a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
-          ${li("mailto:support@polaris-ai.work", "Contact", "联系我们")}
+          ${li(`${p}contact/`, "Contact", "联系我们")}
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Legal"><h2>${t("Legal", "法律")}</h2>

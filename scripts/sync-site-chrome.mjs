@@ -16,6 +16,7 @@ const pages = {
   "safety.html": "",
   "support/index.html": "../",
   "checkout-return/index.html": "../",
+  "contact/index.html": "../",
   "blog/index.html": "../",
   "blog/why-i-built-polaris/index.html": "../../"
 };

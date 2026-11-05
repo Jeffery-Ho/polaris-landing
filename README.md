@@ -30,7 +30,7 @@ Website and extension purchases use the Polaris license Worker in the extension 
 
 Run `node scripts/sync-release-notes.mjs [path/to/Polaris-AI-Chat-Navigator]` after each extension release. It reads `src/release-notes.js`, dates every version from the extension's git history (uncommitted versions get today's date), renames Chapter View wording to Table of Contents / Outline, and regenerates `assets/release-notes.js` (homepage list) and `release-notes/index.html` (full history by month).
 
-Subpages share the homepage header and footer. Edit `scripts/site-chrome.mjs`, then run `node scripts/sync-site-chrome.mjs` to apply it to the legal, support, checkout return and blog pages.
+Subpages share the homepage header and footer. Edit `scripts/site-chrome.mjs`, then run `node scripts/sync-site-chrome.mjs` to apply it to the legal, support, contact, checkout return and blog pages.
 
 ## Assets
 
