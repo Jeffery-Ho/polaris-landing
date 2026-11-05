@@ -37,6 +37,8 @@ The homepage follows a restrained black-and-white visual system. Its first scree
 - Windows uses the self-hosted open-source Roboto Flex variable font as the Polaris Sans visual substitute; no Google Sans or Google Fonts request is used.
 - The header is a centered floating pill with How it works and Updates. The hero Free trial action leads to installation until the visitor scrolls past it, then the same Free trial label appears as a separate pill on the right. Language and theme controls sit outside the pill, and GitHub Issues stays in the footer. Installation cards use the shared gradient label/border treatment with solid interiors; the header Free trial pill does not. Hero banner actions remain monochrome, the hero video uses a crisp bordered surface, the failure-recovery play control is minimal, and the PayPal support link uses a high-contrast orange CTA.
 
+- The full-width footer groups the Polaris introduction, Product, Install & help, and Legal links. Browser actions use “Install for Chrome / Edge / Firefox” and link to their official listings. It follows the existing language/theme preferences, preserves Analytics settings, and reflows into two link columns on small screens.
+
 ## Installation and localization
 
 - The homepage Free trial actions — the hero, the scroll-revealed header pill, and the mobile menu — lead to an installation section with local ZIP installation and Chrome Web Store installation options. The visible label is “Free trial” in English and “免费试用” in Simplified Chinese.
