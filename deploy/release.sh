@@ -66,6 +66,9 @@ public_entries=(
   vendor
   index.html
   privacy.html
+  terms.html
+  safety.html
+  refund.html
   robots.txt
   sitemap.xml
   support-config.js

@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#1a1918">
     <meta name="color-scheme" content="dark light">
     <meta name="description" content="Polaris AI Navigator is a Chrome extension for navigating long AI answers with section markers and one-click jumps.">
     <link rel="canonical" href="https://polaris-ai.work/">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png?v=73794ca8">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Polaris AI">
     <meta property="og:title" content="Polaris AI — AI Chat Navigator for Long Answers">
@@ -19,6 +19,7 @@
     <meta name="twitter:description" content="Navigate long AI answers with section markers and one-click jumps in Chrome.">
     <meta name="twitter:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <title>Polaris AI — AI Chat Navigator for Long Answers</title>
+    <link rel="stylesheet" href="assets/theme.css?v=15e667bb">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -28,7 +29,7 @@
             "@id": "https://polaris-ai.work/#organization",
             "name": "Polaris AI",
             "url": "https://polaris-ai.work/",
-            "logo": "https://polaris-ai.work/icons/gpt-voyager-icon-96.png",
+            "logo": "https://polaris-ai.work/icons/gpt-voyager-icon-96.png?v=e79cc968",
             "sameAs": [
               "https://github.com/Jeffery-Ho/Polaris-for-Web"
             ]
@@ -72,25 +73,15 @@
       })();
     </script>
     <style>
-      @font-face {
-        font-family: "Polaris Sans";
-        font-style: normal;
-        font-weight: 100 1000;
-        font-stretch: 100%;
-        font-display: swap;
-        src: url("fonts/roboto-flex-latin.woff2") format("woff2");
-      }
-
       :root {
-        color-scheme: dark;
         color: #15161a;
         background: #f8f8fb;
-        font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        font-family: var(--polaris-font);
         font-synthesis: none;
       }
 
       :root[data-platform="windows"] {
-        font-family: "Polaris Sans", "Segoe UI", sans-serif;
+        font-family: var(--polaris-font);
       }
 
       * {
@@ -136,7 +127,6 @@
       .brand,
       .header-links,
       .header-link,
-      .support-button,
       .footer-copy {
         display: flex;
         align-items: center;
@@ -313,39 +303,6 @@
 
       .video-play-button[hidden] {
         display: none;
-      }
-
-      .support-button {
-        justify-content: center;
-        width: fit-content;
-        min-width: min(100%, 320px);
-        min-height: 64px;
-        margin: 28px auto 0;
-        padding: 14px 30px;
-        border: 1px solid rgba(255, 255, 255, 0.72);
-        border-radius: 28px;
-        background: #ff7a00;
-        box-shadow: none;
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 750;
-        letter-spacing: -0.04em;
-        text-decoration: none;
-        text-shadow: 0 1px 1px rgba(0, 45, 105, 0.24);
-        transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        background: #ff9226;
-        box-shadow: none;
-        transform: translateY(-2px);
-      }
-
-      .support-button[aria-disabled="true"] {
-        cursor: not-allowed;
-        opacity: 0.48;
-        pointer-events: none;
       }
 
       .install-section {
@@ -703,11 +660,6 @@
           min-height: 0;
         }
 
-        .support-button {
-          width: 100%;
-          font-size: 18px;
-        }
-
         .footer-copy {
           flex-wrap: wrap;
           font-size: 14px;
@@ -926,9 +878,7 @@
       .section-heading,
       .section-copy,
       .capability-title,
-      .capability-copy,
-      .support-title,
-      .support-copy {
+      .capability-copy {
         margin: 0;
       }
 
@@ -1073,60 +1023,6 @@
         color: #e879d2;
       }
 
-      .support-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        max-width: 980px;
-        margin: clamp(72px, 9vw, 112px) auto 0;
-        padding: 24px 0;
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        text-align: left;
-      }
-
-      .support-title {
-        color: #111111;
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-      }
-
-      .support-copy {
-        margin-top: 6px;
-        color: #666666;
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .support-button {
-        flex: none;
-        justify-content: center;
-        min-height: 40px;
-        min-width: 0;
-        margin: 0;
-        padding: 9px 14px;
-        border: 1px solid #d9d9d9;
-        border-radius: 8px;
-        background: #ffffff;
-        box-shadow: none;
-        color: #111111;
-        font-size: 14px;
-        font-weight: 650;
-        text-shadow: none;
-        transition: border-color 160ms ease, color 160ms ease;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: #e879d2;
-        background: #ffffff;
-        box-shadow: none;
-        color: #e879d2;
-        transform: none;
-      }
-
       .site-footer {
         padding-top: 30px;
       }
@@ -1205,22 +1101,12 @@
         .capability-card {
           min-height: 0;
         }
-
-        .support-section {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .support-button {
-          width: auto;
-        }
       }
 
       /* Vercel-inspired dark surface */
       :root {
         color: #ffffff;
         background: #000000;
-        color-scheme: dark;
       }
 
       body {
@@ -1277,8 +1163,7 @@
       .section-heading,
       .install-heading,
       .install-card-title,
-      .capability-title,
-      .support-title {
+      .capability-title {
         color: #ffffff;
       }
 
@@ -1286,8 +1171,7 @@
       .section-copy,
       .install-intro,
       .install-card-copy,
-      .install-note,
-      .support-copy {
+      .install-note {
         color: #a1a1a1;
       }
 
@@ -1394,32 +1278,6 @@
 
       .install-steps a {
         color: #e879d2;
-      }
-
-      .support-section {
-        border-top-color: #2a2a2a;
-        border-bottom-color: #2a2a2a;
-      }
-
-      .support-button {
-        min-width: 212px;
-        min-height: 48px;
-        border-color: #ffb16b;
-        border-radius: 10px;
-        background: #ff7a00;
-        box-shadow: 0 12px 30px rgba(255, 122, 0, 0.28);
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 750;
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: #ffd1a3;
-        background: #ff9226;
-        box-shadow: 0 15px 34px rgba(255, 122, 0, 0.38);
-        color: #ffffff;
-        transform: translateY(-2px);
       }
 
       .footer-copy,
@@ -1587,7 +1445,6 @@
       .header-link,
       .hero-link,
       .install-card-button,
-      .support-button,
       button {
         touch-action: manipulation;
       }
@@ -1598,47 +1455,45 @@
 
       /* Vercel-inspired second-pass layout and surface tokens */
       :root {
-        --page-bg: #000000;
-        --panel-bg: #050505;
-        --panel-bg-raised: #0a0a0a;
-        --text-primary: #ededed;
-        --text-secondary: #888888;
-        --text-muted: #666666;
-        --code-bg: rgba(255, 255, 255, 0.08);
-        --code-text: #d8d8d8;
-        --line: rgba(255, 255, 255, 0.16);
-        --line-strong: rgba(255, 255, 255, 0.28);
-        --interactive-bg: rgba(255, 255, 255, 0.08);
-        --interactive-border: rgba(255, 255, 255, 0.32);
-        --focus-color: #ffffff;
-        --logo-accent: #e879d2;
-        --theme-gradient: linear-gradient(135deg, #ffb36b 0%, #e879d2 52%, #7892ff 100%);
-        --menu-hover-bg: rgba(255, 255, 255, 0.08);
+        --page-bg: var(--polaris-bg);
+        --panel-bg: var(--polaris-bg-elevated);
+        --panel-bg-raised: var(--polaris-bg-subtle);
+        --text-primary: var(--polaris-text);
+        --text-secondary: var(--polaris-text-secondary);
+        --text-muted: var(--polaris-text-tertiary);
+        --code-bg: var(--polaris-bg-muted);
+        --code-text: var(--polaris-accent-text);
+        --line: var(--polaris-border);
+        --line-strong: var(--polaris-border-strong);
+        --interactive-bg: var(--polaris-bg-muted);
+        --interactive-border: var(--polaris-border-strong);
+        --focus-color: var(--polaris-accent);
+        --logo-accent: var(--polaris-accent-text);
+        --menu-hover-bg: var(--polaris-bg-muted);
         --page-width: 1200px;
         --page-margin: 24px;
         --control-radius: 8px;
         --button-radius: 999px;
         --transition: 160ms ease;
-        color-scheme: dark;
         color: var(--text-primary);
         background: var(--page-bg);
       }
 
       :root[data-theme="light"] {
-        --page-bg: #ffffff;
-        --panel-bg: #fafafa;
-        --panel-bg-raised: #f4f4f4;
-        --text-primary: #171717;
-        --text-secondary: #666666;
-        --text-muted: #888888;
-        --code-bg: rgba(0, 0, 0, 0.07);
-        --code-text: #333333;
-        --line: rgba(0, 0, 0, 0.14);
-        --line-strong: rgba(0, 0, 0, 0.24);
-        --interactive-bg: rgba(0, 0, 0, 0.06);
-        --interactive-border: rgba(0, 0, 0, 0.28);
-        --focus-color: #000000;
-        --menu-hover-bg: rgba(0, 0, 0, 0.06);
+        --page-bg: var(--polaris-bg);
+        --panel-bg: var(--polaris-bg-elevated);
+        --panel-bg-raised: var(--polaris-bg-subtle);
+        --text-primary: var(--polaris-text);
+        --text-secondary: var(--polaris-text-secondary);
+        --text-muted: var(--polaris-text-tertiary);
+        --code-bg: var(--polaris-bg-muted);
+        --code-text: var(--polaris-accent-text);
+        --line: var(--polaris-border);
+        --line-strong: var(--polaris-border-strong);
+        --interactive-bg: var(--polaris-bg-muted);
+        --interactive-border: var(--polaris-border-strong);
+        --focus-color: var(--polaris-accent);
+        --menu-hover-bg: var(--polaris-bg-muted);
         color-scheme: light;
       }
 
@@ -1927,11 +1782,9 @@
       }
 
       .install-steps a {
-        background-image: var(--theme-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+        background-image: none;
+        color: var(--polaris-accent-text);
+        -webkit-text-fill-color: currentColor;
       }
 
       main {
@@ -2096,11 +1949,9 @@
       }
 
       .capability-index {
-        background-image: var(--theme-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+        background-image: none;
+        color: var(--polaris-accent-text);
+        -webkit-text-fill-color: currentColor;
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 12px;
         font-weight: 600;
@@ -2215,48 +2066,6 @@
         color: var(--logo-accent);
       }
 
-      .support-section {
-        max-width: none;
-        margin-top: 88px;
-        padding: 28px 0;
-        border-top-color: var(--line);
-        border-bottom-color: var(--line);
-      }
-
-      .support-title {
-        color: var(--text-primary);
-        font-size: 18px;
-        font-weight: 650;
-      }
-
-      .support-copy {
-        color: var(--text-secondary);
-      }
-
-      .support-button {
-        min-width: 212px;
-        min-height: 44px;
-        padding: 10px 16px;
-        border: 1px solid #ffb16b;
-        border-radius: var(--control-radius);
-        background: #ff7a00;
-        box-shadow: none;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 700;
-        text-shadow: none;
-        transition: border-color var(--transition), background var(--transition), transform var(--transition);
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: #ffd1a3;
-        background: #ff9226;
-        box-shadow: none;
-        color: #ffffff;
-        transform: translateY(-1px);
-      }
-
       .updates-section {
         margin-top: 72px;
         text-align: left;
@@ -2293,11 +2102,9 @@
       }
 
       .update-version {
-        background-image: var(--theme-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+        background-image: none;
+        color: var(--polaris-accent-text);
+        -webkit-text-fill-color: currentColor;
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 13px;
         font-weight: 650;
@@ -2415,7 +2222,7 @@
       .header-menu-toggle:hover .menu-line,
       .header-menu-toggle:focus-visible .menu-line,
       .header-menu-toggle[aria-expanded="true"] .menu-line {
-        stroke: url("#polaris-theme-gradient");
+        stroke: var(--polaris-accent);
       }
 
       :root[data-theme="light"] .header-menu-toggle:hover .menu-line,
@@ -2484,92 +2291,10 @@
         color: var(--page-bg);
       }
 
-      .install-card:not(.install-card--store) .install-card-button {
-        border: 1px solid transparent;
-        background: linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box, var(--theme-gradient) border-box;
-        background-clip: padding-box, border-box;
-        -webkit-background-clip: padding-box, border-box;
-        color: var(--text-primary);
-      }
-
-      .install-card:not(.install-card--store) .install-card-button:hover,
-      .install-card:not(.install-card--store) .install-card-button:focus-visible {
-        border-color: transparent;
-        background: linear-gradient(var(--interactive-bg), var(--interactive-bg)) padding-box, var(--theme-gradient) border-box;
-        background-clip: padding-box, border-box;
-        -webkit-background-clip: padding-box, border-box;
-        color: var(--text-primary);
-        transform: none;
-      }
-
-      .install-card:not(.install-card--store) .install-card-button-label {
-        background-image: var(--theme-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .install-card--store .install-card-button:hover,
-      .install-card--store .install-card-button:focus-visible,
-      .hero-link--primary:hover,
-      .hero-link--primary:focus-visible {
-        border-color: var(--text-primary);
-        background-color: var(--text-primary);
-        background-image: none;
-        color: var(--page-bg);
-        -webkit-text-fill-color: currentColor;
-        filter: brightness(1.06);
-        transform: none;
-      }
-
-      @media (min-width: 801px) {
-        .header-link--primary:hover,
-        .header-link--primary:focus-visible {
-          border-color: var(--text-primary);
-          background-color: var(--text-primary);
-          background-image: none;
-          color: var(--page-bg);
-          -webkit-text-fill-color: currentColor;
-          filter: brightness(1.06);
-          transform: none;
-        }
-      }
-
-      .video-play-button:hover,
-      .video-play-button:focus-visible {
-        border-color: var(--interactive-border);
-        background-color: var(--text-primary);
-        color: var(--page-bg);
-        transform: translate(-50%, -50%);
-      }
-
-      .support-button:hover,
-      .support-button:focus-visible {
-        border-color: #ffd1a3;
-        background-color: #ff9226;
-        color: #ffffff;
-        filter: brightness(1.04);
-        transform: none;
-      }
-
-      /* Product CTAs share the ZIP button treatment; the interior stays solid on hover. */
-      .header-link--primary,
-      .hero-link,
-      .install-card-button,
-      .install-card--store .install-card-button {
-        border: 1px solid transparent;
-        background: linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box, var(--theme-gradient) border-box;
-        background-clip: padding-box, border-box;
-        -webkit-background-clip: padding-box, border-box;
-        color: var(--text-primary);
-        box-shadow: none;
-      }
-
+      /* Clay actions use solid surfaces and one brand accent. */
       .header-link,
       .hero-link,
       .install-card-button,
-      .support-button,
       .language-toggle,
       .language-option,
       .theme-toggle,
@@ -2582,83 +2307,31 @@
         border-radius: var(--button-radius);
       }
 
-      .header-link--primary > span,
-      .hero-link > span,
-      .install-card-button-label {
-        background-image: var(--theme-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
+      .install-card .install-card-button {
+        border: 1px solid var(--polaris-accent);
+        background: var(--panel-bg);
+        color: var(--polaris-accent-text);
+        box-shadow: none;
       }
 
-      .header-link--primary:hover,
-      .header-link--primary:focus-visible,
-      .hero-link:hover,
-      .hero-link:focus-visible,
-      .install-card-button:hover,
-      .install-card-button:focus-visible,
-      .install-card--store .install-card-button:hover,
-      .install-card--store .install-card-button:focus-visible {
-        border-color: transparent;
-        background: linear-gradient(var(--interactive-bg), var(--interactive-bg)) padding-box, var(--theme-gradient) border-box;
-        background-clip: padding-box, border-box;
-        -webkit-background-clip: padding-box, border-box;
-        color: var(--text-primary);
-        filter: none;
+      .install-card .install-card-button:hover,
+      .install-card .install-card-button:focus-visible {
+        border-color: var(--polaris-accent-hover);
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
         transform: none;
       }
 
-      /* Keep installation CTA interiors solid; the theme gradient is only a border ring. */
-      .header-link--primary,
-      .install-card:not(.install-card--store) .install-card-button,
-      .install-card.install-card--store .install-card-button {
-        position: relative;
-        isolation: isolate;
-        border-color: transparent;
-        background: var(--panel-bg);
-        background-image: none;
+      .install-card-button-label {
+        background: none;
+        color: inherit;
+        -webkit-text-fill-color: currentColor;
       }
 
-      .header-link--primary::before,
-      .install-card:not(.install-card--store) .install-card-button::before,
-      .install-card.install-card--store .install-card-button::before {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        padding: 1px;
-        border-radius: inherit;
-        background: var(--theme-gradient);
-        content: "";
-        pointer-events: none;
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        mask-composite: exclude;
-      }
-
-      .header-link--primary > span,
-      .install-card:not(.install-card--store) .install-card-button > *,
-      .install-card.install-card--store .install-card-button > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      .header-link--primary:hover,
-      .header-link--primary:focus-visible,
-      .install-card:not(.install-card--store) .install-card-button:hover,
-      .install-card:not(.install-card--store) .install-card-button:focus-visible,
-      .install-card.install-card--store .install-card-button:hover,
-      .install-card.install-card--store .install-card-button:focus-visible {
-        border-color: transparent;
-        background: var(--interactive-bg);
-        background-image: none;
-      }
-
-      .install-card:not(.install-card--store) .install-card-button[data-download-loading="true"],
-      .install-card.install-card--store .install-card-button[data-download-loading="true"] {
-        background: #333333;
-        background-image: none;
+      .install-card .install-card-button[data-download-loading="true"] {
+        border-color: var(--line-strong);
+        background: var(--polaris-bg-muted);
+        color: var(--text-secondary);
       }
 
       /* Hero banner actions stay monochrome and invert on hover. */
@@ -2761,16 +2434,6 @@
 
         .capability-card:last-child {
           border-bottom: 0;
-        }
-
-        .support-section {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .support-button {
-          width: auto;
         }
 
         .platform-banner {
@@ -2903,27 +2566,26 @@
 
         .hero-link,
         .video-play-button,
-        .install-card-button,
-        .support-button {
+        .install-card-button {
           transition: none;
         }
       }
 
       /* Floating pill navigation */
       :root {
-        --nav-pill-bg: rgba(18, 18, 18, 0.82);
-        --nav-pill-border: rgba(255, 255, 255, 0.12);
-        --nav-ink: #f5f5f5;
-        --nav-link: rgba(245, 245, 245, 0.7);
+        --nav-pill-bg: color-mix(in srgb, var(--polaris-bg-elevated) 94%, transparent);
+        --nav-pill-border: var(--polaris-border);
+        --nav-ink: var(--polaris-text);
+        --nav-link: var(--polaris-text-secondary);
         --nav-pill-shadow: 0 12px 32px rgba(0, 0, 0, 0.42), 0 1px 2px rgba(0, 0, 0, 0.28);
         scroll-padding-top: 88px;
       }
 
       :root[data-theme="light"] {
-        --nav-pill-bg: rgba(255, 255, 255, 0.94);
-        --nav-pill-border: rgba(0, 0, 0, 0.08);
-        --nav-ink: #171717;
-        --nav-link: rgba(23, 23, 23, 0.7);
+        --nav-pill-bg: color-mix(in srgb, var(--polaris-bg-elevated) 94%, transparent);
+        --nav-pill-border: var(--polaris-border);
+        --nav-ink: var(--polaris-text);
+        --nav-link: var(--polaris-text-secondary);
         --nav-pill-shadow: 0 10px 28px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
       }
 
@@ -3131,7 +2793,7 @@
 
       .header-download:hover::after,
       .header-download:focus-visible::after {
-        background: #222222;
+        background: var(--polaris-bg-subtle);
       }
 
       :root[data-theme="light"] .header-download:hover,
@@ -3215,15 +2877,34 @@
         .site-header {
           display: flex;
           justify-content: space-between;
-          top: max(10px, env(safe-area-inset-top));
+          top: 0;
+          padding-top: max(10px, env(safe-area-inset-top));
           padding-right: max(12px, env(safe-area-inset-right));
+          padding-bottom: 10px;
           padding-left: max(12px, env(safe-area-inset-left));
+          background: var(--polaris-bg);
+          pointer-events: auto;
         }
 
         .nav-pill {
           grid-column: auto;
           height: 48px;
           padding: 0 8px 0 8px;
+          border-color: transparent;
+          box-shadow: none;
+        }
+
+        .nav-pill::before {
+          content: none;
+        }
+
+        .site-header :is(.language-toggle, .theme-toggle, .header-menu-toggle):is(:hover, :focus-visible, [aria-expanded="true"]),
+        .site-header .theme-option:is([aria-pressed="true"], :hover, :focus-visible) {
+          background: transparent;
+        }
+
+        .site-header .theme-option[aria-pressed="true"] {
+          color: var(--text-primary);
         }
 
         .nav-pill .brand {
@@ -3326,25 +3007,25 @@
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
-        min-height: 100svh;
+        min-height: 0;
         padding: clamp(112px, 14vh, 148px) 24px 0;
-        --hero-bg: #faf9f7;
-        --hero-accent: #b85c3a;
-        --hero-accent-text: #a44e31;
+        --hero-bg: var(--polaris-bg);
+        --hero-accent: var(--polaris-accent);
+        --hero-accent-text: var(--polaris-accent-text);
         background:
           radial-gradient(
             ellipse 70% 45% at 50% 0%,
             color-mix(in srgb, var(--hero-accent) 12%, transparent),
             transparent 70%
           ) var(--hero-bg);
-        color: #171717;
+        color: var(--polaris-text);
       }
 
       :root[data-theme="dark"] .hero-stage {
-        --hero-bg: #191817;
-        --hero-accent: #e69a78;
-        --hero-accent-text: #e69a78;
-        color: #f5f5f5;
+        --hero-bg: var(--polaris-bg);
+        --hero-accent: var(--polaris-accent);
+        --hero-accent-text: var(--polaris-accent-text);
+        color: var(--polaris-text);
       }
 
       .hero-copy {
@@ -3383,7 +3064,8 @@
 
       .headline-line {
         display: flex;
-        align-items: center;
+        /* The icon follows the glyph baseline, not the font line-box center. */
+        align-items: baseline;
         justify-content: center;
         line-height: inherit;
       }
@@ -3410,10 +3092,10 @@
         padding: 14px 26px;
         border: 0;
         border-radius: 999px;
-        background: #171717;
+        background: var(--polaris-accent);
         background-image: none;
-        box-shadow: 0 12px 28px rgba(40, 16, 32, 0.16);
-        color: #ffffff;
+        box-shadow: 0 12px 28px rgba(42, 39, 36, 0.16);
+        color: var(--polaris-accent-foreground);
         font-size: 16px;
         font-weight: 650;
         letter-spacing: -0.02em;
@@ -3422,17 +3104,17 @@
       }
 
       :root[data-theme="dark"] .hero-stage .hero-link--primary {
-        background: #f4f4f5;
+        background: var(--polaris-accent);
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-        color: #111111;
+        color: var(--polaris-accent-foreground);
       }
 
       .hero-stage .hero-link--primary:hover,
       .hero-stage .hero-link--primary:focus-visible {
         border: 0;
-        background: #000000;
+        background: var(--polaris-accent-hover);
         background-image: none;
-        color: #ffffff;
+        color: var(--polaris-accent-foreground);
         filter: none;
         transform: none;
         -webkit-text-fill-color: currentColor;
@@ -3440,8 +3122,8 @@
 
       :root[data-theme="dark"] .hero-stage .hero-link--primary:hover,
       :root[data-theme="dark"] .hero-stage .hero-link--primary:focus-visible {
-        background: #ffffff;
-        color: #111111;
+        background: var(--polaris-accent-hover);
+        color: var(--polaris-accent-foreground);
       }
 
       .hero-stage .hero-link--primary > span {
@@ -3479,7 +3161,7 @@
         border: 0;
         background: transparent;
         background-image: none;
-        color: #171717;
+        color: var(--polaris-text);
         text-decoration: underline;
         transform: none;
         -webkit-text-fill-color: currentColor;
@@ -3487,7 +3169,7 @@
 
       :root[data-theme="dark"] .hero-stage .hero-link--text:hover,
       :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
-        color: #ffffff;
+        color: var(--polaris-accent-foreground);
       }
 
       .hero-stage .hero-link--text > span {
@@ -3498,7 +3180,7 @@
 
       .hero-stage .video-frame {
         width: min(1180px, 100%);
-        margin: auto 0 -72px;
+        margin: 0 0 -72px;
         border: 1px solid rgba(23, 23, 23, 0.08);
         border-radius: 22px;
         background: var(--hero-bg);
@@ -3542,7 +3224,7 @@
         width: 0;
         height: 0.72em;
         margin-inline: 0;
-        transform: translateY(0.06em);
+        transform: none;
         transition: width 260ms cubic-bezier(0.22, 0.8, 0.24, 1), margin-inline 260ms cubic-bezier(0.22, 0.8, 0.24, 1);
       }
 
@@ -3593,14 +3275,14 @@
 
       /* Dia scroll-linked feature introduction: two fixed-mode windows, one fixture. */
       .how-section {
-        --how-page: #faf9f7;
-        --how-ink: #201c19;
-        --how-muted: #706762;
-        --how-line: #ded9d3;
-        --how-chat: #fff;
-        --how-chrome: #f2efeb;
-        --how-accent: #b85c3a;
-        --how-accent-text: #a44e31;
+        --how-page: var(--polaris-bg);
+        --how-ink: var(--polaris-text);
+        --how-muted: var(--polaris-text-secondary);
+        --how-line: var(--polaris-border);
+        --how-chat: var(--polaris-bg-elevated);
+        --how-chrome: var(--polaris-bg-subtle);
+        --how-accent: var(--polaris-accent);
+        --how-accent-text: var(--polaris-accent-text);
         /* Break out of the existing, narrower page shell without changing that shell. */
         box-sizing: border-box;
         width: min(var(--how-viewport-width, calc(100% + var(--page-margin) * 2)), 1400px);
@@ -3610,19 +3292,19 @@
         border: 0;
         background: transparent;
         color: var(--how-ink);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+        font-family: var(--polaris-font);
         scroll-margin-top: 96px;
         overflow-anchor: none;
       }
       :root[data-theme="dark"] .how-section {
-        --how-page: #191817;
-        --how-ink: #f5f1ed;
-        --how-muted: #b9afa7;
-        --how-line: #423b35;
-        --how-chat: #201e1b;
-        --how-chrome: #27231f;
-        --how-accent: #e69a78;
-        --how-accent-text: #e69a78;
+        --how-page: var(--polaris-bg);
+        --how-ink: var(--polaris-text);
+        --how-muted: var(--polaris-text-secondary);
+        --how-line: var(--polaris-border);
+        --how-chat: var(--polaris-bg-elevated);
+        --how-chrome: var(--polaris-bg-subtle);
+        --how-accent: var(--polaris-accent);
+        --how-accent-text: var(--polaris-accent-text);
       }
       .how-section *, .how-section *::before, .how-section *::after { box-sizing: border-box; }
       .how-heading { max-width: 720px; margin: 0 auto; text-align: center; }
@@ -3737,13 +3419,13 @@
         }
 
         .hero-stage {
-          min-height: 100svh;
+          min-height: 0;
           padding: 96px 16px 0;
         }
 
         .hero-stage h1,
         :root[lang^="zh"] .hero-stage h1 {
-          font-size: clamp(25.2px, 7vw, 39.2px);
+          font-size: clamp(32px, 7.8vw, 39.2px);
           letter-spacing: -0.06em;
         }
 
@@ -3779,14 +3461,48 @@
           scroll-behavior: auto !important;
         }
       }
+      /* Polaris type roles: brand, display/reading, interface. */
+      .nav-pill .brand-name,
+      .side-identity > span:last-child {
+        font-family: var(--polaris-font-wordmark);
+        font-style: italic;
+        font-weight: 600;
+        letter-spacing: -.035em;
+      }
+      .nav-pill .brand-name { font-size: 20px; }
+      .hero-stage h1,
+      :root[lang^="zh"] .hero-stage h1,
+      .how-heading h2,
+      .section-heading,
+      .install-heading,
+      .install-card-title,
+      .updates-heading {
+        font-family: var(--polaris-font-serif);
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: -.025em;
+        line-height: 1.12;
+        text-wrap: balance;
+      }
+      .install-card-badge {
+        font-family: var(--polaris-font);
+        font-weight: 600;
+      }
+      .hero-stage .hero-link--text:hover,
+      .hero-stage .hero-link--text:focus-visible,
+      :root[data-theme="dark"] .hero-stage .hero-link--text:hover,
+      :root[data-theme="dark"] .hero-stage .hero-link--text:focus-visible {
+        color: var(--polaris-text);
+      }
     </style>
+    <link rel="stylesheet" href="assets/footer.css?v=cf7bea86">
   </head>
   <body>
     <a class="skip-link" href="#main-content" data-i18n="nav.skip">Skip to content</a>
     <header class="site-header" data-past-hero="false">
       <div class="nav-pill">
         <a class="brand" href="./" aria-label="Polaris home">
-          <img class="brand-icon" src="icons/gpt-voyager-icon-96.png" alt="">
+          <img class="brand-icon" src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="">
           <span class="brand-name">Polaris</span>
         </a>
         <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
@@ -3832,13 +3548,6 @@
         </div>
         <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="polaris-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffb36b"></stop>
-                <stop offset="52%" stop-color="#e879d2"></stop>
-                <stop offset="100%" stop-color="#7892ff"></stop>
-              </linearGradient>
-            </defs>
             <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
             <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
             <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
@@ -3849,7 +3558,6 @@
     <main id="main-content">
       <section class="hero-stage">
         <div class="hero-copy">
-          <p class="intro" data-i18n="hero.intro">With the ZIP version, find sections in long answers and jump straight to the source.</p>
           <h1 id="hero-title" aria-label="Navigate long AI conversations."><span class="sr-only" data-i18n="hero.title">Navigate long AI conversations.</span><span class="headline-line" data-hero-line aria-hidden="true">Navigate <span class="platform-slot" data-platform-slot aria-hidden="true"></span> long</span><span class="headline-line" data-hero-line aria-hidden="true">AI <span class="platform-slot" data-platform-slot aria-hidden="true"></span> conversations.</span></h1>
           <div class="hero-actions">
             <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
@@ -3909,7 +3617,7 @@
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
                         <div class="side-header">
-                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png" alt="" width="20" height="20"></span><span>Polaris</span></div>
+                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"></span><span>Polaris</span></div>
                           <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.toc">Search headings</span></div>
                         </div>
                         <div class="side-mode" id="toc-mode" data-i18n="how.toc">TOC</div>
@@ -3953,7 +3661,7 @@
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
                         <div class="side-header">
-                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png" alt="" width="20" height="20"></span><span>Polaris</span></div>
+                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"></span><span>Polaris</span></div>
                           <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.outline">Search chapters</span></div>
                         </div>
                         <div class="side-mode" id="outline-mode" data-i18n="how.outline">Outline</div>
@@ -3982,6 +3690,7 @@
             </div>
           </div>
         </section>
+
 
         <section class="install-section" id="install" aria-labelledby="install-title">
           <h2 class="install-heading" id="install-title" data-i18n="install.title">Install Polaris AI</h2>
@@ -4017,14 +3726,6 @@
           </div>
         </section>
 
-        <section class="support-section" aria-labelledby="support-title">
-          <div>
-            <h2 class="support-title" id="support-title" data-i18n="support.title">Support independent software</h2>
-            <p class="support-copy" data-i18n="support.copy">Polaris is free to use. Support helps keep it maintained.</p>
-          </div>
-          <a class="support-button" data-paypal-link aria-disabled="true" aria-label="Support Polaris on PayPal" data-i18n="support.button">Support on PayPal</a>
-        </section>
-
         <section class="updates-section" id="updates" aria-labelledby="updates-title">
           <h2 class="updates-heading" id="updates-title" data-i18n="updates.title">Release notes</h2>
           <div class="updates-list" id="updates-list" data-updates-list></div>
@@ -4034,11 +3735,49 @@
           </div>
         </section>
 
-      <footer class="site-footer">
-        <p class="footer-copy"><span data-i18n="footer.made">Made with</span> <span class="heart" aria-label="love">❤️</span> <span data-i18n="footer.by">by</span> <a class="creator-link" href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">JEFFERY HO</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="privacy.html" data-i18n="footer.privacy">Privacy</a><span class="footer-separator" aria-hidden="true">·</span><a class="privacy-link" href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer" data-i18n="nav.issues">GitHub Issues</a><span class="footer-separator" aria-hidden="true">·</span><button class="analytics-settings-button" data-analytics-settings type="button" data-i18n="footer.analytics">Analytics settings</button></p>
-      </footer>
       </div>
     </main>
+
+    <footer class="site-footer" id="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="footer-brand-link" href="./" aria-label="Polaris home"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" width="36" height="36" alt=""><span>Polaris</span></a>
+            <p class="footer-description" data-i18n="footer.description">Navigate long AI conversations. Built and maintained by an independent developer.</p>
+            <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
+          </div>
+          <nav class="footer-nav" aria-labelledby="product-title"><h2 id="product-title" data-i18n="footer.product">Product</h2>
+            <ul>
+              <li><a href="#capabilities" data-i18n="footer.features">Features</a></li>
+              <li><a href="#updates" data-i18n="footer.updates">What's new</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-nav" aria-labelledby="help-title"><h2 id="help-title" data-i18n="footer.help">Install &amp; help</h2>
+            <ul>
+              <li><a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer" data-i18n="footer.chrome">Install for Chrome</a></li>
+              <li><a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer" data-i18n="footer.edge">Install for Edge</a></li>
+              <li><a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer" data-i18n="footer.firefox">Install for Firefox</a></li>
+              <li><a href="#install" data-i18n="footer.local">Local installation</a></li>
+              <li><a href="https://github.com/Jeffery-Ho/Polaris-for-Web/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+              <li><a href="mailto:support@polaris-ai.work" data-i18n="footer.contact">Contact</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-nav" aria-labelledby="legal-title"><h2 id="legal-title" data-i18n="footer.legal">Legal</h2>
+            <ul>
+              <li><a href="privacy.html" data-i18n="footer.privacy">Privacy policy</a></li>
+              <li><a href="safety.html" data-i18n="footer.safety">Security</a></li>
+              <li><a href="terms.html" data-i18n="footer.terms">Terms of use</a></li>
+              <li><a href="refund.html" data-i18n="footer.refund">Refund policy</a></li>
+              <li><button type="button" data-i18n="footer.analytics" class="analytics-settings-button" data-analytics-settings>Analytics settings</button></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Polaris</p>
+          <p><span data-i18n="footer.made">Made with</span> <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only" data-i18n="footer.love">love</span> <span data-i18n="footer.by">by</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+        </div>
+      </div>
+    </footer>
 
     <section class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-copy">
       <p class="analytics-consent-title" id="analytics-consent-title" data-i18n="analytics.title">Help improve Polaris</p>
@@ -4058,7 +3797,6 @@
       const videoThumbnail = document.querySelector("[data-video-thumbnail]");
       const placeholder = document.querySelector("[data-video-placeholder]");
       const videoPlayButton = document.querySelector("[data-video-play-button]");
-      const paypalLink = document.querySelector("[data-paypal-link]");
       const analyticsConsent = document.querySelector("[data-analytics-consent]");
       const analyticsAccept = document.querySelector("[data-analytics-accept]");
       const analyticsDecline = document.querySelector("[data-analytics-decline]");
@@ -4135,7 +3873,6 @@
           "aria.home": "Polaris home",
           "aria.love": "love",
           "hero.title": "Navigate long AI conversations.",
-          "hero.intro": "With the ZIP version, find sections in long answers and jump straight to the source.",
           "hero.explore": "See how it works",
           "hero.install": "Free trial",
           "platforms.title": "Platforms supported by the ZIP version",
@@ -4182,16 +3919,28 @@
           "install.store.copy": "Requires access to the Google Chrome Web Store. Install Polaris with one click.",
           "install.store.button": "Install from Chrome Web Store",
           "install.store.note": "The extension will be added to Chrome after you confirm the installation in the store.",
-          "support.title": "Support independent software",
-          "support.copy": "Polaris is free to use. Support helps keep it maintained.",
-          "support.button": "Support on PayPal",
           "updates.title": "Release notes",
           "updates.showMore": "View all updates",
           "updates.collapse": "Collapse updates",
-          "footer.made": "Made with",
-          "footer.by": "by",
-          "footer.privacy": "Privacy",
+          "footer.description": "Navigate long AI conversations. Built and maintained by an independent developer.",
+          "footer.product": "Product",
+          "footer.features": "Features",
+          "footer.updates": "What's new",
+          "footer.help": "Install & help",
+          "footer.chrome": "Install for Chrome",
+          "footer.edge": "Install for Edge",
+          "footer.firefox": "Install for Firefox",
+          "footer.local": "Local installation",
+          "footer.contact": "Contact",
+          "footer.legal": "Legal",
+          "footer.privacy": "Privacy policy",
+          "footer.safety": "Security",
+          "footer.terms": "Terms of use",
+          "footer.refund": "Refund policy",
           "footer.analytics": "Analytics settings",
+          "footer.made": "Made with",
+          "footer.love": "love",
+          "footer.by": "by",
           "analytics.title": "Help improve Polaris",
           "analytics.copy": "Allow Google Analytics and Aliyun SLS to measure support-page interactions and anonymous source, device, and download totals. You can change this anytime.",
           "analytics.allow": "Allow analytics",
@@ -4225,7 +3974,6 @@
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
           "hero.title": "长篇 AI 对话，一键跳转。",
-          "hero.intro": "用 ZIP 版在长回答里找章节，一键跳到原文。",
           "hero.explore": "了解工作方式",
           "hero.install": "免费试用",
           "platforms.title": "ZIP 版支持的平台",
@@ -4272,16 +4020,28 @@
           "install.store.copy": "需要在可访问 Google Chrome Web Store 的网络环境下使用，点击下方按钮即可安装。",
           "install.store.button": "从谷歌商店安装",
           "install.store.note": "在商店确认安装后，插件会自动添加到 Chrome。",
-          "support.title": "支持独立软件",
-          "support.copy": "Polaris 免费使用，你的支持有助于持续维护。",
-          "support.button": "通过 PayPal 支持",
           "updates.title": "更新记录",
           "updates.showMore": "查看更多更新记录",
           "updates.collapse": "收起更新记录",
-          "footer.made": "Made with",
-          "footer.by": "作者",
+          "footer.description": "为长篇 AI 对话提供清晰导航。由独立开发者打造并持续维护。",
+          "footer.product": "产品",
+          "footer.features": "功能介绍",
+          "footer.updates": "更新日志",
+          "footer.help": "安装与帮助",
+          "footer.chrome": "Chrome 安装",
+          "footer.edge": "Edge 安装",
+          "footer.firefox": "Firefox 安装",
+          "footer.local": "本地安装",
+          "footer.contact": "联系我们",
+          "footer.legal": "法律",
           "footer.privacy": "隐私政策",
+          "footer.safety": "安全说明",
+          "footer.terms": "使用条款",
+          "footer.refund": "退款政策",
           "footer.analytics": "分析设置",
+          "footer.made": "Made with",
+          "footer.love": "爱心",
+          "footer.by": "作者",
           "analytics.title": "帮助改进 Polaris",
           "analytics.copy": "允许 Google Analytics 和阿里云 SLS 统计支持页面互动，以及匿名来源、设备和下载汇总数据。你可以随时修改此选择。",
           "analytics.allow": "允许分析",
@@ -4364,7 +4124,7 @@
         currentTheme = theme === "light" ? "light" : "dark";
         document.documentElement.dataset.theme = currentTheme;
         document.documentElement.style.colorScheme = currentTheme;
-        document.querySelector('meta[name="theme-color"]').content = currentTheme === "light" ? "#ffffff" : "#000000";
+        document.querySelector('meta[name="theme-color"]').content = currentTheme === "light" ? "#fafaf8" : "#1a1918";
         updateThemeToggle();
         howDemo?.refreshPreferences();
 
@@ -4551,11 +4311,11 @@
             structuredData.textContent = JSON.stringify(data);
           }
         }
-        document.querySelector(".brand").setAttribute("aria-label", dictionary["aria.home"]);
-        document.querySelector(".heart").setAttribute("aria-label", dictionary["aria.love"]);
+        document.querySelectorAll(".brand, .footer-brand-link").forEach((link) => {
+          link.setAttribute("aria-label", dictionary["aria.home"]);
+        });
         document.querySelector(".header-links").setAttribute("aria-label", currentLocale === "zh-CN" ? "Polaris 链接" : "Polaris links");
         document.querySelector("[data-video-play-button]").setAttribute("aria-label", dictionary["video.playAria"]);
-        document.querySelector("[data-paypal-link]").setAttribute("aria-label", dictionary["support.button"]);
         document.querySelector(".video-frame").setAttribute("aria-label", dictionary["video.label"]);
         renderReleaseNotes();
         initHeadlinePlatforms();
@@ -5095,13 +4855,6 @@
           showVideoPlayButton();
         });
         video.load();
-      }
-
-      if (supportConfig.paypalUrl) {
-        paypalLink.href = supportConfig.paypalUrl;
-        paypalLink.target = "_blank";
-        paypalLink.rel = "noreferrer";
-        paypalLink.removeAttribute("aria-disabled");
       }
 
       function initHowDemo(stage) {

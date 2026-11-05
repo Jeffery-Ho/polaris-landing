@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Security and Your Data for Polaris.">
+  <link rel="canonical" href="https://polaris-ai.work/safety.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/gpt-voyager-icon-32.png?v=73794ca8">
+  <link rel="stylesheet" href="assets/theme.css?v=15e667bb">
+  <link rel="stylesheet" href="assets/legal.css?v=71f42098">
+  <script src="assets/legal.js" defer></script>
+  <title>Security and Your Data · Polaris AI</title>
+</head>
+<body>
+<main>
+  <nav aria-label="Legal pages">
+    <a href="./">Polaris AI</a>
+    <div class="language" role="group" aria-label="Language / 语言">
+      <button type="button" data-legal-language="en" lang="en">English</button>
+      <button type="button" data-legal-language="zh-CN" lang="zh-CN">简体中文</button>
+    </div>
+  </nav>
+  <article lang="en" data-legal-locale="en">
+    <h1>Security and Your Data</h1>
+    <p class="updated">Last updated: November 4, 2026</p>
+    <p>How Polaris handles conversation content, permissions and external connections.</p>
+    <h2>1. What Polaris Reads</h2>
+<p>Polaris reads supported AI conversation pages to build navigation, search and reading views. Complete ChatGPT and Gemini mode can request earlier messages in the current conversation through your existing website session. This makes a network request to the AI provider; local processing does not mean offline operation or provider approval of the access method.</p>
+<p>These features do not send conversations to OpenAI's public Responses API for inference, or offer Sign in with ChatGPT or ChatGPT plan usage. OpenAI's <a href="https://developers.openai.com/siwc/token-sharing-open-source">official OAuth plan-usage permission</a> does not grant access to ChatGPT conversations. Website-session credentials and OAuth plan-usage authorization are distinct; the existence of official API documentation does not authorize website-history access.</p>
+<h2>2. What Stays Local</h2>
+<p>Conversation text, search indexes and Markdown/HTML generation are processed in your browser. Polaris does not upload conversation text to the developer or a separate processing server. Copying writes to your system clipboard; downloaded files and any later sharing or cloud backup are controlled by you and the applications you use.</p>
+<p>Complete-reading snapshots can persist in the extension's local IndexedDB, isolated by confirmed identity and conversation, up to 100 MiB compressed. They remain after you close a page or turn complete mode off, until cleared, evicted or removed with the extension. Unknown identities and private windows skip persistent caching. Short-lived ChatGPT bridge snapshots are filtered and expire within 60 seconds. Hidden reasoning, tool messages and alternate branches are excluded from cached snapshots.</p>
+<p>Gzip is compression, not application-layer encryption. Protect your device and browser profile; local storage is not a guarantee against someone who already has access to them.</p>
+<p>The <code>store: false</code> requirement for OpenAI's separate plan-usage inference flow is not a control for Polaris's local history cache or a blanket zero-retention guarantee. Any future official API feature would need its own data-handling disclosure under the applicable provider <a href="https://developers.openai.com/api/docs/guides/your-data">data controls</a>. The local cache described here is part of the current website-reading feature.</p>
+<h2>3. Login Sessions and Browser Permissions</h2>
+<p>Polaris does not ask for your AI password. Complete readers use short-lived authentication data in the website's page context; those credentials are not sent in extension bridge messages, diagnostic logs, persistent caches or settings synchronization.</p>
+<p>The extension requests access to supported AI sites, storage, scripting, tabs and the side panel where supported, plus the disclosed licensing host. The tabs permission is used to select the source tab and coordinate the side panel and can expose open-tab metadata; it should not be described as an inability to see other tabs. Polaris does not request the browser history permission or build a browsing-history database. Review the installed version's permissions and site access in your browser's extension manager.</p>
+<h2>4. Other Network Activity</h2>
+<p>Trial and license operations can contact the license service. Purchase checkout and transactional email use the providers described in the <a href="privacy.html">Privacy Policy</a>. Settings can synchronize through the browser's sync service. Diagnostic logs are not automatically uploaded; sending a diagnostic email and attaching a downloaded log are your choices. The website's optional analytics are separate from the extension and require the website's analytics choice.</p>
+<h2>5. Safer Exports and User Controls</h2>
+<p>HTML exports sanitize content, block embedded scripts and remote images through a restrictive Content Security Policy, and use image labels. Markdown is generated from safe content, escapes raw message HTML and uses image labels. Ordinary links remain clickable: following them contacts the destination. No export format can make subsequent editing, sharing or third-party software risk-free.</p>
+<p>You can choose page-only reading, turn off complete mode, clear conversation caches in Preferences, manage site permissions, or disable or uninstall Polaris. Cache clearing does not delete files you already downloaded or data managed by your clipboard tools. Check your employer's extension and information-handling rules before using sensitive work conversations.</p>
+<h2>6. Verify and Report</h2>
+<p>In Chromium browsers, open <code>chrome://extensions</code>, choose Polaris and inspect its permissions and site access. In Firefox use <code>about:addons</code>. Review the <a href="https://github.com/Jeffery-Ho/Polaris-for-Web">source and release information</a> for the version you install. Store distribution, source availability or successful tests do not guarantee the absence of vulnerabilities or constitute endorsement by an AI provider; locally installed ZIP versions are a separate distribution path.</p>
+<p>Report suspected security issues privately to <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a> with the version and reproduction steps. Do not include passwords, session tokens, full payment-card details or private conversations. Please allow time to investigate before publishing sensitive exploit details.</p>
+  </article>
+  <article lang="zh-CN" data-legal-locale="zh-CN">
+    <h1>安全与数据保护</h1>
+    <p class="updated">更新日期：2026 年 11 月 4 日</p>
+    <p>Polaris 如何处理会话内容、浏览器权限与外部连接。</p>
+    <h2>1. Polaris 读取什么</h2>
+<p>Polaris 读取受支持 AI 会话页面，用于导航、搜索和阅读。ChatGPT、Gemini 完整模式可通过网页已有登录态请求当前会话更早的消息。这会向 AI 平台发起网络请求；本地处理不等于离线运行，也不代表平台许可该访问方式。</p>
+<p>这些功能不将会话发送至 OpenAI 公共 Responses API 进行推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">官方 OAuth 套餐用量授权</a>不包含读取 ChatGPT 会话的权限。网页登录凭据与 OAuth 套餐用量授权不同；官方 API 文档的存在不构成对网页历史读取的许可。</p>
+<h2>2. 哪些内容留在本机</h2>
+<p>会话正文、索引、搜索及 Markdown/HTML 生成在浏览器中处理，Polaris 不把正文上传给开发者或其他处理服务器。复制会写入系统剪贴板；下载文件及后续分享、云备份由用户和所用应用管理。</p>
+<p>完整读取快照可存于扩展自己的本地 IndexedDB，按确认的身份和会话隔离，压缩总量上限为 100 MiB。关闭页面或完整模式后仍保留，直至清除、淘汰或卸载。身份未知及隐私窗口跳过持久化。ChatGPT 页面桥接的短期快照先经过过滤，最长 60 秒失效。缓存排除隐藏推理、工具消息和其他分支。</p>
+<p>gzip 是压缩而非应用层加密。请保护设备及浏览器配置；本地存储无法保证抵御已能访问设备或浏览器的人。</p>
+<p>OpenAI 独立套餐推理流程中的 <code>store: false</code> 要求不控制 Polaris 的本地历史缓存，也不是全面零留存保证。未来若增加官方 API 功能，须依据适用的厂商<a href="https://developers.openai.com/api/docs/guides/your-data">数据控制规则</a>另行披露数据处理方式；此处本地缓存属于当前网页读取功能。</p>
+<h2>3. 登录态与浏览器权限</h2>
+<p>Polaris 不索要 AI 账号密码。完整读取使用网页环境中的短期鉴权信息，不将其写入扩展桥接消息、诊断日志、持久缓存或设置同步。</p>
+<p>扩展请求受支持 AI 网站访问、存储、脚本注入、标签页，以及浏览器支持的侧栏权限，并联系已披露的许可服务域名。标签页权限用于选择来源标签页和协调侧栏，能够涉及已打开标签页的元数据，因此不能表述成“完全看不到其他标签页”。Polaris 不请求浏览历史权限，也不建立浏览历史数据库。请在扩展管理页核对所装版本的实际权限与网站访问范围。</p>
+<h2>4. 其他网络请求</h2>
+<p>试用与许可操作可联系许可服务；购买结账与事务邮件使用<a href="privacy.html">隐私政策</a>所列服务商。设置可通过浏览器同步服务同步。诊断日志不自动上传，是否发送邮件并附加下载的日志由用户决定。官网可选分析与扩展分开，并遵循官网分析选择。</p>
+<h2>5. 导出保护与用户控制</h2>
+<p>HTML 导出经过清洗，并通过限制性 CSP 阻止嵌入脚本与远程图片；图片使用文字标签。Markdown 从安全内容生成，原始 HTML 转义、图片转文字标签。普通链接仍可点击，点击后会访问目标。导出保护不能保证后续编辑、分享或第三方软件始终无风险。</p>
+<p>用户可选择跟随页面读取、关闭完整模式、在偏好设置清除会话缓存、管理网站权限，或停用、卸载扩展。清缓存不会删除已下载文件或剪贴板工具保留的数据。处理敏感工作会话前，请遵守所在组织的扩展及信息处理规则。</p>
+<h2>6. 自行核对与安全反馈</h2>
+<p>Chromium 浏览器可打开 <code>chrome://extensions</code>，在 Polaris 详情中检查权限与网站访问；Firefox 使用 <code>about:addons</code>。可核对所装版本的<a href="https://github.com/Jeffery-Ho/Polaris-for-Web">源码和发布信息</a>。商店分发、源码可见或测试通过都不保证没有漏洞，也不代表 AI 厂商背书；本地 ZIP 安装属于独立分发路径。</p>
+<p>发现安全问题请私下联系 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>，提供版本与复现步骤，不发送密码、会话令牌、完整银行卡信息或私人会话。公开敏感利用细节前，请留出调查和修复时间。</p>
+  </article>
+<footer>
+  <span lang="en" data-legal-locale="en"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a> · <a href="safety.html">Security</a> · <a href="refund.html">Refund Policy</a></span>
+  <span lang="zh-CN" data-legal-locale="zh-CN"><a href="privacy.html">隐私政策</a> · <a href="terms.html">使用条款</a> · <a href="safety.html">安全说明</a> · <a href="refund.html">退款政策</a></span>
+</footer>
+</main>
+</body>
+</html>
