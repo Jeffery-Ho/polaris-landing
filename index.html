@@ -4534,6 +4534,28 @@
       .how-section .browser.is-playing .demo-cursor { opacity: 1; }
       .how-scene-title { font-family: var(--polaris-font-serif); font-weight: 400; }
 
+      /* Desktop: two feature cards on top, one browser window below (not Dia's side rail). */
+      @media (min-width: 800px) {
+        .how-stage { display: block; margin-top: 56px; }
+        .how-selector-rail { width: min(880px, 100%); margin: 0 auto; }
+        .how-notes, .how-notes[data-sticky] { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .how-note { padding: 20px 24px 22px; border: 1px solid var(--how-line); border-radius: 18px; background: transparent; cursor: pointer; transition: border-color 300ms ease, background-color 300ms ease; }
+        .how-note::before { top: -1px; right: 24px; bottom: auto; left: 24px; width: auto; height: 3px; border-radius: 0 0 3px 3px; }
+        .how-note:hover { border-color: var(--polaris-border-strong); }
+        .how-enhanced .how-note[data-expanded="true"]::before { background: transparent; }
+        .how-enhanced .how-note[aria-current="true"] { border-color: color-mix(in srgb, var(--polaris-accent) 55%, var(--how-line)); background: var(--polaris-bg-elevated); }
+        .how-enhanced .how-note[aria-current="true"]::before { background: var(--polaris-accent); }
+        .how-enhanced .how-note .how-note-button { color: var(--how-muted); }
+        .how-enhanced .how-note[aria-current="true"] .how-note-button { color: var(--how-ink); }
+        .how-note-button { min-height: 0; }
+        .how-note-name { font-size: 24px; }
+        .how-scenes { display: block; margin-top: 32px; }
+        .how-scene { min-height: 0; padding-bottom: 0; }
+        .how-stage[data-active-scene="toc"] .how-scene[data-how-scene="outline"],
+        .how-stage[data-active-scene="outline"] .how-scene[data-how-scene="toc"] { display: none; }
+        .how-section .browser { width: min(100%, 1040px); height: 600px; }
+      }
+
       /* How it works windows wear the real Polaris side panel (from the extension's styles). */
       .how-note-index,
       .how-mobile-copy .how-note-index { display: none !important; }
@@ -7297,7 +7319,8 @@
             const button = feature.querySelector("[data-how-mode]");
             if (active) button.setAttribute("aria-current", "location");
             else button.removeAttribute("aria-current");
-            setFeatureDetails(feature, active, animate);
+            feature.setAttribute("aria-current", String(active));
+            setFeatureDetails(feature, active || desktop.matches, animate);
           });
           measureSticky();
         }
@@ -7392,7 +7415,8 @@
           requestPageSample();
         }
         function samplePage() {
-          if (clickLock !== null) return;
+          // Desktop shows one scene at a time under the cards; only clicks switch it.
+          if (clickLock !== null || desktop.matches) return;
           const bounds = section.getBoundingClientRect();
           if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
           let closest = state.activeFeature;
@@ -7433,6 +7457,10 @@
           clearClickLock(true);
           const generation = lockGeneration;
           setActiveFeature(mode);
+          if (desktop.matches) {
+            window.requestAnimationFrame(() => measureNavigation());
+            return;
+          }
           const target = Math.max(0, Math.min(
             scene.article.getBoundingClientRect().top + window.scrollY - 160,
             Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
@@ -7512,6 +7540,8 @@
           if (event.target.closest("[data-how-collapse]")) { toggleOutline(); return; }
           const mode = event.target.closest("[data-how-mode]");
           if (mode) { selectFeature(mode.dataset.howMode); return; }
+          const card = desktop.matches && event.target.closest("[data-how-feature]");
+          if (card) { selectFeature(card.dataset.howFeature); return; }
           const jump = event.target.closest("[data-how-jump]");
           if (jump) jumpTo(jump.dataset.howJump);
         });
@@ -7560,6 +7590,7 @@
         window.addEventListener("load", requestPageSample);
         desktop.addEventListener("change", () => {
           clearClickLock(true);
+          setActiveFeature(state.activeFeature, false, true);
           refreshPreferences({ ...readingTops });
           setupEntrances();
         });
