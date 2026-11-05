@@ -4722,6 +4722,15 @@
         height: 20px;
       }
 
+      .hero-subtitle {
+        max-width: 36rem;
+        margin: 18px auto 0;
+        color: var(--polaris-text-secondary);
+        font-size: clamp(16px, 1.5vw, 19px);
+        line-height: 1.5;
+        text-wrap: balance;
+      }
+
       /* Hero: a large browser window with Polaris at work, after Notion's product shot. */
       .hero-stage { padding-bottom: clamp(56px, 8vw, 104px); }
 
@@ -5092,9 +5101,9 @@
       <section class="hero-stage">
         <div class="hero-copy">
           <h1 id="hero-title" aria-label="Navigate long AI conversations."><span class="sr-only" data-i18n="hero.title">Navigate long AI conversations.</span><span class="headline-line" data-hero-line aria-hidden="true">Navigate <span class="platform-slot" data-platform-slot aria-hidden="true"></span> long</span><span class="headline-line" data-hero-line aria-hidden="true">AI <span class="platform-slot" data-platform-slot aria-hidden="true"></span> conversations.</span></h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">A browser extension for long AI chats, on Chrome, Edge and Firefox.</p>
           <div class="hero-actions">
             <a class="hero-link hero-link--primary" href="#install"><span data-i18n="hero.install">Free trial</span></a>
-            <a class="hero-link hero-link--text" href="#capabilities"><span data-i18n="hero.explore">See how it works</span></a>
           </div>
         </div>
         <figure class="hero-browser">
@@ -5615,6 +5624,7 @@
           "nav.features": "How it works",
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
+          "hero.subtitle": "A browser extension for long AI chats, on Chrome, Edge and Firefox.",
           "demo.table.r1b": "Louvre",
           "demo.table.r2b": "Versailles",
           "hero.mockAlt": "Polaris running in Chrome: the side panel lists the answer's sections, jumps to them, searches them and opens the Outline.",
@@ -5719,7 +5729,6 @@
           "aria.home": "Polaris home",
           "aria.love": "love",
           "hero.title": "Navigate long AI conversations.",
-          "hero.explore": "See how it works",
           "hero.install": "Free trial",
           "platforms.title": "Platforms supported by the ZIP version",
           "video.label": "Polaris introduction video",
@@ -5845,6 +5854,7 @@
           "nav.features": "功能",
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
+          "hero.subtitle": "为长篇 AI 对话而做的浏览器扩展，支持 Chrome、Edge 和 Firefox",
           "demo.table.r1b": "卢浮宫",
           "demo.table.r2b": "凡尔赛宫",
           "hero.mockAlt": "Polaris 在 Chrome 中运行：侧边栏列出回答的各节，可跳转、搜索并打开大纲。",
@@ -5949,7 +5959,6 @@
           "aria.home": "Polaris 首页",
           "aria.love": "喜爱",
           "hero.title": "长篇 AI 对话，一键跳转。",
-          "hero.explore": "了解工作方式",
           "hero.install": "免费试用",
           "platforms.title": "ZIP 版支持的平台",
           "video.label": "Polaris 介绍视频",
