@@ -3858,197 +3858,222 @@
         font-size: 10px;
       }
 
-      /* Polaris side panel, after the extension's own styles. */
-      .pv-panel {
-        position: relative;
+      /* Polaris side panel: the extension's Chrome side panel, from product screenshots. */
+      .sp {
         display: flex;
-        flex: 0 0 42%;
+        flex: 0 0 236px;
         flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
         min-width: 0;
-        padding: 8px 10px 8px 4px;
+        border-left: 1px solid var(--polaris-border);
+        background: var(--polaris-bg);
+        font-size: 11.5px;
       }
 
-      .pv-capsule {
+      .sp-titlebar {
+        display: flex;
+        flex: none;
+        align-items: center;
+        gap: 6px;
+        height: 26px;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text);
+        font-size: 10.5px;
+      }
+
+      .sp-titlebar img { border-radius: 3px; }
+      .sp-x { margin-left: auto; color: var(--polaris-text-tertiary); font-style: normal; }
+
+      .sp-head {
+        display: grid;
+        flex: none;
+        gap: 7px;
+        padding: 8px 10px 9px;
+        border-bottom: 1px solid var(--polaris-border);
+        background: var(--polaris-bg-elevated);
+      }
+
+      .sp-brand {
         position: relative;
-        display: inline-flex;
-        gap: 1px;
-        max-width: 100%;
-        padding: 2px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 24px;
+      }
+
+      .sp-brand > img { border-radius: 5px; }
+
+      .sp-word {
+        font-family: var(--polaris-font-wordmark);
+        font-size: 15px;
+        font-style: italic;
+        font-weight: 600;
+        letter-spacing: -.035em;
+      }
+
+      .sp-site {
+        position: absolute;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 0 1px var(--polaris-border);
+        transform: translateX(-50%);
+      }
+
+      .sp-site img { border-radius: 3px; }
+
+      .sp-gear {
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        margin-left: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: var(--polaris-bg-muted);
+        color: var(--polaris-text-secondary);
+        cursor: default;
+        transition: background-color 150ms ease, color 150ms ease;
+      }
+
+      .sp-gear svg { width: 14px; height: 14px; }
+      .pv-window[data-tab="settings"] .sp-gear { background: var(--polaris-accent-subtle); color: var(--polaris-accent-text); }
+
+      .sp-search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 26px;
+        padding: 0 9px;
         border: 1px solid var(--polaris-border);
         border-radius: 7px;
         background: var(--polaris-bg-elevated);
-      }
-
-      .pv-indicator {
-        position: absolute;
-        top: 2px;
-        bottom: 2px;
-        left: 0;
-        width: var(--iw, 0);
-        border-radius: 5px;
-        background: var(--polaris-accent);
-        transform: translateX(var(--ix, 0));
-        transition: transform 240ms cubic-bezier(.2, .8, .2, 1), width 240ms cubic-bezier(.2, .8, .2, 1);
-      }
-
-      .pv-capsule button {
-        position: relative;
-        z-index: 1;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        min-height: 20px;
-        padding: 0 6px;
-        border: 0;
-        border-radius: 5px;
-        background: transparent;
-        color: var(--polaris-text-secondary);
-        font-size: 9.5px;
-        font-weight: 600;
-        white-space: nowrap;
-        cursor: default;
-        transition: color 120ms ease;
-      }
-
-      .pv-capsule button:not([data-tab-btn="navigation"]) {
-        overflow: hidden;
-        max-width: 64px;
-        text-overflow: ellipsis;
-      }
-
-      .pv-capsule button.is-active {
-        color: var(--polaris-accent-foreground);
-      }
-
-      .pv-capsule img {
-        border-radius: 3px;
-      }
-
-      .pv-chev {
-        display: block;
-        flex: none;
-        width: 5px;
-        height: 5px;
-        border-right: 1.3px solid currentColor;
-        border-bottom: 1.3px solid currentColor;
-        transform: translateY(-1px) rotate(45deg);
-      }
-
-      .pv-chev--up {
-        transform: translateY(1px) rotate(-135deg);
-      }
-
-      .pv-nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
-        width: 100%;
-        min-height: 0;
-      }
-
-      .pv-search {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: 22px;
-        padding: 0 8px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 6px;
-        background: var(--polaris-bg-elevated);
-        font-size: 10px;
         transition: border-color 200ms ease;
       }
 
-      .pv-demo.is-typing .pv-search {
-        border-color: var(--polaris-accent);
-      }
+      .pv-demo.is-typing .sp-search { border-color: var(--polaris-accent); }
+      .sp-placeholder { position: absolute; color: var(--polaris-text-tertiary); }
+      .sp-search:has(.sp-query:not(:empty)) .sp-placeholder { display: none; }
+      .sp-caret { width: 1px; height: 12px; margin-left: 1px; background: var(--polaris-accent); opacity: 0; }
+      .pv-demo.is-typing .sp-caret { animation: demo-blink 1s steps(1) infinite; }
 
-      .pv-placeholder {
-        position: absolute;
-        color: var(--polaris-text-tertiary);
-      }
-
-      .pv-query:not(:empty) ~ .pv-placeholder,
-      .pv-query:not(:empty) + .pv-caret + .ds-src + .pv-placeholder {
-        display: none;
-      }
-
-      .pv-search:has(.pv-query:not(:empty)) .pv-placeholder {
-        display: none;
-      }
-
-      .pv-caret {
-        width: 1px;
-        height: 11px;
-        margin-left: 1px;
-        background: var(--polaris-accent);
-        opacity: 0;
-      }
-
-      .pv-demo.is-typing .pv-caret {
-        animation: demo-blink 1s steps(1) infinite;
-      }
-
-      .pv-list {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-        width: 100%;
-      }
-
-      .pv-marker {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        max-width: 100%;
-        min-height: 18px;
-        padding: 2px 8px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 999px;
+      .sp-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 3px;
+        border-radius: 8px;
         background: var(--polaris-bg-subtle);
-        color: var(--polaris-text);
-        font-size: 10px;
-        line-height: 1.3;
-        transform-origin: left center;
-        transition: background-color 120ms ease, color 120ms ease, transform 120ms ease, opacity 250ms ease, max-height 300ms ease, padding 300ms ease, margin 300ms ease;
       }
 
-      .pv-label {
+      .sp-tabs button {
+        min-height: 22px;
+        padding: 0 4px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--polaris-text-secondary);
+        font-size: 10.5px;
+        white-space: nowrap;
+        cursor: default;
+        transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+      }
+
+      .sp-tabs button.is-active {
+        border-color: color-mix(in srgb, var(--polaris-accent) 55%, transparent);
+        background: var(--polaris-accent-subtle);
+        color: var(--polaris-accent-text);
+      }
+
+      .sp-body {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        padding: 9px 10px;
+        overflow: hidden;
+        background-color: var(--polaris-bg);
+        background-image: radial-gradient(color-mix(in srgb, var(--polaris-text) 16%, transparent) .8px, transparent 1.2px);
+        background-size: 12px 12px;
+      }
+
+      .sp-toc,
+      .sp-outline,
+      .sp-settings { display: none; }
+
+      .pv-window[data-tab="navigation"] .sp-toc { display: flex; }
+      .pv-window[data-tab="chapters"] .sp-outline { display: block; }
+      .pv-window[data-tab="settings"] .sp-settings { display: flex; }
+
+      .sp-toc {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .sp-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0 0 3px 14px;
+        padding: 5px 9px;
+        border-radius: 8px;
+        background: var(--polaris-bg-muted);
+        font-weight: 600;
+      }
+
+      .sp-chev {
+        flex: none;
+        width: 5px;
+        height: 5px;
+        margin-left: auto;
+        border-right: 1.3px solid currentColor;
+        border-bottom: 1.3px solid currentColor;
+        transform: translateY(1px) rotate(-135deg);
+      }
+
+      .sp-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 24px;
+        max-height: 40px;
+        padding: 3px 10px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 8px;
+        background: var(--polaris-bg-elevated);
+        color: var(--polaris-text);
+        transition: background-color 150ms ease, border-color 150ms ease, max-height 300ms ease, opacity 300ms ease, padding 300ms ease, margin 300ms ease;
+      }
+
+      .sp-item.is-hover { background: var(--polaris-bg-subtle); }
+
+      .sp-item.is-active {
+        border-color: color-mix(in srgb, var(--polaris-accent) 60%, transparent);
+        background: var(--polaris-accent-subtle);
+      }
+
+      .sp-label {
         overflow: hidden;
         min-width: 0;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
 
-      .pv-label mark {
+      .sp-label mark {
         border-radius: 2px;
         background: color-mix(in srgb, var(--polaris-accent) 24%, transparent);
         color: inherit;
       }
 
-      .pv-marker--user {
-        align-self: flex-end;
-        background: var(--polaris-accent-subtle);
-      }
-
-      .pv-marker.is-hover {
-        background: var(--polaris-bg-muted);
-        transform: scale(1.04);
-      }
-
-      .pv-marker.is-active {
-        border-color: var(--polaris-accent);
-        background: var(--polaris-accent);
-        color: var(--polaris-accent-foreground);
-        transform: scale(1.04);
-      }
-
-      .pv-marker.is-gone {
+      .sp-item.is-gone,
+      .demo-stream .sp-item[data-target]:not(.is-in),
+      .demo-settings:not(.is-bold) .sp-item[data-bold-marker] {
+        min-height: 0;
         max-height: 0;
         margin-top: -5px;
         padding-block: 0;
@@ -4057,96 +4082,136 @@
         opacity: 0;
       }
 
-      .pv-spin {
+      .sp-spin {
         display: none;
         flex: none;
         width: 9px;
         height: 9px;
-        border: 1.5px solid currentColor;
+        border: 1.5px solid var(--polaris-text-tertiary);
         border-right-color: transparent;
         border-radius: 50%;
-        opacity: .7;
       }
 
-      .pv-marker.is-streaming .pv-spin {
+      .sp-item .sp-spin { display: none; }
+
+      .sp-item.is-streaming .sp-spin {
         display: block;
         animation: demo-spin 900ms linear infinite;
       }
 
-      .pv-marker.is-streaming .pv-label {
-        animation: demo-breathe 1400ms ease-in-out infinite;
-      }
+      .sp-item.is-streaming .sp-label { animation: demo-breathe 1400ms ease-in-out infinite; }
 
-      .demo-stream .pv-marker[data-target],
-      .demo-settings .pv-marker[data-bold-marker] {
-        max-height: 0;
-        margin-top: -5px;
-        padding-block: 0;
-        overflow: hidden;
-        border-width: 0;
-        opacity: 0;
-      }
-
-      .demo-stream .pv-marker[data-target].is-in,
-      .demo-settings.is-bold .pv-marker[data-bold-marker] {
-        max-height: 30px;
-        margin-top: 0;
-        padding-block: 2px;
-        border-width: 1px;
-        opacity: 1;
-      }
-
-      .pv-tip {
+      .sp-float {
         position: absolute;
-        z-index: 3;
-        max-width: 55%;
-        padding: 5px 9px;
+        right: 50%;
+        bottom: 8px;
+        display: flex;
+        gap: 10px;
+        padding: 4px 12px;
         border: 1px solid var(--polaris-border);
-        border-radius: 8px;
+        border-radius: 999px;
         background: var(--polaris-bg-elevated);
-        box-shadow: 0 8px 20px color-mix(in srgb, var(--polaris-text) 14%, transparent);
+        box-shadow: 0 6px 14px color-mix(in srgb, var(--polaris-text) 10%, transparent);
+        color: var(--polaris-text-secondary);
+        font-size: 10px;
+        font-style: normal;
+        transform: translateX(50%);
+      }
+
+      .sp-float i { font-style: normal; }
+      .pv-window:not([data-tab="navigation"]) .sp-float { display: none; }
+
+      .sp-export {
+        display: block;
+        width: fit-content;
+        margin: 0 0 7px auto;
+        padding: 3px 9px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 7px;
+        background: var(--polaris-bg-elevated);
         font-size: 10.5px;
-        opacity: 0;
-        transform: translateX(6px);
-        transition: opacity 200ms ease, transform 200ms ease;
-        pointer-events: none;
       }
 
-      .pv-tip.is-on {
-        opacity: 1;
-        transform: none;
-      }
-
-      /* Settings tab */
-      .pv-settings {
-        display: none;
-        flex-direction: column;
-        width: 100%;
+      .sp-card {
         padding: 8px 10px;
         border: 1px solid var(--polaris-border);
         border-radius: 10px;
         background: var(--polaris-bg-elevated);
+      }
+
+      .sp-ch + .sp-ch { margin-top: 4px; }
+
+      .sp-ch-title {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 0 3px 12px;
+        font-weight: 650;
+      }
+
+      .sp-ch-title::before {
+        position: absolute;
+        top: 50%;
+        left: 1px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--polaris-text);
+        content: "";
+        transform: translateY(-50%);
+      }
+
+      .sp-ch-title i {
+        margin-left: auto;
+        color: var(--polaris-text-tertiary);
+        font-style: normal;
+      }
+
+      .sp-ch-body {
+        display: none;
+        margin: 2px 0 6px 12px;
+        padding-left: 9px;
+        border-left: 1.5px solid var(--polaris-border);
+        color: var(--polaris-text-secondary);
         font-size: 10.5px;
       }
 
-      .pv-window[data-tab="settings"] .pv-settings {
-        display: flex;
+      .sp-ch.is-open .sp-ch-body {
+        display: block;
+        animation: demo-fade 280ms ease;
       }
 
-      .pv-window[data-tab="settings"] .pv-nav {
-        display: none;
+      .sp-ch-body p { margin: 0; }
+
+      .sp-ch-body blockquote {
+        margin: 4px 0 0;
+        font-style: italic;
       }
 
-      .pv-settings-title {
-        margin-bottom: 4px;
+      .sp-ch-body table { width: 100%; border-collapse: collapse; }
+      .sp-ch-body th, .sp-ch-body td { padding: 2px 4px; border: 1px solid var(--polaris-border); text-align: left; }
+      .sp-ch-body th { background: var(--polaris-bg-subtle); font-weight: 600; }
+      .sp-ch-body ol { margin: 0; padding-left: 14px; }
+
+      .sp-settings {
+        flex-direction: column;
+        padding: 8px 10px;
+        border: 1px solid var(--polaris-border);
+        border-radius: 10px;
+        background: var(--polaris-bg-elevated);
+      }
+
+      .sp-settings-title {
+        margin-bottom: 3px;
         color: var(--polaris-text-tertiary);
-        font-size: 9px;
+        font-size: 9.5px;
         font-weight: 600;
         letter-spacing: .06em;
         text-transform: uppercase;
       }
 
-      .pv-row {
+      .sp-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -4155,184 +4220,9 @@
         border-top: 1px solid var(--polaris-border);
       }
 
-      .pv-row .dg-switch {
-        flex: none;
-        width: 24px;
-        height: 14px;
-      }
-
-      .pv-row .dg-switch::after {
-        width: 10px;
-        height: 10px;
-      }
-
-      .pv-row .dg-switch.is-on::after {
-        transform: translateX(10px);
-      }
-
-      /* Outline (chapter) card over the chat */
-      .pv-modal {
-        position: absolute;
-        z-index: 2;
-        top: 8px;
-        bottom: 8px;
-        left: 8%;
-        width: 62%;
-        padding: 10px 12px;
-        overflow: hidden;
-        border: 1px solid var(--polaris-border);
-        border-radius: 12px;
-        background: var(--polaris-bg-elevated);
-        box-shadow: 0 16px 40px color-mix(in srgb, var(--polaris-text) 18%, transparent);
-        font-size: 10.5px;
-        opacity: 0;
-        transform: translateY(8px) scale(.98);
-        transition: opacity 250ms ease, transform 250ms ease;
-        pointer-events: none;
-      }
-
-      .pv-window[data-tab="chapters"] .pv-modal {
-        opacity: 1;
-        transform: none;
-      }
-
-      .pv-modal-head {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .pv-modal-search {
-        flex: 1;
-        padding: 3px 8px;
-        border-radius: 999px;
-        background: var(--polaris-bg-subtle);
-        color: var(--polaris-text-tertiary);
-        font-size: 9.5px;
-      }
-
-      .pv-modal-copy,
-      .pv-modal-close {
-        padding: 2px 7px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 999px;
-        color: var(--polaris-text-secondary);
-        font-size: 9.5px;
-      }
-
-      .pv-chips {
-        display: flex;
-        gap: 4px;
-        margin: 8px 0 6px;
-        overflow: hidden;
-      }
-
-      .pv-chips span {
-        flex: none;
-        padding: 2px 8px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 999px;
-        color: var(--polaris-text-secondary);
-        font-size: 9.5px;
-        white-space: nowrap;
-        transition: background-color 200ms ease, color 200ms ease;
-      }
-
-      .pv-chips span.is-on {
-        border-color: var(--polaris-accent);
-        background: var(--polaris-accent);
-        color: var(--polaris-accent-foreground);
-      }
-
-      .pv-chapter {
-        display: none;
-      }
-
-      .pv-chapter.is-on {
-        display: block;
-        animation: demo-fade 300ms ease;
-      }
-
-      .pv-chapter strong {
-        display: block;
-        margin-bottom: 4px;
-        font-size: 12px;
-      }
-
-      .pv-chapter p,
-      .pv-chapter li {
-        margin: 0 0 4px;
-        color: var(--polaris-text-secondary);
-      }
-
-      .pv-chapter blockquote {
-        margin: 6px 0 0;
-        padding-left: 8px;
-        border-left: 2px solid var(--polaris-accent);
-        color: var(--polaris-text-secondary);
-        font-style: italic;
-      }
-
-      .pv-chapter table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .pv-chapter th,
-      .pv-chapter td {
-        padding: 3px 5px;
-        border: 1px solid var(--polaris-border);
-        text-align: left;
-      }
-
-      .pv-chapter th {
-        background: var(--polaris-bg-subtle);
-        font-weight: 600;
-      }
-
-      .pv-chapter ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .pv-chapter li {
-        position: relative;
-        padding-left: 16px;
-      }
-
-      .pv-chapter li::before {
-        position: absolute;
-        top: 2px;
-        left: 0;
-        width: 10px;
-        height: 10px;
-        border: 1.3px solid var(--polaris-border-strong);
-        border-radius: 3px;
-        content: "";
-      }
-
-      .pv-chapter li.done {
-        text-decoration: line-through;
-      }
-
-      .pv-chapter li.done::before {
-        border-color: var(--polaris-accent);
-        background: var(--polaris-accent);
-      }
-
-      .pv-modal-tip {
-        position: absolute;
-        right: 12px;
-        bottom: 8px;
-        left: 12px;
-        margin: 0;
-        padding-top: 5px;
-        border-top: 1px solid var(--polaris-border);
-        color: var(--polaris-text-tertiary);
-        font-size: 9px;
-        text-align: center;
-      }
+      .sp-row .dg-switch { flex: none; width: 26px; height: 15px; }
+      .sp-row .dg-switch::after { width: 11px; height: 11px; }
+      .sp-row .dg-switch.is-on::after { transform: translateX(11px); }
 
       /* Streaming */
       .demo-stream [data-block] {
@@ -4383,25 +4273,6 @@
       .pv-track { padding: 16px 18px 80px 20px; }
       .pv-sec h6 { font-size: 14.5px; }
       .pv-composer { margin: 0 16px 12px; padding: 8px 14px; font-size: 12px; }
-      .pv-panel { flex: 0 0 312px; gap: 8px; padding: 10px 10px 10px 4px; }
-      .pv-capsule { flex: none; max-width: none; padding: 3px; border-radius: 8px; }
-      .pv-capsule button { flex: none; }
-      .pv-capsule button { gap: 4px; min-height: 24px; padding: 0 6px; font-size: 11px; }
-      .pv-capsule button:not([data-tab-btn="navigation"]) { max-width: none; overflow: visible; }
-      .pv-search { height: 28px; font-size: 12px; }
-      .pv-list { gap: 7px; }
-      .pv-marker { min-height: 22px; padding: 3px 9px; font-size: 11.5px; }
-      .pv-marker .pv-spin { display: none; }
-      .pv-marker.is-streaming .pv-spin { display: block; }
-      .pv-tip { font-size: 12px; }
-      .pv-settings { font-size: 12.5px; }
-      .pv-row .dg-switch { width: 28px; height: 16px; }
-      .pv-row .dg-switch::after { width: 12px; height: 12px; }
-      .pv-row .dg-switch.is-on::after { transform: translateX(12px); }
-      .pv-modal { width: 66%; font-size: 12px; }
-      .pv-modal-search, .pv-modal-copy, .pv-modal-close, .pv-chips span { font-size: 11px; }
-      .pv-chapter strong { font-size: 14px; }
-      .pv-modal-tip { font-size: 10.5px; }
       .demo-platforms .pv-stage { flex: none; }
 
       /* Shared: cursor, switch and platform strip */
@@ -4566,25 +4437,26 @@
       .how-section .chat-block p + p { margin-top: 6px; }
       .how-section .chat-block strong { color: var(--polaris-text); font-weight: 600; }
       .pz-composer { position: absolute; z-index: 2; bottom: 16px; left: 24px; width: calc(64% - 48px); padding: 11px 18px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-bg-elevated); box-shadow: 0 6px 18px color-mix(in srgb, var(--polaris-text) 8%, transparent); color: var(--polaris-text-tertiary); font-size: 13px; pointer-events: none; }
-      .how-section .side-panel { padding: 14px 14px 14px 6px; border-left: 0; background: var(--how-chat); }
-      .how-section .side-stack { gap: 8px; }
-      .pz-header { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-      .pz-capsule { display: inline-flex; gap: 1px; padding: 3px; border: 1px solid var(--polaris-border); border-radius: 8px; background: var(--polaris-bg-elevated); white-space: nowrap; }
-      .pz-tab { display: inline-flex; align-items: center; gap: 4px; min-height: 22px; padding: 0 6px; border-radius: 6px; color: var(--polaris-text-secondary); font-size: 10.5px; font-weight: 600; }
-      .pz-tab.is-active { background: var(--polaris-accent); color: var(--polaris-accent-foreground); }
-      .pz-tab img { border-radius: 3px; }
-      .pz-chev { display: block; flex: none; width: 5px; height: 5px; border-right: 1.3px solid currentColor; border-bottom: 1.3px solid currentColor; transform: translateY(1px) rotate(-135deg); }
-      .pz-chev--down { transform: translateY(-1px) rotate(45deg); }
-      .pz-search { width: 100%; padding: 6px 10px; border: 1px solid var(--polaris-border); border-radius: 8px; background: var(--polaris-bg-elevated); color: var(--polaris-text-tertiary); font-size: 12px; }
-      .pz-user { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 3px 9px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-accent-subtle); color: var(--polaris-text); font-size: 11.5px; }
+      .how-section .browser-body { grid-template-columns: minmax(0, 1fr) clamp(220px, 34%, 272px); }
+      .how-section .side-panel { padding: 0; border-left: 1px solid var(--polaris-border); background-color: var(--polaris-bg); background-image: radial-gradient(color-mix(in srgb, var(--polaris-text) 16%, transparent) .8px, transparent 1.2px); background-size: 12px 12px; font-size: 12.5px; }
+      .how-section .side-stack { gap: 0; }
+      .how-section .sp-wrap { display: block; }
+      .how-section .sp-wrap .sp-head { padding: 10px 12px 11px; gap: 8px; }
+      .how-section .sp-wrap .sp-brand { height: 28px; }
+      .how-section .sp-wrap .sp-word { font-size: 17px; }
+      .how-section .sp-wrap .sp-search { height: 30px; font-size: 12px; }
+      .how-section .sp-wrap .sp-tabs button { min-height: 26px; font-size: 11.5px; }
+      .how-section .sp-wrap .sp-titlebar { height: 30px; font-size: 11.5px; }
       .how-section .side-mode { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-      .how-section .side-list { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
-      .how-section .side-item { width: auto; max-width: 100%; min-width: 0; min-height: 26px; padding: 3px 10px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-bg-subtle); color: var(--polaris-text); font-size: 12px; font-weight: 500; line-height: 18px; transform-origin: left center; transition: background-color 120ms ease, color 120ms ease, transform 120ms ease; }
-      .how-section .side-item[aria-current="location"] { border-color: var(--polaris-accent); background: var(--polaris-accent); box-shadow: none; color: var(--polaris-accent-foreground); transform: scale(1.04); }
-      @media (hover: hover) { .how-section .side-item:hover { background: var(--polaris-bg-muted); transform: scale(1.04); } .how-section .side-item[aria-current="location"]:hover { background: var(--polaris-accent-hover); } }
-      .how-section .side-parent { display: flex; align-items: center; gap: 2px; }
-      .how-section .side-collapse { width: 26px; min-height: 26px; padding: 4px; border-radius: 999px; }
-      .how-section .side-children { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; margin: 0 0 0 16px; }
+      .how-section .side-list { display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 12px; }
+      .how-section .sp-group { margin: 0 0 4px 16px; font-size: 12px; }
+      .how-section .side-item { width: 100%; max-width: none; min-height: 32px; padding: 6px 12px; border: 1px solid var(--polaris-border); border-radius: 9px; background: var(--polaris-bg-elevated); box-shadow: none; color: var(--polaris-text); font-size: 12.5px; font-weight: 500; line-height: 18px; transform: none; transition: background-color 150ms ease, border-color 150ms ease; }
+      .how-section .side-item[aria-current="location"] { border-color: color-mix(in srgb, var(--polaris-accent) 60%, transparent); background: var(--polaris-accent-subtle); box-shadow: none; color: var(--polaris-text); transform: none; }
+      @media (hover: hover) { .how-section .side-item:hover { background: var(--polaris-bg-subtle); transform: none; } .how-section .side-item[aria-current="location"]:hover { background: var(--polaris-accent-subtle); } }
+      .how-section .side-parent { display: flex; align-items: center; gap: 4px; }
+      .how-section .side-parent .side-item { flex: 1; }
+      .how-section .side-collapse { flex: none; width: 28px; min-height: 28px; padding: 5px; border-radius: 8px; }
+      .how-section .side-children { display: flex; flex-direction: column; gap: 6px; margin: 0 0 0 16px; }
       .how-section .browser-tab img { border-radius: 3px; }
 
       /* Privacy: centered heading and bordered cards, matching Features */
@@ -4816,8 +4688,8 @@
       @media (prefers-reduced-motion: reduce) {
         .demo-cursor,
         .pv-track,
-        .pv-marker,
-        .pv-indicator {
+        .sp-item,
+        .sp-tabs button {
           transition: none;
         }
 
@@ -4957,9 +4829,9 @@
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header pz-header" aria-hidden="true"><div class="pz-capsule"><span class="pz-tab is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pz-chev"></i></span><span class="pz-tab"><span data-i18n="demo.tab.outline">Outline</span></span><span class="pz-tab"><span data-i18n="demo.tab.settings">About&amp;Settings</span></span></div><div class="pz-search"><span data-i18n="demo.searchMarkers">Search markers</span></div><span class="pz-user"><span data-i18n="how.prompt">What is the release plan?</span><i class="pz-chev pz-chev--down"></i></span></div>
+                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
                         <div class="side-mode" id="toc-mode" data-i18n="how.toc">TOC</div>
-                        <div class="side-list" id="toc-panel" data-how-panel="toc" role="group" aria-labelledby="toc-mode">
+                        <div class="side-list" id="toc-panel" data-how-panel="toc" role="group" aria-labelledby="toc-mode"><div class="sp-group" aria-hidden="true"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div>
                           <a class="side-item" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
 <a class="side-item" href="#toc-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a>
 <a class="side-item" href="#toc-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a>
@@ -4999,9 +4871,9 @@
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header pz-header" aria-hidden="true"><div class="pz-capsule"><span class="pz-tab"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span></span><span class="pz-tab is-active"><span data-i18n="demo.tab.outline">Outline</span><i class="pz-chev"></i></span><span class="pz-tab"><span data-i18n="demo.tab.settings">About&amp;Settings</span></span></div><div class="pz-search"><span data-i18n="demo.searchMarkers">Search markers</span></div><span class="pz-user"><span data-i18n="how.prompt">What is the release plan?</span><i class="pz-chev pz-chev--down"></i></span></div>
+                        <div class="side-header sp-wrap" aria-hidden="true"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchChapters">Search chapters</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters" class="is-active"><span data-i18n="demo.tab.outline">Outline</span></button></div></div></div>
                         <div class="side-mode" id="outline-mode" data-i18n="how.outline">Outline</div>
-                        <div class="side-list" id="outline-panel" data-how-panel="outline" role="group" aria-labelledby="outline-mode">
+                        <div class="side-list" id="outline-panel" data-how-panel="outline" role="group" aria-labelledby="outline-mode"><div class="sp-group" aria-hidden="true"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div>
                           <a class="side-item" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
                       <div class="side-parent"><a class="side-item" href="#outline-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a><span class="side-collapse" data-how-collapse aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg></span></div>
                       <div class="side-children" id="outline-children"><a class="side-item" href="#outline-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a><a class="side-item" href="#outline-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></div>
@@ -5037,7 +4909,7 @@
               <div class="bento-visual demo pv-demo demo-markers" data-demo="markers" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="timeline"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.timeline">Release timing</span></span><span class="pv-marker" data-target="owners"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.owners">Team roles</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span></div></div></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5048,11 +4920,7 @@
               <div class="bento-visual demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="timeline"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.timeline">Release timing</span></span><span class="pv-marker" data-target="owners"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.owners">Team roles</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span></div></div></div><div class="pv-modal"><div class="pv-modal-head"><span class="pv-modal-search" data-i18n="demo.searchChapters">Search chapters</span><span class="pv-modal-copy"><span data-i18n="demo.copy">Copy</span> ▾</span><span class="pv-modal-close">×</span></div><div class="pv-chips"><span class="is-on" data-chip="decision" data-i18n="how.h.decision">The decision</span><span data-chip="slips" data-i18n="how.h.slips">The release details</span><span data-chip="checkin" data-i18n="how.h.checkin">The next check-in</span></div>
-                    <div class="pv-chapter is-on" data-chapter-body="decision"><strong data-i18n="how.h.decision">The decision</strong><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><blockquote data-i18n="demo.quote">Smaller and on time beats bigger and late.</blockquote></div>
-                    <div class="pv-chapter" data-chapter-body="slips"><strong data-i18n="how.h.slips">The release details</strong><table><thead><tr><th data-i18n="demo.table.item">Item</th><th data-i18n="demo.table.owner">Owner</th><th data-i18n="demo.table.day">Day</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Release notes</td><td>Maya</td><td data-i18n="demo.table.thu">Thu</td></tr><tr><td data-i18n="demo.table.r2">QA sign-off</td><td>Leo</td><td data-i18n="demo.table.fri">Fri</td></tr></tbody></table></div>
-                    <div class="pv-chapter" data-chapter-body="checkin"><strong data-i18n="how.h.checkin">The next check-in</strong><ul><li class="done" data-i18n="demo.task1">Collect user feedback</li><li data-i18n="demo.task2">Review crash reports</li><li data-i18n="demo.task3">Plan the next release</li></ul></div>
-                    <p class="pv-modal-tip" data-i18n="demo.chapterTip">Tip: hold Shift + ← / → to switch chapters</p></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-outline"><span class="sp-export" data-i18n="demo.export">Export</span><div class="sp-card"><div class="sp-ch is-open" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">The decision</span><i>⋯</i></div><div class="sp-ch-body"><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><blockquote data-i18n="demo.quote">Smaller and on time beats bigger and late.</blockquote></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">The release details</span><i>⋯</i></div><div class="sp-ch-body"><table><thead><tr><th data-i18n="demo.table.item">Item</th><th data-i18n="demo.table.owner">Owner</th><th data-i18n="demo.table.day">Day</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Release notes</td><td>Maya</td><td data-i18n="demo.table.thu">Thu</td></tr><tr><td data-i18n="demo.table.r2">QA sign-off</td><td>Leo</td><td data-i18n="demo.table.fri">Fri</td></tr></tbody></table></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">The next check-in</span><i>⋯</i></div><div class="sp-ch-body"><ol><li data-i18n="demo.task1">Collect user feedback</li><li data-i18n="demo.task2">Review crash reports</li><li data-i18n="demo.task3">Plan the next release</li></ol></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5063,7 +4931,7 @@
               <div class="bento-visual demo pv-demo demo-search" data-demo="search" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="timeline"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.timeline">Release timing</span></span><span class="pv-marker" data-target="owners"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.owners">Team roles</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span></div></div></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-query" data-query></span><i class="sp-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5074,7 +4942,7 @@
               <div class="bento-visual demo pv-demo demo-stream" data-demo="stream" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision" data-block><h6><span data-i18n="how.h.decision">The decision</span></h6><p><span class="ds-src" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="slips" data-block><h6><span data-i18n="how.h.slips">The release details</span></h6><p><span class="ds-src" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="checkin" data-block><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p><span class="ds-src" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</span><span data-typed></span></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span></div></div></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision" data-block><h6><span data-i18n="how.h.decision">The decision</span></h6><p><span class="ds-src" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="slips" data-block><h6><span data-i18n="how.h.slips">The release details</span></h6><p><span class="ds-src" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="checkin" data-block><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p><span class="ds-src" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</span><span data-typed></span></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5085,7 +4953,7 @@
               <div class="bento-visual demo pv-demo demo-platforms" data-demo="platforms">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation" aria-hidden="true">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="timeline"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.timeline">Release timing</span></span><span class="pv-marker" data-target="owners"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.owners">Team roles</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span></div></div></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <ul class="pf-strip" aria-label="Supported platforms"><li data-platform="chatgpt" data-host="chatgpt.com"><img src="icons/platforms/platform-chatgpt.png" alt="" width="22" height="22"><span>ChatGPT</span></li><li data-platform="claude" data-host="claude.ai"><img src="icons/platforms/platform-claude.png" alt="" width="22" height="22"><span>Claude</span></li><li data-platform="gemini" data-host="gemini.google.com"><img src="icons/platforms/platform-gemini.png" alt="" width="22" height="22"><span>Gemini</span></li><li data-platform="grok" data-host="grok.com"><img src="icons/platforms/platform-grok.png" alt="" width="22" height="22"><span>Grok</span></li><li data-platform="deepseek" data-host="chat.deepseek.com"><img src="icons/platforms/platform-deepseek.png" alt="" width="22" height="22"><span>DeepSeek</span></li><li data-platform="doubao" data-host="doubao.com"><img src="icons/platforms/platform-doubao.png" alt="" width="22" height="22"><span>Doubao</span></li><li data-platform="kimi" data-host="kimi.com"><img src="icons/platforms/platform-kimi.png" alt="" width="22" height="22"><span>Kimi</span></li><li data-platform="qianwen" data-host="qianwen.com"><img src="icons/platforms/platform-qianwen.png" alt="" width="22" height="22"><span>Qwen</span></li><li data-platform="yuanbao" data-host="yuanbao.tencent.com"><img src="icons/platforms/platform-yuanbao.png" alt="" width="22" height="22"><span>Yuanbao</span></li><li data-platform="xiaohongshu" data-host="diandian.ai"><img src="icons/platforms/platform-xiaohongshu.png" alt="" width="22" height="22"><span>Diandian AI</span></li><li data-platform="manus" data-host="manus.im"><img src="icons/platforms/platform-manus.png" alt="" width="22" height="22"><span>Manus</span></li></ul>
               </div>
@@ -5096,7 +4964,7 @@
               <div class="bento-visual demo pv-demo demo-settings" data-demo="settings" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
-                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="pv-panel"><div class="pv-capsule"><i class="pv-indicator"></i><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pv-chev pv-chev--up"></i></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button><button type="button" tabindex="-1" data-tab-btn="settings"><span data-i18n="demo.tab.settings">About&amp;Settings</span></button></div><div class="pv-nav"><div class="pv-search"><span class="pv-placeholder" data-i18n="demo.searchMarkers">Search markers</span><span class="pv-query" data-query></span><i class="pv-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">release</span></div><div class="pv-list"><span class="pv-marker pv-marker--user"><span class="pv-label" data-i18n="how.prompt">What is the release plan?</span><i class="pv-chev"></i></span><span class="pv-marker" data-target="decision"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.decision">The decision</span></span><span class="pv-marker" data-target="slips"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.slips">The release details</span></span><span class="pv-marker" data-target="slips" data-bold-marker><i class="pv-spin"></i><span class="pv-label" data-i18n="demo.bold1">Freeze scope on Wednesday.</span></span><span class="pv-marker" data-target="timeline"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.timeline">Release timing</span></span><span class="pv-marker" data-target="owners"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.owners">Team roles</span></span><span class="pv-marker" data-target="checkin"><i class="pv-spin"></i><span class="pv-label" data-i18n="how.h.checkin">The next check-in</span></span><span class="pv-marker" data-target="checkin" data-bold-marker><i class="pv-spin"></i><span class="pv-label" data-i18n="demo.bold2">Roll back if crash reports rise.</span></span></div></div><div class="pv-settings"><span class="pv-settings-title" data-i18n="demo.markerTypes">Marker types</span><div class="pv-row"><span data-i18n="demo.unordered">Unordered list</span><i class="dg-switch is-on"></i></div><div class="pv-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div><div class="pv-row" data-toggle-row><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div></div></div><span class="pv-tip"></span></div>
+                  <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">What is the release plan?</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">The decision</span></h6><p data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">The release details</span></h6><p data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Release timing</span></h6><p data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Team roles</span></h6><p data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">The next check-in</span></h6><p data-i18n="how.p.checkin">Review feedback on Monday.</p><p data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">What is the release plan?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">The decision</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">The release details</span></span><span class="sp-item" data-target="slips" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold1">Freeze scope on Wednesday.</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Release timing</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Team roles</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">The next check-in</span></span><span class="sp-item" data-target="checkin" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold2">Roll back if crash reports rise.</span></span></div><div class="sp-settings"><span class="sp-settings-title" data-i18n="demo.markerTypes">Marker types</span><div class="sp-row"><span data-i18n="demo.unordered">Unordered list</span><i class="dg-switch is-on"></i></div><div class="sp-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div><div class="sp-row"><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
@@ -5421,6 +5289,7 @@
           "features.search.query": "release",
           "demo.chapters": "Chapters",
           "demo.ask": "Ask anything",
+          "demo.export": "Export",
           "demo.tab.toc": "Table of Contents",
           "demo.tab.outline": "Outline",
           "demo.tab.settings": "About&Settings",
@@ -5623,6 +5492,7 @@
           "features.search.query": "发布",
           "demo.chapters": "章节",
           "demo.ask": "有问题，尽管问",
+          "demo.export": "导出",
           "demo.tab.toc": "目录",
           "demo.tab.outline": "大纲",
           "demo.tab.settings": "关于与设置",
