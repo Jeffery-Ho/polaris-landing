@@ -41,137 +41,194 @@ function escapeHtml(value) {
   return value.replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character]);
 }
 
+function windowOf(root) { return root.querySelector(".pv-window"); }
+
+function setTab(root, tab) {
+  const win = windowOf(root);
+  win.dataset.tab = tab;
+  const indicator = root.querySelector(".pv-indicator");
+  root.querySelectorAll("[data-tab-btn]").forEach((button) => {
+    const active = button.dataset.tabBtn === tab;
+    button.classList.toggle("is-active", active);
+    if (active && indicator) {
+      indicator.style.setProperty("--ix", `${button.offsetLeft}px`);
+      indicator.style.setProperty("--iw", `${button.offsetWidth}px`);
+    }
+  });
+}
+
+function scrollChat(root, id) {
+  const track = root.querySelector("[data-track]");
+  const section = root.querySelector(`.pv-sec[data-sec="${id}"]`);
+  root.querySelectorAll(".pv-sec").forEach((item) => item.classList.toggle("is-hit", item === section));
+  track.style.transform = section ? `translateY(${-Math.max(0, section.offsetTop - 8)}px)` : "";
+}
+
+function setActive(root, marker) {
+  root.querySelectorAll(".pv-marker").forEach((item) => item.classList.toggle("is-active", item === marker));
+}
+
+function resetShell(root) {
+  setTab(root, "navigation");
+  setActive(root, null);
+  root.querySelectorAll(".pv-marker").forEach((item) => item.classList.remove("is-hover"));
+  root.querySelectorAll(".pv-sec").forEach((item) => item.classList.remove("is-hit"));
+  const track = root.querySelector("[data-track]");
+  if (track) track.style.transform = "";
+  root.querySelector(".pv-tip")?.classList.remove("is-on");
+}
+
+async function hoverMarker(root, cursor, marker, signal, withTip = true) {
+  await cursor.moveTo(marker, 0.35, 0.55);
+  marker.classList.add("is-hover");
+  const tip = root.querySelector(".pv-tip");
+  if (withTip && tip) {
+    const bodyElement = root.querySelector(".pv-body");
+    const body = bodyElement.getBoundingClientRect();
+    const scale = body.width / bodyElement.offsetWidth || 1;
+    const rect = marker.getBoundingClientRect();
+    tip.textContent = text(marker.querySelector(".pv-label"));
+    tip.style.top = `${(rect.top - body.top) / scale - 2}px`;
+    tip.style.right = `${(body.right - rect.left) / scale + 8}px`;
+    tip.classList.add("is-on");
+  }
+  await wait(650, signal);
+}
+
+async function clickMarker(root, cursor, marker, signal) {
+  await cursor.click();
+  marker.classList.remove("is-hover");
+  root.querySelector(".pv-tip")?.classList.remove("is-on");
+  setActive(root, marker);
+  scrollChat(root, marker.dataset.target);
+}
+
 const demos = {
   markers: {
-    reset(root) {
-      root.querySelector("[data-track]").style.transform = "";
-      root.querySelectorAll(".dm-rail b").forEach((marker) => marker.classList.remove("is-on"));
-      root.querySelectorAll("h5").forEach((heading) => heading.classList.remove("is-hit"));
-      root.querySelector(".dm-tip").classList.remove("is-on");
-    },
+    reset: resetShell,
     still(root) {
-      this.reset(root);
-      root.querySelector('.dm-rail b[data-target="slips"]').classList.add("is-on");
+      resetShell(root);
+      const marker = root.querySelector('.pv-marker[data-target="slips"]');
+      setActive(root, marker);
+      scrollChat(root, "slips");
     },
     async play(root, signal) {
       const cursor = cursorApi(root, signal);
-      const track = root.querySelector("[data-track]");
-      const tip = root.querySelector(".dm-tip");
-      const windowBox = root.querySelector(".dm-window");
-      for (const id of ["slips", "timeline", "checkin", "decision"]) {
-        const marker = root.querySelector(`.dm-rail b[data-target="${id}"]`);
-        const heading = root.querySelector(`h5[data-sec="${id}"]`);
-        await cursor.moveTo(marker, 0.8, 0.5);
-        tip.textContent = text(heading);
-        tip.style.top = `${marker.getBoundingClientRect().top - windowBox.getBoundingClientRect().top - 12}px`;
-        tip.classList.add("is-on");
-        await wait(650, signal);
-        await cursor.click();
-        tip.classList.remove("is-on");
-        root.querySelectorAll(".dm-rail b").forEach((item) => item.classList.toggle("is-on", item === marker));
-        root.querySelectorAll("h5").forEach((item) => item.classList.remove("is-hit"));
-        track.style.transform = `translateY(${-Math.max(0, heading.offsetTop - 14)}px)`;
-        await wait(750, signal);
-        heading.classList.add("is-hit");
-        await wait(1200, signal);
+      for (const id of ["slips", "timeline", "owners", "checkin", "decision"]) {
+        const marker = root.querySelector(`.pv-marker[data-target="${id}"]`);
+        await hoverMarker(root, cursor, marker, signal);
+        await clickMarker(root, cursor, marker, signal);
+        await wait(1500, signal);
       }
     }
   },
 
   chapter: {
     show(root, id) {
-      root.querySelectorAll("[data-chapter]").forEach((button) => button.classList.toggle("is-on", button.dataset.chapter === id));
-      root.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.toggle("is-on", panel.dataset.panel === id));
+      root.querySelectorAll("[data-chip]").forEach((chip) => chip.classList.toggle("is-on", chip.dataset.chip === id));
+      root.querySelectorAll("[data-chapter-body]").forEach((body) => body.classList.toggle("is-on", body.dataset.chapterBody === id));
     },
-    reset(root) { this.show(root, "decision"); },
-    still(root) { this.show(root, "slips"); },
+    reset(root) { resetShell(root); this.show(root, "decision"); },
+    still(root) { resetShell(root); setTab(root, "chapters"); this.show(root, "slips"); },
     async play(root, signal) {
       const cursor = cursorApi(root, signal);
-      for (const id of ["slips", "checkin", "decision"]) {
-        await cursor.moveTo(root.querySelector(`[data-chapter="${id}"]`), 0.35, 0.55);
+      await wait(500, signal);
+      await cursor.moveTo(root.querySelector('[data-tab-btn="chapters"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "chapters");
+      await wait(1400, signal);
+      for (const id of ["slips", "checkin"]) {
+        await cursor.moveTo(root.querySelector(`[data-chip="${id}"]`), 0.5, 0.6);
         await cursor.click();
         this.show(root, id);
-        await wait(2200, signal);
+        await wait(2000, signal);
       }
+      await cursor.moveTo(root.querySelector(".pv-modal-close"), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "navigation");
+      await wait(1200, signal);
     }
   },
 
   search: {
-    render(root, query) {
+    filter(root, query) {
       root.querySelector("[data-query]").textContent = query;
       const needle = query.toLocaleLowerCase();
-      root.querySelectorAll("[data-item]").forEach((item) => {
-        const label = text(item.querySelector(".ds-src"));
-        const index = needle ? label.toLocaleLowerCase().indexOf(needle) : -1;
-        item.classList.toggle("is-hidden", Boolean(needle) && index < 0);
-        item.classList.remove("is-on");
-        item.querySelector(".ds-label").innerHTML = index < 0 ? escapeHtml(label)
-          : `${escapeHtml(label.slice(0, index))}<mark>${escapeHtml(label.slice(index, index + query.length))}</mark>${escapeHtml(label.slice(index + query.length))}`;
+      root.querySelectorAll(".pv-marker").forEach((marker) => {
+        const label = marker.querySelector(".pv-label");
+        const value = label.textContent;
+        const user = marker.classList.contains("pv-marker--user");
+        const index = needle && !user ? value.toLocaleLowerCase().indexOf(needle) : -1;
+        marker.classList.toggle("is-gone", Boolean(needle) && index < 0);
+        label.innerHTML = index < 0 ? escapeHtml(value)
+          : `${escapeHtml(value.slice(0, index))}<mark>${escapeHtml(value.slice(index, index + query.length))}</mark>${escapeHtml(value.slice(index + query.length))}`;
       });
     },
-    reset(root) { root.classList.remove("is-typing"); this.render(root, ""); },
+    reset(root) { resetShell(root); root.classList.remove("is-typing"); this.filter(root, ""); },
     still(root) {
-      this.render(root, text(root.querySelector("[data-query-src]")));
-      root.querySelector("[data-item]:not(.is-hidden)")?.classList.add("is-on");
+      this.reset(root);
+      this.filter(root, text(root.querySelector("[data-query-src]")));
+      const first = root.querySelector(".pv-marker[data-target]:not(.is-gone)");
+      setActive(root, first);
+      if (first) scrollChat(root, first.dataset.target);
     },
     async play(root, signal) {
       const cursor = cursorApi(root, signal);
       const query = text(root.querySelector("[data-query-src]"));
-      this.render(root, "");
-      await cursor.moveTo(root.querySelector(".ds-field"), 0.4, 0.5);
+      await cursor.moveTo(root.querySelector(".pv-search"), 0.3, 0.55);
       await cursor.click();
       root.classList.add("is-typing");
       for (let length = 1; length <= query.length; length += 1) {
         await wait(170, signal);
-        this.render(root, query.slice(0, length));
+        this.filter(root, query.slice(0, length));
       }
       await wait(700, signal);
-      const first = root.querySelector("[data-item]:not(.is-hidden)");
-      await cursor.moveTo(first, 0.3, 0.55);
-      await cursor.click();
-      first?.classList.add("is-on");
       root.classList.remove("is-typing");
-      await wait(1600, signal);
+      const first = root.querySelector(".pv-marker[data-target]:not(.is-gone)");
+      if (first) {
+        await hoverMarker(root, cursor, first, signal, false);
+        await clickMarker(root, cursor, first, signal);
+      }
+      await wait(1800, signal);
       for (let length = query.length - 1; length >= 0; length -= 1) {
         await wait(60, signal);
-        this.render(root, query.slice(0, length));
+        this.filter(root, query.slice(0, length));
       }
-      await wait(500, signal);
+      await wait(600, signal);
     }
   },
 
   stream: {
     reset(root) {
+      resetShell(root);
       root.querySelectorAll("[data-block]").forEach((block) => {
         block.classList.remove("is-on", "is-typing");
         block.querySelector("[data-typed]").textContent = "";
       });
-      root.querySelectorAll(".dm-rail b").forEach((marker) => marker.classList.remove("is-in", "is-new"));
-      root.querySelector(".dm-track").style.transform = "";
-    },
-    follow(root) {
-      // Keep the newest streamed line in view, like a chat that auto-scrolls.
-      const chat = root.querySelector(".dm-chat");
-      const track = root.querySelector(".dm-track");
-      const overflow = track.scrollHeight - chat.clientHeight;
-      track.style.transform = overflow > 0 ? `translateY(${-overflow}px)` : "";
+      root.querySelectorAll(".pv-marker[data-target]").forEach((marker) => marker.classList.remove("is-in", "is-streaming"));
     },
     still(root) {
+      this.reset(root);
       root.querySelectorAll("[data-block]").forEach((block) => {
         block.classList.add("is-on");
         block.querySelector("[data-typed]").textContent = text(block.querySelector(".ds-src"));
       });
-      root.querySelectorAll(".dm-rail b").forEach((marker) => marker.classList.add("is-in"));
+      root.querySelectorAll(".pv-marker[data-target]").forEach((marker) => marker.classList.add("is-in"));
+    },
+    follow(root) {
+      const scroll = root.querySelector(".pv-scroll");
+      const track = root.querySelector("[data-track]");
+      const overflow = track.scrollHeight - scroll.clientHeight - 40;
+      track.style.transform = overflow > 0 ? `translateY(${-overflow}px)` : "";
     },
     async play(root, signal) {
       this.reset(root);
       await wait(500, signal);
-      const markers = [...root.querySelectorAll(".dm-rail b")];
-      const blocks = [...root.querySelectorAll("[data-block]")];
-      for (const [index, block] of blocks.entries()) {
+      const markers = [...root.querySelectorAll(".pv-marker[data-target]")];
+      for (const [index, block] of [...root.querySelectorAll("[data-block]")].entries()) {
         block.classList.add("is-on", "is-typing");
-        markers.forEach((marker) => marker.classList.remove("is-new"));
-        markers[index].classList.add("is-in", "is-new");
+        markers.forEach((marker) => marker.classList.remove("is-streaming"));
+        markers[index].classList.add("is-in", "is-streaming");
         const source = text(block.querySelector(".ds-src"));
         const typed = block.querySelector("[data-typed]");
         const step = /[㐀-鿿]/.test(source) ? 1 : 3;
@@ -181,29 +238,33 @@ const demos = {
           await wait(45, signal);
         }
         block.classList.remove("is-typing");
-        await wait(450, signal);
+        await wait(500, signal);
       }
-      markers.forEach((marker) => marker.classList.remove("is-new"));
-      await wait(2200, signal);
+      markers.forEach((marker) => marker.classList.remove("is-streaming"));
+      await wait(2400, signal);
     }
   },
 
   platforms: {
     show(root, item) {
       root.querySelectorAll("[data-platform]").forEach((entry) => entry.classList.toggle("is-on", entry === item));
-      root.querySelector("[data-tab-icon]").src = item.querySelector("img").getAttribute("src");
-      root.querySelector("[data-tab-name]").textContent = text(item.querySelector("span"));
-      root.querySelector("[data-tab-host]").textContent = item.dataset.host;
+      root.querySelector("[data-site-icon]").src = item.querySelector("img").getAttribute("src");
+      root.querySelector("[data-site-host]").textContent = item.dataset.host;
     },
-    reset(root) { this.show(root, root.querySelector("[data-platform]")); },
-    still(root) { this.reset(root); },
+    reset(root) { resetShell(root); this.show(root, root.querySelector("[data-platform]")); },
+    still(root) { this.reset(root); setActive(root, root.querySelector('.pv-marker[data-target="slips"]')); },
     async play(root, signal) {
+      const order = ["slips", "timeline", "checkin", "decision", "owners"];
+      let index = 0;
       for (const item of root.querySelectorAll("[data-platform]")) {
         root.classList.add("is-switching");
         await wait(220, signal);
         this.show(root, item);
+        const id = order[index++ % order.length];
+        setActive(root, root.querySelector(`.pv-marker[data-target="${id}"]`));
+        scrollChat(root, id);
         root.classList.remove("is-switching");
-        await wait(1300, signal);
+        await wait(1400, signal);
       }
     }
   },
@@ -213,16 +274,27 @@ const demos = {
       root.querySelector("[data-toggle]").classList.toggle("is-on", on);
       root.classList.toggle("is-bold", on);
     },
-    reset(root) { this.set(root, false); },
-    still(root) { this.set(root, true); },
+    reset(root) { resetShell(root); this.set(root, false); },
+    still(root) { this.reset(root); this.set(root, true); },
     async play(root, signal) {
       const cursor = cursorApi(root, signal);
-      const toggle = root.querySelector("[data-toggle]");
-      for (const on of [true, false]) {
-        await cursor.moveTo(toggle, 0.5, 0.6);
-        await cursor.click();
-        this.set(root, on);
-        await wait(2200, signal);
+      await wait(400, signal);
+      await cursor.moveTo(root.querySelector('[data-tab-btn="settings"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "settings");
+      await wait(900, signal);
+      await cursor.moveTo(root.querySelector("[data-toggle]"), 0.5, 0.6);
+      await cursor.click();
+      this.set(root, true);
+      await wait(1000, signal);
+      await cursor.moveTo(root.querySelector('[data-tab-btn="navigation"]'), 0.4, 0.6);
+      await cursor.click();
+      setTab(root, "navigation");
+      await wait(900, signal);
+      for (const marker of root.querySelectorAll(".pv-marker[data-bold-marker]")) {
+        await hoverMarker(root, cursor, marker, signal);
+        await clickMarker(root, cursor, marker, signal);
+        await wait(1500, signal);
       }
     }
   }
@@ -257,6 +329,19 @@ export function initFeatureDemos() {
     }
   }
 
+  // Scale each real-size window to its card.
+  const fit = (root) => {
+    const stage = root.querySelector(".pv-stage");
+    if (stage) root.style.setProperty("--k", String(stage.clientWidth / 600));
+    const win = windowOf(root);
+    if (win) setTab(root, win.dataset.tab || "navigation");
+  };
+  document.fonts?.ready.then(() => roots.forEach(fit));
+  roots.forEach(fit);
+  if ("ResizeObserver" in window) {
+    const resize = new ResizeObserver((entries) => entries.forEach((entry) => fit(entry.target.closest("[data-demo]"))));
+    roots.forEach((root) => { const stage = root.querySelector(".pv-stage"); if (stage) resize.observe(stage); });
+  }
   roots.forEach((root) => demos[root.dataset.demo].still(root));
   if (!("IntersectionObserver" in window)) return;
   const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
