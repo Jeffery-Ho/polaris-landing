@@ -37,7 +37,7 @@
 
 - Name the two views **Table of Contents** (目录) and **Outline** (大纲) everywhere in site copy, metadata and JSON-LD. Do not use Chapter View, Chapters or Navigation as feature names, including in mirrored release notes (rename them when copying from the extension's release-notes.js); only demo UI may show the extension's own placeholder labels.
 
-- Do not add a separate definition or platform-list block under the hero: the hero marks already show the platforms. The definition sentence opens the first FAQ answer, the full platform list is the second FAQ answer (anchored as `#platforms`, opened when linked), and both are in the JSON-LD.
+- Do not add a separate definition or platform-list block under the hero: the hero marks already show the platforms. Give the marks their meaning in text instead: a visually hidden `#hero-description` right after the H1 (linked with `aria-describedby`) holds the definition sentence followed by the full platform list, in both languages. The definition sentence opens the first FAQ answer, the full platform list is the second FAQ answer (anchored as `#platforms`, opened when linked), and both are in the JSON-LD.
 - Put the FAQ at `#faq` after installation: native disclosures with the spec's questions plus the pricing questions. Keep the visible text identical to the FAQPage JSON-LD. Pricing no longer has its own FAQ.
 - Every image needs descriptive alt text; decorative demo windows stay `aria-hidden`. The footer links How it works, Features, Supported platforms and FAQ.
 

@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+- SEO／AEO：首屏标题新增视觉隐藏的 #hero-description（定义句加完整平台列表，中英文），通过 aria-describedby 关联 H1，为平台图标提供可抓取、可朗读的语义；SEO 测试同步校验。
+
 - 首屏下方：删除与首屏和 FAQ 重复的定义句及支持平台列表；#platforms 锚点改到 FAQ「支持哪些 AI 对话网站？」，从页脚点击会自动展开该问；SEO 测试改为校验 FAQ 中的定义句与平台列表。
 
 - 首屏：标题下方新增一行说明「为长篇 AI 对话而做的浏览器扩展，支持 Chrome、Edge 和 Firefox」（英文同步），移除 See how it works 文字链接，只保留 Free trial 按钮。

@@ -28,6 +28,11 @@ test("homepage exposes the definition, platforms, FAQ and alt text as crawlable 
   assert.doesNotMatch(home, /<img[^>]*alt=""/);
   assert.doesNotMatch(home, /gpt-voyager/);
   assert.match(home, /<h1[^>]*>[\s\S]*?Navigate long AI conversations\.[\s\S]*?<\/h1>/);
+  const heroDescription = home.match(/<p class="sr-only" id="hero-description"[^>]*>([^<]*)<\/p>/);
+  assert.ok(heroDescription, "hero description for the platform marks");
+  assert.ok(heroDescription[1].startsWith(definition), "hero description opens with the definition");
+  for (const platform of platforms) assert.ok(heroDescription[1].includes(platform), `hero description: ${platform}`);
+  assert.match(home, /<h1 id="hero-title"[^>]*aria-describedby="hero-description"/);
 });
 
 test("JSON-LD describes the app, FAQ and both install paths, matching visible text", async () => {
