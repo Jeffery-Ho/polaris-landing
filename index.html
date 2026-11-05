@@ -4555,6 +4555,38 @@
       .how-section .browser.is-playing .demo-cursor { opacity: 1; }
       .how-scene-title { font-family: var(--polaris-font-serif); font-weight: 400; }
 
+      /* How it works windows wear the real Polaris side panel (from the extension's styles). */
+      .how-note-index,
+      .how-mobile-copy .how-note-index { display: none !important; }
+      .how-section .browser-body { position: relative; grid-template-columns: minmax(0, 1fr) clamp(200px, 36%, 268px); }
+      .how-section .chat { padding: 28px 32px 96px; }
+      .how-section .chat-user { background: var(--polaris-bg-muted); color: var(--polaris-text); }
+      .how-section .chat-block h4 { font-size: 16px; font-weight: 650; }
+      .how-section .chat-block h5 { font-size: 14px; font-weight: 600; }
+      .how-section .chat-block p + p { margin-top: 6px; }
+      .how-section .chat-block strong { color: var(--polaris-text); font-weight: 600; }
+      .pz-composer { position: absolute; z-index: 2; bottom: 16px; left: 24px; width: calc(64% - 48px); padding: 11px 18px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-bg-elevated); box-shadow: 0 6px 18px color-mix(in srgb, var(--polaris-text) 8%, transparent); color: var(--polaris-text-tertiary); font-size: 13px; pointer-events: none; }
+      .how-section .side-panel { padding: 14px 14px 14px 6px; border-left: 0; background: var(--how-chat); }
+      .how-section .side-stack { gap: 8px; }
+      .pz-header { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+      .pz-capsule { display: inline-flex; gap: 1px; padding: 3px; border: 1px solid var(--polaris-border); border-radius: 8px; background: var(--polaris-bg-elevated); white-space: nowrap; }
+      .pz-tab { display: inline-flex; align-items: center; gap: 4px; min-height: 22px; padding: 0 6px; border-radius: 6px; color: var(--polaris-text-secondary); font-size: 10.5px; font-weight: 600; }
+      .pz-tab.is-active { background: var(--polaris-accent); color: var(--polaris-accent-foreground); }
+      .pz-tab img { border-radius: 3px; }
+      .pz-chev { display: block; flex: none; width: 5px; height: 5px; border-right: 1.3px solid currentColor; border-bottom: 1.3px solid currentColor; transform: translateY(1px) rotate(-135deg); }
+      .pz-chev--down { transform: translateY(-1px) rotate(45deg); }
+      .pz-search { width: 100%; padding: 6px 10px; border: 1px solid var(--polaris-border); border-radius: 8px; background: var(--polaris-bg-elevated); color: var(--polaris-text-tertiary); font-size: 12px; }
+      .pz-user { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 3px 9px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-accent-subtle); color: var(--polaris-text); font-size: 11.5px; }
+      .how-section .side-mode { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+      .how-section .side-list { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+      .how-section .side-item { width: auto; max-width: 100%; min-width: 0; min-height: 26px; padding: 3px 10px; border: 1px solid var(--polaris-border); border-radius: 999px; background: var(--polaris-bg-subtle); color: var(--polaris-text); font-size: 12px; font-weight: 500; line-height: 18px; transform-origin: left center; transition: background-color 120ms ease, color 120ms ease, transform 120ms ease; }
+      .how-section .side-item[aria-current="location"] { border-color: var(--polaris-accent); background: var(--polaris-accent); box-shadow: none; color: var(--polaris-accent-foreground); transform: scale(1.04); }
+      @media (hover: hover) { .how-section .side-item:hover { background: var(--polaris-bg-muted); transform: scale(1.04); } .how-section .side-item[aria-current="location"]:hover { background: var(--polaris-accent-hover); } }
+      .how-section .side-parent { display: flex; align-items: center; gap: 2px; }
+      .how-section .side-collapse { width: 26px; min-height: 26px; padding: 4px; border-radius: 999px; }
+      .how-section .side-children { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; margin: 0 0 0 16px; }
+      .how-section .browser-tab img { border-radius: 3px; }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
@@ -4919,16 +4951,13 @@
                 <div class="browser">
                   <div class="browser-chrome" aria-hidden="true">
                     <span class="browser-dots"><i></i><i></i><i></i></span>
-                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span data-i18n="how.tab">Chat</span></div>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span>ChatGPT</span></div>
                     <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
                   </div>
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header">
-                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"></span><span>Polaris</span></div>
-                          <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.toc">Search headings</span></div>
-                        </div>
+                        <div class="side-header pz-header" aria-hidden="true"><div class="pz-capsule"><span class="pz-tab is-active"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span><i class="pz-chev"></i></span><span class="pz-tab"><span data-i18n="demo.tab.outline">Outline</span></span><span class="pz-tab"><span data-i18n="demo.tab.settings">About&amp;Settings</span></span></div><div class="pz-search"><span data-i18n="demo.searchMarkers">Search markers</span></div><span class="pz-user"><span data-i18n="how.prompt">What is the release plan?</span><i class="pz-chev pz-chev--down"></i></span></div>
                         <div class="side-mode" id="toc-mode" data-i18n="how.toc">TOC</div>
                         <div class="side-list" id="toc-panel" data-how-panel="toc" role="group" aria-labelledby="toc-mode">
                           <a class="side-item" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
@@ -4939,15 +4968,16 @@
                         </div>
                       </div>
                     </aside>
+                    <div class="pz-composer" aria-hidden="true"><span data-i18n="demo.ask">Ask anything</span></div>
                     <div class="chat" data-how-answer="toc" role="region" aria-labelledby="toc-prompt" tabindex="0">
                       <p class="chat-user" id="toc-prompt" data-i18n="how.prompt">What is the release plan?</p>
                       <div class="chat-answer">
-                        <section class="chat-block"><h4 id="toc-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p></section>
+                        <section class="chat-block"><h4 id="toc-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#toc-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p class="chat-text" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><p class="chat-text" data-i18n="demo.quote">Smaller and on time beats bigger and late.</p></section>
                     <section class="chat-block"><h4 id="toc-h-slips" data-how-target="slips"><a class="chat-heading-button" href="#toc-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a></h4><p class="chat-text" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p>
-                      <section class="chat-sub"><h5 id="toc-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5></section>
-                      <section class="chat-sub"><h5 id="toc-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5></section>
+                      <section class="chat-sub"><h5 id="toc-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5><p class="chat-text" data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p><p class="chat-text"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></section>
+                      <section class="chat-sub"><h5 id="toc-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#toc-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5><p class="chat-text" data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></section>
                     </section>
-                    <section class="chat-block"><h4 id="toc-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#toc-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p></section>
+                    <section class="chat-block"><h4 id="toc-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#toc-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p><p class="chat-text" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="chat-text"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></section>
                       </div>
                     </div>
                   </div>
@@ -4963,16 +4993,13 @@
                 <div class="browser">
                   <div class="browser-chrome" aria-hidden="true">
                     <span class="browser-dots"><i></i><i></i><i></i></span>
-                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span data-i18n="how.tab">Chat</span></div>
+                    <div class="browser-tab"><span class="how-image" data-how-image><img src="icons/platforms/platform-chatgpt.png" alt="" width="16" height="16"></span><span>ChatGPT</span></div>
                     <div class="browser-address"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M8.5 11V8.2a3.5 3.5 0 0 1 7 0V11" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span>chatgpt.com</span></div>
                   </div>
                   <div class="browser-body">
                     <aside class="side-panel" aria-label="Polaris">
                       <div class="side-stack">
-                        <div class="side-header">
-                          <div class="side-identity"><span class="how-image how-image--brand" data-how-image aria-hidden="true"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="20" height="20"></span><span>Polaris</span></div>
-                          <div class="side-search" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 3.2 3.2" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg><span data-i18n="how.search.outline">Search chapters</span></div>
-                        </div>
+                        <div class="side-header pz-header" aria-hidden="true"><div class="pz-capsule"><span class="pz-tab"><img src="icons/gpt-voyager-icon-96.png?v=e79cc968" alt="" width="12" height="12"><span data-i18n="demo.tab.toc">Table of Contents</span></span><span class="pz-tab is-active"><span data-i18n="demo.tab.outline">Outline</span><i class="pz-chev"></i></span><span class="pz-tab"><span data-i18n="demo.tab.settings">About&amp;Settings</span></span></div><div class="pz-search"><span data-i18n="demo.searchMarkers">Search markers</span></div><span class="pz-user"><span data-i18n="how.prompt">What is the release plan?</span><i class="pz-chev pz-chev--down"></i></span></div>
                         <div class="side-mode" id="outline-mode" data-i18n="how.outline">Outline</div>
                         <div class="side-list" id="outline-panel" data-how-panel="outline" role="group" aria-labelledby="outline-mode">
                           <a class="side-item" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a>
@@ -4982,15 +5009,16 @@
                         </div>
                       </div>
                     </aside>
+                    <div class="pz-composer" aria-hidden="true"><span data-i18n="demo.ask">Ask anything</span></div>
                     <div class="chat" data-how-answer="outline" role="region" aria-labelledby="outline-prompt" tabindex="0">
                       <p class="chat-user" id="outline-prompt" data-i18n="how.prompt">What is the release plan?</p>
                       <div class="chat-answer">
-                        <section class="chat-block"><h4 id="outline-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p></section>
+                        <section class="chat-block"><h4 id="outline-h-decision" data-how-target="decision"><a class="chat-heading-button" href="#outline-h-decision" data-how-jump="decision"><span data-i18n="how.h.decision">The decision</span></a></h4><p class="chat-text" data-i18n="how.p.decision">Ship the smaller release on Friday.</p><p class="chat-text" data-i18n="demo.stream.p1">Ship the smaller release on Friday so the team learns from real usage first.</p><p class="chat-text" data-i18n="demo.quote">Smaller and on time beats bigger and late.</p></section>
                     <section class="chat-block"><h4 id="outline-h-slips" data-how-target="slips"><a class="chat-heading-button" href="#outline-h-slips" data-how-jump="slips"><span data-i18n="how.h.slips">The release details</span></a></h4><p class="chat-text" data-i18n="how.p.slips">Confirm the timing and responsibilities before Friday.</p>
-                      <section class="chat-sub"><h5 id="outline-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5></section>
-                      <section class="chat-sub"><h5 id="outline-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5></section>
+                      <section class="chat-sub"><h5 id="outline-h-timeline" data-how-target="timeline" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-timeline" data-how-jump="timeline"><span data-i18n="how.h.timeline">Release timing</span></a></h5><p class="chat-text" data-i18n="demo.stream.p2">Confirm the timing and who owns each step before Friday.</p><p class="chat-text"><strong data-i18n="demo.bold1">Freeze scope on Wednesday.</strong></p></section>
+                      <section class="chat-sub"><h5 id="outline-h-owners" data-how-target="owners" data-how-parent="slips"><a class="chat-heading-button" href="#outline-h-owners" data-how-jump="owners"><span data-i18n="how.h.owners">Team roles</span></a></h5><p class="chat-text" data-i18n="demo.owners">Maya writes the release notes. Leo signs off QA.</p></section>
                     </section>
-                    <section class="chat-block"><h4 id="outline-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#outline-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p></section>
+                    <section class="chat-block"><h4 id="outline-h-checkin" data-how-target="checkin"><a class="chat-heading-button" href="#outline-h-checkin" data-how-jump="checkin"><span data-i18n="how.h.checkin">The next check-in</span></a></h4><p class="chat-text" data-i18n="how.p.checkin">Review feedback on Monday.</p><p class="chat-text" data-i18n="demo.stream.p3">Review feedback together on Monday morning.</p><p class="chat-text"><strong data-i18n="demo.bold2">Roll back if crash reports rise.</strong></p></section>
                       </div>
                     </div>
                   </div>
