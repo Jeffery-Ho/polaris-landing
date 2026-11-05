@@ -19,11 +19,11 @@ body { margin: 0; background: var(--polaris-bg); color: var(--polaris-text); }
 .contact-groups { display: grid; gap: 40px; margin-top: 64px; }
 .contact-group h2 { margin: 0 0 12px 4px; color: var(--polaris-text-tertiary); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 
-/* Dotted panel body like the side panel; rows are its white rounded cards. */
+/* A plain panel like the side panel body; rows are its white rounded cards. */
 .contact-list {
   display: grid; gap: 8px; margin: 0; padding: 10px; list-style: none;
   border: 1px solid var(--polaris-border); border-radius: 18px;
-  background: radial-gradient(color-mix(in srgb, var(--polaris-text) 13%, transparent) 1px, transparent 1.4px) 0 0 / 12px 12px, var(--polaris-bg-subtle);
+  background: var(--polaris-bg-subtle);
 }
 
 .contact-row {
@@ -45,7 +45,7 @@ body { margin: 0; background: var(--polaris-bg); color: var(--polaris-text); }
 .contact-row-desc { color: var(--polaris-text-secondary); font-size: 14px; line-height: 1.5; }
 .contact-row-value { color: var(--polaris-text-tertiary); font-family: var(--polaris-font-mono); font-size: 13px; white-space: nowrap; }
 
-.contact-arrow { color: var(--polaris-text-tertiary); font-size: 17px; line-height: 1; text-align: right; transition: transform 150ms ease, color 150ms ease; }
+.contact-arrow { grid-column: 4; color: var(--polaris-text-tertiary); font-size: 17px; line-height: 1; text-align: right; transition: transform 150ms ease, color 150ms ease; }
 .contact-row:hover .contact-arrow { color: var(--polaris-text); transform: translateX(3px); }
 
 @media (max-width: 640px) {
