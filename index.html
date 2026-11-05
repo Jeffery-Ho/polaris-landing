@@ -4729,6 +4729,50 @@
       .hero-demo .demo-cursor { width: 24px; height: 24px; }
       .hero-demo.is-playing .demo-cursor { opacity: 1; }
 
+      /* Demo icons: platform PNGs carry ~20% white padding, Polaris' icon is full-bleed.
+         Size them so every glyph reads at the same optical size. */
+      .pv-bar img,
+      .sp-titlebar img,
+      .sp-brand > img,
+      .sp-site img,
+      .hd-rail img {
+        display: block;
+        flex: none;
+        object-fit: cover;
+      }
+
+      .hd-tab img,
+      .pv-site img {
+        width: 20px;
+        height: 20px;
+        margin: -3px -2px;
+        border-radius: 5px;
+      }
+
+      .hero-demo .hd-tab img,
+      .hero-demo .pv-site img { width: 22px; height: 22px; margin: -4px -3px; }
+
+      .hd-ext { width: 26px; height: 26px; }
+      .hd-ext img { width: 18px; height: 18px; }
+
+      .sp-titlebar img { width: 14px; height: 14px; border-radius: 3px; }
+
+      .sp-brand > img { width: 22px; height: 22px; border-radius: 6px; }
+
+      .sp-site {
+        width: 26px;
+        height: 26px;
+        overflow: hidden;
+      }
+
+      .sp-site img {
+        width: 30px;
+        height: 30px;
+        border-radius: 0;
+      }
+
+      .hd-rail img { width: 28px; height: 28px; margin: -3px; border-radius: 7px; }
+
       /* Privacy: centered heading and bordered cards, matching Features */
       .privacy-head {
         text-align: center;
