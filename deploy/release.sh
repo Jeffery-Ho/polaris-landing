@@ -59,6 +59,7 @@ trap cleanup EXIT
 
 public_entries=(
   assets
+  blog
   checkout-return
   release-notes
   entry

@@ -22,6 +22,10 @@ Website and extension purchases use the Polaris license Worker in the extension 
 - **Get Pro** opens Stripe Checkout directly (see Payments). **Continue for free** leads to installation. In the extension, the price stays $12.90 for seven days after first opening Polaris, then $19.99.
 - `assets/pricing.css`, the font files and their OFL licenses, and `icons/pro-entry-star.svg` are included by the existing public-assets deployment allowlist. Run `node --test test/*.test.js` for deployment and download regressions. The site is buildless static HTML/CSS/JavaScript.
 
+## Blog
+
+`blog/` holds the founder's posts as static pages with `BlogPosting` JSON-LD. The first post, `blog/why-i-built-polaris/`, republishes the X article "找不到 ChatGPT 里的一个数字，我用一天做了个插件" (2026-09-29) verbatim with a link to the original; images live in `assets/blog/`. Blog is linked from the header and footer and listed in the sitemap.
+
 ## Release notes
 
 Run `node scripts/sync-release-notes.mjs [path/to/Polaris-AI-Chat-Navigator]` after each extension release. It reads `src/release-notes.js`, dates every version from the extension's git history (uncommitted versions get today's date), renames Chapter View wording to Table of Contents / Outline, and regenerates `assets/release-notes.js` (homepage list) and `release-notes/index.html` (full history by month).
