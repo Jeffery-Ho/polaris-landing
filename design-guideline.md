@@ -72,5 +72,5 @@
 
 - Use a full-width pale-gray surface in light mode and near-black in dark mode, with a fine top divider and a 1200px content width.
 - Desktop has a wider brand column followed by Product, Install & help, and Legal. Keep the existing Polaris mark, independent-developer introduction, support email, copyright, and author link.
-- Use plain labels: Features, Free trial, What's new, and Install for Chrome / Edge / Firefox. Add Pricing only when its destination is published. Preserve the official destination URLs and the existing Analytics settings action.
+- Use plain labels: Features, What's new, and Install for Chrome / Edge / Firefox. Footer Pricing and Free trial entries stay hidden for now. Keep the red heart in the author attribution. Preserve the official destination URLs and the existing Analytics settings action.
 - Below 950px, put the brand above three link columns; below 560px, use two link columns with 44px targets and a stacked bottom row. Localize with the homepage dictionaries and preserve theme and keyboard focus behavior.
