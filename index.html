@@ -4813,25 +4813,6 @@
         display: block;
         width: 20px;
         height: 20px;
-        border-radius: 50%;
-      }
-
-      .store-logo--chrome {
-        background:
-          radial-gradient(circle, #4285f4 0 31%, #fff 32% 42%, transparent 43%),
-          conic-gradient(from -60deg, #db4437 0 120deg, #0f9d58 0 240deg, #f4b400 0);
-      }
-
-      .store-logo--edge {
-        background:
-          radial-gradient(circle at 38% 66%, #fff 0 20%, transparent 21%),
-          conic-gradient(from 210deg, #0c59a4, #1b9de2 35%, #35c1f1 55%, #52d17a 75%, #0c59a4);
-      }
-
-      .store-logo--firefox {
-        background:
-          radial-gradient(circle at 42% 46%, #7542e5 0 28%, transparent 29%),
-          conic-gradient(from 150deg, #ff3750, #ff980e 30%, #ffbd4f 50%, #ff980e 70%, #e31587 90%, #ff3750);
       }
 
       /* Privacy: centered heading and bordered cards, matching Features */
@@ -5491,9 +5472,9 @@
               <div class="store-head">
                 <h3 class="install-card-title" data-i18n="install.store.title" data-store-text="title">Chrome Web Store</h3>
                 <div class="store-switch" role="group" aria-label="Browser">
-                  <button type="button" class="store-option" data-store="chrome" aria-pressed="true" aria-label="Chrome" title="Chrome"><span class="store-logo store-logo--chrome" aria-hidden="true"></span></button>
-                  <button type="button" class="store-option" data-store="edge" aria-pressed="false" aria-label="Microsoft Edge" title="Microsoft Edge"><span class="store-logo store-logo--edge" aria-hidden="true"></span></button>
-                  <button type="button" class="store-option" data-store="firefox" aria-pressed="false" aria-label="Firefox" title="Firefox"><span class="store-logo store-logo--firefox" aria-hidden="true"></span></button>
+                  <button type="button" class="store-option" data-store="chrome" aria-pressed="true" aria-label="Chrome" title="Chrome"><img class="store-logo" src="icons/browsers/chrome.svg" alt="Chrome logo" width="20" height="20"></button>
+                  <button type="button" class="store-option" data-store="edge" aria-pressed="false" aria-label="Microsoft Edge" title="Microsoft Edge"><img class="store-logo" src="icons/browsers/edge.svg" alt="Microsoft Edge logo" width="20" height="20"></button>
+                  <button type="button" class="store-option" data-store="firefox" aria-pressed="false" aria-label="Firefox" title="Firefox"><img class="store-logo" src="icons/browsers/firefox.svg" alt="Firefox logo" width="20" height="20"></button>
                 </div>
               </div>
               <p class="install-card-copy" data-i18n="install.store.copy" data-store-text="copy">Requires access to the Google Chrome Web Store. Install Polaris with one click.</p>

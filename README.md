@@ -30,6 +30,7 @@ Website and extension purchases use the Polaris license Worker in the extension 
 - `assets/polaris-introduction-thumbnail.jpg` remains visible until the browser has buffered a playable video segment.
 - The local-installation button uses the stable [latest GitHub Release ZIP asset](https://github.com/Jeffery-Ho/Polaris-for-Web/releases/latest/download/Polaris-AI.zip). The extension release workflow publishes that fixed asset name alongside the versioned ZIP only after validating the archive, so landing downloads do not depend on the GitHub API. The existing `assets/Polaris-for-Web-0.48.3-build-196.zip` file remains archived for compatibility.
 - `fonts/` includes the self-hosted Inter, Newsreader and Lora assets with their OFL licenses; the older Roboto Flex asset remains for compatibility.
+- `icons/browsers/{chrome,edge,firefox}.svg` come from [alrra/browser-logos](https://github.com/alrra/browser-logos) (MIT, commit-era files under `src/<browser>/<browser>.svg`, fetched 2026-11-05). The logos remain trademarks of Google, Microsoft and Mozilla and are used only to label the matching store listing.
 - `vendor/liquid-glass-0.1.0.js` is the self-hosted ESM build from `xcyberpunkx0/liquid-glass` commit `b131349`; its MIT license is in `vendor/liquid-glass-MIT.txt`.
 - `support-config.js` contains the video URL, GA4 Measurement ID, and deployed SLS endpoint configuration.
 

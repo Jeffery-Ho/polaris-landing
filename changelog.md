@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+- 安装区：商店切换改用 Chrome、Edge、Firefox 官方 SVG 图标（来自 MIT 许可的 alrra/browser-logos），替换此前的 CSS 示意图形。
+
 - 安装区：商店卡片右上角新增 Chrome／Edge／Firefox 切换，标题、说明、按钮文字与链接随之切到对应官方商店，默认跟随访问者的浏览器，中英文同步。
 
 - SEO／AEO：按 spec 改写 title、description、OG／Twitter（含图片尺寸、alt 与 og:locale）；首屏下新增定义句、11 个支持平台列表（#platforms）与依视频字幕整理的文字稿；新增 #faq 常见问题（含原 Pricing FAQ），与 FAQPage JSON-LD 逐字一致；JSON-LD 补全 Organization 联系方式、WebSite、SoftwareApplication（别名、版本 0.88.0、功能列表、Free／Pro 报价、商店 sameAs）、两条 HowTo；全站图片补描述性 alt，图标改名为 polaris-icon-*；sitemap 加 lastmod；仓库链接改为 Polaris-AI-Chat-Navigator；源站 Nginx 加 absolute_redirect off 修复 /support 跳转；新增 test/seo.test.js。
