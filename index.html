@@ -5324,6 +5324,16 @@
           transition: none;
         }
       }
+      /* Phones: the Free trial pills stay compact instead of spanning the screen. */
+      @media (max-width: 560px) {
+        .hero-stage .hero-actions .hero-link--primary,
+        .floating-cta {
+          width: min(240px, calc(100vw - 64px));
+          min-height: 52px;
+          font-size: 16px;
+        }
+        .floating-cta { height: 52px; }
+      }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>
