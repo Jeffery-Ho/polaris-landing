@@ -104,6 +104,8 @@
   line-height: 1.6;
 }
 .footer-bottom p { margin: 0; }
+.footer-heart { display: inline-block; margin: 0 3px; color: #e3414f; fill: currentColor; vertical-align: -2px; }
+:root[data-theme="dark"] .footer-heart { color: #f07880; }
 .footer-bottom a { color: var(--footer-ink); text-decoration: none; }
 .footer-bottom a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
