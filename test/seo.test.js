@@ -19,10 +19,12 @@ test("homepage meta follows the SEO spec", async () => {
 
 test("homepage exposes the definition, platforms, FAQ and alt text as crawlable HTML", async () => {
   const home = await read("index.html");
-  assert.ok(home.includes(definition), "definition sentence");
-  assert.match(home, /id="platforms"/);
+  const visible = home.slice(home.indexOf("<body"));
+  assert.ok(visible.includes(definition), "definition sentence in visible text");
   assert.match(home, /id="faq"/);
-  for (const platform of platforms) assert.ok(home.includes(`<li>${platform}</li>`), platform);
+  const platformAnswer = visible.match(/<details class="faq-item" id="platforms">[\s\S]*?<\/details>/);
+  assert.ok(platformAnswer, "#platforms FAQ entry");
+  for (const platform of platforms) assert.ok(platformAnswer[0].includes(platform), platform);
   assert.doesNotMatch(home, /<img[^>]*alt=""/);
   assert.doesNotMatch(home, /gpt-voyager/);
   assert.match(home, /<h1[^>]*>[\s\S]*?Navigate long AI conversations\.[\s\S]*?<\/h1>/);

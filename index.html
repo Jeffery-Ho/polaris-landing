@@ -4567,80 +4567,6 @@
       .how-section .side-children { display: flex; flex-direction: column; gap: 6px; margin: 0 0 0 16px; }
       .how-section .browser-tab img { border-radius: 3px; }
 
-      /* Definition, platforms and transcript: crawlable text right under the hero. */
-      .intro-section {
-        width: min(760px, 100%);
-        margin: 0 auto clamp(64px, 8vw, 104px);
-        text-align: center;
-      }
-
-      .intro-definition {
-        margin: 0;
-        color: var(--polaris-text);
-        font-family: var(--polaris-font-serif);
-        font-size: clamp(22px, 2.4vw, 28px);
-        letter-spacing: -.015em;
-        line-height: 1.35;
-        text-wrap: balance;
-      }
-
-      .intro-platforms {
-        margin-top: 28px;
-        scroll-margin-top: 96px;
-      }
-
-      .intro-platforms h3 {
-        margin: 0 0 12px;
-        color: var(--polaris-text-tertiary);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-      }
-
-      .intro-platform-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .intro-platform-list li {
-        padding: 4px 12px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 999px;
-        background: var(--polaris-bg-elevated);
-        color: var(--polaris-text-secondary);
-        font-size: 14px;
-      }
-
-      .video-transcript {
-        margin-top: 24px;
-        color: var(--polaris-text-secondary);
-        font-size: 14px;
-        text-align: left;
-      }
-
-      .video-transcript summary {
-        width: fit-content;
-        margin: 0 auto;
-        color: var(--polaris-accent-text);
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      .video-transcript ol {
-        margin: 14px auto 0;
-        padding: 16px 20px 16px 40px;
-        border: 1px solid var(--polaris-border);
-        border-radius: 14px;
-        background: var(--polaris-bg-elevated);
-        line-height: 1.6;
-      }
-
       .faq-section {
         width: min(760px, 100%);
         margin: clamp(96px, 12vw, 152px) auto clamp(80px, 10vw, 128px);
@@ -5112,14 +5038,6 @@
         </figure>
       </section>
       <div class="page-shell">
-        <section class="intro-section" aria-labelledby="intro-title">
-          <h2 class="sr-only" id="intro-title" data-i18n="intro.title">What is Polaris AI?</h2>
-          <p class="intro-definition" data-i18n="intro.definition">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.</p>
-          <div class="intro-platforms" id="platforms">
-            <h3 data-i18n="intro.platforms">Supported platforms</h3>
-            <ul class="intro-platform-list"><li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Grok</li><li>Doubao</li><li>Kimi</li><li>Qwen</li><li>Yuanbao</li><li>Diandian AI</li><li>Manus</li><li>DeepSeek</li></ul>
-          </div>
-        </section>
         <section class="how-section" id="capabilities" aria-labelledby="capabilities-title">
           <div class="how-heading">
             <h2 id="capabilities-title" data-i18n="capabilities.title">Polaris reads between the headings</h2>
@@ -5446,7 +5364,7 @@
           <h2 class="v2-heading" id="faq-title" data-i18n="faq.title">Frequently asked questions</h2>
           <div class="faq-list">
             <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.</p></details>
-            <details class="faq-item"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
+            <details class="faq-item" id="platforms"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
             <details class="faq-item"><summary data-i18n="faq.china.q">How do I install it in Mainland China?</summary><p data-i18n="faq.china.a">Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
             <details class="faq-item"><summary data-i18n="faq.chapter.q">What are Table of Contents and Outline?</summary><p data-i18n="faq.chapter.a">Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.</p></details>
@@ -5628,9 +5546,6 @@
           "demo.table.r1b": "Louvre",
           "demo.table.r2b": "Versailles",
           "hero.mockAlt": "Polaris running in Chrome: the side panel lists the answer's sections, jumps to them, searches them and opens the Outline.",
-          "intro.title": "What is Polaris AI?",
-          "intro.definition": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.",
-          "intro.platforms": "Supported platforms",
           "faq.title": "Frequently asked questions",
           "footer.how": "How it works",
           "footer.platforms": "Supported platforms",
@@ -5858,9 +5773,6 @@
           "demo.table.r1b": "卢浮宫",
           "demo.table.r2b": "凡尔赛宫",
           "hero.mockAlt": "Polaris 在 Chrome 中运行：侧边栏列出回答的各节，可跳转、搜索并打开大纲。",
-          "intro.title": "什么是 Polaris AI？",
-          "intro.definition": "Polaris 是一款免费的 Chrome 扩展，能识别 AI 对话回答中的标题，让你通过页面边缘的标记、目录和大纲跳到任意一节。",
-          "intro.platforms": "支持平台",
           "faq.title": "常见问题",
           "footer.how": "工作方式",
           "footer.platforms": "支持平台",
@@ -7367,6 +7279,18 @@
         const agent = navigator.userAgent || "";
         selectStore(/Edg\//.test(agent) ? "edge" : /Firefox\//.test(agent) ? "firefox" : "chrome");
       }
+
+      // In-page links to a FAQ entry (for example #platforms) open it.
+      const openTargetDisclosure = (hash) => {
+        const target = hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+        if (target instanceof HTMLDetailsElement) target.open = true;
+      };
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href^="#"]');
+        if (link) openTargetDisclosure(link.getAttribute("href"));
+      });
+      window.addEventListener("hashchange", () => openTargetDisclosure(window.location.hash));
+      openTargetDisclosure(window.location.hash);
 
       initFeatureDemos();
       initHowAutoplay(howDemo);
