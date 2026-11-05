@@ -4,9 +4,9 @@
   --pricing-muted: var(--polaris-text-secondary);
   --pricing-line: var(--polaris-border);
   --pricing-track: var(--polaris-bg-muted);
-  --pricing-clay: var(--polaris-highlight);
-  --pricing-clay-ink: var(--polaris-highlight-text);
-  --pricing-wash: var(--polaris-highlight-subtle);
+  --pricing-clay: var(--polaris-accent);
+  --pricing-clay-ink: var(--polaris-accent-text);
+  --pricing-wash: var(--polaris-accent-subtle);
   width: min(960px, 100%);
   margin: 100px auto 120px;
   color: var(--pricing-ink);
@@ -18,7 +18,7 @@
 }
 
 
-.pricing-section ::selection { background: var(--pricing-clay); color: var(--polaris-highlight-foreground); }
+.pricing-section ::selection { background: var(--pricing-clay); color: var(--polaris-accent-foreground); }
 .pricing-section :focus-visible { outline: 2px solid var(--pricing-clay); outline-offset: 4px; }
 .pricing-intro { max-width: 680px; margin: 0 auto 40px; text-align: center; }
 .pricing-intro h2 {
@@ -60,7 +60,7 @@
 .pricing-includes { margin: 28px 0 16px; padding-top: 24px; border-top: 1px solid var(--pricing-line); color: var(--pricing-muted); font-size: 12px; font-weight: 500; }
 .pricing-features { display: grid; align-content: start; gap: 14px; margin: 0 0 32px; padding: 0; list-style: none; font-size: 14px; }
 .pricing-features li { position: relative; padding-left: 26px; }
-.pricing-features li::before { content: ""; position: absolute; top: .48em; left: 2px; width: 10px; height: 6px; border-bottom: 1.5px solid var(--pricing-clay-ink); border-left: 1.5px solid var(--pricing-clay-ink); transform: rotate(-45deg); }
+.pricing-features li::before { content: ""; position: absolute; top: .48em; left: 2px; width: 10px; height: 6px; border-bottom: 1.5px solid var(--pricing-clay); border-left: 1.5px solid var(--pricing-clay); transform: rotate(-45deg); }
 .pricing-button {
   display: flex;
   align-items: center;
@@ -77,8 +77,8 @@
   text-decoration: none;
   transition: background-color 160ms ease-out;
 }
-.pricing-button-primary { border-color: var(--polaris-highlight); background: var(--polaris-highlight); color: var(--polaris-highlight-foreground); }
-.pricing-button-primary:hover { border-color: var(--polaris-highlight-hover); background: var(--polaris-highlight-hover); }
+.pricing-button-primary { border-color: var(--polaris-accent); background: var(--polaris-accent); color: var(--polaris-accent-foreground); }
+.pricing-button-primary:hover { border-color: var(--polaris-accent-hover); background: var(--polaris-accent-hover); }
 .pricing-button-secondary { background: var(--pricing-paper); color: var(--pricing-ink); }
 .pricing-button-secondary:hover { background: var(--pricing-track); }
 .pricing-purchase-note { max-width: 70ch; margin: 24px auto 0; color: var(--pricing-muted); font-size: 13px; text-align: center; }

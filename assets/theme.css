@@ -38,11 +38,6 @@
   --polaris-accent-foreground: #ffffff;
   --polaris-accent-subtle: #fbf4f0;
   --polaris-accent-text: #a04c2f;
-  --polaris-highlight: #e2b36a;
-  --polaris-highlight-hover: #d6a04f;
-  --polaris-highlight-foreground: #2a2724;
-  --polaris-highlight-text: #9a6418;
-  --polaris-highlight-subtle: #fbf3e4;
   --polaris-font: "Polaris Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   --polaris-font-serif: "Polaris Newsreader", Georgia, "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
   --polaris-font-wordmark: "Polaris Lora", Georgia, serif;
@@ -72,11 +67,6 @@
   --polaris-accent-foreground: #271812;
   --polaris-accent-subtle: #35251f;
   --polaris-accent-text: #e69a78;
-  --polaris-highlight: #e2b36a;
-  --polaris-highlight-hover: #ebc48a;
-  --polaris-highlight-foreground: #271812;
-  --polaris-highlight-text: #e2b36a;
-  --polaris-highlight-subtle: #33291a;
   color-scheme: dark;
 }
 
@@ -96,11 +86,6 @@
     --polaris-accent-foreground: #271812;
     --polaris-accent-subtle: #35251f;
     --polaris-accent-text: #e69a78;
-    --polaris-highlight: #e2b36a;
-    --polaris-highlight-hover: #ebc48a;
-    --polaris-highlight-foreground: #271812;
-    --polaris-highlight-text: #e2b36a;
-    --polaris-highlight-subtle: #33291a;
     color-scheme: dark;
   }
 }
