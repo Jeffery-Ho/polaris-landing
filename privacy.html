@@ -23,7 +23,7 @@
   <article lang="en" data-legal-locale="en">
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated: November 5, 2026</p>
-    <p>This policy covers the Polaris browser extension and website. The website analytics disclosures below supplement the extension’s data-handling policy.</p>
+    <p>This policy covers the Polaris browser extension and website. Conversation text used for navigation, search, copying, and export is processed on your device and is not uploaded to Polaris servers. License and payment records, described below, do not include that chat content. The website analytics disclosures supplement the extension’s data-handling policy. This policy is a disclosure of data handling. It is not a warranty that using Polaris complies with any AI provider’s terms. Responsibility for those terms is in the <a href="terms.html?lang=en#terms-responsibility">Terms of Use</a>.</p>
     <h2>1. Information We Process</h2>
 
       <h3>Website Content</h3>
@@ -35,7 +35,7 @@
         How Polaris reads a page. On a supported AI chat site, Polaris injects a content script into the tab you already opened. It inspects the page DOM—the same rendered messages you can see—to find headings, lists, and message boundaries, then builds local navigation markers (TOC), an Outline tree, and optional full-text search over what has already been loaded. This inspection happens in your browser. Polaris does not ask the AI provider for a separate OAuth or developer-API grant to read chat text for navigation.
       </p>
       <p>
-        Default mode only uses content that is already present in the page. Opt-in complete indexing (currently ChatGPT and Gemini) is different: it may issue additional same-origin requests with your existing website session to load more of the current conversation active branch. That method is disclosed here and in our <a href="terms.html">Terms of Use</a>. It is not an official ChatGPT or Gemini developer API, and a provider's terms may treat programmatic history retrieval as restricted automated extraction even when the messages are yours to view in the product UI.
+        Default mode only uses content that is already present in the page. Opt-in complete indexing (currently ChatGPT and Gemini) is different: it may issue additional same-origin requests with your existing website session to load more of the current conversation active branch. That method is disclosed here and in the <a href="terms.html?lang=en#terms-platforms">Terms of Use</a>. It is not an official ChatGPT or Gemini developer API. A provider may treat that programmatic history retrieval as restricted automated extraction even when the messages are your own prompts or output you are allowed to view in the product. Being able to read the text in the UI does not mean the provider allows this retrieval method. You decide whether to turn it on.
       </p>
       <p>
         When complete indexing is enabled for ChatGPT or Gemini, it also requests the current conversation's
@@ -58,9 +58,11 @@
         conversation copying and file export.
       </p>
       <p>
-        Website content is processed locally within the user's browser. It is not transmitted
-        to the developer or to any third-party server. Complete ChatGPT and Gemini indexing uses the existing page session to authenticate same-origin requests to the selected site.
-        Short-lived authentication data remains in the page context and is never placed in extension
+        Website content is processed locally within the user's browser. Conversation text is not transmitted
+        to the developer, to a Polaris server, or to any other server for Polaris to process. The license,
+        trial, purchase, and recovery requests described below do not include AI conversations, prompts, or
+        page content. Complete ChatGPT and Gemini indexing uses the existing page session to authenticate same-origin requests to the selected site.
+        Those requests go to that AI site, not to Polaris. Short-lived authentication data remains in the page context and is never placed in extension
         messages, diagnostic logs, persistent storage, or synchronization. Polaris does not ask for passwords.
       </p>
 
@@ -229,32 +231,44 @@
 
       <h2>6. Data Security</h2>
       <p>
-        Because website content is processed locally and is not transmitted to the developer,
-        Polaris: AI Chat Navigator does not maintain external databases containing user content. Any
+        Because website content is processed locally and is not transmitted to the developer or to a Polaris server,
+        Polaris: AI Chat Navigator does not maintain external databases containing user content. License and
+        payment systems described in this policy store order, license, and activation records only. They do
+        not receive conversation text. Any
         synchronization of extension settings is handled through Chrome's Storage Sync service
         and its associated security mechanisms. Local gzip compression is not application-layer encryption and does not replace device and browser access protection.
       </p>
 
-      <h2>7. Chrome Web Store Limited Use Compliance</h2>
+      <h2>7. Chrome Web Store Limited Use</h2>
       <p>
-        Polaris: AI Chat Navigator's use of information complies with the Chrome Web Store User Data Policy,
-        including the Limited Use requirements. Information accessed by the extension is used only
-        to provide or improve its disclosed single purpose. It is not used or transferred for
-        personalized advertising, profiling, data brokerage, creditworthiness decisions, or any
-        unrelated purpose.
+        Polaris: AI Chat Navigator is designed to process page content locally for its disclosed navigation,
+        reading, and export purpose. This section describes that handling so it can be read against the
+        Chrome Web Store User Data Policy, including the Limited Use requirements. Information accessed
+        by the extension is used only to provide or improve that disclosed single purpose. It is not used
+        or transferred for personalized advertising, profiling, data brokerage, creditworthiness decisions,
+        or any unrelated purpose. This is a Limited Use disclosure. It is not a certification, and it is
+        not a warranty that using Polaris complies with any AI provider's terms.
       </p>
       <p>
         No human is permitted to read user website content through Polaris: AI Chat Navigator because that
         content is never transmitted to or stored by the developer.
       </p>
 
-      <h2>8. User Choices</h2>
+      <h2 id="user-choices">8. User Choices</h2>
       <p>
-        Users may stop all processing by disabling or uninstalling Polaris: AI Chat Navigator. Users may reset
-        extension preferences from the extension's settings interface, clear the current tab's
-        diagnostic session by closing the tab or clearing session storage, and may manage
-        synchronized data through their Chrome synchronization settings. Diagnostic export is
-        optional and user initiated.
+        You can stop the extension from reading pages by disabling or uninstalling Polaris: AI Chat Navigator.
+        To stop opt-in complete indexing, turn off the complete-conversation reading preference. That preference
+        applies to ChatGPT and Gemini. Turning it off stops new complete reading. The in-memory index is cleared
+        when complete mode is disabled, the conversation changes, or the page is refreshed or closed. Local
+        IndexedDB snapshots remain until you select Clear conversation cache in Preferences, entries are evicted,
+        or the extension is removed. Closing a tab does not by itself delete that persistent cache.
+      </p>
+      <p>
+        You may also reset other extension preferences from the extension settings, clear the current tab's
+        diagnostic session by closing the tab or clearing session storage, and manage synchronized settings
+        through Chrome synchronization. Diagnostic export, copying, and file export happen only when you start them.
+        These choices control Polaris on your device. They are not a statement that a provider treats earlier use as allowed.
+        Your responsibility for provider rules is in the <a href="terms.html?lang=en#terms-responsibility">Terms of Use</a>.
       </p>
 
       <h2 id="third-party-services">9. Independent Tool and Third-Party AI Services</h2>
@@ -291,10 +305,12 @@
         service restrictions, even where content is visible to the user. Some published terms,
         including terms for certain Chinese services, discourage or prohibit unauthorized plugins,
         overlays, or automated collection. Local processing, content ownership, and user consent
-        do not by themselves resolve these restrictions. You decide whether to enable Polaris on a
+        do not by themselves resolve these restrictions.         You decide whether to enable Polaris on a
         given site and whether that use fits the provider's terms. This policy is a disclosure of
-        data handling. It is not a representation that a provider has approved an access method, or
-        that using Polaris complies with a provider's terms.
+        data handling. It does not create a warranty of fitness for compliance with any third-party
+        terms, and it is not a representation that a provider has approved an access method or that
+        using Polaris complies with a provider's terms. Risk allocation is in the
+        <a href="terms.html?lang=en#terms-liability">Terms of Use</a>.
       </p>
       <p>
         The AI service provider continues to control its accounts, content delivery, access restrictions,
@@ -360,15 +376,15 @@
   <article lang="zh-CN" data-legal-locale="zh-CN">
     <h1>隐私政策</h1>
     <p class="updated">更新日期：2026 年 11 月 5 日</p>
-    <p>本政策涵盖 Polaris 浏览器扩展与官网。下方官网分析说明补充扩展的数据处理政策。</p>
+    <p>本政策涵盖 Polaris 浏览器扩展与官网。用于导航、搜索、复制和导出的会话文本在用户设备上处理，不上传到 Polaris 服务器。下文所述许可和支付记录不包含这些会话内容。下方官网分析说明补充扩展的数据处理政策。本政策是数据处理披露，不是使用 Polaris 即符合任何 AI 平台条款的保证。遵守平台条款的责任见<a href="terms.html?lang=zh-CN#terms-responsibility-zh">使用条款</a>。</p>
     <h2>1. 我们处理的信息</h2>
 <h3>会话内容与完整读取</h3>
 <p>Polaris 在浏览器本地读取受支持 AI 网页的回复内容与文档结构，用于目录、导航、搜索和阅读。</p>
 <p>页面是怎么读的。在受支持的 AI 对话网站上，Polaris 向用户已经打开的标签页注入内容脚本。它查看页面 DOM，也就是用户能看见的已渲染消息，找出标题、列表和消息边界，再在本地生成导航标记（目录）、大纲树，以及对已经加载内容的可选全文搜索。这些检查发生在用户的浏览器里。Polaris 不会另向 AI 厂商申请 OAuth 或开发者 API 授权，来读取对话文本做导航。</p>
-<p>默认模式只使用页面上已经出现的内容。可选的完整索引（目前是 ChatGPT 和 Gemini）不同：它可能带着用户现有的网站登录会话，发出额外的同源请求，去加载当前对话活动分支中的更多内容。这种方式在本政策和<a href="terms.html">使用条款</a>中说明。它不是 ChatGPT 或 Gemini 的官方开发者 API。即使这些消息在产品界面里本来就可以由用户查看，平台条款仍可能把程序化拉取历史视为受限制的自动提取。</p>
+<p>默认模式只使用页面上已经出现的内容。可选的完整索引（目前是 ChatGPT 和 Gemini）不同：它可能带着用户现有的网站登录会话，发出额外的同源请求，去加载当前对话活动分支中的更多内容。这种方式在本政策和<a href="terms.html?lang=zh-CN#terms-platforms-zh">使用条款</a>中说明。它不是 ChatGPT 或 Gemini 的官方开发者 API。即使这些消息是用户自己的提示词，或是用户可以在产品里查看的输出，平台仍可能把这种程序化拉取历史视为受限制的自动提取。能在界面里读到文本，并不表示平台允许这种获取方式。是否开启，由用户自己决定。</p>
 <p>开启 ChatGPT 或 Gemini 完整读取后，会使用当前网页已有登录态，通过同源请求补全当前会话活动分支中用户可见的消息。这里的“用户可见”不表示私人会话被公开。</p>
 <p>当前索引保留在内存中，切换会话、刷新或关闭页面、关闭完整读取时清除。完整模式开启期间，ChatGPT 页面桥接还可短暂保留最近打开会话的已过滤快照，以复用原站加载结果；私人和分享会话各最多三份，最长 60 秒，检测到账号或工作区变化后失效，关闭完整模式或页面时清除。</p>
-<p>完整读取会将活动分支的用户可见消息及解析记录以 gzip 压缩快照存入扩展自己的本地 IndexedDB。缓存按确认的账号、工作区和会话隔离，不同步、不上传；身份未知或隐私窗口跳过持久化。缓存不包含隐藏推理、工具消息、其他分支或下载的附件内容。正文不发送给开发者或第三方处理服务器。短期鉴权信息留在网页环境中，不进入扩展消息、诊断日志、持久化存储或同步；Polaris 不索要密码。</p>
+<p>完整读取会将活动分支的用户可见消息及解析记录以 gzip 压缩快照存入扩展自己的本地 IndexedDB。缓存按确认的账号、工作区和会话隔离，不同步、不上传；身份未知或隐私窗口跳过持久化。缓存不包含隐藏推理、工具消息、其他分支或下载的附件内容。会话正文不发送给开发者，也不发送到 Polaris 服务器或任何由 Polaris 处理正文的服务器。下文的许可、试用、购买和找回请求不包含 AI 会话、提示词或页面正文。完整读取的同源请求发往该 AI 网站，而不是 Polaris。短期鉴权信息留在网页环境中，不进入扩展消息、诊断日志、持久化存储或同步；Polaris 不索要密码。</p>
 <h3>第三方页面注入</h3>
 <p>网站权限只允许 Polaris 在已披露的 AI 对话网站上运行。扩展会把自己的界面（标记、大纲、设置入口）插入这些页面。部分平台条款不鼓励或禁止未经授权的插件和页面覆盖层。Polaris 披露这种注入，便于用户决定是否在各个网站上启用扩展。用于导航的对话文本仍按上文在本地处理。</p>
 <h3>扩展设置</h3>
@@ -394,16 +410,17 @@
 <h2>5. 浏览器权限</h2>
 <p>存储权限用于设置和本地会话缓存；网站权限用于在受支持网页提供已披露的功能，以及联系许可服务进行试用和授权操作。扩展仅请求提供已披露功能所需的权限。</p>
 <h2>6. 数据安全</h2>
-<p>会话正文在本地处理，开发者不维护保存会话正文的外部数据库。设置同步由 Chrome Storage Sync 及其安全机制处理。本地压缩不等于应用层加密，也不替代用户对设备和浏览器的访问保护。</p>
-<h2>7. Chrome 商店有限使用要求</h2>
-<p>Polaris 对信息的使用遵循 Chrome Web Store User Data Policy，包括 Limited Use 要求，仅用于提供或改善已披露的单一用途，不用于个性化广告、画像、数据经纪、信用判断或其他无关用途。开发者不接收或存储会话正文，也不通过该服务安排人工阅读用户网页内容。</p>
-<h2>8. 用户选择</h2>
-<p>用户可关闭完整模式、清除会话缓存、重置设置、管理浏览器同步、关闭标签页清除诊断会话，或停用、卸载扩展。诊断分享、复制和导出均由用户主动触发；官网分析可拒绝并随时调整。</p>
+<p>会话正文在本地处理，不发送给开发者或 Polaris 服务器，开发者不维护保存会话正文的外部数据库。本政策所述许可和支付系统只保存订单、许可和激活记录，不接收会话正文。设置同步由 Chrome Storage Sync 及其安全机制处理。本地压缩不等于应用层加密，也不替代用户对设备和浏览器的访问保护。</p>
+<h2>7. Chrome 商店有限使用说明</h2>
+<p>Polaris 按本地处理设计，把页面内容用于已披露的导航、阅读和导出。本节说明这一处理方式，以便对照 Chrome Web Store User Data Policy，包括 Limited Use 要求。扩展访问的信息只用于提供或改善该已披露的单一用途，不用于个性化广告、画像、数据经纪、信用判断或其他无关用途。这是有限使用披露，不是认证，也不保证使用 Polaris 即符合任何 AI 平台条款。开发者不接收或存储会话正文，也不通过该服务安排人工阅读用户网页内容。</p>
+<h2 id="user-choices-zh">8. 用户选择</h2>
+<p>停用或卸载 Polaris 即可停止扩展读取页面。要停止可选的完整索引，请关闭完整读取偏好。该偏好适用于 ChatGPT 和 Gemini。关闭后不再开始新的完整读取。内存中的索引会在关闭完整模式、切换会话或刷新、关闭页面时清除。本地 IndexedDB 快照会保留，直到用户在偏好设置中选择清除会话缓存、条目被淘汰，或卸载扩展。仅关闭标签页不会删除这份持久缓存。</p>
+<p>用户还可以在扩展设置中重置其他偏好，通过关闭标签页或清除 sessionStorage 清除当前标签页的诊断会话，并在 Chrome 同步设置中管理已同步的设置。诊断分享、复制和文件导出只在用户主动操作时发生。这些选择只控制用户设备上的 Polaris，不表示平台把此前的使用视为已被允许。遵守平台规则的责任见<a href="terms.html?lang=zh-CN#terms-responsibility-zh">使用条款</a>。官网分析可拒绝并随时调整。</p>
 <h2 id="third-party-services-zh">9. 独立工具与第三方 AI 服务</h2>
 <p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Anthropic、Google，或 Grok、豆包、Kimi、千问、DeepSeek、Manus、元宝、点点的运营方，也不是其官方插件，未获得背书或赞助。第三方名称和商标属于各自权利人，仅用于说明 Polaris 配合使用的服务。本政策不表示上述任何公司已审核、批准或与 Polaris 合作。</p>
 <p>Polaris 处理用户在受支持网站上能够访问的会话内容，并把自身界面注入用户已经打开的页面。ChatGPT 与 Gemini 的完整读取会使用该网站已有登录会话，请求当前会话的更多历史。页面注入和这些网站会话请求都不是官方开发者 API、合作集成或已获批准的插件。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。</p>
 <p>当前导航、阅读、搜索、复制和导出功能不将会话发送至 OpenAI 公共 Responses API 进行模型推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">套餐用量文档</a>说明的是针对合资格推理请求的独立 OAuth 授权，不授予读取 ChatGPT 会话的权限。网页已有登录态不等于该 OAuth 授权，官方 API 文档也不构成对 Polaris 网页历史读取方式的许可。</p>
-<p>即使内容对用户可见，平台条款仍可能限制自动或程序化提取数据与输出，限制未经授权的插件和页面覆盖层，以及绕过访问控制、限流或其他服务限制。部分已公开条款，包括某些中文服务的条款，不鼓励或禁止未经授权的插件、覆盖层或自动采集。本地处理、内容所有权和用户同意本身不能消除这些限制。是否在某个网站启用 Polaris，以及使用方式是否符合该平台条款，由用户自行判断。本政策披露数据处理方式，不表示平台已批准某种访问方式，也不表示使用 Polaris 即符合该平台条款。</p>
+<p>即使内容对用户可见，包括用户自己的提示词和平台为其生成的输出，平台条款仍可能限制自动或程序化提取数据与输出，限制未经授权的插件和页面覆盖层，以及绕过访问控制、限流或其他服务限制。部分已公开条款，包括某些中文服务的条款，不鼓励或禁止未经授权的插件、外挂、覆盖层或自动采集。本地处理、内容所有权和用户同意本身不能消除这些限制。是否在某个网站启用 Polaris，以及使用方式是否符合该平台条款，由用户自行判断。本政策只披露数据处理方式。它不构成符合任何第三方条款的适用性保证，不表示平台已批准某种访问方式，也不表示使用 Polaris 即符合该平台条款。风险分配见<a href="terms.html?lang=zh-CN#terms-liability-zh">使用条款</a>。</p>
 <p>AI 服务商继续控制其账号、内容交付、访问限制，以及发送到该服务的数据如何处理。其条款和隐私政策独立于本政策适用，并可能因地区、账号或功能而不同。Polaris 可能运行于其上的服务，已公开的条款和隐私信息包括：</p>
 <ul>
 <li>ChatGPT（OpenAI）：<a href="https://openai.com/policies/terms-of-use/">使用条款</a>、<a href="https://openai.com/policies/privacy-policy/">隐私政策</a></li>
