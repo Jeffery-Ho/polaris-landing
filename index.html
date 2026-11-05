@@ -5324,6 +5324,28 @@
           transition: none;
         }
       }
+      /* Header install action: a solid Clay pill right of the theme toggle. */
+      .site-header .header-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        margin-left: 8px;
+        padding: 0 18px;
+        border-radius: 999px;
+        background: var(--polaris-accent);
+        color: var(--polaris-accent-foreground);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background-color 150ms ease;
+      }
+      .site-header .header-cta:hover,
+      .site-header .header-cta:focus-visible { background: var(--polaris-accent-hover); color: var(--polaris-accent-foreground); }
+      @media (min-width: 560px) { .nav-pill .header-link--drawer { display: none !important; } }
+      @media (max-width: 559px) { .site-header .header-cta { display: none; } }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=cf7bea86">
   </head>
@@ -5379,6 +5401,7 @@
             </button>
           </div>
         </div>
+        <a class="header-cta" href="#install"><span data-i18n="nav.install">Free trial</span></a>
         <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
@@ -5879,7 +5902,7 @@
       const floatingCtaBlockers = [...document.querySelectorAll("#install, [data-closing-cta], .site-footer")];
       const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
-      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], #pricing a[href^="#"], .closing-note a[href^="#"]');
+      const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .header-cta[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], #pricing a[href^="#"], .closing-note a[href^="#"]');
       const localZipLink = document.querySelector('[data-analytics-event="zip_download"]');
       const translatableElements = document.querySelectorAll("[data-i18n]");
       const structuredData = document.querySelector('script[type="application/ld+json"]');

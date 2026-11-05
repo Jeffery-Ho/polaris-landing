@@ -46,6 +46,7 @@ export function siteHeader(p = "") {
         </button>
       </div>
     </div>
+    <a class="header-cta" href="${home(p)}#install">${t("Free trial", "免费试用")}</a>
     <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" data-zh-label="打开菜单">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>

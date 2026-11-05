@@ -114,3 +114,4 @@
 - Prices stay in US dollars because checkout charges USD. Chinese pages write US$ and add an approximate RMB figure at 1 USD ≈ 7.2 CNY with a note that the actual charge applies; update both if prices or the rate change. Structured data keeps USD.
 - The store install card lists four numbered steps that follow the selected store (open the listing, add and confirm with that store's own button names, pin from the puzzle menu, refresh the AI page), then the version note, then a softly tinted ask to rate or review Polaris in that store.
 - Clay fills are for primary actions (hero Free trial, the floating pill, Get Pro). Lower-priority install links, such as the closing CTA, use the Marker highlight instead so Clay is not repeated down the page.
+- Every header carries a solid Clay Free trial pill (40px tall, matching the language and theme controls) to the right of the theme toggle, linking to the installation section. Below 560px it moves into the menu drawer.
