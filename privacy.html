@@ -22,14 +22,23 @@
   </nav>
   <article lang="en" data-legal-locale="en">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: November 4, 2026</p>
+    <p class="updated">Last updated: November 5, 2026</p>
     <p>This policy covers the Polaris browser extension and website. The website analytics disclosures below supplement the extension’s data-handling policy.</p>
     <h2>1. Information We Process</h2>
 
       <h3>Website Content</h3>
       <p>
         Polaris: AI Chat Navigator accesses the text and document structure of AI-generated responses
-        displayed on supported websites. When complete indexing is enabled for ChatGPT or Gemini, it also requests the current conversation's
+        displayed on supported websites.
+      </p>
+      <p>
+        How Polaris reads a page. On a supported AI chat site, Polaris injects a content script into the tab you already opened. It inspects the page DOM—the same rendered messages you can see—to find headings, lists, and message boundaries, then builds local navigation markers (TOC), an Outline tree, and optional full-text search over what has already been loaded. This inspection happens in your browser. Polaris does not ask the AI provider for a separate OAuth or developer-API grant to read chat text for navigation.
+      </p>
+      <p>
+        Default mode only uses content that is already present in the page. Opt-in complete indexing (currently ChatGPT and Gemini) is different: it may issue additional same-origin requests with your existing website session to load more of the current conversation active branch. That method is disclosed here and in our <a href="terms.html">Terms of Use</a>. It is not an official ChatGPT or Gemini developer API, and a provider's terms may treat programmatic history retrieval as restricted automated extraction even when the messages are yours to view in the product UI.
+      </p>
+      <p>
+        When complete indexing is enabled for ChatGPT or Gemini, it also requests the current conversation's
         active branch of user-visible messages through the selected site's same-origin session to build a complete
         outline and full-text search index. This index stays in memory across DOM removal and
         is cleared on conversation changes, page refresh or closure, or disabling complete indexing.
@@ -53,6 +62,11 @@
         to the developer or to any third-party server. Complete ChatGPT and Gemini indexing uses the existing page session to authenticate same-origin requests to the selected site.
         Short-lived authentication data remains in the page context and is never placed in extension
         messages, diagnostic logs, persistent storage, or synchronization. Polaris does not ask for passwords.
+      </p>
+
+      <h3>Third-party page injection</h3>
+      <p>
+        Host permissions let Polaris run only on disclosed AI chat origins. The extension inserts its own UI (markers, Outline, settings entry points) into those pages. Some providers' terms discourage or prohibit unauthorized plugins and page overlays. Polaris discloses this injection so you can decide whether to enable the extension on each site. Conversation text used for navigation is still processed locally as described above.
       </p>
 
       <h3>Extension Settings</h3>
@@ -243,18 +257,21 @@
         optional and user initiated.
       </p>
 
-      <h2>9. Independent Tool and Third-Party AI Services</h2>
+      <h2 id="third-party-services">9. Independent Tool and Third-Party AI Services</h2>
       <p>
         Polaris: AI Chat Navigator is an independently developed browser extension. It is not
-        affiliated with, endorsed by, or sponsored by OpenAI, Google, Anthropic, or the operators
-        of other supported AI services. Third-party product names and trademarks belong to their
-        respective owners and are used to identify the services with which Polaris works.
+        affiliated with, endorsed by, sponsored by, or an official plugin of OpenAI, Anthropic,
+        Google, or the operators of Grok, Doubao, Kimi, Qwen, DeepSeek, Manus, Yuanbao, and Diandian.
+        Third-party product names and trademarks belong to their respective owners and are used to
+        identify the services with which Polaris works. This policy does not mean that any of those
+        companies has reviewed, approved, or partnered with Polaris.
       </p>
       <p>
         Polaris processes content from conversations the user can access through the supported
-        website. Complete ChatGPT and Gemini indexing can request additional history for the
-        current conversation using that website's existing signed-in session. These website-session
-        requests are not presented as an integration through an official developer API. Installing
+        website, and it inserts its own interface into the page the user already opened. Complete
+        ChatGPT and Gemini indexing can request additional history for the current conversation
+        using that website's existing signed-in session. Page injection and these website-session
+        requests are not an official developer API, partner integration, or approved plugin. Installing
         Polaris, granting browser permissions, or enabling complete reading does not itself establish
         permission from the AI service provider for any particular access method.
       </p>
@@ -270,20 +287,36 @@
       </p>
       <p>
         Provider terms may restrict automated or programmatic extraction of data or output,
-        and bypassing access controls, rate limits, or other service restrictions, even where
-        content is visible to the user. Local processing, content ownership, and user consent
-        do not by themselves resolve these restrictions. This policy is a disclosure of data
-        handling, not a representation that a provider has approved or authorized an access method.
+        unauthorized plugins, page overlays, and bypassing access controls, rate limits, or other
+        service restrictions, even where content is visible to the user. Some published terms,
+        including terms for certain Chinese services, discourage or prohibit unauthorized plugins,
+        overlays, or automated collection. Local processing, content ownership, and user consent
+        do not by themselves resolve these restrictions. You decide whether to enable Polaris on a
+        given site and whether that use fits the provider's terms. This policy is a disclosure of
+        data handling. It is not a representation that a provider has approved an access method, or
+        that using Polaris complies with a provider's terms.
       </p>
       <p>
         The AI service provider continues to control its accounts, content delivery, access restrictions,
         and handling of data sent to that service. Its terms and privacy policy apply separately from
-        this policy and may vary by region, account type, or feature. For example, see
-        <a href="https://openai.com/policies/terms-of-use/">OpenAI's Terms of Use</a> and
-        <a href="https://openai.com/policies/privacy-policy/">Privacy Policy</a>, and
-        <a href="https://policies.google.com/terms">Google's Terms of Service</a> and
-        <a href="https://policies.google.com/privacy">Privacy Policy</a>.
-        For other supported platforms, consult the policies published by that provider.
+        this policy and may vary by region, account type, or feature. Published terms and privacy
+        information for services Polaris can run on include:
+      </p>
+      <ul>
+        <li>ChatGPT (OpenAI): <a href="https://openai.com/policies/terms-of-use/">Terms of Use</a> and <a href="https://openai.com/policies/privacy-policy/">Privacy Policy</a></li>
+        <li>Claude (Anthropic): <a href="https://www.anthropic.com/legal/consumer-terms">Consumer Terms</a> and <a href="https://www.anthropic.com/legal/privacy">Privacy Policy</a></li>
+        <li>Gemini (Google): <a href="https://policies.google.com/terms">Terms of Service</a> and <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
+        <li>Grok (x.ai): <a href="https://x.ai/legal/terms-of-service">Terms of Service</a> and <a href="https://x.ai/legal/privacy-policy">Privacy Policy</a></li>
+        <li>Doubao: <a href="https://www.doubao.com/legal/terms">User Agreement</a> and <a href="https://www.doubao.com/legal/privacy">Privacy Policy</a></li>
+        <li>Kimi: <a href="https://www.kimi.com/user/agreement/modelUse?version=v2">Terms of Service</a> and <a href="https://www.kimi.com/user/agreement/userPrivacy?version=v2">Privacy Policy</a></li>
+        <li>Qwen (千问): <a href="https://terms.alicdn.com/legal-agreement/terms/c_end_product_protocol/20231011201348415/20231011201348415.html">User Agreement</a> and <a href="https://terms.alicdn.com/legal-agreement/terms/privacy_policy_full/20231011201849846/20231011201849846.html">Privacy Policy</a></li>
+        <li>DeepSeek: <a href="https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html">Terms of Use</a> and <a href="https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html">Privacy Policy</a></li>
+        <li>Manus: <a href="https://manus.im/terms">Terms of Use</a> and <a href="https://manus.im/privacy">Privacy Policy</a></li>
+        <li>Yuanbao (Tencent): <a href="https://privacy.qq.com/document/preview/eb9be56572ab4886b6ca124e72abf413">Privacy Policy</a>. The user service agreement is published in the Yuanbao product at <a href="https://yuanbao.tencent.com/">yuanbao.tencent.com</a>.</li>
+        <li>Diandian: <a href="https://diandian.xiaohongshu.com/protocol?protocolName=terms">User Agreement</a> and <a href="https://diandian.xiaohongshu.com/protocol?protocolName=privacy">Privacy Policy</a></li>
+      </ul>
+      <p>
+        If a provider asks us to stop offering Polaris on its site, we may disable that platform.
         This policy describes Polaris's data handling; it does not amend a provider's terms,
         grant rights to its services, or authorize bypassing its access controls or restrictions.
       </p>
@@ -326,13 +359,18 @@
   </article>
   <article lang="zh-CN" data-legal-locale="zh-CN">
     <h1>隐私政策</h1>
-    <p class="updated">更新日期：2026 年 11 月 4 日</p>
+    <p class="updated">更新日期：2026 年 11 月 5 日</p>
     <p>本政策涵盖 Polaris 浏览器扩展与官网。下方官网分析说明补充扩展的数据处理政策。</p>
     <h2>1. 我们处理的信息</h2>
 <h3>会话内容与完整读取</h3>
-<p>Polaris 在浏览器本地读取受支持 AI 网页的回复内容与文档结构，用于目录、导航、搜索和阅读。开启 ChatGPT 或 Gemini 完整读取后，会使用当前网页已有登录态，通过同源请求补全当前会话活动分支中用户可见的消息。这里的“用户可见”不表示私人会话被公开。</p>
+<p>Polaris 在浏览器本地读取受支持 AI 网页的回复内容与文档结构，用于目录、导航、搜索和阅读。</p>
+<p>页面是怎么读的。在受支持的 AI 对话网站上，Polaris 向用户已经打开的标签页注入内容脚本。它查看页面 DOM，也就是用户能看见的已渲染消息，找出标题、列表和消息边界，再在本地生成导航标记（目录）、大纲树，以及对已经加载内容的可选全文搜索。这些检查发生在用户的浏览器里。Polaris 不会另向 AI 厂商申请 OAuth 或开发者 API 授权，来读取对话文本做导航。</p>
+<p>默认模式只使用页面上已经出现的内容。可选的完整索引（目前是 ChatGPT 和 Gemini）不同：它可能带着用户现有的网站登录会话，发出额外的同源请求，去加载当前对话活动分支中的更多内容。这种方式在本政策和<a href="terms.html">使用条款</a>中说明。它不是 ChatGPT 或 Gemini 的官方开发者 API。即使这些消息在产品界面里本来就可以由用户查看，平台条款仍可能把程序化拉取历史视为受限制的自动提取。</p>
+<p>开启 ChatGPT 或 Gemini 完整读取后，会使用当前网页已有登录态，通过同源请求补全当前会话活动分支中用户可见的消息。这里的“用户可见”不表示私人会话被公开。</p>
 <p>当前索引保留在内存中，切换会话、刷新或关闭页面、关闭完整读取时清除。完整模式开启期间，ChatGPT 页面桥接还可短暂保留最近打开会话的已过滤快照，以复用原站加载结果；私人和分享会话各最多三份，最长 60 秒，检测到账号或工作区变化后失效，关闭完整模式或页面时清除。</p>
 <p>完整读取会将活动分支的用户可见消息及解析记录以 gzip 压缩快照存入扩展自己的本地 IndexedDB。缓存按确认的账号、工作区和会话隔离，不同步、不上传；身份未知或隐私窗口跳过持久化。缓存不包含隐藏推理、工具消息、其他分支或下载的附件内容。正文不发送给开发者或第三方处理服务器。短期鉴权信息留在网页环境中，不进入扩展消息、诊断日志、持久化存储或同步；Polaris 不索要密码。</p>
+<h3>第三方页面注入</h3>
+<p>网站权限只允许 Polaris 在已披露的 AI 对话网站上运行。扩展会把自己的界面（标记、大纲、设置入口）插入这些页面。部分平台条款不鼓励或禁止未经授权的插件和页面覆盖层。Polaris 披露这种注入，便于用户决定是否在各个网站上启用扩展。用于导航的对话文本仍按上文在本地处理。</p>
 <h3>扩展设置</h3>
 <p>间距、显示数量、提示宽度、识别范围等偏好存于 Chrome Storage Sync。完整读取偏好适用于 ChatGPT、Gemini 及后续会话；开启浏览器同步后，也可在其他已登录且具备相应功能的浏览器生效。会话快照本身不会同步。同步由 Google 按其适用政策处理，开发者不能访问同步设置。</p>
 <h3>试用、购买与许可证</h3>
@@ -361,11 +399,26 @@
 <p>Polaris 对信息的使用遵循 Chrome Web Store User Data Policy，包括 Limited Use 要求，仅用于提供或改善已披露的单一用途，不用于个性化广告、画像、数据经纪、信用判断或其他无关用途。开发者不接收或存储会话正文，也不通过该服务安排人工阅读用户网页内容。</p>
 <h2>8. 用户选择</h2>
 <p>用户可关闭完整模式、清除会话缓存、重置设置、管理浏览器同步、关闭标签页清除诊断会话，或停用、卸载扩展。诊断分享、复制和导出均由用户主动触发；官网分析可拒绝并随时调整。</p>
-<h2>9. 独立工具与第三方 AI 服务</h2>
-<p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Google、Anthropic 或其他受支持 AI 服务商，也未获得其背书或赞助。第三方名称和商标属于各自权利人，仅用于说明兼容服务。</p>
+<h2 id="third-party-services-zh">9. 独立工具与第三方 AI 服务</h2>
+<p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Anthropic、Google，或 Grok、豆包、Kimi、千问、DeepSeek、Manus、元宝、点点的运营方，也不是其官方插件，未获得背书或赞助。第三方名称和商标属于各自权利人，仅用于说明 Polaris 配合使用的服务。本政策不表示上述任何公司已审核、批准或与 Polaris 合作。</p>
+<p>Polaris 处理用户在受支持网站上能够访问的会话内容，并把自身界面注入用户已经打开的页面。ChatGPT 与 Gemini 的完整读取会使用该网站已有登录会话，请求当前会话的更多历史。页面注入和这些网站会话请求都不是官方开发者 API、合作集成或已获批准的插件。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。</p>
 <p>当前导航、阅读、搜索、复制和导出功能不将会话发送至 OpenAI 公共 Responses API 进行模型推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">套餐用量文档</a>说明的是针对合资格推理请求的独立 OAuth 授权，不授予读取 ChatGPT 会话的权限。网页已有登录态不等于该 OAuth 授权，官方 API 文档也不构成对 Polaris 网页历史读取方式的许可。</p>
-<p>即使内容对用户可见，平台条款仍可能限制自动或程序化提取数据、输出，以及绕过访问控制、限流或其他服务限制。本地处理、内容所有权及用户同意本身不能消除这些限制。本政策披露数据处理方式，不表示平台已批准或授权某种访问方式。</p>
-<p>完整读取使用网页已有会话及同源请求，不以官方开发者 API 集成的名义提供。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。平台自己的条款和隐私政策独立适用，具体版本取决于地区、账号及功能。例如 <a href="https://openai.com/policies/terms-of-use/">OpenAI 使用条款</a>、<a href="https://openai.com/policies/privacy-policy/">隐私政策</a>与 <a href="https://policies.google.com/terms">Google 服务条款</a>、<a href="https://policies.google.com/privacy">隐私政策</a>。本政策不修改厂商条款、不授予其服务权利，也不授权绕过访问控制或限制。</p>
+<p>即使内容对用户可见，平台条款仍可能限制自动或程序化提取数据与输出，限制未经授权的插件和页面覆盖层，以及绕过访问控制、限流或其他服务限制。部分已公开条款，包括某些中文服务的条款，不鼓励或禁止未经授权的插件、覆盖层或自动采集。本地处理、内容所有权和用户同意本身不能消除这些限制。是否在某个网站启用 Polaris，以及使用方式是否符合该平台条款，由用户自行判断。本政策披露数据处理方式，不表示平台已批准某种访问方式，也不表示使用 Polaris 即符合该平台条款。</p>
+<p>AI 服务商继续控制其账号、内容交付、访问限制，以及发送到该服务的数据如何处理。其条款和隐私政策独立于本政策适用，并可能因地区、账号或功能而不同。Polaris 可能运行于其上的服务，已公开的条款和隐私信息包括：</p>
+<ul>
+<li>ChatGPT（OpenAI）：<a href="https://openai.com/policies/terms-of-use/">使用条款</a>、<a href="https://openai.com/policies/privacy-policy/">隐私政策</a></li>
+<li>Claude（Anthropic）：<a href="https://www.anthropic.com/legal/consumer-terms">消费者服务条款</a>、<a href="https://www.anthropic.com/legal/privacy">隐私政策</a></li>
+<li>Gemini（Google）：<a href="https://policies.google.com/terms">服务条款</a>、<a href="https://policies.google.com/privacy">隐私政策</a></li>
+<li>Grok（x.ai）：<a href="https://x.ai/legal/terms-of-service">服务条款</a>、<a href="https://x.ai/legal/privacy-policy">隐私政策</a></li>
+<li>豆包：<a href="https://www.doubao.com/legal/terms">用户协议</a>、<a href="https://www.doubao.com/legal/privacy">隐私政策</a></li>
+<li>Kimi：<a href="https://www.kimi.com/user/agreement/modelUse?version=v2">服务条款</a>、<a href="https://www.kimi.com/user/agreement/userPrivacy?version=v2">隐私政策</a></li>
+<li>千问（Qwen）：<a href="https://terms.alicdn.com/legal-agreement/terms/c_end_product_protocol/20231011201348415/20231011201348415.html">用户服务协议</a>、<a href="https://terms.alicdn.com/legal-agreement/terms/privacy_policy_full/20231011201849846/20231011201849846.html">隐私政策</a></li>
+<li>DeepSeek：<a href="https://cdn.deepseek.com/policies/zh-CN/deepseek-terms-of-use.html">用户协议</a>、<a href="https://cdn.deepseek.com/policies/zh-CN/deepseek-privacy-policy.html">隐私政策</a></li>
+<li>Manus：<a href="https://manus.im/terms">使用条款</a>、<a href="https://manus.im/privacy">隐私政策</a></li>
+<li>元宝（腾讯）：<a href="https://privacy.qq.com/document/preview/eb9be56572ab4886b6ca124e72abf413">隐私政策</a>。用户服务协议在元宝产品内公布（<a href="https://yuanbao.tencent.com/">yuanbao.tencent.com</a>）。</li>
+<li>点点：<a href="https://diandian.xiaohongshu.com/protocol?protocolName=terms">用户协议</a>、<a href="https://diandian.xiaohongshu.com/protocol?protocolName=privacy">隐私政策</a></li>
+</ul>
+<p>若平台要求我们停止在其网站上提供 Polaris，我们可能会关闭对该平台的支持。本政策说明 Polaris 的数据处理，不修改厂商条款，不授予其服务权利，也不授权绕过访问控制或限制。</p>
 <p>本地读取、复制和导出不会将内容所有权转给开发者，也不会授予用户额外内容权利。用户应仅处理有权访问、导出及分享的内容，并遵守适用法律、第三方权利、保密义务和相关平台条款。</p>
 <p>界面、端点、政策、账号权限或服务可用性的变化可能暂时或永久影响功能。Polaris 不控制第三方服务，无法保证持续兼容或持续访问。本政策不排除或限制法律不可排除的用户权利和救济。</p>
 <h2>10. 政策变更</h2>
