@@ -5216,15 +5216,16 @@
       .closing-store:hover,
       .closing-store:focus-visible { border-color: var(--polaris-text-tertiary); background: var(--polaris-bg-muted); }
 
+      /* The closing install links are secondary to the hero action: the lead one takes the
+         Marker highlight from the side panel (muted fill, strong border), not a Clay fill. */
       .closing-store--primary {
-        border-color: transparent;
-        background: var(--polaris-accent);
-        box-shadow: 0 10px 24px color-mix(in srgb, var(--polaris-accent) 28%, transparent);
-        color: var(--polaris-accent-foreground);
+        border-color: var(--polaris-border-strong);
+        background: var(--polaris-bg-muted);
+        color: var(--polaris-text);
       }
 
       .closing-store--primary:hover,
-      .closing-store--primary:focus-visible { border-color: transparent; background: var(--polaris-accent-hover); }
+      .closing-store--primary:focus-visible { border-color: var(--polaris-text-tertiary); background: color-mix(in srgb, var(--polaris-text) 10%, var(--polaris-bg-muted)); }
 
       .closing-store img { display: block; width: 22px; height: 22px; }
 
@@ -5767,7 +5768,7 @@
             <li><a class="closing-store" href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer"><img src="icons/browsers/edge.svg" alt="Microsoft Edge logo" width="22" height="22"><span data-i18n="closing.edge">Get it for Edge</span></a></li>
             <li><a class="closing-store" href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer"><img src="icons/browsers/firefox.svg" alt="Firefox logo" width="22" height="22"><span data-i18n="closing.firefox">Get it for Firefox</span></a></li>
           </ul>
-          <p class="closing-note"><a href="#install" data-i18n="closing.other">Other ways to install</a></p>
+          <p class="closing-note"><a href="#install" data-i18n="closing.other">Local installation</a></p>
         </div>
       </section>
     </main>
@@ -6031,7 +6032,7 @@
           "privacy.control.title": "You stay in control",
           "privacy.control.copy": "Polaris never asks for a password. This website only measures visits after you allow it, and you can change that anytime.",
           "closing.title": "Ready to stop scrolling?",
-          "closing.other": "Other ways to install",
+          "closing.other": "Local installation",
           "nav.issues": "GitHub Issues",
           "locale.toggle": "中文",
           "locale.toggleAria": "Switch to Simplified Chinese",
@@ -6302,7 +6303,7 @@
           "privacy.control.title": "由你掌控",
           "privacy.control.copy": "Polaris 从不索要密码。本网站只有在你同意后才统计访问数据，你也可以随时更改。",
           "closing.title": "不想再来回翻了？",
-          "closing.other": "其他安装方式",
+          "closing.other": "本地安装",
           "nav.issues": "GitHub 问题反馈",
           "locale.toggle": "English",
           "locale.toggleAria": "切换到英语",
