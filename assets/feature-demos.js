@@ -238,6 +238,92 @@ const demos = {
     }
   },
 
+  hero: {
+    reset(root) {
+      resetShell(root);
+      root.classList.remove("is-typing");
+      demos.search.filter(root, "");
+      root.querySelectorAll("[data-block]").forEach((block) => {
+        block.classList.remove("is-on", "is-typing");
+        block.querySelector("[data-typed]").textContent = "";
+      });
+      items(root).forEach((item) => item.classList.remove("is-in", "is-streaming"));
+      root.querySelectorAll("[data-chapter]").forEach((chapter) => chapter.classList.toggle("is-open", chapter.dataset.chapter === "decision"));
+    },
+    still(root) {
+      this.reset(root);
+      root.querySelectorAll("[data-block]").forEach((block) => {
+        block.classList.add("is-on");
+        block.querySelector("[data-typed]").textContent = text(block.querySelector(".ds-src"));
+      });
+      items(root).forEach((item) => item.classList.add("is-in"));
+      setActive(root, itemFor(root, "slips"));
+      scrollChat(root, "slips");
+    },
+    async play(root, signal) {
+      const cursor = cursorApi(root, signal);
+      // 1. The answer streams in and the Table of Contents fills as headings appear.
+      await wait(600, signal);
+      const list = items(root);
+      for (const [index, block] of [...root.querySelectorAll("[data-block]")].entries()) {
+        block.classList.add("is-on", "is-typing");
+        list.forEach((item) => item.classList.remove("is-streaming"));
+        list[index].classList.add("is-in", "is-streaming");
+        const source = text(block.querySelector(".ds-src"));
+        const typed = block.querySelector("[data-typed]");
+        const step = /[㐀-鿿]/.test(source) ? 1 : 4;
+        for (let length = step; length < source.length + step; length += step) {
+          typed.textContent = source.slice(0, length);
+          demos.stream.follow(root);
+          await wait(28, signal);
+        }
+        block.classList.remove("is-typing");
+        demos.stream.follow(root);
+        await wait(320, signal);
+      }
+      list.forEach((item) => item.classList.remove("is-streaming"));
+      await wait(900, signal);
+      // 2. Jump around the answer from the Table of Contents.
+      for (const id of ["slips", "owners", "decision"]) {
+        await pick(root, cursor, itemFor(root, id), signal);
+        await wait(1300, signal);
+      }
+      // 3. Search the Table of Contents.
+      const query = text(root.querySelector("[data-query-src]"));
+      await cursor.moveTo(root.querySelector(".sp-search"), 0.3, 0.55);
+      await cursor.click();
+      root.classList.add("is-typing");
+      for (let length = 1; length <= query.length; length += 1) {
+        await wait(150, signal);
+        demos.search.filter(root, query.slice(0, length));
+      }
+      await wait(600, signal);
+      root.classList.remove("is-typing");
+      const match = items(root, ":not(.is-gone)")[0];
+      if (match) await pick(root, cursor, match, signal);
+      await wait(1300, signal);
+      for (let length = query.length - 1; length >= 0; length -= 1) {
+        await wait(50, signal);
+        demos.search.filter(root, query.slice(0, length));
+      }
+      // 4. Read it section by section in the Outline, then return.
+      await cursor.moveTo(root.querySelector('[data-tab-btn="chapters"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "chapters");
+      await wait(900, signal);
+      for (const id of ["slips", "checkin"]) {
+        await cursor.moveTo(root.querySelector(`[data-chapter="${id}"] .sp-ch-title`), 0.4, 0.6);
+        await cursor.click();
+        demos.chapter.open(root, id);
+        await wait(1500, signal);
+      }
+      await cursor.moveTo(root.querySelector('[data-tab-btn="navigation"]'), 0.5, 0.6);
+      await cursor.click();
+      setTab(root, "navigation");
+      await wait(2200, signal);
+    }
+  },
+
   settings: {
     set(root, on) {
       root.querySelector("[data-toggle]").classList.toggle("is-on", on);
@@ -301,7 +387,18 @@ export function initFeatureDemos() {
   // Scale each real-size window to its card.
   const fit = (root) => {
     const stage = root.querySelector(".pv-stage");
-    if (stage) root.style.setProperty("--k", String(stage.clientWidth / 600));
+    if (!stage) return;
+    let design = Number(root.dataset.designWidth || 600);
+    // On narrow screens the hero shows only the right part of its window: the side panel stays legible.
+    if (root.dataset.demo === "hero" && stage.clientWidth < 640) {
+      root.style.setProperty("--hero-shift", `${design - 700}px`);
+      root.classList.add("is-compact");
+      design = 700;
+    } else {
+      root.style.removeProperty("--hero-shift");
+      root.classList.remove("is-compact");
+    }
+    root.style.setProperty("--k", String(stage.clientWidth / design));
     const win = windowOf(root);
     if (win) setTab(root, win.dataset.tab || "navigation");
   };

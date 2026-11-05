@@ -5,10 +5,9 @@
 - Use a full-bleed hero with the page background running behind the floating nav. Let its height follow its content instead of stretching it to the viewport.
 - Start with a two-line headline at display scale, without a supporting sentence above it. Do not spend the hero on a four-line headline, and do not add a decorative wordmark that is not the Polaris name.
 - For Simplified Chinese, keep the concise two-line headline with an explicit line break so no character is stranded.
+- Keep the original hero copy: the two-line headline with platform marks, one solid Clay Free trial pill and the "See how it works" text link. Do not add an eyebrow label, subtitle or caption line.
+- Below the actions, show a large browser window with Polaris at work, after Notion's product shot: no device frame, no arc or background wordmark. The window is laid out at 1280×800 (Chrome toolbar, a ChatGPT page with its rail and composer, and the real Polaris side panel) and scaled to at most 1180px. A scripted cursor loops through streaming with the Table of Contents filling in, jumping to sections, searching, and opening the Outline. On phones it shows the right part of the window so the side panel stays legible. Apple product bezels are not used: their license covers only software that runs solely on Apple platforms.
 - Give the hero one solid Clay Free trial pill. "See how it works" is a quiet text link to the capabilities section, not a second pill.
-- Place the large introduction video directly after the action group, with 28–48px of responsive spacing, inside a product window: a 38px chrome bar with three neutral dots and a centered polaris-ai.work address, a 16px radius, a fine border and a soft shadow. Do not push it down with an automatic margin. Keep its source, thumbnail, and failure-recovery play control.
-- Behind the headline, set a very large Lora SemiBold Italic “Polaris” wordmark in the accent mixed at 9% into the page color, like Dia's oversized name. It is decorative and hidden from assistive technology.
-- Close the hero with a wide Paper arc that overlaps the lower edge of the product window, with a fine border on its curve.
 - Match the extension conversation cover: paper `#fafaf8` in light and `#1a1918` in dark, with one top radial of the terracotta accent (`#b85c3a` / `#e69a78`) mixed at 12%. The field stays nearly the paper color. Do not fill it with a deep clay gradient or the peach, pink, and blue theme gradient.
 - Show supported platforms as inline marks inside the headline, one slot per line. The marks cycle; hover pauses the cycle, and reduced motion keeps the first marks still. Keep the full platform names in an accessible list for screen readers, using the same names as `Polaris-for-Web/README.md`. Do not repeat that list as a visible strip under the nav.
 - Keep the sequence as full-bleed hero, How it works, Features, Privacy, Pricing, installation panels, release notes, the closing CTA, then the footer. Platform names stay in the headline marks and in the accessible platform list.
@@ -34,6 +33,8 @@
 - In-page header links scroll to their targets with enough scroll padding to clear the fixed pill.
 
 ## SEO and AEO content
+
+- All demo conversations (hero, How it works, Features) use one realistic long answer: a 14-day Europe trip for two in June, with Route overview, a Day-by-day itinerary parent holding Days 1–7 (Paris and the Swiss Alps) and Days 8–14 (Florence and Rome), and Budget and booking. Keep the copy identical across demos and in both languages.
 
 - Name the two views **Table of Contents** (目录) and **Outline** (大纲) everywhere in site copy, metadata and JSON-LD. Do not use Chapter View, Chapters or Navigation as feature names, including in mirrored release notes (rename them when copying from the extension's release-notes.js); only demo UI may show the extension's own placeholder labels.
 
