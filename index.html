@@ -5099,18 +5099,106 @@
         }
       }
 
-      /* Closing CTA */
+      /* Closing CTA: all three stores over the Polaris night-sky artwork. */
       .closing-cta {
-        padding: clamp(32px, 6vw, 72px) 0 0;
+        padding: clamp(32px, 6vw, 72px) clamp(16px, 3vw, 32px) clamp(64px, 8vw, 104px);
+      }
+
+      .closing-panel {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        justify-items: center;
+        width: min(1180px, 100%);
+        margin: 0 auto;
+        padding: clamp(72px, 10vw, 128px) 24px clamp(64px, 9vw, 112px);
+        overflow: hidden;
+        border-radius: 28px;
+        background: #0c1430 url("assets/blog/cover.jpg") center 38% / cover no-repeat;
+        color: #fff;
         text-align: center;
       }
 
-      .closing-arc {
-        margin-top: clamp(24px, 3vw, 32px);
-        padding: 0 24px clamp(80px, 10vw, 128px);
+      .closing-panel::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(8, 12, 32, .35) 0%, rgba(8, 12, 32, .55) 55%, rgba(8, 12, 32, .82) 100%);
+        content: "";
       }
 
-      .closing-button,
+      .closing-title {
+        margin: 0;
+        color: #fff;
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(34px, 4.6vw, 60px);
+        font-weight: 400;
+        letter-spacing: -.025em;
+        line-height: 1.08;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
+      }
+
+      .closing-lead {
+        max-width: 34rem;
+        margin: 16px 0 0;
+        color: rgba(255, 255, 255, .82);
+        font-size: clamp(16px, 1.5vw, 18px);
+        line-height: 1.55;
+      }
+
+      .closing-stores {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 32px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .closing-store {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-width: 220px;
+        height: 56px;
+        padding: 0 24px;
+        border: 1px solid rgba(255, 255, 255, .32);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .1);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        backdrop-filter: blur(10px);
+        transition: background-color 150ms ease, border-color 150ms ease;
+      }
+
+      .closing-store:hover,
+      .closing-store:focus-visible { border-color: rgba(255, 255, 255, .6); background: rgba(255, 255, 255, .18); }
+
+      .closing-store--primary {
+        border-color: transparent;
+        background: var(--polaris-accent);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+        color: var(--polaris-accent-foreground);
+      }
+
+      .closing-store--primary:hover,
+      .closing-store--primary:focus-visible { border-color: transparent; background: var(--polaris-accent-hover); }
+
+      .closing-store img { display: block; width: 22px; height: 22px; }
+
+      .closing-note { margin: 20px 0 0; font-size: 14px; }
+      .closing-note a { color: rgba(255, 255, 255, .78); text-underline-offset: 3px; }
+      .closing-note a:hover { color: #fff; }
+
+      @media (max-width: 560px) {
+        .closing-stores { flex-direction: column; width: 100%; }
+        .closing-store { width: 100%; }
+      }
+
       .floating-cta {
         display: inline-flex;
         align-items: center;
@@ -5129,27 +5217,10 @@
         transition: background-color 160ms ease, opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
       }
 
-      .closing-button:hover,
-      .closing-button:focus-visible,
       .floating-cta:hover,
       .floating-cta:focus-visible {
         background: var(--polaris-accent-hover);
         color: var(--polaris-accent-foreground);
-      }
-
-      .closing-note {
-        margin: 16px 0 0;
-        color: var(--polaris-text-tertiary);
-        font-size: 14px;
-      }
-
-      .closing-note a {
-        color: var(--polaris-text-secondary);
-        text-underline-offset: 3px;
-      }
-
-      .closing-cta + * {
-        margin-top: 0;
       }
 
       /* Floating bottom pill */
@@ -5645,10 +5716,15 @@
 
       </div>
       <section class="closing-cta" data-closing-cta aria-labelledby="closing-title">
-        <h2 class="v2-heading" id="closing-title" data-i18n="closing.title">Ready to stop scrolling?</h2>
-        <div class="closing-arc">
-          <a class="closing-button" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span data-i18n="closing.cta">Add Polaris to Chrome</span></a>
-          <p class="closing-note"><span data-i18n="closing.note">Also on Edge and Firefox.</span> <a href="#install" data-i18n="closing.other">Other ways to install</a></p>
+        <div class="closing-panel">
+          <h2 class="closing-title" id="closing-title" data-i18n="closing.title">Ready to stop scrolling?</h2>
+          <p class="closing-lead" data-i18n="closing.lead">Free to start. Install Polaris from the official store for your browser.</p>
+          <ul class="closing-stores">
+            <li><a class="closing-store closing-store--primary" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><img src="icons/browsers/chrome.svg" alt="Chrome logo" width="22" height="22"><span data-i18n="closing.chrome">Add to Chrome</span></a></li>
+            <li><a class="closing-store" href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer"><img src="icons/browsers/edge.svg" alt="Microsoft Edge logo" width="22" height="22"><span data-i18n="closing.edge">Get it for Edge</span></a></li>
+            <li><a class="closing-store" href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer"><img src="icons/browsers/firefox.svg" alt="Firefox logo" width="22" height="22"><span data-i18n="closing.firefox">Get it for Firefox</span></a></li>
+          </ul>
+          <p class="closing-note"><a href="#install" data-i18n="closing.other">Other ways to install</a></p>
         </div>
       </section>
     </main>
@@ -5779,6 +5855,10 @@
           "nav.features": "How it works",
           "nav.pricing": "Pricing",
           "nav.updates": "Updates",
+          "closing.lead": "Free to start. Install Polaris from the official store for your browser.",
+          "closing.chrome": "Add to Chrome",
+          "closing.edge": "Get it for Edge",
+          "closing.firefox": "Get it for Firefox",
           "nav.blog": "Blog",
           "footer.releaseNotes": "Release notes",
           "footer.blog": "Blog",
@@ -5889,8 +5969,6 @@
           "privacy.control.title": "You stay in control",
           "privacy.control.copy": "Polaris never asks for a password. This website only measures visits after you allow it, and you can change that anytime.",
           "closing.title": "Ready to stop scrolling?",
-          "closing.cta": "Add Polaris to Chrome",
-          "closing.note": "Also on Edge and Firefox.",
           "closing.other": "Other ways to install",
           "nav.issues": "GitHub Issues",
           "locale.toggle": "中文",
@@ -6030,6 +6108,10 @@
           "nav.features": "功能",
           "nav.pricing": "Pricing",
           "nav.updates": "更新记录",
+          "closing.lead": "免费开始。从你所用浏览器的官方商店安装 Polaris。",
+          "closing.chrome": "添加到 Chrome",
+          "closing.edge": "获取 Edge 版",
+          "closing.firefox": "获取 Firefox 版",
           "nav.blog": "博客",
           "footer.releaseNotes": "版本说明",
           "footer.blog": "博客",
@@ -6140,8 +6222,6 @@
           "privacy.control.title": "由你掌控",
           "privacy.control.copy": "Polaris 从不索要密码。官网只有在你同意后才统计访问，之后也可以随时更改。",
           "closing.title": "不想再来回翻了？",
-          "closing.cta": "添加到 Chrome",
-          "closing.note": "也支持 Edge 和 Firefox。",
           "closing.other": "其他安装方式",
           "nav.issues": "GitHub 问题反馈",
           "locale.toggle": "English",
