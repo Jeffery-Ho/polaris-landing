@@ -4632,7 +4632,7 @@
       /* Store card: switch between the three official listings. */
       .store-head {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
         gap: 12px;
       }
@@ -5150,20 +5150,18 @@
         text-align: center;
       }
 
-      /* A fading dot field behind the title only. */
-      .closing-panel::before {
+      /* A fading dot field centred on the title itself, so it stays centred however the title wraps. */
+      .closing-title { position: relative; isolation: isolate; }
+      .closing-title::before {
         position: absolute;
         z-index: -1;
-        top: 0;
-        left: 50%;
-        width: min(760px, 100%);
-        height: clamp(220px, 22vw, 280px);
+        inset: -56px -12%;
         background-image: radial-gradient(color-mix(in srgb, var(--polaris-text) 26%, transparent) 1px, transparent 1.5px);
         background-size: 11px 11px;
         -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, transparent 75%);
         mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, transparent 75%);
-        transform: translateX(-50%);
         content: "";
+        pointer-events: none;
       }
 
       .closing-title {
@@ -5333,6 +5331,12 @@
           font-size: 16px;
         }
         .floating-cta { height: 52px; }
+      }
+      /* The demo composer sits on a band of the chat background so answer text never shows around it. */
+      .pz-composer { box-shadow: 0 0 0 16px var(--polaris-bg-elevated), 0 -28px 22px 4px var(--polaris-bg-elevated); }
+      /* Phones show two lines of each release note instead of cutting it to one. */
+      @media (max-width: 560px) {
+        .update-row .update-summary { display: -webkit-box; white-space: normal; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
       }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
