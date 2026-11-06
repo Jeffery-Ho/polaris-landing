@@ -5413,13 +5413,7 @@
       .feature-dot.is-current.is-running .feature-dot-fill { width: 0; animation: feature-progress var(--feature-duration, 8s) linear forwards; }
       .feature-gallery:not([data-playing="true"]) .feature-dot.is-running .feature-dot-fill { animation-play-state: paused; }
       @keyframes feature-progress { to { width: 48px; } }
-      .feature-dot:focus-visible, .feature-play:focus-visible { outline: 2px solid var(--polaris-accent); outline-offset: 2px; border-radius: 999px; }
-      .feature-play { display: grid; place-items: center; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 999px; background: var(--polaris-bg-muted); color: var(--polaris-text); cursor: pointer; }
-      .feature-play:hover { background: color-mix(in srgb, var(--polaris-text) 10%, var(--polaris-bg-muted)); }
-      .feature-play-icon { width: 18px; height: 18px; }
-      .feature-play-icon--play { display: none; }
-      .feature-gallery[data-paused="true"] .feature-play-icon--play { display: block; }
-      .feature-gallery[data-paused="true"] .feature-play-icon--pause { display: none; }
+      .feature-dot:focus-visible { outline: 2px solid var(--polaris-accent); outline-offset: 2px; border-radius: 999px; }
 
       @media (max-width: 999px) {
         .feature-slide { grid-template-columns: minmax(0, 1fr); align-content: start; min-height: 0; }
@@ -5433,7 +5427,6 @@
         .feature-slide-text { margin-top: 12px; font-size: 16px; }
         .feature-controls { margin-top: 20px; }
         .feature-dots { height: 44px; padding: 0 12px; gap: 0; }
-        .feature-play { width: 44px; height: 44px; }
       }
       @media (prefers-reduced-motion: reduce) {
         .feature-slide, .feature-dot::before { transition: none; }
@@ -5729,7 +5722,6 @@
             </div>
             <div class="feature-controls">
               <div class="feature-dots" role="group" aria-label="Choose a feature"><button type="button" class="feature-dot" data-feature-dot="0" aria-controls="feature-longchat"><span class="sr-only" data-i18n="features.long.label">Long conversations · Pro</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="1" aria-controls="feature-markers"><span class="sr-only" data-i18n="features.markers.label">Markers</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="2" aria-controls="feature-chapter"><span class="sr-only" data-i18n="features.chapter.label">Outline</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="3" aria-controls="feature-search"><span class="sr-only" data-i18n="features.search.label">Search</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="4" aria-controls="feature-stream"><span class="sr-only" data-i18n="features.stream.label">While it streams</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="5" aria-controls="feature-platforms"><span class="sr-only" data-i18n="features.platforms.label">Where it works</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="6" aria-controls="feature-settings"><span class="sr-only" data-i18n="features.settings.label">Your markers</span><span class="feature-dot-fill" aria-hidden="true"></span></button></div>
-              <button type="button" class="feature-play" data-feature-play aria-label="Pause" data-label-pause="Pause" data-label-play="Play"><svg class="feature-play-icon feature-play-icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13M16 5.5v13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><svg class="feature-play-icon feature-play-icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5a.8.8 0 0 0-1.2.7Z" fill="currentColor"/></svg></button>
             </div>
           </div>
         </section>
@@ -6053,8 +6045,6 @@
           "features.stream.title": "Navigate before it finishes.",
           "features.platforms.title": "From ChatGPT to DeepSeek.",
           "features.settings.title": "You decide what gets a marker.",
-          "features.play": "Play",
-          "features.pause": "Pause",
           "features.choose": "Choose a feature",
           "install.store.step1": "Click the button above to open Polaris in the Chrome Web Store.",
           "install.store.step2": "Click Add to Chrome, then confirm with Add extension.",
@@ -6333,8 +6323,6 @@
           "features.stream.title": "回答还没写完，就能跳转。",
           "features.platforms.title": "从 ChatGPT 到 DeepSeek。",
           "features.settings.title": "哪些内容生成 Marker，你说了算。",
-          "features.play": "播放",
-          "features.pause": "暂停",
           "features.choose": "选择功能",
           "install.store.step1": "点击上方按钮，打开 Chrome 应用商店中的 Polaris 页面。",
           "install.store.step2": "点击「添加至 Chrome」，在弹窗中选择「添加扩展程序」。",
@@ -7878,19 +7866,15 @@
         const track = featureGallery.querySelector("[data-feature-track]");
         const slides = [...track.querySelectorAll(".feature-slide")];
         const dots = [...featureGallery.querySelectorAll("[data-feature-dot]")];
-        const playButton = featureGallery.querySelector("[data-feature-play]");
         const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
         let index = 0;
-        let paused = motion.matches;
+        const paused = motion.matches;
         let inView = false;
         let settleTimer = 0;
         let programmaticUntil = 0;
         const setViewportWidth = () => document.documentElement.style.setProperty("--feature-vw", `${document.documentElement.clientWidth}px`);
-        const label = (key) => (translations[document.documentElement.lang === "zh-CN" ? "zh-CN" : "en"] || {})[key];
         const syncPlaying = () => {
-          featureGallery.dataset.paused = String(paused);
           featureGallery.dataset.playing = String(!paused && inView);
-          playButton.setAttribute("aria-label", label(paused ? "features.play" : "features.pause") || (paused ? "Play" : "Pause"));
         };
         const setActive = (next) => {
           index = next;
@@ -7936,11 +7920,6 @@
           if (event.key === "ArrowRight") { event.preventDefault(); goTo(index + 1); }
           if (event.key === "ArrowLeft") { event.preventDefault(); goTo(index - 1); }
         });
-        playButton.addEventListener("click", () => {
-          paused = !paused;
-          if (paused) syncPlaying();
-          else setActive(index);
-        });
         if ("IntersectionObserver" in window) {
           new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; syncPlaying(); }, { threshold: 0.45 }).observe(track);
         }
@@ -7948,7 +7927,6 @@
         window.addEventListener("resize", () => { setViewportWidth(); goTo(index, false); });
         featureGallery.style.setProperty("--feature-duration", "8s");
         setActive(0);
-        document.addEventListener("polaris:language", syncPlaying);
       }
 
       // Store card: one install card, three official listings.
