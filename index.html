@@ -5338,6 +5338,106 @@
       @media (max-width: 560px) {
         .update-row .update-summary { display: -webkit-box; white-space: normal; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
       }
+      /* Features as an Apple-style gallery: one large card per feature, the next one peeking in,
+         timed dots with a progress bar and a play/pause button. */
+      .feature-gallery {
+        --slide-w: min(1080px, calc(var(--feature-vw, 100vw) - 160px));
+        --slide-gap: 24px;
+        width: var(--feature-vw, 100vw);
+        margin: clamp(36px, 5vw, 56px) 0 0 calc(50% - var(--feature-vw, 100vw) / 2);
+      }
+      .feature-track {
+        position: relative;
+        display: flex;
+        gap: var(--slide-gap);
+        padding: 4px calc((var(--feature-vw, 100vw) - var(--slide-w)) / 2) 8px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .feature-track::-webkit-scrollbar { display: none; }
+      .feature-track:focus-visible { outline: none; }
+      .feature-track:focus-visible .feature-slide.is-active { outline: 2px solid var(--polaris-accent); outline-offset: 4px; }
+      .feature-slide {
+        display: grid;
+        flex: 0 0 var(--slide-w);
+        grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+        align-items: center;
+        gap: clamp(28px, 4vw, 56px);
+        min-height: min(620px, calc(100vh - 200px));
+        padding: clamp(32px, 4.5vw, 56px);
+        border: 1px solid var(--polaris-border);
+        border-radius: 28px;
+        background: var(--polaris-bg-elevated);
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        transition: opacity 400ms ease;
+      }
+      .feature-slide:not(.is-active) { opacity: .45; cursor: pointer; }
+      .feature-slide--pro { border-color: color-mix(in srgb, var(--polaris-accent) 35%, var(--polaris-border)); }
+      .feature-slide--pro .bento-label { border-color: color-mix(in srgb, var(--polaris-accent) 40%, transparent); background: color-mix(in srgb, var(--polaris-accent) 8%, transparent); color: var(--polaris-accent-text); }
+      .feature-slide-copy { display: grid; align-content: center; justify-items: start; min-width: 0; }
+      .feature-slide-copy .bento-label { margin-bottom: 20px; }
+      .feature-slide-title {
+        margin: 0;
+        color: var(--polaris-text);
+        font-family: var(--polaris-font-serif);
+        font-size: clamp(30px, 3.4vw, 46px);
+        font-weight: 400;
+        letter-spacing: -.025em;
+        line-height: 1.1;
+        text-wrap: balance;
+      }
+      .feature-slide-text { max-width: 28rem; margin: 18px 0 0; color: var(--polaris-text-secondary); font-size: clamp(16px, 1.4vw, 18px); line-height: 1.6; }
+      .feature-slide-visual {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        height: 100%;
+        padding: clamp(18px, 2.4vw, 32px);
+        border-radius: 20px;
+        background: var(--polaris-bg-subtle);
+      }
+      .feature-slide-visual .feature-demo { flex: 1; min-width: 0; padding: 0; background: none; }
+
+      .feature-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 28px; }
+      .feature-dots { display: flex; align-items: center; gap: 4px; height: 52px; padding: 0 18px; border-radius: 999px; background: var(--polaris-bg-muted); }
+      .feature-dot { position: relative; width: 24px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+      .feature-dot::before { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--polaris-text) 35%, transparent); content: ""; transform: translate(-50%, -50%); transition: width 300ms ease, background-color 300ms ease; }
+      .feature-dot:hover::before { background: color-mix(in srgb, var(--polaris-text) 60%, transparent); }
+      .feature-dot.is-current { width: 56px; }
+      .feature-dot.is-current::before { width: 48px; background: color-mix(in srgb, var(--polaris-text) 22%, transparent); }
+      .feature-dot-fill { position: absolute; top: 50%; left: 4px; width: 0; height: 8px; border-radius: 999px; background: var(--polaris-text); transform: translateY(-50%); }
+      .feature-dot.is-current .feature-dot-fill { width: 48px; }
+      .feature-dot.is-current.is-running .feature-dot-fill { width: 0; animation: feature-progress var(--feature-duration, 8s) linear forwards; }
+      .feature-gallery:not([data-playing="true"]) .feature-dot.is-running .feature-dot-fill { animation-play-state: paused; }
+      @keyframes feature-progress { to { width: 48px; } }
+      .feature-dot:focus-visible, .feature-play:focus-visible { outline: 2px solid var(--polaris-accent); outline-offset: 2px; border-radius: 999px; }
+      .feature-play { display: grid; place-items: center; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 999px; background: var(--polaris-bg-muted); color: var(--polaris-text); cursor: pointer; }
+      .feature-play:hover { background: color-mix(in srgb, var(--polaris-text) 10%, var(--polaris-bg-muted)); }
+      .feature-play-icon { width: 18px; height: 18px; }
+      .feature-play-icon--play { display: none; }
+      .feature-gallery[data-paused="true"] .feature-play-icon--play { display: block; }
+      .feature-gallery[data-paused="true"] .feature-play-icon--pause { display: none; }
+
+      @media (max-width: 999px) {
+        .feature-slide { grid-template-columns: minmax(0, 1fr); align-content: start; min-height: 0; }
+        .feature-slide-visual { height: auto; }
+      }
+      @media (max-width: 799px) {
+        .feature-gallery { --slide-w: calc(var(--feature-vw, 100vw) - 48px); --slide-gap: 12px; }
+        .feature-slide { gap: 24px; padding: 24px 20px 20px; border-radius: 22px; }
+        .feature-slide-visual { padding: 14px; border-radius: 14px; }
+        .feature-slide-title { font-size: 28px; }
+        .feature-slide-text { margin-top: 12px; font-size: 16px; }
+        .feature-controls { margin-top: 20px; }
+        .feature-dots { height: 44px; padding: 0 12px; gap: 0; }
+        .feature-play { width: 44px; height: 44px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .feature-slide, .feature-dot::before { transition: none; }
+      }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>
@@ -5518,81 +5618,119 @@
 
         <section class="bento-section" id="features" aria-labelledby="features-title">
           <h2 class="v2-heading" id="features-title" data-i18n="features.title">Built for long AI answers</h2>
-          <div class="bento-grid">
-            <article class="bento-card bento-card--wide" aria-labelledby="bento-long-title">
-              <div class="bento-wide-copy">
+          <div class="feature-gallery" data-feature-gallery aria-roledescription="carousel" aria-label="Polaris features">
+            <div class="feature-track" data-feature-track tabindex="0">
+            <article class="feature-slide feature-slide--pro" id="feature-longchat" aria-roledescription="slide" aria-labelledby="feature-longchat-title">
+              <div class="feature-slide-copy">
                 <p class="bento-label" data-i18n="features.long.label">Long conversations · Pro</p>
-                <h3 class="bento-title" id="bento-long-title" data-i18n="features.long.title">When the AI forgets, you can still find it.</h3>
-                <p class="bento-copy" data-i18n="features.long.copy">Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.</p>
+                <h3 class="feature-slide-title" id="feature-longchat-title" data-i18n="features.long.title">When the AI forgets, you can still find it.</h3>
+                <p class="feature-slide-text" data-i18n="features.long.copy">Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.</p>
               </div>
-              <div class="bento-visual demo pv-demo demo-longchat" data-demo="longchat" data-design-width="760" aria-hidden="true"><div class="pv-stage"><div class="pv-window" data-tab="navigation"><div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div><div class="pv-body"><div class="lc-loading" aria-hidden="true"><span data-i18n="lc.loading">Loading earlier messages…</span></div><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p></div><p class="pv-user" data-i18n="lc.q2">Where should we stay in Paris?</p><div class="pv-sec" data-sec="paris"><h6><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span></h6><p data-i18n="lc.a2">Le Marais puts you within walking distance of the Louvre and the Seine.</p></div><div class="pv-sec" data-sec="transport"><h6><span data-i18n="lc.h2b">Getting around</span></h6><p data-i18n="lc.a2b">Buy a Navigo week pass; the metro covers everything on your list.</p></div><p class="pv-user" data-i18n="lc.q3">Can we swap Florence for Venice?</p><div class="pv-sec" data-sec="venice"><h6><span data-i18n="lc.h3a">Train from Interlaken</span></h6><p data-i18n="lc.a3">Yes. Take the morning train to Venice via Milan, about six hours.</p></div><div class="pv-sec" data-sec="revised"><h6><span data-i18n="lc.h3b">Revised days 8–10</span></h6><p data-i18n="lc.a3b">Two nights in Venice, then a fast train to Rome for the last four days.</p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><span class="lc-full"><span data-i18n="lc.full">Full conversation</span></span><div class="lc-list"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q2">Where should we stay in Paris?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="paris"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2a">Le Marais or Saint-Germain</span></span><span class="sp-item" data-target="transport"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2b">Getting around</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q3">Can we swap Florence for Venice?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="venice"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3a">Train from Interlaken</span></span><span class="sp-item" data-target="revised"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3b">Revised days 8–10</span></span></div></div><div class="sp-outline"><div class="lc-export"><span class="sp-export" data-lc-export data-i18n="demo.export">Export</span><div class="lc-menu"><span data-lc-markdown>Markdown</span><span>HTML</span></div><span class="lc-toast"><span data-i18n="lc.copied">Copied as Markdown</span></span></div><div class="sp-card"><div class="sp-ch" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Route overview</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Day-by-day itinerary</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Budget and booking</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="paris"><div class="sp-ch-title"><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="venice"><div class="sp-ch-title"><span data-i18n="lc.h3a">Train from Interlaken</span><i>⋯</i></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div></div></div><span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span></div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-longchat" data-demo="longchat" data-design-width="760" aria-hidden="true"><div class="pv-stage"><div class="pv-window" data-tab="navigation"><div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div><div class="pv-body"><div class="lc-loading" aria-hidden="true"><span data-i18n="lc.loading">Loading earlier messages…</span></div><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p></div><p class="pv-user" data-i18n="lc.q2">Where should we stay in Paris?</p><div class="pv-sec" data-sec="paris"><h6><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span></h6><p data-i18n="lc.a2">Le Marais puts you within walking distance of the Louvre and the Seine.</p></div><div class="pv-sec" data-sec="transport"><h6><span data-i18n="lc.h2b">Getting around</span></h6><p data-i18n="lc.a2b">Buy a Navigo week pass; the metro covers everything on your list.</p></div><p class="pv-user" data-i18n="lc.q3">Can we swap Florence for Venice?</p><div class="pv-sec" data-sec="venice"><h6><span data-i18n="lc.h3a">Train from Interlaken</span></h6><p data-i18n="lc.a3">Yes. Take the morning train to Venice via Milan, about six hours.</p></div><div class="pv-sec" data-sec="revised"><h6><span data-i18n="lc.h3b">Revised days 8–10</span></h6><p data-i18n="lc.a3b">Two nights in Venice, then a fast train to Rome for the last four days.</p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><span class="lc-full"><span data-i18n="lc.full">Full conversation</span></span><div class="lc-list"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q2">Where should we stay in Paris?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="paris"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2a">Le Marais or Saint-Germain</span></span><span class="sp-item" data-target="transport"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2b">Getting around</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q3">Can we swap Florence for Venice?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="venice"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3a">Train from Interlaken</span></span><span class="sp-item" data-target="revised"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3b">Revised days 8–10</span></span></div></div><div class="sp-outline"><div class="lc-export"><span class="sp-export" data-lc-export data-i18n="demo.export">Export</span><div class="lc-menu"><span data-lc-markdown>Markdown</span><span>HTML</span></div><span class="lc-toast"><span data-i18n="lc.copied">Copied as Markdown</span></span></div><div class="sp-card"><div class="sp-ch" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Route overview</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Day-by-day itinerary</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Budget and booking</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="paris"><div class="sp-ch-title"><span data-i18n="lc.h2a">Le Marais or Saint-Germain</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="venice"><div class="sp-ch-title"><span data-i18n="lc.h3a">Train from Interlaken</span><i>⋯</i></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div></div></div><span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span></div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-markers-label">
-              <p class="bento-label" id="bento-markers-label" data-i18n="features.markers.label">Markers</p>
-              <p class="bento-copy" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
-              <div class="bento-visual demo pv-demo demo-markers" data-demo="markers" aria-hidden="true">
+            <article class="feature-slide" id="feature-markers" aria-roledescription="slide" aria-labelledby="feature-markers-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.markers.label">Markers</p>
+                <h3 class="feature-slide-title" id="feature-markers-title" data-i18n="features.markers.title">Every heading, one click away.</h3>
+                <p class="feature-slide-text" data-i18n="features.markers.copy">Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-markers" data-demo="markers" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></h6><p data-i18n="demo.stream.p2">See the Louvre and Montmartre, then base yourselves in Interlaken for the Alps.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></h6><p data-i18n="demo.owners">Three nights in Florence, then the Colosseum and the Vatican in Rome.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p><p data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Buy the Interrail pass before you fly.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-chapter-label">
-              <p class="bento-label" id="bento-chapter-label" data-i18n="features.chapter.label">Outline</p>
-              <p class="bento-copy" data-i18n="features.chapter.copy">Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.</p>
-              <div class="bento-visual demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
+            <article class="feature-slide" id="feature-chapter" aria-roledescription="slide" aria-labelledby="feature-chapter-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.chapter.label">Outline</p>
+                <h3 class="feature-slide-title" id="feature-chapter-title" data-i18n="features.chapter.title">Read a long answer like a document.</h3>
+                <p class="feature-slide-text" data-i18n="features.chapter.copy">Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></h6><p data-i18n="demo.stream.p2">See the Louvre and Montmartre, then base yourselves in Interlaken for the Alps.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></h6><p data-i18n="demo.owners">Three nights in Florence, then the Colosseum and the Vatican in Rome.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p><p data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Buy the Interrail pass before you fly.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span></div><div class="sp-outline"><span class="sp-export" data-i18n="demo.export">Export</span><div class="sp-card"><div class="sp-ch is-open" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Route overview</span><i>⋯</i></div><div class="sp-ch-body"><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p><blockquote data-i18n="demo.quote">Book the Paris–Zurich TGV early: June seats sell out.</blockquote></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Day-by-day itinerary</span><i>⋯</i></div><div class="sp-ch-body"><table><thead><tr><th data-i18n="demo.table.item">Day</th><th data-i18n="demo.table.owner">Highlight</th><th data-i18n="demo.table.day">Book ahead</th></tr></thead><tbody><tr><td data-i18n="demo.table.r1">Day 2</td><td data-i18n="demo.table.r1b">Louvre</td><td data-i18n="demo.table.thu">Timed ticket</td></tr><tr><td data-i18n="demo.table.r2">Day 3</td><td data-i18n="demo.table.r2b">Versailles</td><td data-i18n="demo.table.fri">Palace pass</td></tr></tbody></table></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Budget and booking</span><i>⋯</i></div><div class="sp-ch-body"><ol><li data-i18n="demo.task1">Book the Paris hotel</li><li data-i18n="demo.task2">Reserve Louvre tickets</li><li data-i18n="demo.task3">Buy the Interrail pass</li></ol></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-search-label">
-              <p class="bento-label" id="bento-search-label" data-i18n="features.search.label">Search</p>
-              <p class="bento-copy" data-i18n="features.search.copy">Type a word to filter the Table of Contents and Outline, then jump straight to the match instead of scrolling for it.</p>
-              <div class="bento-visual demo pv-demo demo-search" data-demo="search" aria-hidden="true">
+            <article class="feature-slide" id="feature-search" aria-roledescription="slide" aria-labelledby="feature-search-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.search.label">Search</p>
+                <h3 class="feature-slide-title" id="feature-search-title" data-i18n="features.search.title">Find the line you remember.</h3>
+                <p class="feature-slide-text" data-i18n="features.search.copy">Type a word to filter the Table of Contents and Outline, then jump straight to the match instead of scrolling for it.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-search" data-demo="search" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></h6><p data-i18n="demo.stream.p2">See the Louvre and Montmartre, then base yourselves in Interlaken for the Alps.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></h6><p data-i18n="demo.owners">Three nights in Florence, then the Colosseum and the Vatican in Rome.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p><p data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Buy the Interrail pass before you fly.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-query" data-query></span><i class="sp-caret"></i><span class="ds-src" data-query-src data-i18n="features.search.query">Days</span><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-stream-label">
-              <p class="bento-label" id="bento-stream-label" data-i18n="features.stream.label">While it streams</p>
-              <p class="bento-copy" data-i18n="features.stream.copy">Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.</p>
-              <div class="bento-visual demo pv-demo demo-stream" data-demo="stream" aria-hidden="true">
+            <article class="feature-slide" id="feature-stream" aria-roledescription="slide" aria-labelledby="feature-stream-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.stream.label">While it streams</p>
+                <h3 class="feature-slide-title" id="feature-stream-title" data-i18n="features.stream.title">Navigate before it finishes.</h3>
+                <p class="feature-slide-text" data-i18n="features.stream.copy">Markers appear as soon as the first section is written. The list stays put while the answer keeps growing.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-stream" data-demo="stream" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision" data-block><h6><span data-i18n="how.h.decision">Route overview</span></h6><p><span class="ds-src" data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="slips" data-block><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p><span class="ds-src" data-i18n="how.p.slips">Two regions per week, with one slow day in each.</span><span data-typed></span></p></div><div class="pv-sec" data-sec="checkin" data-block><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p><span class="ds-src" data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</span><span data-typed></span></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-platforms-label">
-              <p class="bento-label" id="bento-platforms-label" data-i18n="features.platforms.label">Where it works</p>
-              <p class="bento-copy" data-i18n="features.platforms.copy">One navigator across the AI chats you already use.</p>
-              <div class="bento-visual demo pv-demo demo-platforms" data-demo="platforms">
+            <article class="feature-slide" id="feature-platforms" aria-roledescription="slide" aria-labelledby="feature-platforms-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.platforms.label">Where it works</p>
+                <h3 class="feature-slide-title" id="feature-platforms-title" data-i18n="features.platforms.title">From ChatGPT to DeepSeek.</h3>
+                <p class="feature-slide-text" data-i18n="features.platforms.copy">One navigator across the AI chats you already use.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-platforms" data-demo="platforms">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation" aria-hidden="true">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></h6><p data-i18n="demo.stream.p2">See the Louvre and Montmartre, then base yourselves in Interlaken for the Alps.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></h6><p data-i18n="demo.owners">Three nights in Florence, then the Colosseum and the Vatican in Rome.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p><p data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Buy the Interrail pass before you fly.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <ul class="pf-strip" aria-label="Supported platforms"><li data-platform="chatgpt" data-host="chatgpt.com"><img src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="22" height="22"><span>ChatGPT</span></li><li data-platform="claude" data-host="claude.ai"><img src="icons/platforms/platform-claude.png" alt="Claude logo" width="22" height="22"><span>Claude</span></li><li data-platform="gemini" data-host="gemini.google.com"><img src="icons/platforms/platform-gemini.png" alt="Gemini logo" width="22" height="22"><span>Gemini</span></li><li data-platform="grok" data-host="grok.com"><img src="icons/platforms/platform-grok.png" alt="Grok logo" width="22" height="22"><span>Grok</span></li><li data-platform="deepseek" data-host="chat.deepseek.com"><img src="icons/platforms/platform-deepseek.png" alt="DeepSeek logo" width="22" height="22"><span>DeepSeek</span></li><li data-platform="doubao" data-host="doubao.com"><img src="icons/platforms/platform-doubao.png" alt="Doubao logo" width="22" height="22"><span>Doubao</span></li><li data-platform="kimi" data-host="kimi.com"><img src="icons/platforms/platform-kimi.png" alt="Kimi logo" width="22" height="22"><span>Kimi</span></li><li data-platform="qianwen" data-host="qianwen.com"><img src="icons/platforms/platform-qianwen.png" alt="Qwen logo" width="22" height="22"><span>Qwen</span></li><li data-platform="yuanbao" data-host="yuanbao.tencent.com"><img src="icons/platforms/platform-yuanbao.png" alt="Yuanbao logo" width="22" height="22"><span>Yuanbao</span></li><li data-platform="xiaohongshu" data-host="diandian.ai"><img src="icons/platforms/platform-xiaohongshu.png" alt="Diandian AI logo" width="22" height="22"><span>Diandian AI</span></li><li data-platform="manus" data-host="manus.im"><img src="icons/platforms/platform-manus.png" alt="Manus logo" width="22" height="22"><span>Manus</span></li></ul>
               </div>
+              </div>
             </article>
-            <article class="bento-card" aria-labelledby="bento-settings-label">
-              <p class="bento-label" id="bento-settings-label" data-i18n="features.settings.label">Your markers</p>
-              <p class="bento-copy" data-i18n="features.settings.copy">Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.</p>
-              <div class="bento-visual demo pv-demo demo-settings" data-demo="settings" aria-hidden="true">
+            <article class="feature-slide" id="feature-settings" aria-roledescription="slide" aria-labelledby="feature-settings-title">
+              <div class="feature-slide-copy">
+                <p class="bento-label" data-i18n="features.settings.label">Your markers</p>
+                <h3 class="feature-slide-title" id="feature-settings-title" data-i18n="features.settings.title">You decide what gets a marker.</h3>
+                <p class="feature-slide-text" data-i18n="features.settings.copy">Choose which structures become markers. Bold text and ordered lists stay off until you turn them on.</p>
+              </div>
+              <div class="feature-slide-visual">
+                <div class="feature-demo demo pv-demo demo-settings" data-demo="settings" aria-hidden="true">
                 <div class="pv-stage"><div class="pv-window" data-tab="navigation">
                   <div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div>
                   <div class="pv-body"><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Route overview</span></h6><p data-i18n="how.p.decision">Paris → Swiss Alps → Florence → Rome, about 14 days by train.</p><p data-i18n="demo.stream.p1">Fly into Paris and out of Rome so you never backtrack; fast trains link every stop.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Day-by-day itinerary</span></h6><p data-i18n="how.p.slips">Two regions per week, with one slow day in each.</p><p class="pv-bold" data-bold="demo.bold1"><strong data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</strong></p></div><div class="pv-sec" data-sec="timeline"><h6><span data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></h6><p data-i18n="demo.stream.p2">See the Louvre and Montmartre, then base yourselves in Interlaken for the Alps.</p></div><div class="pv-sec" data-sec="owners"><h6><span data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></h6><p data-i18n="demo.owners">Three nights in Florence, then the Colosseum and the Vatican in Rome.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Budget and booking</span></h6><p data-i18n="how.p.checkin">Plan on about €250 per person per day.</p><p data-i18n="demo.stream.p3">Reserve museum slots two weeks ahead and keep one free afternoon in every city.</p><p class="pv-bold" data-bold="demo.bold2"><strong data-i18n="demo.bold2">Buy the Interrail pass before you fly.</strong></p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Plan a 14-day Europe trip for two in June.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Route overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Day-by-day itinerary</span></span><span class="sp-item" data-target="slips" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold1">Ride up to Jungfraujoch on the clearest morning.</span></span><span class="sp-item" data-target="timeline"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.timeline">Days 1–7: Paris and the Swiss Alps</span></span><span class="sp-item" data-target="owners"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.owners">Days 8–14: Florence and Rome</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Budget and booking</span></span><span class="sp-item" data-target="checkin" data-bold-marker><i class="sp-spin"></i><span class="sp-label" data-i18n="demo.bold2">Buy the Interrail pass before you fly.</span></span></div><div class="sp-settings"><span class="sp-settings-title" data-i18n="demo.markerTypes">Marker types</span><div class="sp-row"><span data-i18n="demo.unordered">Unordered list</span><i class="dg-switch is-on"></i></div><div class="sp-row"><span data-i18n="features.settings.ordered">Ordered lists</span><i class="dg-switch"></i></div><div class="sp-row"><span data-i18n="features.settings.bold">Bold text</span><i class="dg-switch" data-toggle></i></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div>
                 </div></div>
                 <span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
               </div>
+              </div>
             </article>
+            </div>
+            <div class="feature-controls">
+              <div class="feature-dots" role="group" aria-label="Choose a feature"><button type="button" class="feature-dot" data-feature-dot="0" aria-controls="feature-longchat"><span class="sr-only" data-i18n="features.long.label">Long conversations · Pro</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="1" aria-controls="feature-markers"><span class="sr-only" data-i18n="features.markers.label">Markers</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="2" aria-controls="feature-chapter"><span class="sr-only" data-i18n="features.chapter.label">Outline</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="3" aria-controls="feature-search"><span class="sr-only" data-i18n="features.search.label">Search</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="4" aria-controls="feature-stream"><span class="sr-only" data-i18n="features.stream.label">While it streams</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="5" aria-controls="feature-platforms"><span class="sr-only" data-i18n="features.platforms.label">Where it works</span><span class="feature-dot-fill" aria-hidden="true"></span></button><button type="button" class="feature-dot" data-feature-dot="6" aria-controls="feature-settings"><span class="sr-only" data-i18n="features.settings.label">Your markers</span><span class="feature-dot-fill" aria-hidden="true"></span></button></div>
+              <button type="button" class="feature-play" data-feature-play aria-label="Pause" data-label-pause="Pause" data-label-play="Play"><svg class="feature-play-icon feature-play-icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13M16 5.5v13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><svg class="feature-play-icon feature-play-icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5a.8.8 0 0 0-1.2.7Z" fill="currentColor"/></svg></button>
+            </div>
           </div>
         </section>
 
@@ -5892,7 +6030,7 @@
       const menuPanel = document.querySelector("[data-menu-panel]");
       const siteHeader = document.querySelector(".site-header");
       const headerDownload = document.querySelector("[data-floating-cta]");
-      const floatingCtaBlockers = [...document.querySelectorAll("#install, [data-closing-cta], .site-footer")];
+      const floatingCtaBlockers = [...document.querySelectorAll("#install, [data-closing-cta], .site-footer, .feature-controls")];
       const heroRegion = document.querySelector(".hero-stage");
       const updatesList = document.querySelector("[data-updates-list]");
       const inPageNavigationLinks = document.querySelectorAll('.header-link[href^="#"], .floating-cta[href^="#"], .hero-link[href^="#"], #pricing a[href^="#"], .closing-note a[href^="#"]');
@@ -5909,6 +6047,15 @@
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
           "hero.titleAria": "Navigate long AI conversations.",
           "nav.skip": "Skip to content",
+          "features.markers.title": "Every heading, one click away.",
+          "features.chapter.title": "Read a long answer like a document.",
+          "features.search.title": "Find the line you remember.",
+          "features.stream.title": "Navigate before it finishes.",
+          "features.platforms.title": "From ChatGPT to DeepSeek.",
+          "features.settings.title": "You decide what gets a marker.",
+          "features.play": "Play",
+          "features.pause": "Pause",
+          "features.choose": "Choose a feature",
           "install.store.step1": "Click the button above to open Polaris in the Chrome Web Store.",
           "install.store.step2": "Click Add to Chrome, then confirm with Add extension.",
           "install.store.step3": "Click the puzzle icon in the toolbar and pin Polaris.",
@@ -6180,6 +6327,15 @@
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
           "hero.titleAria": "长篇 AI 对话，一键跳转。",
           "nav.skip": "跳到正文",
+          "features.markers.title": "每个标题，一点即达。",
+          "features.chapter.title": "像读文档一样读长回答。",
+          "features.search.title": "找到你记得的那一句。",
+          "features.stream.title": "回答还没写完，就能跳转。",
+          "features.platforms.title": "从 ChatGPT 到 DeepSeek。",
+          "features.settings.title": "哪些内容生成 Marker，你说了算。",
+          "features.play": "播放",
+          "features.pause": "暂停",
+          "features.choose": "选择功能",
           "install.store.step1": "点击上方按钮，打开 Chrome 应用商店中的 Polaris 页面。",
           "install.store.step2": "点击「添加至 Chrome」，在弹窗中选择「添加扩展程序」。",
           "install.store.step3": "点击工具栏的拼图图标，把 Polaris 固定到工具栏。",
@@ -6733,6 +6889,7 @@
         if (persist) {
           window.localStorage.setItem(localeStorageKey, currentLocale);
         }
+        document.dispatchEvent(new CustomEvent("polaris:language", { detail: currentLocale }));
       }
 
       const savedLocale = window.localStorage.getItem(localeStorageKey);
@@ -7715,6 +7872,85 @@
         });
         howDemo = initHowDemo(howStage);
       }
+      // Features gallery: one feature per slide, advancing on a timer while in view.
+      const featureGallery = document.querySelector("[data-feature-gallery]");
+      if (featureGallery) {
+        const track = featureGallery.querySelector("[data-feature-track]");
+        const slides = [...track.querySelectorAll(".feature-slide")];
+        const dots = [...featureGallery.querySelectorAll("[data-feature-dot]")];
+        const playButton = featureGallery.querySelector("[data-feature-play]");
+        const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let index = 0;
+        let paused = motion.matches;
+        let inView = false;
+        let settleTimer = 0;
+        let programmaticUntil = 0;
+        const setViewportWidth = () => document.documentElement.style.setProperty("--feature-vw", `${document.documentElement.clientWidth}px`);
+        const label = (key) => (translations[document.documentElement.lang === "zh-CN" ? "zh-CN" : "en"] || {})[key];
+        const syncPlaying = () => {
+          featureGallery.dataset.paused = String(paused);
+          featureGallery.dataset.playing = String(!paused && inView);
+          playButton.setAttribute("aria-label", label(paused ? "features.play" : "features.pause") || (paused ? "Play" : "Pause"));
+        };
+        const setActive = (next) => {
+          index = next;
+          slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === next));
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle("is-current", dotIndex === next);
+            dot.classList.remove("is-running");
+            dot.setAttribute("aria-current", String(dotIndex === next));
+          });
+          void dots[next].offsetWidth;
+          if (!paused) dots[next].classList.add("is-running");
+          syncPlaying();
+        };
+        const goTo = (next, smooth = true) => {
+          const target = (next + slides.length) % slides.length;
+          const slide = slides[target];
+          programmaticUntil = Date.now() + 800;
+          track.scrollTo({ left: slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2, behavior: smooth && !motion.matches ? "smooth" : "auto" });
+          setActive(target);
+        };
+        const nearest = () => {
+          const center = track.scrollLeft + track.clientWidth / 2;
+          let best = 0;
+          slides.forEach((slide, slideIndex) => {
+            if (Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center) < Math.abs(slides[best].offsetLeft + slides[best].offsetWidth / 2 - center)) best = slideIndex;
+          });
+          return best;
+        };
+        track.addEventListener("scroll", () => {
+          window.clearTimeout(settleTimer);
+          settleTimer = window.setTimeout(() => {
+            if (Date.now() < programmaticUntil) return;
+            const settled = nearest();
+            if (settled !== index) setActive(settled);
+          }, 120);
+        }, { passive: true });
+        dots.forEach((dot, dotIndex) => {
+          dot.addEventListener("click", () => goTo(dotIndex));
+          dot.querySelector(".feature-dot-fill").addEventListener("animationend", () => { if (dot.classList.contains("is-current") && !paused) goTo(index + 1); });
+        });
+        slides.forEach((slide, slideIndex) => slide.addEventListener("click", () => { if (slideIndex !== index) goTo(slideIndex); }));
+        track.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight") { event.preventDefault(); goTo(index + 1); }
+          if (event.key === "ArrowLeft") { event.preventDefault(); goTo(index - 1); }
+        });
+        playButton.addEventListener("click", () => {
+          paused = !paused;
+          if (paused) syncPlaying();
+          else setActive(index);
+        });
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; syncPlaying(); }, { threshold: 0.45 }).observe(track);
+        }
+        setViewportWidth();
+        window.addEventListener("resize", () => { setViewportWidth(); goTo(index, false); });
+        featureGallery.style.setProperty("--feature-duration", "8s");
+        setActive(0);
+        document.addEventListener("polaris:language", syncPlaying);
+      }
+
       // Store card: one install card, three official listings.
       const storeCard = document.querySelector("[data-store-card]");
       if (storeCard) {
