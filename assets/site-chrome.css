@@ -647,3 +647,8 @@ body { min-width: 320px; }
 .site-footer [data-language-current] { display: inline; }
 .site-footer .language-menu { top: auto; right: auto; bottom: calc(100% + 8px); left: 0; transform: translateY(6px); }
 .site-footer .language-menu[data-menu-open="true"] { transform: none; }
+
+/* Theme toggle: a visible track at rest, not only on hover. */
+.site-header .theme-toggle,
+.site-header .theme-toggle:hover,
+.site-header .theme-toggle:focus-within { border-color: var(--polaris-border); background: var(--polaris-bg-muted); }

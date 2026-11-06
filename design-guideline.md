@@ -120,3 +120,5 @@
 - Every demo window (hero, How it works, Features) uses macOS traffic lights in the title bar: #FF5F57, #FEBC2E, #28C840 with a hairline inner edge, in both themes, about 8–11px on screen.
 - Headline platform marks are 0.72em tiles: in English the tile bottom sits on the text baseline and its top at cap height; in Chinese the tile drops 0.08em so it centres on the ideographic face, because CJK glyphs hang below the alphabetic baseline.
 - First-load motion (the headline platform marks entering and every demo window, the hero first) waits for the window load event and document.fonts.ready, then 600ms, so a slow first paint never swallows the opening. Language switches replay the headline entrance immediately.
+- The header theme toggle always shows its track (muted fill, hairline border); the active option is the dark knob.
+- The hero tint continues above the hero (a 100vh extension of the same radial gradient), and the page canvas takes a light Clay tint while the visitor is within the first screen and the footer colour further down, so elastic overscroll at either end never shows a mismatched band.

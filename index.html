@@ -5448,6 +5448,29 @@
          hang below the baseline, so the tile drops 0.08em to centre on the ideographic face (the line is
          a baseline-aligned flex row, so the slot is shifted with relative positioning). */
       :root[lang="zh-CN"] .platform-slot { top: 0.08em; }
+      /* Theme toggle: a visible track at rest, not only on hover. */
+      .site-header .theme-toggle,
+      .site-header .theme-toggle:hover,
+      .site-header .theme-toggle:focus-within {
+        border-color: var(--polaris-border);
+        background: var(--polaris-bg-muted);
+      }
+
+      /* Hero tint: the gradient lives on a layer that reaches far above the hero, and the page canvas
+         takes the tint near the top, so pulling past the top never shows a plain band. */
+      .hero-stage::before {
+        position: absolute;
+        z-index: 0;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        height: 100vh;
+        background: radial-gradient(ellipse 70% 100% at 50% 100%, color-mix(in srgb, var(--hero-accent) 12%, var(--hero-bg)), var(--hero-bg) 70%);
+        content: "";
+        pointer-events: none;
+      }
+      :root[data-overscroll="top"] { background-color: color-mix(in srgb, var(--polaris-accent) 7%, var(--polaris-bg)); }
+      :root[data-overscroll="bottom"] { background-color: var(--polaris-bg-subtle); }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>
@@ -7893,6 +7916,11 @@
         });
         howDemo = initHowDemo(howStage);
       }
+      // Page canvas colour for elastic overscroll: hero tint near the top, footer colour further down.
+      const syncOverscroll = () => { document.documentElement.dataset.overscroll = window.scrollY < window.innerHeight ? "top" : "bottom"; };
+      syncOverscroll();
+      window.addEventListener("scroll", syncOverscroll, { passive: true });
+
       // Features gallery: one feature per slide, advancing on a timer while in view.
       const featureGallery = document.querySelector("[data-feature-gallery]");
       if (featureGallery) {
