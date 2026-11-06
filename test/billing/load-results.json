@@ -1,0 +1,98 @@
+{
+  "classification": "local_mocked_node_sqlite_not_cloudflare_capacity",
+  "started_at": "2026-11-06T06:35:04.230Z",
+  "runtime": {
+    "node": "v22.23.4",
+    "cpus": 4,
+    "cpu_model": "Intel(R) Xeon(R) Processor",
+    "total_mem_bytes": 16780623872,
+    "free_mem_bytes_at_end": 4565233664,
+    "percentile": "nearest-rank, ceil(p*n)-1"
+  },
+  "same_ip_checkout": {
+    "attempted": 35,
+    "ok": 30,
+    "http_429": 5,
+    "limit": 30
+  },
+  "fulfillment_levels": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "wall_ms": 3.9,
+      "throughput_rps": 258.66,
+      "error_percent": 0,
+      "p50_ms": 3.82,
+      "p95_ms": 3.82,
+      "p99_ms": 3.82,
+      "licenses": 1,
+      "expected_licenses": 1
+    },
+    {
+      "concurrency": 5,
+      "requests": 5,
+      "wall_ms": 6.7,
+      "throughput_rps": 747.2,
+      "error_percent": 0,
+      "p50_ms": 6.26,
+      "p95_ms": 6.56,
+      "p99_ms": 6.56,
+      "licenses": 5,
+      "expected_licenses": 5
+    },
+    {
+      "concurrency": 10,
+      "requests": 10,
+      "wall_ms": 13.8,
+      "throughput_rps": 724.7,
+      "error_percent": 0,
+      "p50_ms": 13.1,
+      "p95_ms": 13.6,
+      "p99_ms": 13.6,
+      "licenses": 10,
+      "expected_licenses": 10
+    },
+    {
+      "concurrency": 25,
+      "requests": 25,
+      "wall_ms": 29.6,
+      "throughput_rps": 845.31,
+      "error_percent": 0,
+      "p50_ms": 27.45,
+      "p95_ms": 28.9,
+      "p99_ms": 29.08,
+      "licenses": 25,
+      "expected_licenses": 25
+    },
+    {
+      "concurrency": 50,
+      "requests": 50,
+      "wall_ms": 62,
+      "throughput_rps": 806.04,
+      "error_percent": 0,
+      "p50_ms": 41.84,
+      "p95_ms": 60.62,
+      "p99_ms": 61.37,
+      "licenses": 50,
+      "expected_licenses": 50
+    },
+    {
+      "concurrency": 100,
+      "requests": 100,
+      "wall_ms": 148.3,
+      "throughput_rps": 674.19,
+      "error_percent": 0,
+      "p50_ms": 81.24,
+      "p95_ms": 143.86,
+      "p99_ms": 146.16,
+      "licenses": 100,
+      "expected_licenses": 100
+    }
+  ],
+  "duplicate_event_storm": {
+    "concurrency": 50,
+    "http_200": 50,
+    "licenses": 1
+  },
+  "email_sends": 0
+}
