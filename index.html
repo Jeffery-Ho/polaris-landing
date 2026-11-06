@@ -5435,6 +5435,15 @@
       @media (prefers-reduced-motion: reduce) {
         .feature-slide, .feature-dot::before { transition: none; }
       }
+      /* Window controls: macOS traffic lights on every demo window. */
+      .pv-dots, .browser-dots { gap: 7px; }
+      .pv-dots i, .browser-dots i { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset 0 0 0 .5px rgba(0, 0, 0, .14); }
+      .pv-dots i:nth-child(1), .browser-dots i:nth-child(1) { background: #ff5f57; }
+      .pv-dots i:nth-child(2), .browser-dots i:nth-child(2) { background: #febc2e; }
+      .pv-dots i:nth-child(3), .browser-dots i:nth-child(3) { background: #28c840; }
+      .hero-demo .pv-dots i { width: 11px; height: 11px; }
+      .demo-longchat .pv-dots { gap: 9px; }
+      .demo-longchat .pv-dots i { width: 12.5px; height: 12.5px; }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>
