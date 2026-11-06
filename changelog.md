@@ -2,6 +2,8 @@
 
 ## 2026-11-06
 
+- 联系我们：「获取帮助」各项（邮件、GitHub Issues、Discord）不再显示地址，点击直接跳转；只有社交账号（X）保留账号显示。已核对页脚链接：首页内锚点直接定位到对应板块，从子页面跳回首页板块也直接落位，不会先回到顶部。
+
 - 页脚：品牌说明改为 slogan「Navigate long AI conversations.」/「长篇 AI 对话，一键跳转。」，与首屏标题一致，首页与全部子页面同步。
 
 - 联系我们：「获取帮助」新增 Discord 社区入口（discord.gg/cdrM7Xqmzh，中英文），并写入 ContactPage 结构化数据的 sameAs 与页面描述。
