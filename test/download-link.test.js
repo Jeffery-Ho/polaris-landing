@@ -7,7 +7,7 @@ const homepageSource = await readFile(new URL("../index.html", import.meta.url),
 test("下载按钮始终指向 Latest Release 的稳定 ZIP 资产", () => {
   assert.match(
     homepageSource,
-    /href="https:\/\/github\.com\/Jeffery-Ho\/Polaris-for-Web\/releases\/latest\/download\/Polaris-AI\.zip" data-analytics-event="zip_download"/
+    /href="https:\/\/github\.com\/Jeffery-Ho\/Polaris-AI-Chat-Navigator\/releases\/latest\/download\/Polaris-AI\.zip" data-analytics-event="zip_download"/
   );
   assert.match(homepageSource, /let latestReleaseAssetName = "Polaris-AI\.zip"/);
   assert.match(homepageSource, /localZipLink\.addEventListener\("click", \(event\) => \{/);

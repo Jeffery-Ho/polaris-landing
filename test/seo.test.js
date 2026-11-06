@@ -27,7 +27,8 @@ test("homepage exposes the definition, platforms, FAQ and alt text as crawlable 
   for (const platform of platforms) assert.ok(platformAnswer[0].includes(platform), platform);
   assert.doesNotMatch(home, /<img[^>]*alt=""/);
   assert.doesNotMatch(home, /gpt-voyager/);
-  assert.match(home, /<h1[^>]*>[\s\S]*?Navigate long AI conversations\.[\s\S]*?<\/h1>/);
+  const h1 = home.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1];
+  assert.equal(h1.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(), "Navigate long AI conversations.", "one crawlable copy of the H1");
   const heroDescription = home.match(/<p class="sr-only" id="hero-description"[^>]*>([^<]*)<\/p>/);
   assert.ok(heroDescription, "hero description for the platform marks");
   assert.ok(heroDescription[1].startsWith(definition), "hero description opens with the definition");
@@ -48,6 +49,7 @@ test("JSON-LD describes the app, FAQ and both install paths, matching visible te
   assert.ok(app.offers.some((offer) => offer.price === "0"));
   assert.equal(byType("Organization").contactPoint.email, "support@polaris-ai.work");
   for (const node of graph) for (const link of node.sameAs || []) assert.doesNotMatch(link, /Polaris-for-Web/);
+  assert.doesNotMatch(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1], /Polaris-for-Web/, "structured data links the current repository");
   assert.ok(!graph.some((node) => node.aggregateRating), "no unearned aggregateRating");
   const faq = byType("FAQPage");
   assert.ok(faq.mainEntity.length >= 6 && faq.mainEntity.length <= 10);
@@ -56,4 +58,14 @@ test("JSON-LD describes the app, FAQ and both install paths, matching visible te
     assert.ok(decode(home).includes(`>${question.acceptedAnswer.text}</p>`), `answer: ${question.name}`);
   }
   assert.equal(graph.filter((node) => node["@type"] === "HowTo").length, 2);
+});
+
+test("sitemap lists every public page with lastmod and never the /v2/ preview", async () => {
+  const sitemap = await read("sitemap.xml");
+  const urls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+  assert.ok(urls.length >= 8);
+  for (const url of urls) assert.match(url, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/, url);
+  assert.doesNotMatch(sitemap, /\/v2\//);
+  const home = await read("index.html");
+  assert.match(home, /<figure class="hero-browser" data-nosnippet>/, "demo figures stay out of snippets");
 });
