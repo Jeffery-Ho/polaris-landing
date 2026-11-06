@@ -5471,6 +5471,42 @@
       }
       :root[data-overscroll="top"] { background-color: color-mix(in srgb, var(--polaris-accent) 7%, var(--polaris-bg)); }
       :root[data-overscroll="bottom"] { background-color: var(--polaris-bg-subtle); }
+      /* How it works as user stories: a "before" illustration, the pain, then the fix. */
+      .story-art { margin: 0 0 18px; padding: 14px 14px 0; overflow: hidden; border-radius: 14px; background: var(--polaris-bg-subtle); }
+      .sa-window { position: relative; height: 178px; overflow: hidden; border: 1px solid var(--polaris-border); border-bottom: 0; border-radius: 10px 10px 0 0; background: var(--polaris-bg-elevated); color: var(--polaris-text); font-size: 11.5px; line-height: 1.5; }
+      .sa-bar { display: flex; align-items: center; gap: 10px; height: 26px; padding: 0 10px; border-bottom: 1px solid var(--polaris-border); background: var(--polaris-bg-subtle); }
+      .sa-bar .pv-dots { gap: 5px; }
+      .sa-bar .pv-dots i { width: 8px; height: 8px; }
+      .sa-host { color: var(--polaris-text-tertiary); font-size: 10.5px; }
+      .sa-badge { margin-left: auto; padding: 1px 8px; border-radius: 999px; background: var(--polaris-bg-muted); color: var(--polaris-text-secondary); font-size: 10px; font-weight: 600; }
+      .sa-find { position: absolute; z-index: 1; top: 34px; right: 12px; display: flex; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--polaris-border-strong); border-radius: 8px; background: var(--polaris-bg-elevated); box-shadow: 0 6px 16px color-mix(in srgb, var(--polaris-text) 12%, transparent); color: var(--polaris-text); font-size: 11px; }
+      .sa-find svg { width: 12px; height: 12px; color: var(--polaris-text-tertiary); }
+      .sa-find b { color: var(--polaris-text-tertiary); font-weight: 500; }
+      .sa-arrows { color: var(--polaris-text-tertiary); letter-spacing: 2px; }
+      .sa-body { padding: 12px 16px 0; }
+      .story-art--find .sa-body { padding-top: 44px; }
+      .sa-body p { margin: 0 0 7px; color: var(--polaris-text-secondary); }
+      .sa-body h6 { margin: 0 0 5px; color: var(--polaris-text); font-size: 12px; font-weight: 650; }
+      .sa-body .sa-faint { opacity: .55; }
+      .sa-body mark { padding: 0 2px; border-radius: 3px; background: #ffe58a; color: #2a2724; }
+      .sa-body p:first-child mark { background: #ffb54d; }
+      .sa-sel { background: color-mix(in srgb, #3b82f6 22%, transparent); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+      .sa-over { background: color-mix(in srgb, #ef4444 20%, transparent); }
+      .sa-scroll { position: absolute; top: 34px; right: 3px; bottom: 6px; width: 3px; }
+      .sa-scroll i { position: absolute; top: 46%; width: 3px; height: 14px; border-radius: 3px; background: var(--polaris-border-strong); }
+      .how-note-kicker { margin: 0 0 6px; color: var(--polaris-accent-text); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+      .how-note-fix { margin: 12px 0 0; padding-top: 12px; border-top: 1px dashed var(--polaris-border); color: var(--polaris-text); font-size: 15px; font-weight: 550; line-height: 1.55; }
+      .how-mobile-copy .how-note-fix { font-size: 16px; }
+      @media (min-width: 800px) {
+        .how-notes, .how-notes[data-sticky] { align-items: stretch; }
+        .how-note { display: flex; flex-direction: column; }
+        .how-note .how-note-name { font-size: 22px; line-height: 1.25; }
+      }
+      @media (width < 800px) {
+        /* Phones read the story first, then the window shows the fix. */
+        .how-mobile-copy { order: 0; margin: 0 0 20px; }
+        .how-mobile-copy .how-scene-title { font-size: 24px; line-height: 1.25; }
+      }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>
@@ -5545,17 +5581,21 @@
               <nav class="how-notes" data-how-selector aria-labelledby="capabilities-title">
               <div class="how-note" data-how-feature="toc">
                 <span class="how-note-index" aria-hidden="true">01</span>
-                <div class="how-note-title"><a class="how-note-button" href="#feature-toc" data-how-mode="toc" id="toc-feature-button"><span class="how-note-name" data-i18n="how.toc.title">Jump to a section</span></a></div>
+                <div class="story-art story-art--find" aria-hidden="true"><div class="sa-window"><div class="sa-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="sa-host">chatgpt.com</span></div><div class="sa-find"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="story.find.query">market size</span><b>3 / 14</b><span class="sa-arrows">↑ ↓</span></div><div class="sa-body"><p><span data-i18n="story.find.l1">Market size 2024: about <mark>$1.6B</mark>.</span></p><p class="sa-faint"><span data-i18n="story.find.l2">Revised after removing duplicates: <mark>$1.3B</mark>.</span></p><p class="sa-faint"><span data-i18n="story.find.l3">On the new basis, 2025 is expected at <mark>$1.45B</mark>.</span></p></div><span class="sa-scroll"><i></i></span></div></div>
+                <p class="how-note-kicker" data-i18n="how.toc.kicker">Table of Contents</p>
+                <div class="how-note-title"><a class="how-note-button" href="#feature-toc" data-how-mode="toc" id="toc-feature-button"><span class="how-note-name" data-i18n="how.toc.title">It’s all in there. You just can’t find it.</span></a></div>
                 <div class="how-detail" id="toc-feature-details"><div class="how-detail-inner"><div class="how-detail-content">
-                  <p class="how-note-body" data-i18n="how.toc.body">Click a heading to jump to that section in the original answer.</p>
+                  <p class="how-note-body" data-i18n="how.toc.body">Researching a market with ChatGPT, every answer runs to thousands of words and the numbers change from one version to the next. Checking one figure means scrolling up and up, and Ctrl+F jumps between matches that aren’t the one you want.</p><p class="how-note-fix" data-i18n="how.toc.fix">The Table of Contents lists every heading beside the chat. One click lands on the right section.</p>
 <ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b1">Find the section you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b2">Jump straight to the original answer</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b3">See your selected heading</span></li></ul>
                 </div></div></div>
               </div>
               <div class="how-note" data-how-feature="outline">
                 <span class="how-note-index" aria-hidden="true">02</span>
-                <div class="how-note-title"><a class="how-note-button" href="#feature-outline" data-how-mode="outline" id="outline-feature-button"><span class="how-note-name" data-i18n="how.outline.title">See the structure</span></a></div>
+                <div class="story-art story-art--copy" aria-hidden="true"><div class="sa-window"><div class="sa-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="sa-host">chatgpt.com</span><span class="sa-badge"><span data-i18n="story.copy.screen">Screen 3 of 8</span></span></div><div class="sa-body"><h6><span data-i18n="story.copy.h1">3. Competitors</span></h6><p><span class="sa-sel"><span data-i18n="story.copy.l1">The top three brands hold 62% of the market, priced at $29–$45.</span></span></p><p><span class="sa-sel"><span data-i18n="story.copy.l2">New entrants sell subscriptions with 18% higher repeat purchases.</span></span></p><h6><span class="sa-sel sa-over"><span data-i18n="story.copy.h2">4. Target users</span></span></h6><p class="sa-faint"><span data-i18n="story.copy.l3">Mostly urban households with two pets or more.</span></p></div><span class="sa-scroll"><i></i></span></div></div>
+                <p class="how-note-kicker" data-i18n="how.outline.kicker">Outline</p>
+                <div class="how-note-title"><a class="how-note-button" href="#feature-outline" data-how-mode="outline" id="outline-feature-button"><span class="how-note-name" data-i18n="how.outline.title">Thousands of words. You need one part.</span></a></div>
                 <div class="how-detail" id="outline-feature-details"><div class="how-detail-inner"><div class="how-detail-content">
-                  <p class="how-note-body" data-i18n="how.outline.body">Outline shows how sections and subsections fit together within the same answer.</p>
+                  <p class="how-note-body" data-i18n="how.outline.body">To reread one part or send it to a colleague, you drag a selection across several screens, grab too much and lose your place.</p><p class="how-note-fix" data-i18n="how.outline.fix">The Outline lays the answer out section by section, so you read, search and copy only the part you need.</p>
 <ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b1">See how sections fit together</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b2">Expand the parts you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b3">Read the same answer by section</span></li></ul>
                 </div></div></div>
               </div>
@@ -5565,8 +5605,10 @@
               <article class="how-scene" id="feature-toc" data-how-scene="toc" aria-labelledby="toc-title">
                 <div class="how-mobile-copy">
                   <span class="how-note-index" aria-hidden="true">01</span>
-                  <h3 class="how-scene-title" id="toc-title" data-i18n="how.toc.title">Jump to a section</h3>
-                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.toc.body">Click a heading to jump to that section in the original answer.</p>
+                  <div class="story-art story-art--find" aria-hidden="true"><div class="sa-window"><div class="sa-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="sa-host">chatgpt.com</span></div><div class="sa-find"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="story.find.query">market size</span><b>3 / 14</b><span class="sa-arrows">↑ ↓</span></div><div class="sa-body"><p><span data-i18n="story.find.l1">Market size 2024: about <mark>$1.6B</mark>.</span></p><p class="sa-faint"><span data-i18n="story.find.l2">Revised after removing duplicates: <mark>$1.3B</mark>.</span></p><p class="sa-faint"><span data-i18n="story.find.l3">On the new basis, 2025 is expected at <mark>$1.45B</mark>.</span></p></div><span class="sa-scroll"><i></i></span></div></div>
+                  <p class="how-note-kicker" data-i18n="how.toc.kicker">Table of Contents</p>
+                  <h3 class="how-scene-title" id="toc-title" data-i18n="how.toc.title">It’s all in there. You just can’t find it.</h3>
+                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.toc.body">Researching a market with ChatGPT, every answer runs to thousands of words and the numbers change from one version to the next. Checking one figure means scrolling up and up, and Ctrl+F jumps between matches that aren’t the one you want.</p><p class="how-note-fix" data-i18n="how.toc.fix">The Table of Contents lists every heading beside the chat. One click lands on the right section.</p>
 <ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b1">Find the section you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b2">Jump straight to the original answer</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.toc.b3">See your selected heading</span></li></ul></div>
                 </div>
                 <div class="browser">
@@ -5607,8 +5649,10 @@
               <article class="how-scene" id="feature-outline" data-how-scene="outline" aria-labelledby="outline-title">
                 <div class="how-mobile-copy">
                   <span class="how-note-index" aria-hidden="true">02</span>
-                  <h3 class="how-scene-title" id="outline-title" data-i18n="how.outline.title">See the structure</h3>
-                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.outline.body">Outline shows how sections and subsections fit together within the same answer.</p>
+                  <div class="story-art story-art--copy" aria-hidden="true"><div class="sa-window"><div class="sa-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="sa-host">chatgpt.com</span><span class="sa-badge"><span data-i18n="story.copy.screen">Screen 3 of 8</span></span></div><div class="sa-body"><h6><span data-i18n="story.copy.h1">3. Competitors</span></h6><p><span class="sa-sel"><span data-i18n="story.copy.l1">The top three brands hold 62% of the market, priced at $29–$45.</span></span></p><p><span class="sa-sel"><span data-i18n="story.copy.l2">New entrants sell subscriptions with 18% higher repeat purchases.</span></span></p><h6><span class="sa-sel sa-over"><span data-i18n="story.copy.h2">4. Target users</span></span></h6><p class="sa-faint"><span data-i18n="story.copy.l3">Mostly urban households with two pets or more.</span></p></div><span class="sa-scroll"><i></i></span></div></div>
+                  <p class="how-note-kicker" data-i18n="how.outline.kicker">Outline</p>
+                  <h3 class="how-scene-title" id="outline-title" data-i18n="how.outline.title">Thousands of words. You need one part.</h3>
+                  <div class="how-mobile-details"><p class="how-note-body" data-i18n="how.outline.body">To reread one part or send it to a colleague, you drag a selection across several screens, grab too much and lose your place.</p><p class="how-note-fix" data-i18n="how.outline.fix">The Outline lays the answer out section by section, so you read, search and copy only the part you need.</p>
 <ul class="how-note-points"><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b1">See how sections fit together</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b2">Expand the parts you need</span></li><li><span class="how-check" aria-hidden="true">✓</span><span data-i18n="how.outline.b3">Read the same answer by section</span></li></ul></div>
                 </div>
                 <div class="browser">
@@ -6078,6 +6122,20 @@
         en: Object.freeze({
           "install.store.versionNote": "The store and ZIP versions differ; features may vary.",
           "hero.titleAria": "Navigate long AI conversations.",
+          "how.toc.kicker": "Table of Contents",
+          "how.toc.fix": "The Table of Contents lists every heading beside the chat. One click lands on the right section.",
+          "how.outline.kicker": "Outline",
+          "how.outline.fix": "The Outline lays the answer out section by section, so you read, search and copy only the part you need.",
+          "story.find.query": "market size",
+          "story.find.l1": "Market size 2024: about <mark>$1.6B</mark>.",
+          "story.find.l2": "Revised after removing duplicates: <mark>$1.3B</mark>.",
+          "story.find.l3": "On the new basis, 2025 is expected at <mark>$1.45B</mark>.",
+          "story.copy.screen": "Screen 3 of 8",
+          "story.copy.h1": "3. Competitors",
+          "story.copy.l1": "The top three brands hold 62% of the market, priced at $29–$45.",
+          "story.copy.l2": "New entrants sell subscriptions with 18% higher repeat purchases.",
+          "story.copy.h2": "4. Target users",
+          "story.copy.l3": "Mostly urban households with two pets or more.",
           "nav.skip": "Skip to content",
           "features.markers.title": "Every heading, one click away.",
           "features.chapter.title": "Read a long answer like a document.",
@@ -6248,13 +6306,13 @@
           "video.playAria": "Play Polaris introduction video",
           "capabilities.title": "Polaris reads between the headings",
           "capabilities.intro": "Pick a feature to see the demo.",
-          "how.toc.title": "Jump to a section",
-          "how.toc.body": "Click a heading to jump to that section in the original answer.",
+          "how.toc.title": "It’s all in there. You just can’t find it.",
+          "how.toc.body": "Researching a market with ChatGPT, every answer runs to thousands of words and the numbers change from one version to the next. Checking one figure means scrolling up and up, and Ctrl+F jumps between matches that aren’t the one you want.",
           "how.toc.b1": "Find the section you need",
           "how.toc.b2": "Jump straight to the original answer",
           "how.toc.b3": "See your selected heading",
-          "how.outline.title": "See the structure",
-          "how.outline.body": "Outline shows how sections and subsections fit together within the same answer.",
+          "how.outline.title": "Thousands of words. You need one part.",
+          "how.outline.body": "To reread one part or send it to a colleague, you drag a selection across several screens, grab too much and lose your place.",
           "how.outline.b1": "See how sections fit together",
           "how.outline.b2": "Expand the parts you need",
           "how.outline.b3": "Read the same answer by section",
@@ -6356,6 +6414,20 @@
         "zh-CN": Object.freeze({
           "install.store.versionNote": "商店版和 ZIP 版版本不同，功能可能有差异。",
           "hero.titleAria": "长篇 AI 对话，一键跳转。",
+          "how.toc.kicker": "目录",
+          "how.toc.fix": "目录把每个标题列在对话旁边，点一下就落到那一节。",
+          "how.outline.kicker": "大纲",
+          "how.outline.fix": "大纲把回答按小节摊开，想读哪节读哪节，搜索和复制都只针对那一段。",
+          "story.find.query": "市场规模",
+          "story.find.l1": "2024 年市场规模约 <mark>120 亿元</mark>。",
+          "story.find.l2": "剔除重复统计后修订为 <mark>98 亿元</mark>。",
+          "story.find.l3": "按新口径，2025 年预计 <mark>105 亿元</mark>。",
+          "story.copy.screen": "第 3 / 8 屏",
+          "story.copy.h1": "三、竞品分析",
+          "story.copy.l1": "头部三家占据 62% 份额，价格带集中在 199–299 元。",
+          "story.copy.l2": "新进入者主打订阅制，复购率高出 18%。",
+          "story.copy.h2": "四、用户画像",
+          "story.copy.l3": "以一二线城市、养两只以上宠物的家庭为主。",
           "nav.skip": "跳到正文",
           "features.markers.title": "每个标题，一点即达。",
           "features.chapter.title": "像读文档一样读长回答。",
@@ -6526,13 +6598,13 @@
           "video.playAria": "播放 Polaris 介绍视频",
           "capabilities.title": "Polaris 读懂回答的层次",
           "capabilities.intro": "选一个功能，看看演示。",
-          "how.toc.title": "跳到某一节",
-          "how.toc.body": "点一个标题，跳到原回答中对应的位置。",
+          "how.toc.title": "明明都在里面，就是找不着。",
+          "how.toc.body": "用 ChatGPT 做行业调研，每次回答几千字，市场数据改了一版又一版。想回去核对一个数，只能一直往上滑；Ctrl+F 搜出十几处，跳来跳去都不是要的那个。",
           "how.toc.b1": "快速找到要读的部分",
           "how.toc.b2": "一键跳到原文",
           "how.toc.b3": "看清选中的标题",
-          "how.outline.title": "看清结构",
-          "how.outline.body": "大纲按层级展示同一条回答里的各节和小节。",
+          "how.outline.title": "几千字的回答，你只要其中一段。",
+          "how.outline.body": "想重读其中一部分，或者发给同事，只能跨好几屏手动框选，选多了、漏了，还找不回刚才读到哪。",
           "how.outline.b1": "看清各节和小节的关系",
           "how.outline.b2": "展开需要的小节",
           "how.outline.b3": "逐节读同一条回答",
