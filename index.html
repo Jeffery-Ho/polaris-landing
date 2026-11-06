@@ -6807,7 +6807,17 @@
         }, 260);
       }
 
+      // The first entrance waits until the page has loaded and fonts are ready, plus a short beat,
+      // so a slow first paint does not swallow the animation. Later re-inits (language) run at once.
+      const pageSettled = new Promise((resolve) => {
+        const settle = () => Promise.resolve(document.fonts?.ready).catch(() => {}).then(() => window.setTimeout(resolve, 600));
+        if (document.readyState === "complete") settle();
+        else window.addEventListener("load", settle, { once: true });
+      });
+      let headlineGeneration = 0;
+
       function initHeadlinePlatforms() {
+        const generation = ++headlineGeneration;
         window.clearInterval(headlinePlatformTimer);
         headlinePlatformTimer = null;
         headlineTimeouts.forEach((id) => window.clearTimeout(id));
@@ -6825,9 +6835,12 @@
             icon.classList.add("is-shown");
           } else {
             slot.classList.remove("is-open");
-            headlineFrame(() => {
-              slot.classList.add("is-open");
-              headlineLater(() => icon.classList.add("is-shown"), 200 + index * 70);
+            pageSettled.then(() => {
+              if (generation !== headlineGeneration) return;
+              headlineFrame(() => {
+                slot.classList.add("is-open");
+                headlineLater(() => icon.classList.add("is-shown"), 200 + index * 70);
+              });
             });
           }
         });
@@ -6838,10 +6851,13 @@
           headline.addEventListener("mouseleave", () => { headline.dataset.paused = "false"; });
         }
         if (motionPreference.matches || !slots.length) return;
-        headlinePlatformTimer = window.setInterval(() => {
-          if (headline.dataset.paused === "true" || motionPreference.matches) return;
-          swapHeadlinePlatform(slots[Math.floor(Math.random() * slots.length)]);
-        }, 2040);
+        pageSettled.then(() => {
+          if (generation !== headlineGeneration) return;
+          headlinePlatformTimer = window.setInterval(() => {
+            if (headline.dataset.paused === "true" || motionPreference.matches) return;
+            swapHeadlinePlatform(slots[Math.floor(Math.random() * slots.length)]);
+          }, 2040);
+        });
       }
       motionPreference.addEventListener("change", initHeadlinePlatforms);
 

@@ -498,7 +498,12 @@ export function initFeatureDemos() {
     if (entry.isIntersecting) start(entry.target);
     else stop(entry.target);
   }), { threshold: 0.35 });
-  roots.forEach((root) => observer.observe(root));
+  // Demos (the hero first) start only after the page has loaded and fonts are ready, plus a beat,
+  // so the opening of each animation is not lost behind a slow first paint.
+  const observeAll = () => roots.forEach((root) => observer.observe(root));
+  const settle = () => Promise.resolve(document.fonts?.ready).catch(() => {}).then(() => window.setTimeout(observeAll, 600));
+  if (document.readyState === "complete") settle();
+  else window.addEventListener("load", settle, { once: true });
   reduceMotion.addEventListener("change", () => roots.forEach((root) => {
     stop(root);
     demos[root.dataset.demo].still(root);
