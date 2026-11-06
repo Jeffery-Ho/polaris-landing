@@ -467,7 +467,20 @@ export function initFeatureDemos() {
       root.style.removeProperty("--hero-shift");
       root.classList.remove("is-compact");
     }
-    root.style.setProperty("--k", String(stage.clientWidth / design));
+    const k = stage.clientWidth / design;
+    root.style.setProperty("--k", String(k));
+    // In the desktop Features gallery the window grows taller to fill its panel.
+    const panel = root.closest(".feature-slide-visual");
+    if (panel && k > 0 && window.matchMedia("(min-width: 1000px)").matches) {
+      const panelStyle = getComputedStyle(panel);
+      const rootStyle = getComputedStyle(root);
+      const others = [...root.children].filter((child) => child !== stage && getComputedStyle(child).position !== "absolute");
+      const extra = others.reduce((sum, child) => sum + child.getBoundingClientRect().height, 0) + (others.length ? (parseFloat(rootStyle.rowGap) || 0) * others.length : 0);
+      const available = panel.clientHeight - parseFloat(panelStyle.paddingTop) - parseFloat(panelStyle.paddingBottom) - extra;
+      root.style.setProperty("--win-h", `${Math.floor(Math.max(design * 0.6, Math.min(available / k, design * 1.2)))}px`);
+    } else {
+      root.style.removeProperty("--win-h");
+    }
     const win = windowOf(root);
     if (win) setTab(root, win.dataset.tab || "navigation");
   };
@@ -476,6 +489,8 @@ export function initFeatureDemos() {
   if ("ResizeObserver" in window) {
     const resize = new ResizeObserver((entries) => entries.forEach((entry) => fit(entry.target.closest("[data-demo]"))));
     roots.forEach((root) => { const stage = root.querySelector(".pv-stage"); if (stage) resize.observe(stage); });
+    const panels = new ResizeObserver((entries) => entries.forEach((entry) => { const root = entry.target.querySelector("[data-demo]"); if (root) fit(root); }));
+    document.querySelectorAll(".feature-slide-visual").forEach((panel) => panels.observe(panel));
   }
   roots.forEach((root) => demos[root.dataset.demo].still(root));
   if (!("IntersectionObserver" in window)) return;
