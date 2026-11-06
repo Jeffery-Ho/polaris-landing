@@ -5444,6 +5444,10 @@
       .hero-demo .pv-dots i { width: 11px; height: 11px; }
       .demo-longchat .pv-dots { gap: 9px; }
       .demo-longchat .pv-dots i { width: 12.5px; height: 12.5px; }
+      /* Headline marks: in English the tile sits on the baseline and reaches cap height. Chinese glyphs
+         hang below the baseline, so the tile drops 0.08em to centre on the ideographic face (the line is
+         a baseline-aligned flex row, so the slot is shifted with relative positioning). */
+      :root[lang="zh-CN"] .platform-slot { top: 0.08em; }
     </style>
     <link rel="stylesheet" href="assets/footer.css?v=b998ffc0">
   </head>

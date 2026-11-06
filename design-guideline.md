@@ -118,3 +118,4 @@
 - The language switch is not in the header. It sits in the footer bottom row next to the copyright, as a small outlined pill showing the current language name (English / 简体中文); its menu opens upward. The header keeps only the theme toggle, the Free trial pill and, on narrow screens, the menu button.
 - On phones (560px and below) the hero and floating Free trial pills are 240px wide (never wider than the screen minus 64px) and 52px tall, not full width.
 - Every demo window (hero, How it works, Features) uses macOS traffic lights in the title bar: #FF5F57, #FEBC2E, #28C840 with a hairline inner edge, in both themes, about 8–11px on screen.
+- Headline platform marks are 0.72em tiles: in English the tile bottom sits on the text baseline and its top at cap height; in Chinese the tile drops 0.08em so it centres on the ideographic face, because CJK glyphs hang below the alphabetic baseline.
