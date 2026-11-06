@@ -32,7 +32,8 @@ test("homepage exposes the definition, platforms, FAQ and alt text as crawlable 
   const heroDescription = home.match(/<p class="sr-only" id="hero-description"[^>]*>([^<]*)<\/p>/);
   assert.ok(heroDescription, "hero description for the platform marks");
   assert.ok(heroDescription[1].startsWith(definition), "hero description opens with the definition");
-  for (const platform of platforms) assert.ok(heroDescription[1].includes(platform), `hero description: ${platform}`);
+  // Chrome Web Store rejected a full platform list as keyword spam; hidden text must not repeat it either.
+  assert.ok(platforms.filter((platform) => heroDescription[1].includes(platform)).length <= 4, "hidden hero description names only a few platforms");
   assert.match(home, /<h1 id="hero-title"[^>]*aria-describedby="hero-description"/);
 });
 
