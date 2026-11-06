@@ -33,7 +33,7 @@
 
 ## SEO and AEO content
 
-- All demo conversations (hero, How it works, Features) use one realistic long answer: a 14-day Europe trip for two in June, with Route overview, a Day-by-day itinerary parent holding Days 1–7 (Paris and the Swiss Alps) and Days 8–14 (Florence and Rome), and Budget and booking. Keep the copy identical across demos and in both languages. Do not use skeleton bars or grey placeholder blocks in demos: every line is real itinerary text and every icon is a real glyph.
+- All demo conversations (hero, How it works, Features) use one realistic long answer that continues the founder's story: market research on smart pet devices for a product brief. Headings: Market overview; Market sizing, a parent holding Estimate A: by shipments and Estimate B: by household spend; Competitors and pricing. The long-conversation demo adds follow-ups about a competitor (Brand A) and a revised, de-duplicated market size. Figures match the story illustrations (2024: about $1.6B / 120 亿元, revised to $1.3B / 98 亿元, 2025 at $1.45B / 105 亿元). The Search demo types "Estimate" / "口径", which matches the two sub-sections. Keep the copy identical across demos and in both languages. Do not use skeleton bars or grey placeholder blocks in demos: every line is real text and every icon is a real glyph.
 
 - Name the two views **Table of Contents** (目录) and **Outline** (大纲) everywhere in site copy, metadata and JSON-LD. Do not use Chapter View, Chapters or Navigation as feature names, including in mirrored release notes (rename them when copying from the extension's release-notes.js); only demo UI may show the extension's own placeholder labels.
 
