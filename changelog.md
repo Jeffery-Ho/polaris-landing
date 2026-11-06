@@ -2,6 +2,8 @@
 
 ## 2026-11-06
 
+- 页脚：品牌说明改为 slogan「Navigate long AI conversations.」/「长篇 AI 对话，一键跳转。」，与首屏标题一致，首页与全部子页面同步。
+
 - 联系我们：「获取帮助」新增 Discord 社区入口（discord.gg/cdrM7Xqmzh，中英文），并写入 ContactPage 结构化数据的 sameAs 与页面描述。
 
 - 页头：深浅色切换按钮常驻浅灰底和细边框，不再只在悬停时出现背景（首页与子页面一致）。

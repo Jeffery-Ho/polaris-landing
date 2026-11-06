@@ -57,7 +57,7 @@ export function siteFooter(p = "") {
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="footer-brand-link" href="${h}" aria-label="Polaris home"><img src="${p}icons/polaris-icon-96.png?v=e79cc968" width="36" height="36" alt="Polaris AI logo"><span>Polaris</span></a>
-        <p class="footer-description">${t("Navigate long AI conversations. Built and maintained by an independent developer.", "为长篇 AI 对话提供清晰导航。由独立开发者打造并持续维护。")}</p>
+        <p class="footer-description">${t("Navigate long AI conversations.", "长篇 AI 对话，一键跳转。")}</p>
         <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
       </div>
       <nav class="footer-nav" aria-label="Product"><h2>${t("Product", "产品")}</h2>
