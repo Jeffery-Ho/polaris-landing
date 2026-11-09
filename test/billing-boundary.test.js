@@ -69,6 +69,7 @@ test("the return page does not treat the query as a paid license", async () => {
   const script = await read("assets/checkout-return.js");
   const page = await read("checkout-return/index.html");
   assert.match(script, /order\.status === "paid" && order\.licenseKey/);
+  assert.match(script, /error\.status === 401/);
   assert.match(script, /else show\("unconfirmed"\)/);
   assert.doesNotMatch(script, /licenses\/recover|trial\/start/);
   assert.match(page, /data-state="unconfirmed"/);
