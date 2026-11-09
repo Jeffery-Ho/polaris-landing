@@ -56,7 +56,11 @@
 
   <article lang="en" data-legal-locale="en">
     <h1>Polaris Pro</h1>
-    <section class="checkout-state" data-state="checking" aria-live="polite">
+    <section class="checkout-state" data-state="unconfirmed" aria-live="polite">
+      <p class="checkout-lead">This link does not confirm a payment.</p>
+      <p>No license is shown here. Polaris shows Pro only after the license server verifies the purchase.</p>
+    </section>
+    <section class="checkout-state" data-state="checking" hidden>
       <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>Confirming your payment with Stripe…</p>
       <p>This usually takes a few seconds. Keep this page open.</p>
     </section>
@@ -100,7 +104,11 @@
 
   <article lang="zh-CN" data-legal-locale="zh-CN">
     <h1>Polaris Pro</h1>
-    <section class="checkout-state" data-state="checking" aria-live="polite">
+    <section class="checkout-state" data-state="unconfirmed" aria-live="polite">
+      <p class="checkout-lead">这个链接不能证明已经付款。</p>
+      <p>本页不显示许可证。只有许可证服务器核实购买之后，Polaris 才会显示 Pro。</p>
+    </section>
+    <section class="checkout-state" data-state="checking" hidden>
       <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>正在向 Stripe 确认付款…</p>
       <p>通常只需几秒，请保持本页打开。</p>
     </section>
