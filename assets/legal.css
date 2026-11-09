@@ -1,19 +1,13 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--polaris-bg); color: var(--polaris-text); }
-main { width: min(760px, calc(100% - 40px)); margin: auto; padding: 36px 0 64px; }
-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-.language { display: flex; gap: 8px; }
-button { font: inherit; padding: 8px 12px; border: 1px solid color-mix(in srgb, var(--polaris-text) 25%, var(--polaris-bg)); border-radius: 8px; background: var(--polaris-bg); color: var(--polaris-text); cursor: pointer; }
-button[aria-pressed="true"] { background: var(--polaris-text); color: var(--polaris-bg); }
-a { color: var(--polaris-accent-text); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--polaris-accent); outline-offset: 4px; }
+main { width: min(760px, calc(100% - 40px)); margin: auto; padding: 112px 0 64px; }
+main a { color: var(--polaris-accent-text); text-underline-offset: 3px; }
+main button { font: inherit; padding: 8px 12px; border: 1px solid color-mix(in srgb, var(--polaris-text) 25%, var(--polaris-bg)); border-radius: 8px; background: var(--polaris-bg); color: var(--polaris-text); cursor: pointer; }
+main a:focus-visible, main button:focus-visible { outline: 3px solid var(--polaris-accent); outline-offset: 4px; }
 h1 { margin: 0; font-family: var(--polaris-font-serif); font-weight: 400; text-wrap: balance; font-size: clamp(34px, 6vw, 52px); line-height: 1.2; letter-spacing: -0.025em; }
-h2 { font-family: var(--polaris-font-serif); font-weight: 400; margin: 38px 0 12px; font-size: 23px; line-height: 1.35; }
-h3 { font-size: 18px; line-height: 1.4; }
-p, li { line-height: 1.75; overflow-wrap: anywhere; color: color-mix(in srgb, var(--polaris-text) 86%, var(--polaris-bg)); }
-ul { padding-left: 24px; }
+main h2 { font-family: var(--polaris-font-serif); font-weight: 400; margin: 38px 0 12px; font-size: 23px; line-height: 1.35; }
+main h3 { font-size: 18px; line-height: 1.4; }
+main p, main li { line-height: 1.75; overflow-wrap: anywhere; color: color-mix(in srgb, var(--polaris-text) 86%, var(--polaris-bg)); }
+main ul { padding-left: 24px; }
 .updated { font-size: 14px; color: color-mix(in srgb, var(--polaris-text) 65%, var(--polaris-bg)); }
-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--polaris-text) 20%, var(--polaris-bg)); font-size: 14px; line-height: 1.8; }
 [hidden] { display: none !important; }
-
-nav > a { color: var(--polaris-text); font-family: var(--polaris-font-wordmark); font-style: italic; font-weight: 600; letter-spacing: -.035em; text-decoration: none; }

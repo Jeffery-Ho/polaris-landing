@@ -1,0 +1,164 @@
+.pricing-section {
+  --pricing-paper: var(--polaris-bg-elevated);
+  --pricing-ink: var(--polaris-text);
+  --pricing-muted: var(--polaris-text-secondary);
+  --pricing-line: var(--polaris-border);
+  --pricing-track: var(--polaris-bg-muted);
+  --pricing-clay: var(--polaris-accent);
+  --pricing-clay-ink: var(--polaris-accent-text);
+  --pricing-wash: var(--polaris-accent-subtle);
+  width: min(960px, 100%);
+  margin: 100px auto 120px;
+  color: var(--pricing-ink);
+  font-family: var(--polaris-font);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  scroll-margin-top: 16px;
+}
+
+
+.pricing-section ::selection { background: var(--pricing-clay); color: var(--polaris-accent-foreground); }
+.pricing-section :focus-visible { outline: 2px solid var(--pricing-clay); outline-offset: 4px; }
+.pricing-intro { max-width: 680px; margin: 0 auto 40px; text-align: center; }
+.pricing-intro h2 {
+  margin: 0;
+  color: var(--pricing-ink);
+  font-family: var(--polaris-font-serif);
+  font-size: clamp(36px, 5.3vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.pricing-title-line { display: block; white-space: nowrap; }
+.pricing-intro p { max-width: 54ch; margin: 20px auto 0; color: var(--pricing-muted); text-wrap: pretty; }
+
+.pricing-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.pricing-plan {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 8;
+  row-gap: 0;
+  min-width: 0;
+  padding: 32px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 16px;
+  background: var(--pricing-paper);
+}
+.pricing-plan-pro { --pricing-muted: var(--polaris-text-secondary); border-color: var(--pricing-clay); background: var(--pricing-wash); }
+.pricing-plan-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 8px; }
+.pricing-plan-name { margin: 0; color: var(--pricing-ink); font-family: var(--polaris-font-serif); font-size: 32px; font-weight: 400; line-height: 1.3; }
+.pricing-plan-pro .pricing-plan-name { font-family: var(--polaris-font-wordmark); font-style: italic; font-weight: 600; }
+.pricing-plan-description { margin: 0 0 28px; color: var(--pricing-muted); font-size: 14px; }
+.pricing-saving { padding: 4px 9px; border: 1px solid var(--pricing-line); border-radius: 6px; color: var(--pricing-clay-ink); font-size: 12px; font-weight: 600; line-height: 1.5; }
+.pricing-price-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 14px; }
+.pricing-price { font-size: clamp(44px, 6vw, 56px); font-weight: 600; line-height: 1.15; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.pricing-original-price { color: var(--pricing-muted); font-size: 21px; }
+.pricing-term { margin: 8px 0 0; color: var(--pricing-muted); font-size: 13px; }
+.pricing-assurance { margin: 16px 0 0; color: var(--pricing-muted); font-size: 13px; line-height: 1.65; }
+.pricing-includes { margin: 28px 0 16px; padding-top: 24px; border-top: 1px solid var(--pricing-line); color: var(--pricing-muted); font-size: 12px; font-weight: 500; }
+.pricing-features { display: grid; align-content: start; gap: 14px; margin: 0 0 32px; padding: 0; list-style: none; font-size: 14px; }
+.pricing-features li { position: relative; padding-left: 26px; }
+.pricing-features li::before { content: ""; position: absolute; top: .48em; left: 2px; width: 10px; height: 6px; border-bottom: 1.5px solid var(--pricing-clay); border-left: 1.5px solid var(--pricing-clay); transform: rotate(-45deg); }
+.pricing-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 160ms ease-out;
+}
+.pricing-button-primary { border-color: var(--polaris-accent); background: var(--polaris-accent); color: var(--polaris-accent-foreground); }
+.pricing-button-primary:hover { border-color: var(--polaris-accent-hover); background: var(--polaris-accent-hover); }
+.pricing-button-secondary { background: var(--pricing-paper); color: var(--pricing-ink); }
+.pricing-button-secondary:hover { background: var(--pricing-track); }
+.pricing-purchase-note { max-width: 70ch; margin: 24px auto 0; color: var(--pricing-muted); font-size: 13px; text-align: center; }
+
+.pricing-faq { max-width: 720px; margin: 64px auto 0; }
+.pricing-faq h3 { margin: 0 0 20px; color: var(--pricing-ink); font-size: 22px; font-weight: 600; line-height: 1.4; }
+.pricing-faq details { border-bottom: 1px solid var(--pricing-line); }
+.pricing-faq summary { padding: 18px 16px 18px 0; cursor: pointer; font-size: 14px; font-weight: 500; }
+.pricing-faq summary::marker { color: var(--pricing-clay); font-size: 11px; }
+.pricing-faq details p { margin: 0 0 20px; color: var(--pricing-muted); font-size: 14px; }
+
+@media (max-width: 639px) {
+  .pricing-section { margin-block: 64px 80px; }
+  .pricing-intro { margin-bottom: 28px; }
+  .pricing-intro p { font-size: 14px; }
+  .pricing-plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
+  .pricing-plan { padding: 28px 24px; }
+  .pricing-faq { margin-top: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-button { transition: none; }
+}
+.pricing-checkout-error { max-width: 60ch; margin: 12px auto 0; color: var(--polaris-accent-text); font-size: 14px; text-align: center; }
+.pricing-button[aria-busy="true"] { opacity: 0.75; cursor: progress; }
+
+/* Plan rows mirror each other; Pro's differences carry the Clay accent. */
+.pricing-features li.pricing-feature-pro { color: var(--pricing-ink); font-weight: 600; }
+.pricing-features li.pricing-feature-pro::before { border-width: 0 0 2px 2px; }
+
+/* Long-conversation spotlight under the plans. */
+.pricing-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  margin-top: 24px;
+  padding: 32px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 16px;
+  background: var(--pricing-paper);
+}
+.pricing-spotlight-label { margin: 0 0 10px; color: var(--pricing-clay-ink); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.pricing-spotlight h3 { margin: 0; color: var(--pricing-ink); font-family: var(--polaris-font-serif); font-size: clamp(24px, 3vw, 30px); font-weight: 400; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+.pricing-spotlight-copy p:not(.pricing-spotlight-label) { margin: 14px 0 0; color: var(--pricing-muted); font-size: 14px; }
+.pricing-spotlight-copy .pricing-spotlight-note { font-size: 12px; }
+.pricing-spotlight-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pricing-toc {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--pricing-line);
+  border-radius: 12px;
+  background: var(--polaris-bg-subtle);
+  font-size: 12px;
+}
+.pricing-toc > span:not(.pricing-toc-name):not(.pricing-toc-count):not(.pricing-toc-fade):not(.pricing-toc-gap) {
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--polaris-bg-elevated);
+  color: var(--pricing-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 22px;
+}
+.pricing-toc > span:not(.pricing-toc-name):not(.pricing-toc-count):not(.pricing-toc-fade):not(.pricing-toc-gap)::before { content: "#"; color: var(--polaris-text-tertiary); }
+.pricing-toc-name { margin-bottom: 4px; color: var(--pricing-ink); font-family: var(--polaris-font-serif); font-size: 16px; }
+.pricing-toc-pro .pricing-toc-name { font-family: var(--polaris-font-wordmark); font-style: italic; font-weight: 600; color: var(--pricing-clay-ink); }
+.pricing-toc-pro { border-color: var(--pricing-clay); background: var(--pricing-wash); }
+.pricing-toc-fade { padding: 18px 6px; border: 1px dashed var(--pricing-line); border-radius: 6px; color: var(--polaris-text-tertiary); text-align: center; }
+.pricing-toc-gap { color: var(--polaris-text-tertiary); text-align: center; line-height: 1; }
+.pricing-toc-count { margin-top: 4px; color: var(--polaris-text-tertiary); font-size: 11px; }
+.pricing-toc-pro .pricing-toc-count { color: var(--pricing-clay-ink); font-weight: 600; }
+@media (max-width: 760px) {
+  .pricing-spotlight { grid-template-columns: minmax(0, 1fr); padding: 24px; }
+}
+
+/* The saving sits right above the struck-through regular price. */
+.pricing-was { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.pricing-was .pricing-saving { padding: 2px 8px; font-size: 11.5px; line-height: 1.4; white-space: nowrap; }
+.pricing-plan-pro .pricing-price-row { align-items: flex-end; }
+.pricing-plan-pro .pricing-original-price { line-height: 1.2; }

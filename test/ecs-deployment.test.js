@@ -40,6 +40,9 @@ test("ECS deployment keeps the public origin and runtime configuration aligned",
   assert.match(nginx, /server_name www\.polaris-ai\.work;/);
   assert.match(nginx, /return 301 https:\/\/polaris-ai\.work\$request_uri;/);
   assert.match(internalNginx, /listen 172\.17\.0\.1:8080;/);
+  assert.match(internalNginx, /absolute_redirect off;/);
+  assert.doesNotMatch(sitemap, /\/support\//);
+  assert.match(sitemap, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
   assert.match(npmNginx, /proxy_pass http:\/\/__ORIGIN_UPSTREAM__;/);
   assert.match(npmNginx, /ssl_certificate \/etc\/letsencrypt\/live\/polaris-ai\.work\/fullchain\.pem;/);
   assert.doesNotMatch(npmAcmeNginx, /listen 443/);
@@ -70,7 +73,7 @@ test("release script switches atomically and retains only the current and previo
   const sourceRoot = join(temporaryRoot, "source");
   const siteRoot = join(temporaryRoot, "site");
   const releaseScript = new URL("../deploy/release.sh", import.meta.url).pathname;
-  const entries = ["assets", "entry", "fonts", "icons", "support", "vendor"];
+  const entries = ["assets", "blog", "checkout-return", "contact", "entry", "release-notes", "fonts", "icons", "support", "vendor"];
   const files = ["index.html", "privacy.html", "terms.html", "safety.html", "refund.html", "robots.txt", "sitemap.xml", "support-config.js"];
   const first = "a".repeat(40);
   const second = "b".repeat(40);

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Polaris Pro checkout status.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/polaris-icon-32.png?v=73794ca8">
+  <link rel="stylesheet" href="../assets/theme.css?v=15e667bb">
+  <link rel="stylesheet" href="../assets/site-chrome.css">
+  <script src="../assets/site.js"></script>
+  <link rel="stylesheet" href="../assets/legal.css?v=71f42098">
+  <link rel="stylesheet" href="../assets/checkout.css">
+  <script type="module" src="../assets/checkout-return.js?v=production-billing"></script>
+  <title>Polaris Pro · Polaris AI</title>
+</head>
+<body>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="nav-pill">
+    <a class="brand" href="../" aria-label="Polaris home">
+      <img class="brand-icon" src="../icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo">
+      <span class="brand-name">Polaris</span>
+    </a>
+    <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
+      <a class="header-link" href="../#features"><span data-zh="功能">Features</span></a>
+      <a class="header-link" href="../#pricing"><span data-zh="价格">Pricing</span></a>
+      <a class="header-link" href="../blog/"><span data-zh="博客">Blog</span></a>
+      <a class="header-link" href="../contact/"><span data-zh="联系我们">Contact</span></a>
+      <a class="header-link header-link--drawer" href="../#install"><span data-zh="免费试用">Free trial</span></a>
+    </nav>
+  </div>
+  <div class="header-utilities">
+    <div class="header-preferences">
+      <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme" data-zh-label="主题">
+        <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" data-zh-label="深色" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+        </button>
+        <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" data-zh-label="浅色" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
+        </button>
+      </div>
+    </div>
+    <a class="header-cta" href="../#install"><span data-zh="免费试用">Free trial</span></a>
+    <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" data-zh-label="打开菜单">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+        <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+        <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+<!-- site-header:end -->
+<main>
+
+  <article lang="en" data-legal-locale="en">
+    <h1>Polaris Pro</h1>
+    <section class="checkout-state" data-state="unconfirmed" aria-live="polite">
+      <p class="checkout-lead">This link does not confirm a payment.</p>
+      <p>No license is shown here. Polaris shows Pro only after the license server verifies the purchase.</p>
+    </section>
+    <section class="checkout-state" data-state="checking" hidden>
+      <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>Confirming your payment with Stripe…</p>
+      <p>This usually takes a few seconds. Keep this page open.</p>
+    </section>
+    <section class="checkout-state" data-state="paid" hidden>
+      <p class="checkout-lead">Payment received. Here is your license key.</p>
+      <div class="license-box"><code data-license-key></code><button type="button" data-copy-key>Copy</button></div>
+      <ol>
+        <li>Install Polaris for <a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer">Chrome</a>, <a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer">Edge</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer">Firefox</a> if you have not yet.</li>
+        <li>Open Polaris, go to Settings and choose Redeem license.</li>
+        <li>Paste this key. Use the same key on any of your devices.</li>
+      </ol>
+      <p class="checkout-note">Save the key somewhere safe. A copy is also sent to your checkout email once license email is enabled.</p>
+    </section>
+    <section class="checkout-state" data-state="extension" hidden>
+      <p class="checkout-lead">Thanks. Return to Polaris to finish.</p>
+      <p>If you started checkout inside Polaris, it activates Pro on its own once Stripe confirms the payment. If you bought on this website in another browser, open the page in that browser or recover your key below.</p>
+    </section>
+    <section class="checkout-state" data-state="slow" hidden>
+      <p class="checkout-lead">Your payment is still being confirmed.</p>
+      <p>Some payment methods take longer. Reload this page in a few minutes; it keeps your order for 24 hours. You can also recover your key below once it is issued.</p>
+    </section>
+    <section class="checkout-state" data-state="cancel" hidden>
+      <p class="checkout-lead">Checkout canceled. You have not been charged.</p>
+      <p><a href="../#pricing">Back to pricing</a></p>
+    </section>
+    <section class="checkout-state" data-state="failed" hidden>
+      <p class="checkout-lead">This payment did not go through.</p>
+      <p>No license was issued. <a href="../#pricing">Try again</a> or email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>.</p>
+    </section>
+    <section class="checkout-state" data-state="error" hidden>
+      <p class="checkout-lead">We could not check this order right now.</p>
+      <p>Your payment is safe. Reload in a minute, or email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>.</p>
+    </section>
+    <h2>Recover a license key</h2>
+    <form class="recover-form" data-recover-form>
+      <label for="recover-email-en">Checkout email</label>
+      <div class="recover-row"><input id="recover-email-en" type="email" name="email" autocomplete="email" required><button type="submit">Send key</button></div>
+      <p class="checkout-note" data-recover-status aria-live="polite"></p>
+    </form>
+  </article>
+
+  <article lang="zh-CN" data-legal-locale="zh-CN">
+    <h1>Polaris Pro</h1>
+    <section class="checkout-state" data-state="unconfirmed" aria-live="polite">
+      <p class="checkout-lead">这个链接不能证明已经付款。</p>
+      <p>本页不显示许可证。只有许可证服务器核实购买之后，Polaris 才会显示 Pro。</p>
+    </section>
+    <section class="checkout-state" data-state="checking" hidden>
+      <p class="checkout-lead"><span class="checkout-spinner" aria-hidden="true"></span>正在向 Stripe 确认付款…</p>
+      <p>通常只需几秒，请保持本页打开。</p>
+    </section>
+    <section class="checkout-state" data-state="paid" hidden>
+      <p class="checkout-lead">付款成功，这是你的许可证。</p>
+      <div class="license-box"><code data-license-key></code><button type="button" data-copy-key>复制</button></div>
+      <ol>
+        <li>如未安装，先安装 Polaris：<a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer">Chrome</a>、<a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer">Edge</a> 或 <a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer">Firefox</a>。</li>
+        <li>打开 Polaris → 设置 → 兑换许可证。</li>
+        <li>粘贴这串许可证。同一许可证可在你的所有设备上使用。</li>
+      </ol>
+      <p class="checkout-note">请妥善保存。开启许可证邮件后，也会发送一份到你的结账邮箱。</p>
+    </section>
+    <section class="checkout-state" data-state="extension" hidden>
+      <p class="checkout-lead">感谢购买，请回到 Polaris 完成激活。</p>
+      <p>如果你是在 Polaris 内发起的结账，Stripe 确认付款后会自动开通 Pro。如果你是在其他浏览器的官网购买，请回到那个浏览器打开本页，或在下方找回许可证。</p>
+    </section>
+    <section class="checkout-state" data-state="slow" hidden>
+      <p class="checkout-lead">付款仍在确认中。</p>
+      <p>部分付款方式需要更长时间。几分钟后刷新本页即可，订单会保留 24 小时；许可证签发后也可在下方找回。</p>
+    </section>
+    <section class="checkout-state" data-state="cancel" hidden>
+      <p class="checkout-lead">已取消结账，没有扣款。</p>
+      <p><a href="../#pricing">返回定价</a></p>
+    </section>
+    <section class="checkout-state" data-state="failed" hidden>
+      <p class="checkout-lead">这笔付款没有成功。</p>
+      <p>未签发许可证。<a href="../#pricing">重新购买</a>，或发邮件到 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>。</p>
+    </section>
+    <section class="checkout-state" data-state="error" hidden>
+      <p class="checkout-lead">暂时无法查询这笔订单。</p>
+      <p>你的付款不受影响。请稍后刷新，或发邮件到 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>。</p>
+    </section>
+    <h2>找回许可证</h2>
+    <form class="recover-form" data-recover-form>
+      <label for="recover-email-zh">结账邮箱</label>
+      <div class="recover-row"><input id="recover-email-zh" type="email" name="email" autocomplete="email" required><button type="submit">发送许可证</button></div>
+      <p class="checkout-note" data-recover-status aria-live="polite"></p>
+    </form>
+  </article>
+</main>
+<!-- site-footer:start -->
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-brand-link" href="../" aria-label="Polaris home"><img src="../icons/polaris-icon-96.png?v=e79cc968" width="36" height="36" alt="Polaris AI logo"><span>Polaris</span></a>
+        <p class="footer-description"><span data-zh="长篇 AI 对话，一键跳转。">Navigate long AI conversations.</span></p>
+        <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
+      </div>
+      <nav class="footer-nav" aria-label="Product"><h2><span data-zh="产品">Product</span></h2>
+        <ul>
+          <li><a href="../#capabilities"><span data-zh="工作原理">How it works</span></a></li><li><a href="../#features"><span data-zh="功能介绍">Features</span></a></li><li><a href="../#platforms"><span data-zh="支持平台">Supported platforms</span></a></li><li><a href="../#faq"><span data-zh="常见问题">FAQ</span></a></li><li><a href="../release-notes/"><span data-zh="版本说明">Release notes</span></a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Install &amp; help"><h2><span data-zh="安装与帮助">Install &amp; help</span></h2>
+        <ul>
+          <li><a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span data-zh="安装 Chrome 版">Install for Chrome</span></a></li>
+          <li><a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer"><span data-zh="安装 Edge 版">Install for Edge</span></a></li>
+          <li><a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer"><span data-zh="安装 Firefox 版">Install for Firefox</span></a></li>
+          <li><a href="../#install"><span data-zh="本地安装">Local installation</span></a></li>
+          <li><a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+          <li><a href="../contact/"><span data-zh="联系我们">Contact</span></a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Legal"><h2><span data-zh="法律信息">Legal</span></h2>
+        <ul>
+          <li><a href="../privacy.html"><span data-zh="隐私政策">Privacy policy</span></a></li>
+          <li><a href="../safety.html"><span data-zh="安全说明">Security</span></a></li>
+          <li><a href="../terms.html"><span data-zh="使用条款">Terms of use</span></a></li>
+          <li><a href="../refund.html"><span data-zh="退款政策">Refund policy</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-start">
+        <p>© 2026 Polaris</p>
+        <div class="language-control" data-language-control>
+          <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language" data-zh-label="语言">
+            <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false"><path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path></svg>
+            <span data-language-current>English</span>
+            <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+          </button>
+          <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
+            <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
+            <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
+          </div>
+        </div>
+      </div>
+      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> by <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+    </div>
+  </div>
+</footer>
+<!-- site-footer:end -->
+</body>
+</html>

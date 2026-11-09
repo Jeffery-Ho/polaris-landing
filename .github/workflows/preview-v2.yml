@@ -1,0 +1,29 @@
+name: Preview v2 at /v2/
+
+on:
+  push:
+    branches:
+      - v2
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: polaris-landing-ecs
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: [self-hosted, linux, x64, polaris-landing]
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact preview source
+        # v4.2.2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Verify landing behavior
+        run: node --test test/*.test.js
+
+      - name: Publish the preview under /v2/
+        run: ./deploy/preview.sh v2 "$GITHUB_WORKSPACE"

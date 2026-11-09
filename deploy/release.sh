@@ -59,6 +59,10 @@ trap cleanup EXIT
 
 public_entries=(
   assets
+  blog
+  checkout-return
+  contact
+  release-notes
   entry
   fonts
   icons
@@ -81,6 +85,14 @@ for entry in "${public_entries[@]}"; do
   fi
   rsync -a "$source_directory/$entry" "$staging_directory/"
 done
+
+# Keep branch previews (deploy/preview.sh) reachable across production releases.
+if [[ -d "$site_root/previews" ]]; then
+  for preview in "$site_root/previews"/*; do
+    [[ -d "$preview" ]] || continue
+    ln -sfn "$preview" "$staging_directory/$(basename "$preview")"
+  done
+fi
 
 mv "$staging_directory" "$release_directory"
 trap - EXIT
