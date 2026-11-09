@@ -6048,7 +6048,7 @@
     <script type="module">
       import { supportConfig } from "./support-config.js";
       import { RELEASE_NOTES } from "./assets/release-notes.js";
-      import { startCheckout } from "./assets/checkout.js";
+      import { PRODUCTION_BILLING_ORIGIN, startCheckout } from "./assets/checkout.js";
       import { initFeatureDemos, initHowAutoplay } from "./assets/feature-demos.js";
 
       document.querySelectorAll("[data-web-checkout]").forEach((link) => {
@@ -6064,7 +6064,7 @@
           label.textContent = strings["pricing.checkout.loading"] || "Opening checkout…";
           errorLine.hidden = true;
           try {
-            await startCheckout(supportConfig.billingApiUrl);
+            await startCheckout(PRODUCTION_BILLING_ORIGIN);
           } catch {
             link.removeAttribute("aria-busy");
             label.innerHTML = original;

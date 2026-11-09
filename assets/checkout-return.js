@@ -1,5 +1,4 @@
-import { supportConfig } from "../support-config.js";
-import { claimLicense, findClaim } from "./checkout.js";
+import { PRODUCTION_BILLING_ORIGIN, claimLicense, findClaim } from "./checkout.js";
 
 const params = new URLSearchParams(window.location.search);
 const result = params.get("result");
@@ -20,7 +19,7 @@ function showKey(key) {
 
 async function poll(claim, attempt = 0) {
   try {
-    const order = await claimLicense(supportConfig.billingApiUrl, claim);
+    const order = await claimLicense(PRODUCTION_BILLING_ORIGIN, claim);
     if (order.status === "paid" && order.licenseKey) return showKey(order.licenseKey);
     if (order.status === "failed") return show("failed");
     if (order.status === "canceled") return show("cancel");

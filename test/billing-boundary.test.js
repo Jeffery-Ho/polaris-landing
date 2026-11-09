@@ -47,10 +47,10 @@ test("a missing catalog does not open checkout", async () => {
 
 test("the website does not send the promotional amount or use the test worker", async () => {
   const home = await read("index.html");
-  const config = await read("support-config.js");
   const checkout = await read("assets/checkout.js");
-  assert.match(config, /billingApiUrl: "https:\/\/polaris-license-production\.hexianji\.workers\.dev"/);
-  assert.doesNotMatch(config, /polaris-license-test/);
+  assert.equal(PRODUCTION_BILLING_ORIGIN, "https://polaris-license-production.hexianji.workers.dev");
+  assert.match(home, /startCheckout\(PRODUCTION_BILLING_ORIGIN\)/);
+  assert.doesNotMatch(home, /supportConfig\.billingApiUrl/);
   assert.doesNotMatch(checkout, /expectedAmount: 1290|trial\/start|polaris-license-test/);
   assert.match(home, /data-web-checkout/);
   assert.match(home, /data-i18n="pricing\.pro\.cta">Get Pro</);
@@ -68,6 +68,8 @@ test("the website does not send the promotional amount or use the test worker", 
 test("the return page does not treat the query as a paid license", async () => {
   const script = await read("assets/checkout-return.js");
   const page = await read("checkout-return/index.html");
+  assert.match(script, /claimLicense\(PRODUCTION_BILLING_ORIGIN, claim\)/);
+  assert.doesNotMatch(script, /support-config\.js/);
   assert.match(script, /order\.status === "paid" && order\.licenseKey/);
   assert.match(script, /error\.status === 401/);
   assert.match(script, /else show\("unconfirmed"\)/);
