@@ -25,8 +25,9 @@ async function poll(claim, attempt = 0) {
     if (order.status === "failed") return show("failed");
     if (order.status === "canceled") return show("cancel");
     if (attempt + 1 >= pollLimit) return show("slow");
-  } catch {
-    if (attempt + 1 >= pollLimit) return show("unconfirmed");
+  } catch (error) {
+    // A rejected claim token will not become valid by retrying.
+    if (error.status === 401 || attempt + 1 >= pollLimit) return show("unconfirmed");
   }
   window.setTimeout(() => poll(claim, attempt + 1), pollInterval);
 }
