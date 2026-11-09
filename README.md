@@ -6,11 +6,11 @@ Published at [polaris-ai.work](https://polaris-ai.work/), served from the Polari
 
 ## Payments
 
-The production license Worker exposes `POST /api/checkout/session` for an existing installation. The request needs `installationId`, header `X-Installation-Token`, and `planId: "pro"`. The server charges USD 12.90 only while that installation's `trial_ends_at` is still open, and USD 19.99 otherwise. An anonymous website visitor has no installation, and this site does not call `POST /api/trial/start` to create one. `support-config.js` therefore has no billing URL, and the homepage does not open Checkout.
+Anonymous purchases on this website use the production Worker at `https://polaris-license-production.hexianji.workers.dev`. **Get Pro** reads `GET /api/catalog`, then calls `POST /api/checkout/web-session` with `{ planId: "pro", expectedAmount: 1999 }`. It does not call `POST /api/trial/start` and does not send 1290. USD 12.90 remains an extension-only price, and only while that installation's server-recorded trial is still open.
 
-- The regular price shown on this site is USD 19.99. The USD 12.90 price is not offered here.
-- `/v2/checkout-return/` treats `result=cancel` as a canceled checkout. `result=success` does not show a license or a confirmed payment. The production Worker still builds `https://polaris-ai.work/checkout-return?result=success`, which is not this preview path; aligning that return URL belongs to the Worker change.
+- Stripe is expected to return to `https://polaris-ai.work/v2/checkout-return/?result=success&purchase=<id>` or the same path with `result=cancel`. The page shows a license only after `POST /api/web-purchases/claim` returns `status: "paid"` and a `licenseKey`. The query alone does not confirm payment.
 - The return page does not call `/api/licenses/recover`, so it does not queue a license email.
+- This client is written for the contract in extension PR 9. It must not be deployed while `GET /api/catalog` is still missing on the production Worker.
 - `server/` is an earlier, unused Stripe backend with a legacy USD 12 price. It is kept out of version control and is not deployed.
 
 ## Pricing
