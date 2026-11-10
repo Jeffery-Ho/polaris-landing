@@ -25,7 +25,7 @@
     <meta name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <title>Polaris AI — Chrome Extension to Navigate Long AI Chats</title>
     <link rel="stylesheet" href="assets/theme.css?v=15e667bb">
-    <link rel="stylesheet" href="assets/pricing.css?v=0229de2b">
+    <link rel="stylesheet" href="assets/pricing.css?v=12a90was">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -102,9 +102,9 @@
         {
           "@type": "Offer",
           "name": "Pro",
-          "price": "19.99",
+          "price": "12.90",
           "priceCurrency": "USD",
-          "description": "One-time purchase of $19.99 with lifetime access, no subscription. Buying on this website requests $19.99. Inside the extension, the server charges $12.90 only while that installation's first 7 days are still open. This website cannot verify that trial and does not request $12.90.",
+          "description": "One-time purchase with lifetime access, no subscription. Unlocks every supported platform and a table of contents across the full conversation. $12.90 during the first 7 days of the free trial; the regular price after that is $19.99.",
           "availability": "https://schema.org/InStock",
           "url": "https://polaris-ai.work/#pricing"
         }
@@ -168,7 +168,7 @@
           "name": "Is Polaris free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Polaris is free to use on two platforms at a time. Pro bought on this website is a one-time purchase of $19.99 for lifetime access. It unlocks every supported platform and a table of contents across the full conversation for very long chats. Inside the extension, the server charges $12.90 only while that installation's first 7 days are still open. This website cannot verify that trial and does not request $12.90."
+            "text": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that."
           }
         },
         {
@@ -5855,9 +5855,9 @@
                 <h3 class="pricing-plan-name" id="pricing-pro-title">Pro</h3>
               </div>
               <p class="pricing-plan-description" data-i18n="pricing.pro.description">For very long chats, on every platform.</p>
-              <div class="pricing-price-row"><strong class="pricing-price" data-i18n="pricing.pro.price">$19.99</strong></div>
+              <div class="pricing-price-row"><strong class="pricing-price" data-i18n="pricing.pro.price">$12.90</strong><span class="pricing-was"><span class="pricing-saving" data-i18n="pricing.pro.saving">Save $7.09</span><s class="pricing-original-price" data-i18n="pricing.pro.was">$19.99</s></span></div>
               <p class="pricing-term" data-i18n="pricing.pro.term">USD · One-time payment · Lifetime access</p>
-              <p class="pricing-assurance" data-i18n="pricing.pro.offer">Buying on this page is $19.99, paid once, for lifetime access. Inside Polaris, the server charges $12.90 only while that installation's first 7 days are still open. This page cannot choose that price.</p>
+              <p class="pricing-assurance" data-i18n="pricing.pro.offer">$12.90 during the first 7 days of the free trial, then $19.99.</p>
               <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Included</h4>
               <ul class="pricing-features">
                 <li class="pricing-feature-pro" data-i18n="pricing.pro.platforms">Every supported platform</li>
@@ -5947,7 +5947,7 @@
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
             <details class="faq-item"><summary data-i18n="faq.zip.q">Can I install Polaris without a browser store?</summary><p data-i18n="faq.zip.a">Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
             <details class="faq-item"><summary data-i18n="faq.chapter.q">What are Table of Contents and Outline?</summary><p data-i18n="faq.chapter.a">Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.</p></details>
-            <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro bought on this website is a one-time purchase of $19.99 for lifetime access. It unlocks every supported platform and a table of contents across the full conversation for very long chats. Inside the extension, the server charges $12.90 only while that installation's first 7 days are still open. This website cannot verify that trial and does not request $12.90.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.</p></details>
             <details class="faq-item"><summary data-i18n="faq.browsers.q">Does it work on Edge or Firefox?</summary><p data-i18n="faq.browsers.a">Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.</p></details>
             <details class="faq-item"><summary data-i18n="faq.devices.q">Can I use Pro on another device?</summary><p data-i18n="faq.devices.a">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.</p></details>
             <details class="faq-item"><summary data-i18n="faq.renewal.q">Does Pro need renewing?</summary><p data-i18n="faq.renewal.a">No. Pro is a one-time purchase, with no subscription or automatic renewal.</p></details>
@@ -6048,7 +6048,7 @@
     <script type="module">
       import { supportConfig } from "./support-config.js";
       import { RELEASE_NOTES } from "./assets/release-notes.js";
-      import { PRODUCTION_BILLING_ORIGIN, startCheckout } from "./assets/checkout.js";
+      import { PRODUCTION_BILLING_ORIGIN, startCheckout } from "./assets/checkout.js?v=12a90";
       import { initFeatureDemos, initHowAutoplay } from "./assets/feature-demos.js";
 
       document.querySelectorAll("[data-web-checkout]").forEach((link) => {
@@ -6138,7 +6138,8 @@
           "install.store.firefox.step4": "Open or refresh an AI chat page to start.",
           "install.store.firefox.rate": "Enjoying Polaris? A rating or a short review on Firefox Add-ons helps an independent developer a lot.",
           "pricing.free.price": "$0",
-          "pricing.pro.price": "$19.99",
+          "pricing.pro.price": "$12.90",
+          "pricing.pro.was": "$19.99",
           "nav.menu.open": "Open menu",
           "nav.menu.close": "Close menu",
           "nav.install": "Free trial",
@@ -6196,7 +6197,7 @@
           "faq.chapter.q": "What are Table of Contents and Outline?",
           "faq.chapter.a": "Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.",
           "faq.free.q": "Is Polaris free?",
-          "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro bought on this website is a one-time purchase of $19.99 for lifetime access. It unlocks every supported platform and a table of contents across the full conversation for very long chats. Inside the extension, the server charges $12.90 only while that installation's first 7 days are still open. This website cannot verify that trial and does not request $12.90.",
+          "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.",
           "faq.browsers.q": "Does it work on Edge or Firefox?",
           "faq.browsers.a": "Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.",
           "faq.devices.q": "Can I use Pro on another device?",
@@ -6315,7 +6316,7 @@
           "pricing.free.cta": "Continue for free",
           "pricing.pro.saving": "Save $7.09",
           "pricing.pro.term": "USD · One-time payment · Lifetime access",
-          "pricing.pro.offer": "Buying on this page is $19.99, paid once, for lifetime access. Inside Polaris, the server charges $12.90 only while that installation's first 7 days are still open. This page cannot choose that price.",
+          "pricing.pro.offer": "$12.90 during the first 7 days of the free trial, then $19.99.",
           "pricing.pro.cta": "Get Pro",
           "pricing.free.includes": "Included",
           "pricing.pro.includes": "Included",
@@ -6419,7 +6420,8 @@
           "install.store.firefox.step3": "点击工具栏的拼图图标，把 Polaris 固定到工具栏。",
           "install.store.firefox.step4": "打开或刷新 AI 对话页面即可使用。",
           "install.store.firefox.rate": "用着顺手的话，欢迎在 Firefox 附加组件网站给 Polaris 打个分、写句评价，这对独立开发者帮助很大。",
-          "pricing.pro.price": "US$19.99",
+          "pricing.pro.was": "US$19.99",
+          "pricing.pro.price": "US$12.90",
           "pricing.free.price": "¥0",
           "nav.menu.open": "打开菜单",
           "nav.menu.close": "关闭菜单",
@@ -6478,7 +6480,7 @@
           "faq.chapter.q": "目录和大纲是什么？",
           "faq.chapter.a": "目录列出回答里的每个标题，点一下就跳到对应位置；大纲把同一条回答按层级展开，可以逐节阅读、搜索、复制，或导出为 Markdown 或 HTML。",
           "faq.free.q": "Polaris 免费吗？",
-          "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用。在本页购买 Pro 是一次买断，终身使用，价格为 US$19.99（约 ¥144）。它解锁全部已支持平台，并能在完整的长对话里用目录跳转。只有扩展内由服务器确认该安装仍在首次打开后的 7 天内时，价格才是 US$12.90（约 ¥93）。本页无法核验试用资格，因此不会请求 US$12.90。人民币金额按 1 美元约 7.2 元估算，以实际扣款为准。",
+          "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断，解锁全部已支持平台，并能在完整的长对话里用目录跳转。免费试用前 7 天内购买为 US$12.90（约 ¥93），之后为 US$19.99（约 ¥144）。",
           "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
           "faq.browsers.a": "支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。",
           "faq.devices.q": "Pro 能在其他设备上使用吗？",
@@ -6597,7 +6599,7 @@
           "pricing.free.cta": "免费使用",
           "pricing.pro.saving": "立省 US$7.09",
           "pricing.pro.term": "约 ¥93 · 一次买断 · 永久使用",
-          "pricing.pro.offer": "本页直接购买是一次买断 US$19.99，终身使用。扩展内只有在服务器确认该安装仍处于首次打开后的 7 天时才是 US$12.90。本页不能改成这个优惠价。人民币金额按 1 美元约 7.2 元估算，以实际扣款为准。",
+          "pricing.pro.offer": "免费试用前 7 天内为 US$12.90，之后为 US$19.99。人民币金额按 1 美元约 7.2 元估算，以实际扣款为准。",
           "pricing.pro.cta": "购买 Pro",
           "pricing.free.includes": "包含",
           "pricing.pro.includes": "包含",

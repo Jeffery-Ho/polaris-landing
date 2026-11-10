@@ -1,8 +1,9 @@
 // Public website contract from the production license Worker:
-// GET /api/catalog returns the regular lifetime price, USD 19.99.
-// POST /api/checkout/web-session accepts only { planId: "pro", expectedAmount: 1999 }.
-// USD 12.90 stays on the installation route and is not requested here.
+// GET /api/catalog returns the trial welcome price, USD 12.90, with originalAmount 19.99.
+// POST /api/checkout/web-session accepts { planId: "pro", expectedAmount: 1290 }.
+// The extension still charges USD 19.99 after that installation's first 7 days.
 export const PRODUCTION_BILLING_ORIGIN = "https://polaris-license-production.hexianji.workers.dev";
+export const PROMO_PRICE_CENTS = 1290;
 export const REGULAR_PRICE_CENTS = 1999;
 
 const storageKey = "polaris-web-checkout";
@@ -61,12 +62,12 @@ export async function createWebCheckout(apiBase, fetchImpl = globalThis.fetch) {
   assertProduction(apiBase);
   const catalog = await request(fetchImpl, apiBase, "/api/catalog");
   const plan = catalog.plans?.find((item) => item.id === "pro" && item.currency === "usd");
-  if (!plan || plan.amount !== REGULAR_PRICE_CENTS || plan.originalAmount !== REGULAR_PRICE_CENTS) throw new Error("price_changed");
+  if (!plan || plan.amount !== PROMO_PRICE_CENTS || plan.originalAmount !== REGULAR_PRICE_CENTS) throw new Error("price_changed");
   const session = await request(fetchImpl, apiBase, "/api/checkout/web-session", {
     planId: "pro",
-    expectedAmount: REGULAR_PRICE_CENTS
+    expectedAmount: PROMO_PRICE_CENTS
   });
-  if (session.amount !== REGULAR_PRICE_CENTS || session.currency !== "usd" || session.originalAmount !== REGULAR_PRICE_CENTS) {
+  if (session.amount !== PROMO_PRICE_CENTS || session.currency !== "usd" || session.originalAmount !== REGULAR_PRICE_CENTS) {
     throw new Error("price_changed");
   }
   const checkoutUrl = new URL(session.checkoutUrl);
