@@ -1,0 +1,25 @@
+name: Retire a branch preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Preview name to retire (e.g. v2)
+        required: true
+        default: v2
+
+permissions:
+  contents: read
+
+jobs:
+  retire:
+    runs-on: [self-hosted, linux, x64, polaris-landing]
+    timeout-minutes: 5
+    steps:
+      - name: Remove the preview and its release link
+        run: |
+          name="${{ github.event.inputs.name }}"
+          [[ "$name" =~ ^[a-z0-9][a-z0-9-]{0,30}$ ]] || { echo "Invalid preview name: $name" >&2; exit 1; }
+          rm -rf "/srv/polaris-landing/previews/$name"
+          rm -f "/srv/polaris-landing/current/$name"
+          echo "Retired preview: $name"
