@@ -70,3 +70,20 @@ test("sitemap lists every public page with lastmod and never the /v2/ preview", 
   const home = await read("index.html");
   assert.match(home, /<figure class="hero-browser" data-nosnippet>/, "demo figures stay out of snippets");
 });
+
+test("llms.txt, robots and the introduction video follow the SEO spec", async () => {
+  const llms = await read("llms.txt");
+  assert.match(llms, /^# Polaris AI$/m, "llms.txt opens with the brand");
+  assert.match(llms, /\$12\.90/, "llms.txt states the welcome price");
+  assert.match(llms, /https:\/\/polaris-ai\.work\//, "llms.txt links the canonical site");
+
+  const robots = await read("robots.txt");
+  assert.match(robots, /Disallow: \/v2\//, "robots.txt excludes the v2 preview");
+
+  const home = await read("index.html");
+  const graph = JSON.parse(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"];
+  const video = graph.find((node) => [].concat(node["@type"]).includes("VideoObject"));
+  assert.ok(video, "VideoObject for the introduction video");
+  assert.equal(video.contentUrl, "https://polaris-ai.work/assets/polaris-introduction.mp4");
+  assert.match(video.duration, /^PT\d+S$/, "video duration is an ISO 8601 duration");
+});

@@ -76,6 +76,7 @@ public_entries=(
   robots.txt
   sitemap.xml
   support-config.js
+  llms.txt
 )
 
 for entry in "${public_entries[@]}"; do

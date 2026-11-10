@@ -74,7 +74,7 @@ test("release script switches atomically and retains only the current and previo
   const siteRoot = join(temporaryRoot, "site");
   const releaseScript = new URL("../deploy/release.sh", import.meta.url).pathname;
   const entries = ["assets", "blog", "checkout-return", "contact", "entry", "release-notes", "fonts", "icons", "support", "vendor"];
-  const files = ["index.html", "privacy.html", "terms.html", "safety.html", "refund.html", "robots.txt", "sitemap.xml", "support-config.js"];
+  const files = ["index.html", "privacy.html", "terms.html", "safety.html", "refund.html", "robots.txt", "sitemap.xml", "support-config.js", "llms.txt"];
   const first = "a".repeat(40);
   const second = "b".repeat(40);
   const third = "c".repeat(40);

@@ -1,0 +1,26 @@
+# Polaris AI
+
+> Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.
+
+Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek. It processes conversations locally in the browser and never uploads chat content. The website is published at https://polaris-ai.work/.
+
+## Install
+
+- [Homepage](https://polaris-ai.work/): Product overview, how it works, features, pricing and installation.
+- [Chrome Web Store](https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb): Official Chrome listing.
+- [GitHub releases](https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/releases/latest): Offline ZIP for manual installation.
+
+## Pricing
+
+- Free: two supported platforms at a time, no payment details needed.
+- Pro: one-time purchase, no subscription. $12.90 during the first 7 days of the free trial, then $19.99.
+
+## Docs
+
+- [Release notes](https://polaris-ai.work/release-notes/): Every version, grouped by month.
+- [Privacy policy](https://polaris-ai.work/privacy.html): Data handling for the extension and website.
+- [Terms of use](https://polaris-ai.work/terms.html): License and usage terms.
+- [Security](https://polaris-ai.work/safety.html): Permissions and security practices.
+- [Refund policy](https://polaris-ai.work/refund.html): Voluntary 14-day refund for unactivated licenses.
+- [Contact](https://polaris-ai.work/contact/): Support channels.
+- [Founder's blog](https://polaris-ai.work/blog/): The story behind Polaris.
