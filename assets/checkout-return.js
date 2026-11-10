@@ -1,4 +1,4 @@
-import { PRODUCTION_BILLING_ORIGIN, claimLicense, findClaim } from "./checkout.js";
+import { PRODUCTION_BILLING_ORIGIN, claimLicense, findClaim } from "./checkout.js?v=12a90";
 
 const params = new URLSearchParams(window.location.search);
 const result = params.get("result");

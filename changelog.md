@@ -2,7 +2,7 @@
 
 ## 2026-11-10
 
-- Pricing：还原 Pro 卡双价格展示，并按试用规则写清：$12.90 为免费试用前 7 天价格，划线 $19.99 为之后的常规价。中英文、FAQ 与结构化数据同步。官网 Get Pro 改为请求生产 Worker 的 USD 12.90 结账（catalog `amount` 1290、`originalAmount` 1999）。
+- Pricing：还原 Pro 卡双价格展示，并按试用规则写清：$12.90 为免费试用前 7 天价格，划线 $19.99 为之后的常规价。中英文、FAQ 与结构化数据同步。官网 Get Pro 改为请求生产 Worker 的 USD 12.90 结账（catalog `amount` 1290、`originalAmount` 1999）。结账脚本加 `?v=12a90`，避开 ESA 对旧 `checkout.js` 的缓存。
 
 ## 2026-11-09
 
