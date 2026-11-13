@@ -13,7 +13,13 @@ Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, G
 ## Pricing
 
 - Free: two supported platforms at a time, no payment details needed.
-- Pro: one-time purchase, no subscription. $12.90 during the first 7 days of the free trial, then $19.99.
+- Pro: all supported platforms and Long conversation mode, which keeps more earlier messages in the Table of Contents. One-time purchase, no subscription. $12.90 during the first 7 days of the free trial, then $19.99.
+
+## Long conversation mode and privacy
+
+Long conversation mode keeps more earlier messages available for navigation; it does not guarantee every message is available. Retained messages live only in the current page’s memory, are cleared on refresh or when switching chats, and are not written to disk, synced or uploaded. Copy or export available content as Markdown or HTML to pass context to another AI assistant.
+
+The extension supports Chrome, Microsoft Edge and Firefox.
 
 ## Docs
 

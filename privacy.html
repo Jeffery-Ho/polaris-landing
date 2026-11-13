@@ -53,7 +53,7 @@
 <main>
   <article lang="en" data-legal-locale="en">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: November 5, 2026</p>
+    <p class="updated">Last updated: November 12, 2026</p>
     <p>This policy covers the Polaris browser extension and website. Conversation text used for navigation, search, copying, and export is processed on your device and is not uploaded to Polaris servers. License and payment records, described below, do not include that chat content. The website analytics disclosures supplement the extension’s data-handling policy. This policy is a disclosure of data handling for users in many countries. It is not a warranty that using Polaris complies with any AI provider’s terms, and it is not a warranty that your own use of a third-party chat complies with every country’s AI-platform rules or data laws. Mandatory local privacy rights still apply where the law gives them. Responsibility for provider terms is in the <a href="terms.html?lang=en#terms-responsibility">Terms of Use</a>. Who handles license records, and which regional rights may apply, is in <a href="#global-privacy">section 12</a>.</p>
     <h2>1. Information We Process</h2>
 
@@ -66,35 +66,32 @@
         How Polaris reads a page. On a supported AI chat site, Polaris injects a content script into the tab you already opened. It inspects the page DOM—the same rendered messages you can see—to find headings, lists, and message boundaries, then builds local navigation markers (TOC), an Outline tree, and optional full-text search over what has already been loaded. This inspection happens in your browser. Polaris does not ask the AI provider for a separate OAuth or developer-API grant to read chat text for navigation.
       </p>
       <p>
-        Default mode only uses content that is already present in the page. Opt-in complete indexing (currently ChatGPT and Gemini) is different: it may issue additional same-origin requests with your existing website session to load more of the current conversation active branch. That method is disclosed here and in the <a href="terms.html?lang=en#terms-platforms">Terms of Use</a>. It is not an official ChatGPT or Gemini developer API. A provider may treat that programmatic history retrieval as restricted automated extraction even when the messages are your own prompts or output you are allowed to view in the product. Being able to read the text in the UI does not mean the provider allows this retrieval method. You decide whether to turn it on.
+        Standard mode only uses content that is already present in the page and removes messages from
+        its index when the website unmounts them. The optional Long conversation mode keeps already
+        loaded messages in the current page's memory for navigation, search and export. If you
+        explicitly turn on automatic backfill, Polaris renders earlier messages of your own open
+        conversation that the website has already delivered to the browser, using only the website's
+        own page mechanics (scrolling its message list or pressing its own "load earlier" control)
+        while the list is covered, then restores your reading position. Shared conversations are never
+        backfilled, and backfill pauses while the page is hidden. This automated scrolling is disclosed
+        here and in the <a href="terms.html?lang=en#terms-platforms">Terms of Use</a>; a provider may
+        still treat it as restricted automation. You decide whether to turn it on.
       </p>
       <p>
-        When complete indexing is enabled for ChatGPT or Gemini, it also requests the current conversation's
-        active branch of user-visible messages through the selected site's same-origin session to build a complete
-        outline and full-text search index. This index stays in memory across DOM removal and
-        is cleared on conversation changes, page refresh or closure, or disabling complete indexing.
-        While complete mode is enabled, the ChatGPT page bridge may also keep filtered snapshots
-        of recently opened conversations for up to 60 seconds to reuse the site's own loading work,
-        limited to three snapshots per private or shared conversation type. These temporary snapshots
-        contain only the active branch's user-visible messages, are invalidated when an account or workspace
-        change is detected, and are cleared when complete mode is disabled or the page closes.
-        Complete indexing also stores a gzip-compressed snapshot of the active branch's user-visible messages
-        and parsed records in the extension's own local IndexedDB, isolated by a confirmed account,
-        workspace, and conversation. These snapshots are not synchronized or uploaded. Unknown
-        identities and private windows skip persistent caching. Hidden reasoning, tool messages,
-        alternate branches, and downloaded attachments are not included in the cache.
-        This access is necessary to identify headings and
-        list structures, generate navigation markers, scroll to selected sections, and show
-        AI response content in the full-screen text-selection feature, and support user-initiated
-        conversation copying and file export.
+        The index is cleared on conversation changes, page refresh or closure, or returning to Standard
+        mode. Hidden reasoning, tool messages, alternate branches, and downloaded attachments are not
+        indexed. This access is necessary to identify headings and list structures, generate navigation
+        markers, scroll to selected sections, show AI response content in the full-screen
+        text-selection feature, and support user-initiated conversation copying and file export.
       </p>
       <p>
         Website content is processed locally within the user's browser. Conversation text is not transmitted
         to the developer, to a Polaris server, or to any other server for Polaris to process. The license,
         trial, purchase, and recovery requests described below do not include AI conversations, prompts, or
-        page content. Complete ChatGPT and Gemini indexing uses the existing page session to authenticate same-origin requests to the selected site.
-        Those requests go to that AI site, not to Polaris. Short-lived authentication data remains in the page context and is never placed in extension
-        messages, diagnostic logs, persistent storage, or synchronization. Polaris does not ask for passwords.
+        page content. Polaris does not call website APIs, does not request or use your account session,
+        authentication tokens or credentials, and does not intercept or modify website requests. Polaris
+        does not ask for passwords. On startup, the extension deletes the conversation cache database used
+        by earlier versions without reading its contents; website storage is not changed.
       </p>
 
       <h3>Third-party page injection</h3>
@@ -106,10 +103,9 @@
       <p>
         Polaris: AI Chat Navigator stores user preferences such as top and right spacing, the maximum
         number of visible markers, tooltip width, enabled heading levels, and unordered-list
-        marker preferences. The complete-conversation reading preference applies to ChatGPT and
-        Gemini across subsequent conversations. It is synchronized with the other preferences;
-        when browser synchronization is enabled, it can enable complete reading in other signed-in
-        browsers where the feature is available. Conversation snapshots themselves are never synchronized.
+        marker preferences. The reading mode (Standard or Long conversation) and the automatic backfill
+        choice are synchronized with the other preferences. No conversation content is stored in these
+        settings.
       </p>
       <p>
         These settings are stored using the Chrome Storage Sync API. If browser synchronization
@@ -149,8 +145,7 @@
         version, coarse platform and browser summaries, viewport measurements, pointer-drag
         lifecycle outcomes, route and render counts, and error type names. It is designed to
         exclude AI response text, marker titles, full URLs, account information, prompts, cookies,
-        tokens, error messages, and stack traces. Complete-reading events may also include
-        a cache-hit flag, stage durations, and a count of additional history-page requests.
+        tokens, error messages, and stack traces. Conversation history is never loaded for diagnostics.
       </p>
       <p>
         The log is stored only in the current tab's session storage until the tab is closed or the
@@ -164,10 +159,10 @@
       <h3>Clipboard</h3>
       <p>
         When the user activates a copy action, Polaris: AI Chat Navigator writes the selected text,
-        a chapter, or conversation text to the system clipboard. Full-conversation copying includes
-        user messages and AI replies in the active branch and is independent of chapter filters or
-        folding. Complete-index copying is available only after reading finishes; page-based copying
-        includes only content already read from the page. The extension does not read existing
+        a chapter, or conversation text to the system clipboard. Conversation copying includes the
+        user messages and AI replies that have been read from the page and is independent of chapter
+        filters or folding. While Long conversation mode is still indexing or backfilling, copying and
+        export wait until it finishes; otherwise they include only content already read from the page. The extension does not read existing
         clipboard content or upload copied text. Clipboard contents are managed by the user's
         operating system and any clipboard tools the user has enabled.
       </p>
@@ -178,8 +173,8 @@
         or HTML. Files are generated locally in the browser and downloaded to a location managed by
         the user; conversation text is not sent to a processing server. Exported images are represented
         by text labels, and raw message HTML is sanitized or escaped. Normal links remain clickable;
-        following them contacts their destination. Downloaded files remain until the user deletes them,
-        independently of the extension's cache. Any sharing or cloud backup of these files is controlled
+        following them contacts their destination. Downloaded files remain until the user deletes them.
+        Any sharing or cloud backup of these files is controlled
         by the user and the applications or services they choose.
       </p>
 
@@ -225,12 +220,10 @@
 
       <h2>4. Data Retention</h2>
       <p>
-        Default mode does not persist AI responses or user prompts. Opt-in complete ChatGPT and Gemini indexing
-        caches user-visible conversation text and parsed records locally, with a total compressed limit of
-        100 MiB. Least-recently-used entries are removed when space is needed. Snapshots remain after
-        closing a tab or disabling complete mode until the user selects Clear conversation cache in
-        Preferences, entries are evicted, or the extension is removed. Clearing also invalidates pending
-        old cache writes. The cache does not retain Maker navigation history or authentication credentials.
+        Polaris does not persist AI responses or user prompts. The conversation index and any messages
+        retained by Long conversation mode live only in the current page's memory and are cleared on
+        conversation changes, page refresh or closure, or returning to Standard mode. No conversation
+        content is written to local storage, IndexedDB, or synchronization.
       </p>
       <p>
         Extension settings remain in Chrome storage until they are reset or removed by the user
@@ -254,13 +247,13 @@
         You may email <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a> to ask for deletion of
         server-side purchase and license records we still hold. Where we can, and where tax, accounting,
         fraud-prevention, or another legal duty does not require us to keep them, we will delete or
-        de-identify them. We cannot delete a conversation cache from that request, because the cache
-        stays on your device. Clear it as described in section 8.
+        de-identify them. Polaris keeps no conversation content on our servers or in a persistent cache
+        on your device, so there is no conversation data to delete through that request.
       </p>
 
       <h2>5. Browser Permissions</h2>
       <ul>
-        <li><strong>Storage permission:</strong> used to save and synchronize extension preferences. Complete-conversation snapshots use extension-owned local IndexedDB and are not synchronized.</li>
+        <li><strong>Storage permission:</strong> used to save and synchronize extension preferences. No conversation content is stored locally or synchronized.</li>
         <li><strong>Host permissions:</strong> used to run the extension on supported AI chat websites, locally inspect AI response content for navigation, and contact the disclosed license-service host for trial and license operations.</li>
       </ul>
       <p>The extension requests only the permissions needed to provide its disclosed functionality.</p>
@@ -272,7 +265,7 @@
         payment systems described in this policy store order, license, and activation records only. They do
         not receive conversation text. Any
         synchronization of extension settings is handled through Chrome's Storage Sync service
-        and its associated security mechanisms. Local gzip compression is not application-layer encryption and does not replace device and browser access protection.
+        and its associated security mechanisms.
       </p>
 
       <h2>7. Chrome Web Store Limited Use</h2>
@@ -293,11 +286,11 @@
       <h2 id="user-choices">8. User Choices</h2>
       <p>
         You can stop the extension from reading pages by disabling or uninstalling Polaris: AI Chat Navigator.
-        To stop opt-in complete indexing, turn off the complete-conversation reading preference. That preference
-        applies to ChatGPT and Gemini. Turning it off stops new complete reading. The in-memory index is cleared
-        when complete mode is disabled, the conversation changes, or the page is refreshed or closed. Local
-        IndexedDB snapshots remain until you select Clear conversation cache in Preferences, entries are evicted,
-        or the extension is removed. Closing a tab does not by itself delete that persistent cache.
+        To stop retaining earlier messages, switch to Standard mode in Preferences; to keep Long conversation
+        mode without automatic backfill, turn off its backfill switch. Any wheel, pointer, touch or key input
+        on the page also stops a running backfill. "Clear and rebuild this index" discards retained messages
+        for the current conversation and rebuilds from what the page currently shows. The in-memory index is
+        also cleared when the conversation changes or the page is refreshed or closed.
       </p>
       <p>
         You may also reset other extension preferences from the extension settings, clear the current tab's
@@ -318,11 +311,11 @@
       </p>
       <p>
         Polaris processes content from conversations the user can access through the supported
-        website, and it inserts its own interface into the page the user already opened. Complete
-        ChatGPT and Gemini indexing can request additional history for the current conversation
-        using that website's existing signed-in session. Page injection and these website-session
-        requests are not an official developer API, partner integration, or approved plugin. Installing
-        Polaris, granting browser permissions, or enabling complete reading does not itself establish
+        website, and it inserts its own interface into the page the user already opened. With automatic
+        backfill turned on, Long conversation mode also scrolls the website's own message list to render
+        earlier messages of the current conversation. Page injection and this automated scrolling are not
+        an official developer API, partner integration, or approved plugin. Installing Polaris, granting
+        browser permissions, or enabling automatic backfill does not itself establish
         permission from the AI service provider for any particular access method.
       </p>
       <p>
@@ -331,9 +324,8 @@
         Sign in with ChatGPT or ChatGPT plan usage. OpenAI's
         <a href="https://developers.openai.com/siwc/token-sharing-open-source">ChatGPT plan usage documentation</a>
         describes a separate OAuth permission for eligible inference requests; that permission
-        does not grant access to ChatGPT conversations. An existing website login session is
-        not that OAuth authorization, and official API documentation does not authorize Polaris's
-        website-history access.
+        does not grant access to ChatGPT conversations. Polaris does not use that authorization or
+        a website login session to retrieve conversation history.
       </p>
       <p>
         Provider terms may restrict automated or programmatic extraction of data or output,
@@ -447,51 +439,51 @@
   </article>
   <article lang="zh-CN" data-legal-locale="zh-CN">
     <h1>隐私政策</h1>
-    <p class="updated">更新日期：2026 年 11 月 5 日</p>
+    <p class="updated">更新日期：2026 年 11 月 12 日</p>
     <p>本政策涵盖 Polaris 浏览器扩展与官网。用于导航、搜索、复制和导出的会话文本在用户设备上处理，不上传到 Polaris 服务器。下文所述许可和支付记录不包含这些会话内容。下方官网分析说明补充扩展的数据处理政策。本政策是面向许多国家用户的数据处理披露。它不是使用 Polaris 即符合任何 AI 平台条款的保证，也不是用户自己使用第三方对话即符合每一国家的 AI 平台规则或数据法律的保证。法律赋予的当地隐私权利仍然适用。遵守平台条款的责任见<a href="terms.html?lang=zh-CN#terms-responsibility-zh">使用条款</a>。许可记录由谁处理、以及可能适用的地区权利，见<a href="#global-privacy-zh">第 12 节</a>。</p>
     <h2>1. 我们处理的信息</h2>
-<h3>会话内容与完整读取</h3>
+<h3>会话内容与长对话模式</h3>
 <p>Polaris 在浏览器本地读取受支持 AI 网页的回复内容与文档结构，用于目录、导航、搜索和阅读。</p>
 <p>页面是怎么读的。在受支持的 AI 对话网站上，Polaris 向用户已经打开的标签页注入内容脚本。它查看页面 DOM，也就是用户能看见的已渲染消息，找出标题、列表和消息边界，再在本地生成导航标记（目录）、大纲树，以及对已经加载内容的可选全文搜索。这些检查发生在用户的浏览器里。Polaris 不会另向 AI 厂商申请 OAuth 或开发者 API 授权，来读取对话文本做导航。</p>
-<p>默认模式只使用页面上已经出现的内容。可选的完整索引（目前是 ChatGPT 和 Gemini）不同：它可能带着用户现有的网站登录会话，发出额外的同源请求，去加载当前对话活动分支中的更多内容。这种方式在本政策和<a href="terms.html?lang=zh-CN#terms-platforms-zh">使用条款</a>中说明。它不是 ChatGPT 或 Gemini 的官方开发者 API。即使这些消息是用户自己的提示词，或是用户可以在产品里查看的输出，平台仍可能把这种程序化拉取历史视为受限制的自动提取。能在界面里读到文本，并不表示平台允许这种获取方式。是否开启，由用户自己决定。</p>
-<p>开启 ChatGPT 或 Gemini 完整读取后，会使用当前网页已有登录态，通过同源请求补全当前会话活动分支中用户可见的消息。这里的“用户可见”不表示私人会话被公开。</p>
-<p>当前索引保留在内存中，切换会话、刷新或关闭页面、关闭完整读取时清除。完整模式开启期间，ChatGPT 页面桥接还可短暂保留最近打开会话的已过滤快照，以复用原站加载结果；私人和分享会话各最多三份，最长 60 秒，检测到账号或工作区变化后失效，关闭完整模式或页面时清除。</p>
-<p>完整读取会将活动分支的用户可见消息及解析记录以 gzip 压缩快照存入扩展自己的本地 IndexedDB。缓存按确认的账号、工作区和会话隔离，不同步、不上传；身份未知或隐私窗口跳过持久化。缓存不包含隐藏推理、工具消息、其他分支或下载的附件内容。会话正文不发送给开发者，也不发送到 Polaris 服务器或任何由 Polaris 处理正文的服务器。下文的许可、试用、购买和找回请求不包含 AI 会话、提示词或页面正文。完整读取的同源请求发往该 AI 网站，而不是 Polaris。短期鉴权信息留在网页环境中，不进入扩展消息、诊断日志、持久化存储或同步；Polaris 不索要密码。</p>
+<p>标准模式只使用页面上已经出现的内容，网站移除某条消息后同步从索引中移除。可选的长对话模式会把已加载的消息保留在当前页面的内存中，用于导航、搜索和导出。用户明确开启自动补齐后，Polaris 只用网站自身的页面机制（滚动其消息列表或点击其自带的“加载更早消息”控件），在遮罩下让网站已下发到浏览器、属于用户本人当前对话的更早消息显示出来，结束后恢复阅读位置。分享页不补齐，页面隐藏时暂停。这种自动滚动在本政策和<a href="terms.html?lang=zh-CN#terms-platforms-zh">使用条款</a>中说明，平台仍可能将其视为受限制的自动化。是否开启，由用户自己决定。</p>
+<p>索引在切换会话、刷新或关闭页面、切回标准模式时清除。隐藏推理、工具消息、其他分支和下载的附件不纳入索引。</p>
+<p>会话正文只在浏览器本地处理，不发送给开发者，也不发送到 Polaris 服务器或任何由 Polaris 处理正文的服务器。下文的许可、试用、购买和找回请求不包含 AI 会话、提示词或页面正文。Polaris 不调用网站接口，不请求或使用账号登录会话、鉴权令牌或凭据，也不拦截或修改网站请求；Polaris 不索要密码。</p>
+<p>会话内容不写入本地存储、IndexedDB 或同步。扩展启动时会直接删除旧版本使用的会话缓存数据库，不读取其内容；网站自身的存储不受影响。</p>
 <h3>第三方页面注入</h3>
 <p>网站权限只允许 Polaris 在已披露的 AI 对话网站上运行。扩展会把自己的界面（标记、大纲、设置入口）插入这些页面。部分平台条款不鼓励或禁止未经授权的插件和页面覆盖层。Polaris 披露这种注入，便于用户决定是否在各个网站上启用扩展。用于导航的对话文本仍按上文在本地处理。</p>
 <h3>扩展设置</h3>
-<p>间距、显示数量、提示宽度、识别范围等偏好存于 Chrome Storage Sync。完整读取偏好适用于 ChatGPT、Gemini 及后续会话；开启浏览器同步后，也可在其他已登录且具备相应功能的浏览器生效。会话快照本身不会同步。同步由 Google 按其适用政策处理，开发者不能访问同步设置。</p>
+<p>间距、显示数量、提示宽度、识别范围等偏好存于 Chrome Storage Sync。读取方式（标准模式或长对话模式）和自动补齐选择随其他偏好同步，偏好中不包含会话内容。同步由 Google 按其适用政策处理，开发者不能访问同步设置。</p>
 <h3>试用、购买与许可证</h3>
 <p>扩展可联系许可服务以初始化七天试用、获取方案和验证许可证。随机安装标识、独立凭据、设备激活凭据及待确认购买信息存于 Chrome Storage Local，不同步；免费平台选择留在本机。无需 Polaris 账号，不使用硬件指纹。</p>
 <p>用户选择购买后，由 Stripe 托管 Checkout 处理支付并收集结账邮箱，扩展与许可服务不保存银行卡信息。Cloudflare Worker 和 D1 保存履约、验证所需的订单、许可及激活记录；许可和激活验证值经过哈希处理，邮箱与许可交付材料分别加密。许可证交付由已披露的许可服务完成。这些流程不包含 AI 会话、提示词、浏览历史、完整浏览网址或硬件指纹。</p>
 <p>找回请求使用结账邮箱，无论是否存在匹配购买均返回相同确认；短期 IP 哈希计数与发送限速用于防滥用。测试集成与正式收款发布分开，本地界面预览不会扣款。</p>
 <h3>诊断日志</h3>
-<p>用户在设置中主动选择诊断操作后，扩展为当前标签页记录有条数和大小上限的会话日志，包括版本、粗粒度平台与浏览器信息、视口、指针拖动结果、路由和渲染次数、错误类型；完整读取事件还可包含缓存命中、阶段耗时和额外分页请求数。白名单设计排除正文、目录标题、完整网址、账号、提示词、Cookie、令牌、错误消息和堆栈。</p>
+<p>用户在设置中主动选择诊断操作后，扩展为当前标签页记录有条数和大小上限的会话日志，包括版本、粗粒度平台与浏览器信息、视口、指针拖动结果、路由和渲染次数、错误类型。诊断从不加载会话历史。白名单设计排除正文、目录标题、完整网址、账号、提示词、Cookie、令牌、错误消息和堆栈。</p>
 <p>日志仅存于当前标签页 sessionStorage。“仅下载”保存脱敏 JSON；“发送诊断日志”另打开预填至 <a href="mailto:jefferyho.build@gmail.com">jefferyho.build@gmail.com</a> 的邮件草稿，不自动附加文件，由用户自行决定附件和发送。扩展不自动上传日志。</p>
 <h3>剪贴板与导出</h3>
-<p>用户主动复制时，扩展将所选文本、本章或会话文本写入系统剪贴板，不读取原有剪贴板、不上传复制正文。会话复制包含活动分支的用户消息与 AI 回复，不受章节筛选或折叠影响；完整索引读取结束后方可复制，页面来源仅包含已读取内容。剪贴板由系统及用户启用的剪贴板工具管理。</p>
-<p>复制后可主动保存相同范围的 Markdown 或 HTML，由浏览器本地生成下载，不发送至处理服务器。图片转为文字标签，原始 HTML 经清洗或转义；普通链接仍可点击，点击后会访问其目标。下载文件由用户保存和删除，不受扩展清缓存操作影响；分享及云备份由用户选择的应用或服务处理。</p>
+<p>用户主动复制时，扩展将所选文本、本章或会话文本写入系统剪贴板，不读取原有剪贴板、不上传复制正文。会话复制包含已从页面读取的用户消息与 AI 回复，不受章节筛选或折叠影响；长对话模式仍在整理或补齐时，需等待完成后才能复制和导出，其余情况仅包含已读取内容。剪贴板由系统及用户启用的剪贴板工具管理。</p>
+<p>复制后可主动保存相同范围的 Markdown 或 HTML，由浏览器本地生成下载，不发送至处理服务器。图片转为文字标签，原始 HTML 经清洗或转义；普通链接仍可点击，点击后会访问其目标。下载文件由用户保存和删除；分享及云备份由用户选择的应用或服务处理。</p>
 <h2>2. 信息用途</h2>
-<p>信息仅用于已说明的目录识别、导航、显示、完整索引与搜索、阅读、章节或会话复制及本地文件导出。不用于广告、扩展内行为追踪、用户画像、信用或贷款判断、出售或许可用户数据，以及无关产品研究。</p>
+<p>信息仅用于已说明的目录识别、导航、显示、会话索引与搜索、阅读、章节或会话复制及本地文件导出。不用于广告、扩展内行为追踪、用户画像、信用或贷款判断、出售或许可用户数据，以及无关产品研究。</p>
 <h2>3. 共享与披露</h2>
 <p>我们不出售、出租或交易个人信息；会话正文不共享给开发者、广告商、数据经纪商或其他第三方。支付和许可信息只由前述服务用于购买、授权、交付和找回。扩展不内置第三方分析、遥测或广告服务。许可请求、用户发起的结账与邮件交付、可选的设置同步，以及用户主动选择分享的诊断文件或邮件，分别按上述范围处理。官网的可选分析另见第 11 节。</p>
 <h2>4. 保留与清除</h2>
-<p>默认模式不持久化 AI 回复或提示词。完整读取的本地压缩缓存总量上限为 100 MiB，空间不足时按最近使用情况淘汰。关闭标签页或完整模式不会删除该缓存；用户可在偏好设置中“清除会话缓存”，或等待淘汰、卸载扩展。清除同时使旧的待写入任务失效。缓存不保存 Maker 导航历史或鉴权凭据。</p>
+<p>Polaris 不持久化 AI 回复或提示词。会话索引及长对话模式保留的消息只存在于当前页面的内存中，切换会话、刷新或关闭页面、切回标准模式时清除；会话内容不写入本地存储、IndexedDB 或同步。</p>
 <p>扩展设置保留至重置、清除或卸载；同步设置也可在浏览器同步设置中管理。诊断日志随标签页会话结束或 sessionStorage 清除而删除；已下载文件及已发送邮件由用户和邮件服务商管理。</p>
-<p>本机安装和激活凭据保留至卸载或清除本地存储。停用设备会撤销激活凭据，但保留安装标识和试用截止时间。测试许可证交付密文及订单记录保留至该测试许可证生命周期结束；邮件重试元数据不含明文凭据，短期限速计数定期删除。可联系开发者申请删除服务器上的测试购买和许可记录。用户也可以发邮件至 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>，申请删除我们仍保存的服务器端购买和许可记录。在能够删除，且税务、会计、防欺诈或其他法律义务不要求继续保存时，我们会删除或去标识这些记录。会话缓存不在我们的服务器上，这项申请无法删除它；请按第 8 节在设备上清除。</p>
+<p>本机安装和激活凭据保留至卸载或清除本地存储。停用设备会撤销激活凭据，但保留安装标识和试用截止时间。测试许可证交付密文及订单记录保留至该测试许可证生命周期结束；邮件重试元数据不含明文凭据，短期限速计数定期删除。可联系开发者申请删除服务器上的测试购买和许可记录。用户也可以发邮件至 <a href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>，申请删除我们仍保存的服务器端购买和许可记录。在能够删除，且税务、会计、防欺诈或其他法律义务不要求继续保存时，我们会删除或去标识这些记录。Polaris 不在服务器或设备上持久保存会话内容，因此这项申请不涉及会话数据。</p>
 <h2>5. 浏览器权限</h2>
-<p>存储权限用于设置和本地会话缓存；网站权限用于在受支持网页提供已披露的功能，以及联系许可服务进行试用和授权操作。扩展仅请求提供已披露功能所需的权限。</p>
+<p>存储权限用于保存和同步设置，会话内容不在本地存储或同步；网站权限用于在受支持网页提供已披露的功能，以及联系许可服务进行试用和授权操作。扩展仅请求提供已披露功能所需的权限。</p>
 <h2>6. 数据安全</h2>
 <p>会话正文在本地处理，不发送给开发者或 Polaris 服务器，开发者不维护保存会话正文的外部数据库。本政策所述许可和支付系统只保存订单、许可和激活记录，不接收会话正文。设置同步由 Chrome Storage Sync 及其安全机制处理。本地压缩不等于应用层加密，也不替代用户对设备和浏览器的访问保护。</p>
 <h2>7. Chrome 商店有限使用说明</h2>
 <p>Polaris 按本地处理设计，把页面内容用于已披露的导航、阅读和导出。本节说明这一处理方式，以便对照 Chrome Web Store User Data Policy，包括 Limited Use 要求。扩展访问的信息只用于提供或改善该已披露的单一用途，不用于个性化广告、画像、数据经纪、信用判断或其他无关用途。这是有限使用披露，不是认证，也不保证使用 Polaris 即符合任何 AI 平台条款。开发者不接收或存储会话正文，也不通过该服务安排人工阅读用户网页内容。</p>
 <h2 id="user-choices-zh">8. 用户选择</h2>
-<p>停用或卸载 Polaris 即可停止扩展读取页面。要停止可选的完整索引，请关闭完整读取偏好。该偏好适用于 ChatGPT 和 Gemini。关闭后不再开始新的完整读取。内存中的索引会在关闭完整模式、切换会话或刷新、关闭页面时清除。本地 IndexedDB 快照会保留，直到用户在偏好设置中选择清除会话缓存、条目被淘汰，或卸载扩展。仅关闭标签页不会删除这份持久缓存。</p>
+<p>停用或卸载 Polaris 即可停止扩展读取页面。要停止保留更早的消息，请在偏好设置中切换到标准模式；如需保留长对话模式但不自动补齐，请关闭自动补齐开关。补齐进行中，在网页上滚动、点击、触摸或按键也会立即停止。“清除并重建当前索引”会丢弃当前对话保留的消息，按页面现有内容重建。切换会话或刷新、关闭页面时，内存中的索引也会清除。</p>
 <p>用户还可以在扩展设置中重置其他偏好，通过关闭标签页或清除 sessionStorage 清除当前标签页的诊断会话，并在 Chrome 同步设置中管理已同步的设置。诊断分享、复制和文件导出只在用户主动操作时发生。这些选择只控制用户设备上的 Polaris，不表示平台把此前的使用视为已被允许。遵守平台规则的责任见<a href="terms.html?lang=zh-CN#terms-responsibility-zh">使用条款</a>。官网分析可拒绝并随时调整。</p>
 <h2 id="third-party-services-zh">9. 独立工具与第三方 AI 服务</h2>
 <p>Polaris 为独立开发的浏览器扩展，不隶属于 OpenAI、Anthropic、Google，或 Grok、豆包、Kimi、千问、DeepSeek、Manus、元宝、点点的运营方，也不是其官方插件，未获得背书或赞助。第三方名称和商标属于各自权利人，仅用于说明 Polaris 配合使用的服务。本政策不表示上述任何公司已审核、批准或与 Polaris 合作。</p>
-<p>Polaris 处理用户在受支持网站上能够访问的会话内容，并把自身界面注入用户已经打开的页面。ChatGPT 与 Gemini 的完整读取会使用该网站已有登录会话，请求当前会话的更多历史。页面注入和这些网站会话请求都不是官方开发者 API、合作集成或已获批准的插件。安装扩展、授予浏览器权限或开启完整读取，本身不代表 AI 厂商已许可某种访问方式。</p>
-<p>当前导航、阅读、搜索、复制和导出功能不将会话发送至 OpenAI 公共 Responses API 进行模型推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">套餐用量文档</a>说明的是针对合资格推理请求的独立 OAuth 授权，不授予读取 ChatGPT 会话的权限。网页已有登录态不等于该 OAuth 授权，官方 API 文档也不构成对 Polaris 网页历史读取方式的许可。</p>
+<p>Polaris 处理用户在受支持网站上能够访问的会话内容，并把自身界面注入用户已经打开的页面。开启自动补齐后，长对话模式还会滚动网站自身的消息列表，让当前对话更早的消息显示出来。页面注入和这种自动滚动都不是官方开发者 API、合作集成或已获批准的插件。安装扩展、授予浏览器权限或开启自动补齐，本身不代表 AI 厂商已许可某种访问方式。</p>
+<p>当前导航、阅读、搜索、复制和导出功能不将会话发送至 OpenAI 公共 Responses API 进行模型推理，也不提供 Sign in with ChatGPT 或 ChatGPT 套餐用量接入。OpenAI 的<a href="https://developers.openai.com/siwc/token-sharing-open-source">套餐用量文档</a>说明的是针对合资格推理请求的独立 OAuth 授权，不授予读取 ChatGPT 会话的权限。Polaris 不使用该授权或网页登录会话获取会话历史。</p>
 <p>即使内容对用户可见，包括用户自己的提示词和平台为其生成的输出，平台条款仍可能限制自动或程序化提取数据与输出，限制未经授权的插件和页面覆盖层，以及绕过访问控制、限流或其他服务限制。部分已公开条款，包括某些中文服务的条款，不鼓励或禁止未经授权的插件、外挂、覆盖层或自动采集。本地处理、内容所有权和用户同意本身不能消除这些限制。是否在某个网站启用 Polaris，以及使用方式是否符合该平台条款，由用户自行判断。本政策只披露数据处理方式。它不构成符合任何第三方条款的适用性保证，不表示平台已批准某种访问方式，也不表示使用 Polaris 即符合该平台条款。风险分配见<a href="terms.html?lang=zh-CN#terms-liability-zh">使用条款</a>。</p>
 <p>AI 服务商继续控制其账号、内容交付、访问限制，以及发送到该服务的数据如何处理。其条款和隐私政策独立于本政策适用，并可能因地区、账号或功能而不同。Polaris 可能运行于其上的服务，已公开的条款和隐私信息包括：</p>
 <ul>
@@ -575,7 +567,7 @@
           </div>
         </div>
       </div>
-      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> by <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
     </div>
   </div>
 </footer>

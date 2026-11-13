@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="Polaris AI">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
-    <meta property="og:description" content="Navigate long AI answers with heading markers, a Table of Contents, an Outline, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
+    <meta property="og:description" content="Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more. Local processing. Install from Chrome Web Store or ZIP.">
     <meta property="og:url" content="https://polaris-ai.work/">
     <meta property="og:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <meta property="og:image:width" content="1698">
@@ -20,7 +20,7 @@
     <meta property="og:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Polaris AI — Chrome Extension to Navigate Long AI Chats">
-    <meta name="twitter:description" content="Navigate long AI answers with heading markers, a Table of Contents, an Outline, and one-click jumps. Works on ChatGPT, Claude, Gemini, and more.">
+    <meta name="twitter:description" content="Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more. Local processing. Install from Chrome Web Store or ZIP.">
     <meta name="twitter:image" content="https://polaris-ai.work/assets/polaris-introduction-thumbnail.jpg">
     <meta name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer">
     <title>Polaris AI — Chrome Extension to Navigate Long AI Chats</title>
@@ -81,7 +81,7 @@
       "featureList": [
         "Heading, list and table markers on the edge of AI chat answers",
         "One-click jumps to any section",
-        "Table of Contents that jumps to any section, including across the full conversation",
+        "Table of Contents that jumps to any section, including earlier messages kept by Long conversation mode",
         "Outline for reading a long answer section by section",
         "Search the Table of Contents and the Outline",
         "Copy or export a section or a full answer as Markdown or HTML",
@@ -104,7 +104,7 @@
           "name": "Pro",
           "price": "12.90",
           "priceCurrency": "USD",
-          "description": "One-time purchase with lifetime access, no subscription. Unlocks every supported platform and a table of contents across the full conversation. $12.90 during the first 7 days of the free trial; the regular price after that is $19.99.",
+          "description": "One-time purchase with lifetime access, no subscription. Unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. $12.90 during the first 7 days of the free trial; the regular price after that is $19.99.",
           "availability": "https://schema.org/InStock",
           "url": "https://polaris-ai.work/#pricing"
         }
@@ -168,7 +168,7 @@
           "name": "Is Polaris free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that."
+            "text": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that."
           }
         },
         {
@@ -5701,10 +5701,10 @@
               <div class="feature-slide-copy">
                 <p class="bento-label" data-i18n="features.long.label">Long conversations · Pro</p>
                 <h3 class="feature-slide-title" id="feature-longchat-title" data-i18n="features.long.title">When the AI forgets, you can still find it.</h3>
-                <p class="feature-slide-text" data-i18n="features.long.copy">Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.</p>
+                <p class="feature-slide-text" data-i18n="features.long.copy">Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Turn on Long conversation mode and earlier answers in a long chat stay in your Table of Contents, one click away. Copy or export them to hand the context back.</p>
               </div>
               <div class="feature-slide-visual" data-nosnippet>
-                <div class="feature-demo demo pv-demo demo-longchat" data-demo="longchat" data-design-width="760" aria-hidden="true"><div class="pv-stage"><div class="pv-window" data-tab="navigation"><div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div><div class="pv-body"><div class="lc-loading" aria-hidden="true"><span data-i18n="lc.loading">Loading earlier messages…</span></div><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Research the wireless earbuds market for a product brief.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Market overview</span></h6><p data-i18n="how.p.decision">Wireless earbuds: about $8.3B in 2024, growing roughly 9% a year.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Market sizing</span></h6><p data-i18n="how.p.slips">Two estimates, one from shipments and one from consumer spend.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Competitors and pricing</span></h6><p data-i18n="how.p.checkin">The top three brands hold 58%; growth comes from open-ear models.</p></div><p class="pv-user" data-i18n="lc.q2">Which competitor should we watch most closely?</p><div class="pv-sec" data-sec="paris"><h6><span data-i18n="lc.h2a">Brand A’s trade-in program</span></h6><p data-i18n="lc.a2">Brand A gives credit for old earbuds and keeps 40% of buyers in its ecosystem.</p></div><div class="pv-sec" data-sec="transport"><h6><span data-i18n="lc.h2b">Where Brand A is weak</span></h6><p data-i18n="lc.a2b">Its battery life trails rivals by about two hours.</p></div><p class="pv-user" data-i18n="lc.q3">Can you redo the sizing without duplicates?</p><div class="pv-sec" data-sec="venice"><h6><span data-i18n="lc.h3a">Revised market size</span></h6><p data-i18n="lc.a3">Removing duplicate channel data brings 2024 down to $7.2B.</p></div><div class="pv-sec" data-sec="revised"><h6><span data-i18n="lc.h3b">What changes in the brief</span></h6><p data-i18n="lc.a3b">Update the headline figure and the growth chart; the brand ranking stays the same.</p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><span class="lc-full"><span data-i18n="lc.full">Full conversation</span></span><div class="lc-list"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Research the wireless earbuds market for a product brief.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Market overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Market sizing</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Competitors and pricing</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q2">Which competitor should we watch most closely?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="paris"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2a">Brand A’s trade-in program</span></span><span class="sp-item" data-target="transport"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2b">Where Brand A is weak</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q3">Can you redo the sizing without duplicates?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="venice"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3a">Revised market size</span></span><span class="sp-item" data-target="revised"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3b">What changes in the brief</span></span></div></div><div class="sp-outline"><div class="lc-export"><span class="sp-export" data-lc-export data-i18n="demo.export">Export</span><div class="lc-menu"><span data-lc-markdown>Markdown</span><span>HTML</span></div><span class="lc-toast"><span data-i18n="lc.copied">Copied as Markdown</span></span></div><div class="sp-card"><div class="sp-ch" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Market overview</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Market sizing</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Competitors and pricing</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="paris"><div class="sp-ch-title"><span data-i18n="lc.h2a">Brand A’s trade-in program</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="venice"><div class="sp-ch-title"><span data-i18n="lc.h3a">Revised market size</span><i>⋯</i></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div></div></div><span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span></div>
+                <div class="feature-demo demo pv-demo demo-longchat" data-demo="longchat" data-design-width="760" aria-hidden="true"><div class="pv-stage"><div class="pv-window" data-tab="navigation"><div class="pv-bar"><span class="pv-dots"><i></i><i></i><i></i></span><span class="pv-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="12" height="12"><span data-site-host>chatgpt.com</span></span></div><div class="pv-body"><div class="lc-loading" aria-hidden="true"><span data-i18n="lc.loading">Loading earlier messages…</span></div><div class="pv-chat"><div class="pv-scroll"><div class="pv-track" data-track><p class="pv-user" data-i18n="how.prompt">Research the wireless earbuds market for a product brief.</p><div class="pv-sec" data-sec="decision"><h6><span data-i18n="how.h.decision">Market overview</span></h6><p data-i18n="how.p.decision">Wireless earbuds: about $8.3B in 2024, growing roughly 9% a year.</p></div><div class="pv-sec" data-sec="slips"><h6><span data-i18n="how.h.slips">Market sizing</span></h6><p data-i18n="how.p.slips">Two estimates, one from shipments and one from consumer spend.</p></div><div class="pv-sec" data-sec="checkin"><h6><span data-i18n="how.h.checkin">Competitors and pricing</span></h6><p data-i18n="how.p.checkin">The top three brands hold 58%; growth comes from open-ear models.</p></div><p class="pv-user" data-i18n="lc.q2">Which competitor should we watch most closely?</p><div class="pv-sec" data-sec="paris"><h6><span data-i18n="lc.h2a">Brand A’s trade-in program</span></h6><p data-i18n="lc.a2">Brand A gives credit for old earbuds and keeps 40% of buyers in its ecosystem.</p></div><div class="pv-sec" data-sec="transport"><h6><span data-i18n="lc.h2b">Where Brand A is weak</span></h6><p data-i18n="lc.a2b">Its battery life trails rivals by about two hours.</p></div><p class="pv-user" data-i18n="lc.q3">Can you redo the sizing without duplicates?</p><div class="pv-sec" data-sec="venice"><h6><span data-i18n="lc.h3a">Revised market size</span></h6><p data-i18n="lc.a3">Removing duplicate channel data brings 2024 down to $7.2B.</p></div><div class="pv-sec" data-sec="revised"><h6><span data-i18n="lc.h3b">What changes in the brief</span></h6><p data-i18n="lc.a3b">Update the headline figure and the growth chart; the brand ranking stays the same.</p></div></div></div><div class="pv-composer"><span data-i18n="demo.ask">Ask anything</span></div></div><div class="sp"><div class="sp-titlebar"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="12" height="12"><span>Polaris: AI Chat Navigator</span><i class="sp-x">×</i></div><div class="sp-head"><div class="sp-brand"><img src="icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo" width="20" height="20"><span class="sp-word">Polaris</span><span class="sp-site"><img data-site-icon src="icons/platforms/platform-chatgpt.png" alt="ChatGPT logo" width="14" height="14"></span><button type="button" tabindex="-1" class="sp-gear" data-gear><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"></path><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></button></div><div class="sp-search"><span class="sp-placeholder" data-i18n="demo.searchMarkers">Search markers</span></div><div class="sp-tabs"><button type="button" tabindex="-1" data-tab-btn="navigation" class="is-active"><span data-i18n="demo.tab.toc">Table of Contents</span></button><button type="button" tabindex="-1" data-tab-btn="chapters"><span data-i18n="demo.tab.outline">Outline</span></button></div></div><div class="sp-body"><div class="sp-toc"><span class="lc-full"><span data-i18n="lc.full">Long conversation mode</span></span><div class="lc-list"><div class="sp-group"><span class="sp-label" data-i18n="how.prompt">Research the wireless earbuds market for a product brief.</span><i class="sp-chev"></i></div><span class="sp-item" data-target="decision"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.decision">Market overview</span></span><span class="sp-item" data-target="slips"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.slips">Market sizing</span></span><span class="sp-item" data-target="checkin"><i class="sp-spin"></i><span class="sp-label" data-i18n="how.h.checkin">Competitors and pricing</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q2">Which competitor should we watch most closely?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="paris"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2a">Brand A’s trade-in program</span></span><span class="sp-item" data-target="transport"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h2b">Where Brand A is weak</span></span><div class="sp-group"><span class="sp-label" data-i18n="lc.q3">Can you redo the sizing without duplicates?</span><i class="sp-chev"></i></div><span class="sp-item" data-target="venice"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3a">Revised market size</span></span><span class="sp-item" data-target="revised"><i class="sp-spin"></i><span class="sp-label" data-i18n="lc.h3b">What changes in the brief</span></span></div></div><div class="sp-outline"><div class="lc-export"><span class="sp-export" data-lc-export data-i18n="demo.export">Export</span><div class="lc-menu"><span data-lc-markdown>Markdown</span><span>HTML</span></div><span class="lc-toast"><span data-i18n="lc.copied">Copied as Markdown</span></span></div><div class="sp-card"><div class="sp-ch" data-chapter="decision"><div class="sp-ch-title"><span data-i18n="how.h.decision">Market overview</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="slips"><div class="sp-ch-title"><span data-i18n="how.h.slips">Market sizing</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="checkin"><div class="sp-ch-title"><span data-i18n="how.h.checkin">Competitors and pricing</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="paris"><div class="sp-ch-title"><span data-i18n="lc.h2a">Brand A’s trade-in program</span><i>⋯</i></div></div><div class="sp-ch" data-chapter="venice"><div class="sp-ch-title"><span data-i18n="lc.h3a">Revised market size</span><i>⋯</i></div></div></div></div><div class="sp-float" aria-hidden="true"><i>↑</i><i>◎</i><i>↓</i></div></div></div></div></div></div><span class="demo-cursor"><svg viewBox="0 0 24 24"><path d="M5 3.5 18.5 12l-6 1.6-3.2 5.4Z" fill="#fff" stroke="#2a2724" stroke-width="1.5" stroke-linejoin="round"></path></svg></span></div>
               </div>
             </article>
             <article class="feature-slide" id="feature-markers" aria-roledescription="slide" aria-labelledby="feature-markers-title">
@@ -5727,7 +5727,7 @@
               <div class="feature-slide-copy">
                 <p class="bento-label" data-i18n="features.chapter.label">Outline</p>
                 <h3 class="feature-slide-title" id="feature-chapter-title" data-i18n="features.chapter.title">Read a long answer like a document.</h3>
-                <p class="feature-slide-text" data-i18n="features.chapter.copy">Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.</p>
+                <p class="feature-slide-text" data-i18n="features.chapter.copy">Read one long answer section by section in the Outline, with support for tables, task lists, code and images.</p>
               </div>
               <div class="feature-slide-visual" data-nosnippet>
                 <div class="feature-demo demo pv-demo demo-chapter" data-demo="chapter" aria-hidden="true">
@@ -5824,8 +5824,8 @@
             </article>
             <article class="privacy-point">
               <span class="privacy-point-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="2.8" fill="none" stroke="currentColor" stroke-width="1.7"></ellipse><path d="M5 6.5v11c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-11M5 12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8" fill="none" stroke="currentColor" stroke-width="1.7"></path></svg></span>
-              <h3 data-i18n="privacy.cache.title">Saved here, never synced</h3>
-              <p data-i18n="privacy.cache.copy">When complete indexing keeps a copy of a conversation, it stays in this browser only. It is never synced to other devices or uploaded.</p>
+              <h3 data-i18n="privacy.cache.title">In memory, never saved</h3>
+              <p data-i18n="privacy.cache.copy">Messages kept by Long conversation mode live only in this page's memory. They are cleared when you refresh or switch chats, and are never written to disk, synced or uploaded.</p>
             </article>
             <article class="privacy-point">
               <span class="privacy-point-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 5 6v5.5c0 4.3 2.9 7.7 7 9 4.1-1.3 7-4.7 7-9V6l-7-2.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
@@ -5872,7 +5872,7 @@
               <h4 class="pricing-includes" data-i18n="pricing.pro.includes">Included</h4>
               <ul class="pricing-features">
                 <li class="pricing-feature-pro" data-i18n="pricing.pro.platforms">Every supported platform</li>
-                <li class="pricing-feature-pro" data-i18n="pricing.pro.toc">TOC: jump across the full conversation, built for very long chats</li>
+                <li class="pricing-feature-pro" data-i18n="pricing.pro.toc">Long conversation mode: keep earlier messages in the TOC, built for very long chats</li>
                 <li data-i18n="pricing.plan.outline">Outline: export Markdown / HTML to keep going with another assistant</li>
                 <li data-i18n="pricing.plan.local">Conversations stay on your device, never uploaded</li>
                 <li data-i18n="pricing.plan.theme">Light and dark mode</li>
@@ -5884,20 +5884,20 @@
           <div class="pricing-spotlight">
             <div class="pricing-spotlight-copy">
               <p class="pricing-spotlight-label" data-i18n="pricing.long.label">Pro · Long conversations</p>
-              <h3 data-i18n="pricing.long.title">See the whole conversation, not just what is loaded.</h3>
+              <h3 data-i18n="pricing.long.title">See more of your conversation.</h3>
               <p class="pricing-spotlight-note" data-i18n="pricing.long.note">Works on every supported platform, with more on the way. Nothing is uploaded.</p>
             </div>
             <div class="pricing-spotlight-visual" aria-hidden="true" data-nosnippet>
               <div class="pricing-toc">
                 <span class="pricing-toc-name">Free</span>
                 <span class="pricing-toc-fade" data-i18n="pricing.long.notLoaded">Earlier messages not loaded</span>
-                <span>28</span><span>29</span><span>30</span>
-                <span class="pricing-toc-count" data-i18n="pricing.long.freeCount">3 of 30 replies</span>
+                <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
+                <span class="pricing-toc-count" data-i18n="pricing.long.freeCount">Only the latest replies</span>
               </div>
               <div class="pricing-toc pricing-toc-pro">
                 <span class="pricing-toc-name">Pro</span>
-                <span>1</span><span>2</span><span>3</span><span class="pricing-toc-gap">⋮</span><span>28</span><span>29</span><span>30</span>
-                <span class="pricing-toc-count" data-i18n="pricing.long.proCount">30 of 30 replies</span>
+                <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span class="pricing-toc-gap">⋮</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
+                <span class="pricing-toc-count" data-i18n="pricing.long.proCount">Earlier replies too</span>
               </div>
             </div>
           </div>
@@ -5958,7 +5958,7 @@
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
             <details class="faq-item"><summary data-i18n="faq.zip.q">Can I install Polaris without a browser store?</summary><p data-i18n="faq.zip.a">Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
             <details class="faq-item"><summary data-i18n="faq.chapter.q">What are Table of Contents and Outline?</summary><p data-i18n="faq.chapter.a">Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.</p></details>
-            <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.free.q">Is Polaris free?</summary><p data-i18n="faq.free.a">Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.</p></details>
             <details class="faq-item"><summary data-i18n="faq.browsers.q">Does it work on Edge or Firefox?</summary><p data-i18n="faq.browsers.a">Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.</p></details>
             <details class="faq-item"><summary data-i18n="faq.devices.q">Can I use Pro on another device?</summary><p data-i18n="faq.devices.a">Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.</p></details>
             <details class="faq-item"><summary data-i18n="faq.renewal.q">Does Pro need renewing?</summary><p data-i18n="faq.renewal.a">No. Pro is a one-time purchase, with no subscription or automatic renewal.</p></details>
@@ -6040,7 +6040,7 @@
               </div>
             </div>
           </div>
-          <p><span data-i18n="footer.made">Made with</span> <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only" data-i18n="footer.love">love</span> <span data-i18n="footer.by">by</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+          <p><span data-i18n="footer.made">Made with</span> <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only" data-i18n="footer.love">love</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
         </div>
       </div>
     </footer>
@@ -6168,7 +6168,7 @@
           "updates.seeAll": "See all release notes",
           "features.long.label": "Long conversations · Pro",
           "features.long.title": "When the AI forgets, you can still find it.",
-          "features.long.copy": "Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Polaris reads the whole conversation in your browser, so you can jump back to any earlier answer, then copy or export it to hand the context back.",
+          "features.long.copy": "Chat long enough and the AI loses track of what you said earlier, while the page keeps only the latest part. Turn on Long conversation mode and earlier answers in a long chat stay in your Table of Contents, one click away. Copy or export them to hand the context back.",
           "lc.q2": "Which competitor should we watch most closely?",
           "lc.h2a": "Brand A’s trade-in program",
           "lc.a2": "Brand A gives credit for old earbuds and keeps 40% of buyers in its ecosystem.",
@@ -6180,7 +6180,7 @@
           "lc.h3b": "What changes in the brief",
           "lc.a3b": "Update the headline figure and the growth chart; the brand ranking stays the same.",
           "lc.loading": "Loading earlier messages…",
-          "lc.full": "Full conversation",
+          "lc.full": "Long conversation mode",
           "lc.copied": "Copied as Markdown",
           "demo.route.legs": "Noise-cancelling and open-ear models make up 70% of sales.",
           "demo.days.paris": "2025: 128M pairs expected as open-ear models take off.",
@@ -6208,7 +6208,7 @@
           "faq.chapter.q": "What are Table of Contents and Outline?",
           "faq.chapter.a": "Table of Contents lists every heading in the answer so you can jump to any section. Outline shows the same answer as a nested structure you can read section by section, search, copy, or export as Markdown or HTML.",
           "faq.free.q": "Is Polaris free?",
-          "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.",
+          "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.",
           "faq.browsers.q": "Does it work on Edge or Firefox?",
           "faq.browsers.a": "Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.",
           "faq.devices.q": "Can I use Pro on another device?",
@@ -6221,7 +6221,7 @@
           "features.markers.label": "Markers",
           "features.markers.copy": "Headings, lists and tables in every answer become small markers on the edge of the page. Hover to preview, click to land on that section.",
           "features.chapter.label": "Outline",
-          "features.chapter.copy": "Read one long answer section by section in the Outline, with tables, task lists, code and images kept intact.",
+          "features.chapter.copy": "Read one long answer section by section in the Outline, with support for tables, task lists, code and images.",
           "features.search.label": "Search",
           "features.search.copy": "Type a word to filter the Table of Contents and Outline, then jump straight to the match instead of scrolling for it.",
           "features.search.query": "Estimate",
@@ -6267,8 +6267,8 @@
           "privacy.lead": "Some AI chat extensions send your conversations to their own servers. <strong>Polaris never does.</strong>",
           "privacy.local.title": "It all happens in your browser",
           "privacy.local.copy": "Polaris reads the answer on the page you have open and builds its navigation right there. What you read is never sent to us or to any third party.",
-          "privacy.cache.title": "Saved here, never synced",
-          "privacy.cache.copy": "When complete indexing keeps a copy of a conversation, it stays in this browser only. It is never synced to other devices or uploaded.",
+          "privacy.cache.title": "In memory, never saved",
+          "privacy.cache.copy": "Messages kept by Long conversation mode live only in this page's memory. They are cleared when you refresh or switch chats, and are never written to disk, synced or uploaded.",
           "privacy.control.title": "You stay in control",
           "privacy.control.copy": "Polaris never asks for a password. This website only measures visits after you allow it, and you can change that anytime.",
           "closing.title": "Ready to stop scrolling?",
@@ -6335,17 +6335,17 @@
           "pricing.free.platforms": "Use 2 platforms at a time",
           "pricing.free.toc": "TOC: jump within the messages already loaded",
           "pricing.pro.platforms": "Every supported platform",
-          "pricing.pro.toc": "TOC: jump across the full conversation, built for very long chats",
+          "pricing.pro.toc": "Long conversation mode: keep earlier messages in the TOC, built for very long chats",
           "pricing.plan.outline": "Outline: export Markdown / HTML to keep going with another assistant",
           "pricing.plan.local": "Conversations stay on your device, never uploaded",
           "pricing.plan.theme": "Light and dark mode",
           "pricing.plan.settings": "Adjustable settings",
           "pricing.long.label": "Pro · Long conversations",
-          "pricing.long.title": "See the whole conversation, not just what is loaded.",
+          "pricing.long.title": "See more of your conversation.",
           "pricing.long.note": "Works on every supported platform, with more on the way. Nothing is uploaded.",
           "pricing.long.notLoaded": "Earlier messages not loaded",
-          "pricing.long.freeCount": "3 of 30 replies",
-          "pricing.long.proCount": "30 of 30 replies",
+          "pricing.long.freeCount": "Only the latest replies",
+          "pricing.long.proCount": "Earlier replies too",
           "pricing.purchaseNote": "Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.",
           "pricing.checkout.loading": "Opening checkout…",
           "pricing.checkout.error": "Checkout is unavailable right now. Try again in a moment.",
@@ -6451,7 +6451,7 @@
           "updates.seeAll": "查看全部版本说明",
           "features.long.label": "长对话 · Pro",
           "features.long.title": "AI 忘了，你还能找回来。",
-          "features.long.copy": "对话一长，AI 就容易忘记你前面说过的话，页面也只显示最近的一段。Polaris 在浏览器本地读取完整对话，早先的每个回答都能一键找回，复制或导出后，再把上下文交还给 AI。",
+          "features.long.copy": "对话一长，AI 就容易忘记你前面说过的话，页面也只显示最近的一段。开启长对话模式，长对话里保留更多早先的回答，显示在目录中，随时一键找回；复制或导出后，再把上下文交还给 AI。",
           "lc.q2": "最该重点盯哪个竞品？",
           "lc.h2a": "A 品牌的以旧换新",
           "lc.a2": "A 品牌回收旧耳机抵扣新机，四成用户留在它的生态里。",
@@ -6463,7 +6463,7 @@
           "lc.h3b": "汇报里要改的地方",
           "lc.a3b": "更新主数字和增速图，品牌排名不变。",
           "lc.loading": "正在加载更早的消息…",
-          "lc.full": "完整对话",
+          "lc.full": "长对话模式",
           "lc.copied": "已复制为 Markdown",
           "demo.route.legs": "主动降噪和开放式两类合计占 70% 的销售额。",
           "demo.days.paris": "2025 年预计 1.28 亿副，开放式耳机开始放量。",
@@ -6491,7 +6491,7 @@
           "faq.chapter.q": "目录和大纲是什么？",
           "faq.chapter.a": "目录列出回答里的每个标题，点一下就跳到对应位置；大纲把同一条回答按层级展开，可以逐节阅读、搜索、复制，或导出为 Markdown 或 HTML。",
           "faq.free.q": "Polaris 免费吗？",
-          "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断，解锁全部已支持平台，并能在完整的长对话里用目录跳转。免费试用前 7 天内购买为 US$12.90（约 ¥93），之后为 US$19.99（约 ¥144）。",
+          "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断，解锁全部已支持平台和长对话模式，在超长对话里保留更早的消息、用目录跳转。免费试用前 7 天内购买为 US$12.90（约 ¥93），之后为 US$19.99（约 ¥144）。",
           "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
           "faq.browsers.a": "支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。",
           "faq.devices.q": "Pro 能在其他设备上使用吗？",
@@ -6504,7 +6504,7 @@
           "features.markers.label": "Marker",
           "features.markers.copy": "每条回答里的标题、列表和表格，都会在页面边缘生成一个 Marker。悬停可预览，点击直达那一节。",
           "features.chapter.label": "大纲",
-          "features.chapter.copy": "在大纲里逐节阅读一条长回答，表格、任务列表、代码和图片都完整保留。",
+          "features.chapter.copy": "在大纲里逐节阅读一条长回答，支持表格、任务列表、代码和图片。",
           "features.search.label": "搜索",
           "features.search.copy": "输入关键词筛选目录和大纲，直接跳到匹配的位置，不用再来回翻找。",
           "features.search.query": "口径",
@@ -6550,8 +6550,8 @@
           "privacy.lead": "有些 AI 对话扩展会把你的对话发到自己的服务器。<strong>Polaris 从不这样做。</strong>",
           "privacy.local.title": "全部在浏览器里完成",
           "privacy.local.copy": "Polaris 只读取你当前打开页面上的回答，并在本地生成导航。你读到的内容不会发送给我们，也不会发给任何第三方。",
-          "privacy.cache.title": "只存本机，从不同步",
-          "privacy.cache.copy": "开启完整索引时保存的对话副本只留在当前浏览器，不会同步到其他设备，也不会上传。",
+          "privacy.cache.title": "只在内存，从不保存",
+          "privacy.cache.copy": "长对话模式保留的消息只在当前页面的内存中，刷新或切换会话即清除，不写入磁盘，不同步，也不上传。",
           "privacy.control.title": "由你掌控",
           "privacy.control.copy": "Polaris 从不索要密码。本网站只有在你同意后才统计访问数据，你也可以随时更改。",
           "closing.title": "不想再来回翻了？",
@@ -6609,26 +6609,26 @@
           "pricing.free.assurance": "无需填写支付信息。",
           "pricing.free.cta": "免费使用",
           "pricing.pro.saving": "立省 US$7.09",
-          "pricing.pro.term": "约 ¥93 · 一次买断 · 永久使用",
+          "pricing.pro.term": "一次买断 · 永久使用",
           "pricing.pro.offer": "免费试用前 7 天内为 US$12.90，之后为 US$19.99。人民币金额按 1 美元约 7.2 元估算，以实际扣款为准。",
           "pricing.pro.cta": "购买 Pro",
           "pricing.free.includes": "包含",
           "pricing.pro.includes": "包含",
-          "pricing.pro.description": "为超长对话设计，覆盖全部平台。",
+          "pricing.pro.description": "为长对话设计，覆盖全部平台。",
           "pricing.free.platforms": "可同时在 2 个平台使用",
           "pricing.free.toc": "目录：在已加载的消息中快速跳转",
           "pricing.pro.platforms": "全部已支持平台",
-          "pricing.pro.toc": "目录：在完整的长对话中快速跳转，适合超长聊天",
+          "pricing.pro.toc": "长对话模式：目录保留更早的消息，适合超长聊天",
           "pricing.plan.outline": "大纲：导出 Markdown / HTML，方便换个 AI 助手接着聊",
           "pricing.plan.local": "对话只留在本机，不会上传",
           "pricing.plan.theme": "深浅色模式",
           "pricing.plan.settings": "可自定义设置",
           "pricing.long.label": "Pro · 长对话",
-          "pricing.long.title": "看到完整对话，而不只是已加载的部分。",
+          "pricing.long.title": "看到更多对话。",
           "pricing.long.note": "适用于全部已支持的平台，更多平台陆续加入；内容不会上传。",
           "pricing.long.notLoaded": "更早的消息未加载",
-          "pricing.long.freeCount": "仅显示 30 条回复中的 3 条",
-          "pricing.long.proCount": "30 条回复全部可见",
+          "pricing.long.freeCount": "仅显示最近的回复",
+          "pricing.long.proCount": "更早的回复也能看到",
           "pricing.purchaseNote": "通过 Stripe 安全支付。付款后会立即显示许可证，在任意设备的 Polaris「设置」中兑换即可。",
           "pricing.checkout.loading": "正在打开结账页…",
           "pricing.checkout.error": "暂时无法打开结账页。请稍后重试。",
@@ -6675,7 +6675,6 @@
           "footer.analytics": "统计设置",
           "footer.made": "Made with",
           "footer.love": "爱心",
-          "footer.by": "作者",
           "analytics.title": "帮助改进 Polaris",
           "analytics.copy": "允许使用 Google Analytics 和阿里云 SLS 统计本站的页面互动，以及匿名的来源、设备和下载汇总数据。你可以随时更改此选择。",
           "analytics.allow": "允许分析",
@@ -6966,6 +6965,17 @@
           const application = data["@graph"]?.find((entry) => entry["@id"]?.endsWith("/#application"));
           if (application) {
             application.description = dictionary["meta.description"];
+            application.inLanguage = currentLocale;
+            const faq = data["@graph"]?.find((entry) => entry["@type"] === "FAQPage");
+            const visibleFAQs = [...document.querySelectorAll(".faq-item")];
+            if (faq) {
+              faq.inLanguage = currentLocale;
+              faq.mainEntity = visibleFAQs.map((item) => ({
+                "@type": "Question",
+                name: item.querySelector("summary").textContent.trim(),
+                acceptedAnswer: { "@type": "Answer", text: item.querySelector("p").textContent.trim() }
+              }));
+            }
             structuredData.textContent = JSON.stringify(data);
           }
         }

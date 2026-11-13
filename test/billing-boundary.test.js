@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { createWebCheckout, PRODUCTION_BILLING_ORIGIN, PROMO_PRICE_CENTS, REGULAR_PRICE_CENTS } from "../assets/checkout.js";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const proAnswer = "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and a table of contents across the full conversation for very long chats. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.";
+const proAnswer = "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.";
 
 function mockFetch(handler) {
   const calls = [];
