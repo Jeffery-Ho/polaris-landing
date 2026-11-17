@@ -652,3 +652,4 @@ body { min-width: 320px; }
 .site-header .theme-toggle,
 .site-header .theme-toggle:hover,
 .site-header .theme-toggle:focus-within { border-color: var(--polaris-border); background: var(--polaris-bg-muted); }
+.footer-bottom a.footer-icp { color: inherit; }

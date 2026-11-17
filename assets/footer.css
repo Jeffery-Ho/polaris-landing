@@ -140,3 +140,4 @@
 .site-footer [data-language-current] { display: inline; }
 .site-footer .language-menu { top: auto; right: auto; bottom: calc(100% + 8px); left: 0; transform: translateY(6px); }
 .site-footer .language-menu[data-menu-open="true"] { transform: none; }
+.footer-bottom a.footer-icp { color: inherit; }
