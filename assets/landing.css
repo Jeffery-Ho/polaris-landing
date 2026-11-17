@@ -1,0 +1,52 @@
+/* Use-case landing pages (ChatGPT, Claude): one reading column with screenshots, steps and a Free/Pro table. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--polaris-bg); color: var(--polaris-text); }
+[hidden] { display: none !important; }
+
+.lp-main { width: min(860px, calc(100% - 32px)); margin: 0 auto; padding: 136px 0 64px; }
+.lp { font-size: 17px; line-height: 1.65; }
+.lp-kicker { margin: 0 0 12px; color: var(--polaris-accent); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.lp h1 { margin: 0; font-family: var(--polaris-font-serif); font-size: clamp(36px, 6vw, 56px); font-weight: 400; letter-spacing: -.025em; line-height: 1.1; text-wrap: balance; }
+.lp-lead { margin: 20px 0 0; color: var(--polaris-text-secondary); font-size: 19px; }
+.lp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.lp-button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; border: 1px solid var(--polaris-border-strong); border-radius: 999px; color: var(--polaris-text); font-size: 15px; font-weight: 600; text-decoration: none; }
+.lp-button img { width: 18px; height: 18px; }
+.lp-button--primary { border-color: var(--polaris-accent); background: var(--polaris-accent); color: #fff; }
+.lp-button:hover { border-color: var(--polaris-text); }
+.lp-button:focus-visible, .lp a:focus-visible { outline: 3px solid var(--polaris-accent); outline-offset: 2px; }
+
+.lp section { margin-top: 64px; }
+.lp h2 { margin: 0 0 16px; font-family: var(--polaris-font-serif); font-size: clamp(26px, 4vw, 34px); font-weight: 400; letter-spacing: -.02em; line-height: 1.2; }
+.lp h3 { margin: 0 0 6px; font-size: 17px; }
+.lp p { margin: 0 0 14px; }
+.lp a { color: inherit; text-underline-offset: 3px; }
+
+.lp-figure { margin: 32px 0 0; }
+.lp-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--polaris-border); border-radius: 16px; }
+.lp-figure figcaption { margin-top: 10px; color: var(--polaris-text-tertiary); font-size: 14px; }
+
+.lp-steps { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.lp-steps li { position: relative; padding: 16px 18px 16px 60px; border: 1px solid var(--polaris-border); border-radius: 14px; background: var(--polaris-bg-elevated); counter-increment: step; }
+.lp-steps li::before { position: absolute; top: 15px; left: 18px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--polaris-bg-muted); font-size: 14px; font-weight: 600; content: counter(step); }
+
+.lp-list { margin: 0 0 14px; padding-left: 22px; }
+.lp-list li { margin-bottom: 8px; }
+
+.lp-table-wrap { overflow-x: auto; border: 1px solid var(--polaris-border); border-radius: 14px; }
+.lp-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.lp-table th, .lp-table td { padding: 12px 14px; border-bottom: 1px solid var(--polaris-border); text-align: left; vertical-align: top; }
+.lp-table tr:last-child td { border-bottom: 0; }
+.lp-table thead th { background: var(--polaris-bg-subtle); font-weight: 600; }
+
+.lp-faq details { padding: 14px 0; border-bottom: 1px solid var(--polaris-border); }
+.lp-faq summary { cursor: pointer; font-weight: 600; }
+.lp-faq details p { margin: 10px 0 0; color: var(--polaris-text-secondary); }
+
+.lp-related { color: var(--polaris-text-secondary); font-size: 15px; }
+
+@media (max-width: 640px) {
+  .lp-main { padding-top: 112px; }
+  .lp { font-size: 16px; }
+  .lp section { margin-top: 48px; }
+  .lp-steps li { padding-left: 54px; }
+}

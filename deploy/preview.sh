@@ -22,7 +22,7 @@ if [[ ! -L "$current_link" ]]; then
   exit 1
 fi
 
-public_entries=(assets blog checkout-return contact release-notes entry fonts icons support vendor
+public_entries=(assets blog checkout-return chatgpt-table-of-contents claude-conversation-navigator contact release-notes entry fonts icons support vendor zh
   index.html privacy.html terms.html safety.html refund.html support-config.js)
 
 install -d -m 0755 "$preview_root"

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Conversation Navigator for Long Chats · Polaris AI</title>
+  <meta name="description" content="Navigate long Claude conversations on claude.ai by heading. Polaris: AI Chat Navigator adds edge markers, a Table of Contents and an Outline you can copy or export. Free for Chrome, Edge and Firefox.">
+  <link rel="canonical" href="https://polaris-ai.work/claude-conversation-navigator/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/polaris-icon-32.png?v=73794ca8">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Polaris AI">
+  <meta property="og:title" content="Claude Conversation Navigator for Long Chats · Polaris AI">
+  <meta property="og:description" content="Edge markers, a Table of Contents and an Outline for long Claude answers on claude.ai. Free browser extension, local processing.">
+  <meta property="og:url" content="https://polaris-ai.work/claude-conversation-navigator/">
+  <meta property="og:image" content="https://polaris-ai.work/assets/landing/polaris-05-platforms.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="800">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/theme.css?v=15e667bb">
+  <link rel="stylesheet" href="../assets/site-chrome.css">
+  <script src="../assets/site.js"></script>
+  <link rel="stylesheet" href="../assets/landing.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://polaris-ai.work/claude-conversation-navigator/#page",
+      "url": "https://polaris-ai.work/claude-conversation-navigator/",
+      "name": "Claude Conversation Navigator for Long Chats",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://polaris-ai.work/#website" },
+      "about": { "@id": "https://polaris-ai.work/#application" },
+      "primaryImageOfPage": "https://polaris-ai.work/assets/landing/polaris-05-platforms.jpg"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Polaris AI", "item": "https://polaris-ai.work/" },
+        { "@type": "ListItem", "position": 2, "name": "Claude Conversation Navigator", "item": "https://polaris-ai.work/claude-conversation-navigator/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I find an earlier section in a long Claude conversation?",
+          "acceptedAnswer": { "@type": "Answer", "text": "With Polaris: AI Chat Navigator installed, every heading, list and table in Claude’s answers on claude.ai gets a marker on the edge of the page, and the Table of Contents lists every heading. Click one to jump to that section." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Polaris free on Claude?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free version works on two supported platforms at a time, and Claude can be one of them. Pro is a one-time purchase that adds every supported platform and Long conversation mode." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Polaris read or upload my Claude chats?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Polaris reads the answer on the page you have open to build its navigation, locally in your browser. Conversation content is not sent to the developer or to third-party servers." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I pass part of a Claude answer to another chat?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Copy a single section from the Outline, or export the answer as Markdown or HTML, and paste it into a new chat to hand the context back." }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="nav-pill">
+    <a class="brand" href="../" aria-label="Polaris home">
+      <img class="brand-icon" src="../icons/polaris-icon-96.png?v=e79cc968" alt="Polaris AI logo">
+      <span class="brand-name">Polaris</span>
+    </a>
+    <nav id="primary-navigation" class="header-links" data-menu-panel aria-label="Polaris links">
+      <a class="header-link" href="../#features"><span data-zh="功能">Features</span></a>
+      <a class="header-link" href="../#pricing"><span data-zh="价格">Pricing</span></a>
+      <a class="header-link" href="../blog/"><span data-zh="博客">Blog</span></a>
+      <a class="header-link" href="../contact/"><span data-zh="联系我们">Contact</span></a>
+      <a class="header-link header-link--drawer" href="../#install"><span data-zh="免费试用">Free trial</span></a>
+    </nav>
+  </div>
+  <div class="header-utilities">
+    <div class="header-preferences">
+      <div class="theme-toggle" data-theme-toggle role="group" aria-label="Theme" data-zh-label="主题">
+        <button class="theme-option" data-theme-option="dark" type="button" aria-label="Dark theme" data-zh-label="深色" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+        </button>
+        <button class="theme-option" data-theme-option="light" type="button" aria-label="Light theme" data-zh-label="浅色" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>
+        </button>
+      </div>
+    </div>
+    <a class="header-cta" href="../#install"><span data-zh="免费试用">Free trial</span></a>
+    <button class="header-menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" data-zh-label="打开菜单">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path class="menu-line menu-line--top" d="M4 6.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+        <path class="menu-line menu-line--middle" d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+        <path class="menu-line menu-line--bottom" d="M4 17.5h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.75"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+<!-- site-header:end -->
+<main class="lp-main" id="main-content">
+  <article class="lp" lang="en" data-legal-locale="en" data-title="Claude Conversation Navigator for Long Chats · Polaris AI">
+    <header>
+      <p class="lp-kicker">For Claude</p>
+      <h1>Navigate long Claude conversations by heading</h1>
+      <p class="lp-lead">Claude’s answers are long and well structured, but claude.ai gives you no way to jump between their sections. Polaris: AI Chat Navigator adds markers on the edge of the page, a Table of Contents and an Outline, so you can reach any part of a long Claude chat in one click. Free to start on Chrome, Edge and Firefox.</p>
+      <div class="lp-actions">
+        <a class="lp-button lp-button--primary" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noopener"><img src="../icons/browsers/chrome.svg" alt="" width="18" height="18">Add to Chrome</a>
+        <a class="lp-button" href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noopener"><img src="../icons/browsers/edge.svg" alt="" width="18" height="18">Edge</a>
+        <a class="lp-button" href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noopener"><img src="../icons/browsers/firefox.svg" alt="" width="18" height="18">Firefox</a>
+      </div>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-05-platforms.jpg" alt="Polaris Table of Contents beside a Claude answer on claude.ai" width="1280" height="800" fetchpriority="high">
+        <figcaption>Polaris on claude.ai: the Table of Contents sits beside the chat. Interface shown on an example conversation.</figcaption>
+      </figure>
+    </header>
+
+    <section aria-labelledby="problem-en">
+      <h2 id="problem-en">When a Claude chat gets long</h2>
+      <p>Drafting a spec, reviewing code or researching a topic with Claude, a single reply can run to many headed sections, and a session can hold dozens of replies. Finding the section you read ten minutes ago means scrolling through all of it. Rereading one part, or handing it to a colleague, means dragging a selection across several screens.</p>
+    </section>
+
+    <section aria-labelledby="features-en">
+      <h2 id="features-en">What Polaris adds to claude.ai</h2>
+      <ul class="lp-list">
+        <li><strong>Edge markers.</strong> Each heading, list and table in Claude’s answers becomes a small marker on the edge of the page. Hover to preview the section, click to land on it.</li>
+        <li><strong>Table of Contents.</strong> Every heading, grouped under the prompt that produced it, in a panel beside the chat.</li>
+        <li><strong>Outline.</strong> Read one long answer section by section, with tables, task lists, code and images kept. Expand only the parts you need.</li>
+        <li><strong>Copy and export.</strong> Copy one section, or export an answer as Markdown or HTML, to reuse it or hand the context to a new chat.</li>
+        <li><strong>Search.</strong> Filter headings by a word you remember and jump straight to the match.</li>
+      </ul>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-02-markers.jpg" alt="Hovering a Polaris marker highlights the matching section of a long answer" width="1280" height="800" loading="lazy">
+        <figcaption>Hover a heading to preview it, click to land on that section. Interface shown on an example conversation.</figcaption>
+      </figure>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-03-outline.jpg" alt="Polaris Outline showing a long answer section by section" width="1280" height="800" loading="lazy">
+        <figcaption>The Outline turns one long answer into sections you can read, copy and export. Interface shown on an example conversation.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="how-en">
+      <h2 id="how-en">Set it up in a minute</h2>
+      <ol class="lp-steps">
+        <li>Install Polaris from the <a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noopener">Chrome Web Store</a>, <a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noopener">Edge Add-ons</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noopener">Firefox Add-ons</a>.</li>
+        <li>Pin Polaris from the puzzle icon in the toolbar.</li>
+        <li>Open or refresh a conversation on claude.ai. Markers appear as soon as the first section of an answer is written.</li>
+        <li>Open the Polaris panel for the Table of Contents and Outline.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="plans-en">
+      <h2 id="plans-en">Free and Pro</h2>
+      <div class="lp-table-wrap">
+        <table class="lp-table">
+          <thead><tr><th scope="col"></th><th scope="col">Free</th><th scope="col">Pro</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Platforms</th><td>2 at a time (Claude can be one)</td><td>All 11 supported platforms</td></tr>
+            <tr><th scope="row">Table of Contents</th><td>Messages already loaded on the page</td><td>Also earlier messages kept by Long conversation mode</td></tr>
+            <tr><th scope="row">Markers, Outline, search, export</th><td>Included</td><td>Included</td></tr>
+            <tr><th scope="row">Price</th><td>$0, no payment details</td><td>One-time: $12.90 in the first 7 days of the trial, then $19.99. No subscription.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="privacy-en">
+      <h2 id="privacy-en">Local by design</h2>
+      <p>Polaris builds its navigation in your browser from the page you have open. Your Claude conversations are not sent to the developer or to any third party, and Polaris never asks for your Claude password. Details are in the <a href="../privacy.html">privacy policy</a>.</p>
+    </section>
+
+    <section class="lp-faq" aria-labelledby="faq-en">
+      <h2 id="faq-en">Questions</h2>
+      <details><summary>How do I find an earlier section in a long Claude conversation?</summary><p>With Polaris: AI Chat Navigator installed, every heading, list and table in Claude’s answers on claude.ai gets a marker on the edge of the page, and the Table of Contents lists every heading. Click one to jump to that section.</p></details>
+      <details><summary>Is Polaris free on Claude?</summary><p>Yes. The free version works on two supported platforms at a time, and Claude can be one of them. Pro is a one-time purchase that adds every supported platform and Long conversation mode.</p></details>
+      <details><summary>Does Polaris read or upload my Claude chats?</summary><p>Polaris reads the answer on the page you have open to build its navigation, locally in your browser. Conversation content is not sent to the developer or to third-party servers.</p></details>
+      <details><summary>Can I pass part of a Claude answer to another chat?</summary><p>Yes. Copy a single section from the Outline, or export the answer as Markdown or HTML, and paste it into a new chat to hand the context back.</p></details>
+    </section>
+
+    <p class="lp-related">Using ChatGPT too? See the <a href="../chatgpt-table-of-contents/">ChatGPT table of contents</a> page or the <a href="../#platforms">full list of supported sites</a>.</p>
+  </article>
+
+  <article class="lp" lang="zh-CN" data-legal-locale="zh-CN" data-title="Claude 对话导航 · Polaris AI">
+    <header>
+      <p class="lp-kicker">用于 Claude</p>
+      <h1>按标题浏览 Claude 长对话</h1>
+      <p class="lp-lead">Claude 的回答又长又有条理，但 claude.ai 没办法在小节之间跳转。Polaris: AI Chat Navigator 在页面边缘加上 Marker，并提供目录和大纲，一键到达长对话里的任意一节。免费开始使用，支持 Chrome、Edge 和 Firefox。</p>
+      <div class="lp-actions">
+        <a class="lp-button lp-button--primary" href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noopener"><img src="../icons/browsers/chrome.svg" alt="" width="18" height="18">添加至 Chrome</a>
+        <a class="lp-button" href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noopener"><img src="../icons/browsers/edge.svg" alt="" width="18" height="18">Edge</a>
+        <a class="lp-button" href="https://addons.mozilla.org/zh-CN/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noopener"><img src="../icons/browsers/firefox.svg" alt="" width="18" height="18">Firefox</a>
+      </div>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-05-platforms.jpg" alt="claude.ai 上 Claude 回答旁的 Polaris 目录" width="1280" height="800">
+        <figcaption>Polaris 在 claude.ai 上：目录位于对话旁。界面以示例对话展示。</figcaption>
+      </figure>
+    </header>
+
+    <section aria-labelledby="problem-zh">
+      <h2 id="problem-zh">Claude 对话变长以后</h2>
+      <p>用 Claude 写方案、审代码或做调研，一条回复就可能有很多带标题的小节，一次会话里又有几十条回复。想找十分钟前看过的那一节，只能从头翻；想重读一部分或转给同事，得跨好几屏拖选。</p>
+    </section>
+
+    <section aria-labelledby="features-zh">
+      <h2 id="features-zh">Polaris 为 claude.ai 增加了什么</h2>
+      <ul class="lp-list">
+        <li><strong>边缘 Marker。</strong>Claude 回答里的标题、列表和表格在页面边缘生成 Marker，悬停预览，点击直达。</li>
+        <li><strong>目录。</strong>全部标题按提问分组，显示在对话旁的面板里。</li>
+        <li><strong>大纲。</strong>逐节阅读一条长回答，保留表格、任务列表、代码和图片，只展开需要的部分。</li>
+        <li><strong>复制与导出。</strong>复制单独一节，或把回答导出为 Markdown 或 HTML，方便复用或交给新对话作为上下文。</li>
+        <li><strong>搜索。</strong>输入记得的关键词筛选标题，直接跳到匹配位置。</li>
+      </ul>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-02-markers.jpg" alt="悬停 Polaris 标记时高亮长回答中的对应小节" width="1280" height="800" loading="lazy">
+        <figcaption>悬停标题预览，点击落到那一节。界面以示例对话展示。</figcaption>
+      </figure>
+      <figure class="lp-figure">
+        <img src="../assets/landing/polaris-03-outline.jpg" alt="Polaris 大纲按小节展示长回答" width="1280" height="800" loading="lazy">
+        <figcaption>大纲把一条长回答拆成可阅读、复制和导出的小节。界面以示例对话展示。</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="how-zh">
+      <h2 id="how-zh">一分钟完成设置</h2>
+      <ol class="lp-steps">
+        <li>从 <a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noopener">Chrome 应用商店</a>、<a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noopener">Edge 加载项</a>或 <a href="https://addons.mozilla.org/zh-CN/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noopener">Firefox 附加组件</a>安装 Polaris。</li>
+        <li>点击工具栏的拼图图标，固定 Polaris。</li>
+        <li>打开或刷新 claude.ai 上的对话，回答写出第一节时 Marker 就会出现。</li>
+        <li>打开 Polaris 面板，使用目录和大纲。</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="plans-zh">
+      <h2 id="plans-zh">免费版与 Pro</h2>
+      <div class="lp-table-wrap">
+        <table class="lp-table">
+          <thead><tr><th scope="col"></th><th scope="col">免费版</th><th scope="col">Pro</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">平台</th><td>同时 2 个（可以包括 Claude）</td><td>全部 11 个已支持平台</td></tr>
+            <tr><th scope="row">目录</th><td>页面已加载的消息</td><td>另含长对话模式保留的更早消息</td></tr>
+            <tr><th scope="row">Marker、大纲、搜索、导出</th><td>包含</td><td>包含</td></tr>
+            <tr><th scope="row">价格</th><td>免费，无需支付信息</td><td>一次买断：试用前 7 天 US$12.90，之后 US$19.99，不订阅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="privacy-zh">
+      <h2 id="privacy-zh">本地处理</h2>
+      <p>Polaris 在浏览器里根据你当前打开的页面生成导航。你的 Claude 对话不会发送给开发者或任何第三方，Polaris 也不会索要你的 Claude 密码。详见<a href="../privacy.html">隐私政策</a>。</p>
+    </section>
+
+    <section class="lp-faq" aria-labelledby="faq-zh">
+      <h2 id="faq-zh">常见问题</h2>
+      <details><summary>怎样在 Claude 长对话里找到前面的某一节？</summary><p>安装 Polaris: AI Chat Navigator 后，claude.ai 上 Claude 回答里的每个标题、列表和表格都会在页面边缘生成 Marker，目录也会列出全部标题，点一下即可跳转。</p></details>
+      <details><summary>在 Claude 上能免费用吗？</summary><p>可以。免费版可同时在 2 个已支持平台上使用，Claude 可以是其中之一。Pro 一次买断，解锁全部平台和长对话模式。</p></details>
+      <details><summary>Polaris 会读取或上传我的 Claude 对话吗？</summary><p>Polaris 只在浏览器本地读取当前页面上的回答来生成导航，对话内容不会发送给开发者或第三方服务器。</p></details>
+      <details><summary>能把 Claude 回答的一部分交给另一个对话吗？</summary><p>可以。在大纲里复制单独一节，或把回答导出为 Markdown 或 HTML，再粘贴到新对话中交还上下文。</p></details>
+    </section>
+
+    <p class="lp-related">也在用 ChatGPT？查看 <a href="../chatgpt-table-of-contents/">ChatGPT 长对话目录</a>或<a href="../zh/#platforms">完整支持列表</a>。</p>
+  </article>
+</main>
+<!-- site-footer:start -->
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-brand-link" href="../" aria-label="Polaris home"><img src="../icons/polaris-icon-96.png?v=e79cc968" width="36" height="36" alt="Polaris AI logo"><span>Polaris</span></a>
+        <p class="footer-description"><span data-zh="长篇 AI 对话，一键跳转。">Navigate long AI conversations.</span></p>
+        <a class="footer-email" href="mailto:support@polaris-ai.work">support@polaris-ai.work</a>
+      </div>
+      <nav class="footer-nav" aria-label="Product"><h2><span data-zh="产品">Product</span></h2>
+        <ul>
+          <li><a href="../#capabilities"><span data-zh="工作原理">How it works</span></a></li><li><a href="../#features"><span data-zh="功能介绍">Features</span></a></li><li><a href="../#platforms"><span data-zh="支持平台">Supported platforms</span></a></li><li><a href="../chatgpt-table-of-contents/"><span data-zh="ChatGPT 长对话目录">Polaris for ChatGPT</span></a></li><li><a href="../claude-conversation-navigator/"><span data-zh="Claude 对话导航">Polaris for Claude</span></a></li><li><a href="../#faq"><span data-zh="常见问题">FAQ</span></a></li><li><a href="../release-notes/"><span data-zh="版本说明">Release notes</span></a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Install &amp; help"><h2><span data-zh="安装与帮助">Install &amp; help</span></h2>
+        <ul>
+          <li><a href="https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb" target="_blank" rel="noreferrer"><span data-zh="安装 Chrome 版">Install for Chrome</span></a></li>
+          <li><a href="https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi" target="_blank" rel="noreferrer"><span data-zh="安装 Edge 版">Install for Edge</span></a></li>
+          <li><a href="https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/" target="_blank" rel="noreferrer"><span data-zh="安装 Firefox 版">Install for Firefox</span></a></li>
+          <li><a href="../#install"><span data-zh="本地安装">Local installation</span></a></li>
+          <li><a href="https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+          <li><a href="../contact/"><span data-zh="联系我们">Contact</span></a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Legal"><h2><span data-zh="法律信息">Legal</span></h2>
+        <ul>
+          <li><a href="../privacy.html"><span data-zh="隐私政策">Privacy policy</span></a></li>
+          <li><a href="../safety.html"><span data-zh="安全说明">Security</span></a></li>
+          <li><a href="../terms.html"><span data-zh="使用条款">Terms of use</span></a></li>
+          <li><a href="../refund.html"><span data-zh="退款政策">Refund policy</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-start">
+        <p>© 2026 Polaris</p>
+        <p><a class="footer-icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026142293号</a></p>
+        <div class="language-control" data-language-control>
+          <button class="language-toggle" data-language-toggle type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Language" data-zh-label="语言">
+            <svg class="language-toggle-icon" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false"><path d="M938.666667 981.333333c-17.066667 0-29.866667-8.533333-38.4-25.6l-59.733334-119.466666h-277.333333l-59.733333 119.466666c-8.533333 21.333333-34.133333 29.866667-55.466667 17.066667-25.6-8.533333-34.133333-34.133333-21.333333-51.2l72.533333-140.8 145.066667-290.133333c12.8-21.333333 34.133333-38.4 59.733333-38.4s46.933333 12.8 59.733333 38.4l145.066667 290.133333 72.533333 140.8c8.533333 21.333333 0 46.933333-17.066666 55.466667-12.8 4.266667-17.066667 4.266667-25.6 4.266666z m-332.8-226.133333h192l-98.133334-192-93.866666 192zM85.333333 844.8c-17.066667 0-29.866667-8.533333-38.4-25.6-8.533333-21.333333 0-46.933333 21.333334-55.466667 93.866667-46.933333 179.2-110.933333 247.466666-187.733333-46.933333-64-85.333333-128-110.933333-192-8.533333-21.333333 4.266667-46.933333 25.6-55.466667 21.333333-8.533333 46.933333 4.266667 55.466667 25.6 21.333333 51.2 46.933333 102.4 81.066666 149.333334 59.733333-85.333333 102.4-179.2 128-281.6H85.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h243.2V85.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v51.2h238.933333c25.6 0 42.666667 17.066667 42.666667 42.666667s-17.066667 42.666667-42.666667 42.666667h-68.266667c-25.6 128-85.333333 247.466667-162.133333 349.866666l25.6 25.6c17.066667 17.066667 17.066667 42.666667 0 59.733334-17.066667 17.066667-42.666667 17.066667-59.733333 0l-17.066667-17.066667c-72.533333 81.066667-162.133333 149.333333-264.533333 200.533333-8.533333 0-17.066667 4.266667-21.333334 4.266667z" fill="currentColor"></path></svg>
+            <span data-language-current>English</span>
+            <svg class="language-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+          </button>
+          <div class="language-menu" data-language-menu role="listbox" aria-label="Language">
+            <button class="language-option" data-language-option="en" type="button" role="option" aria-selected="true">English</button>
+            <button class="language-option" data-language-option="zh-CN" type="button" role="option" aria-selected="false">简体中文</button>
+          </div>
+        </div>
+      </div>
+      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+    </div>
+  </div>
+</footer>
+<!-- site-footer:end -->
+</body>
+</html>

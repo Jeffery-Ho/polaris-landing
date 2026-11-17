@@ -1,5 +1,5 @@
 export const supportConfig = Object.freeze({
-  videoSource: "assets/polaris-introduction.mp4",
+  videoSource: "/assets/polaris-introduction.mp4",
   googleAnalyticsMeasurementId: "G-ERMV08R4XQ",
   sls: Object.freeze({
     host: "cn-hangzhou.log.aliyuncs.com",

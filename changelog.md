@@ -2,6 +2,12 @@
 
 ## 2026-11-17
 
+- SEO：新增独立中文首页 `/zh/`，由 `scripts/build-zh.mjs` 从首页中文词典生成静态 HTML，拥有中文标题、描述、canonical 与双向 hreflang（含 x-default），结构化 FAQ 为中文；首页语言菜单在 `/` 与 `/zh/` 之间跳转。sitemap 加入 `/zh/` 及 hreflang 备用链接；测试校验生成结果与首页同步。
+- 新增落地页 `/chatgpt-table-of-contents/`（ChatGPT 长对话目录）与 `/claude-conversation-navigator/`（Claude 对话导航），中英文，包含截图、使用步骤、支持范围、免费版与 Pro 对比、隐私说明、FAQ 及三个商店入口；全站页脚加入链接，部署白名单与 sitemap 同步。截图目前为官网演示示意图，非扩展实拍。
+- 首页 FAQ 新增「Polaris 适合谁？」（中英文与结构化数据同步）；llms.txt 补充事实清单（是什么、适合谁、支持平台、聊天数据处理、免费版限制）、Edge/Firefox 链接与落地页。
+- `Doc/store-listings.md`：三个商店的名称、简短描述、中英文长描述草稿与 GitHub README 开头；记录 Firefox 长描述为空、未填隐私政策（经 AMO API 核实）。
+- 视频地址改为根路径 `/assets/...`，供 `/zh/` 使用。
+
 - 全站页脚底部在版权信息后新增备案号「粤ICP备2026142293号」，链接到 https://beian.miit.gov.cn/（新窗口打开），颜色与版权文字一致。子页面模板 `scripts/site-chrome.mjs` 同步修改；首页 `footer.css` 版本号更新以刷新缓存。
 - 官网版本改为 Polaris `1.5.12(438)`：Firefox 商店里 1.5.11 版本号已被占用，扩展统一改发 1.5.12，代码与 1.5.11 相同。`softwareVersion` 同步为 `1.5.12`。
 - 官网同步 Polaris `1.5.11(437)`。首页结构化数据 `softwareVersion` 更新为 `1.5.11`；双语更新说明重新同步，新增 1.1.0 至 1.5.0 的功能条目，共 92 条，保留已有记录的日期。1.5.11 为修复版本（扩展内 Pro 购买改用正式许可证服务），不新增更新说明条目。

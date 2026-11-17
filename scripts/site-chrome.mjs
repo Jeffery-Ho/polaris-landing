@@ -62,7 +62,7 @@ export function siteFooter(p = "") {
       </div>
       <nav class="footer-nav" aria-label="Product"><h2>${t("Product", "产品")}</h2>
         <ul>
-          ${li(`${h}#capabilities`, "How it works", "工作原理")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}
+          ${li(`${h}#capabilities`, "How it works", "工作原理")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${p}chatgpt-table-of-contents/`, "Polaris for ChatGPT", "ChatGPT 长对话目录")}${li(`${p}claude-conversation-navigator/`, "Polaris for Claude", "Claude 对话导航")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Install &amp; help"><h2>${t("Install &amp; help", "安装与帮助")}</h2>

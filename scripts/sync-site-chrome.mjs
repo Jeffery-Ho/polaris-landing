@@ -18,6 +18,8 @@ const pages = {
   "checkout-return/index.html": "../",
   "contact/index.html": "../",
   "blog/index.html": "../",
+  "chatgpt-table-of-contents/index.html": "../",
+  "claude-conversation-navigator/index.html": "../",
   "blog/why-i-built-polaris/index.html": "../../"
 };
 

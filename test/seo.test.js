@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { buildZh } from "../scripts/build-zh.mjs";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const definition = "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.";
@@ -14,7 +15,9 @@ test("homepage meta follows the SEO spec", async () => {
   assert.match(home, /<link rel="canonical" href="https:\/\/polaris-ai\.work\/">/);
   for (const tag of ["og:locale", "og:image:width", "og:image:height", "og:image:alt"]) assert.match(home, new RegExp(`property="${tag}"`));
   assert.match(home, /name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer"/);
-  assert.doesNotMatch(home, /hreflang/);
+  assert.match(home, /<link rel="alternate" hreflang="en" href="https:\/\/polaris-ai\.work\/">/);
+  assert.match(home, /<link rel="alternate" hreflang="zh-CN" href="https:\/\/polaris-ai\.work\/zh\/">/);
+  assert.match(home, /<link rel="alternate" hreflang="x-default" href="https:\/\/polaris-ai\.work\/">/);
 });
 
 test("homepage exposes the definition, platforms, FAQ and alt text as crawlable HTML", async () => {
@@ -86,4 +89,45 @@ test("llms.txt, robots and the introduction video follow the SEO spec", async ()
   assert.ok(video, "VideoObject for the introduction video");
   assert.equal(video.contentUrl, "https://polaris-ai.work/assets/polaris-introduction.mp4");
   assert.match(video.duration, /^PT\d+S$/, "video duration is an ISO 8601 duration");
+});
+
+test("zh/index.html is the up-to-date Chinese rendering of the homepage", async () => {
+  const [home, zh] = await Promise.all([read("index.html"), read("zh/index.html")]);
+  assert.equal(zh, buildZh(home), "run node scripts/build-zh.mjs after editing index.html");
+  assert.match(zh, /<html lang="zh-CN" data-page-locale="zh-CN">/);
+  assert.match(zh, /<link rel="canonical" href="https:\/\/polaris-ai\.work\/zh\/">/);
+  assert.match(zh, /hreflang="en" href="https:\/\/polaris-ai\.work\/"/);
+  assert.match(zh, /hreflang="zh-CN" href="https:\/\/polaris-ai\.work\/zh\/"/);
+  assert.match(zh, /<title>[^<]*[\u4e00-\u9fff][^<]*<\/title>/);
+  assert.match(zh, /<details class="faq-item" id="platforms"><summary[^>]*>[^<]*[\u4e00-\u9fff]/);
+  assert.doesNotMatch(zh, /(?:src|href)="(?!https?:|\/|#|mailto:)[^"]+"/, "site URLs are root-absolute one level down");
+  const data = JSON.parse(zh.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  const faq = data["@graph"].find((entry) => entry["@type"] === "FAQPage");
+  assert.equal(faq.inLanguage, "zh-CN");
+  assert.match(faq.mainEntity[0].name, /[\u4e00-\u9fff]/);
+});
+
+test("use-case landing pages are indexable, bilingual and linked", async () => {
+  const sitemap = await read("sitemap.xml");
+  const home = await read("index.html");
+  for (const slug of ["chatgpt-table-of-contents", "claude-conversation-navigator"]) {
+    const page = await read(`${slug}/index.html`);
+    assert.match(page, new RegExp(`<link rel="canonical" href="https://polaris-ai\\.work/${slug}/">`));
+    assert.doesNotMatch(page, /noindex/);
+    assert.match(page, /Polaris: AI Chat Navigator/);
+    assert.match(page, /data-legal-locale="en"/);
+    assert.match(page, /data-legal-locale="zh-CN"/);
+    assert.match(page, /<!-- site-header:start -->/);
+    assert.doesNotMatch(page, /<img[^>]*alt=""[^>]*src="\.\.\/assets/);
+    const data = JSON.parse(page.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const faq = data["@graph"].find((entry) => entry["@type"] === "FAQPage");
+    const visible = page.slice(page.indexOf('data-legal-locale="en"'), page.indexOf('data-legal-locale="zh-CN"'));
+    for (const item of faq.mainEntity) {
+      assert.ok(visible.includes(`<summary>${item.name}</summary>`), item.name);
+      assert.ok(visible.includes(item.acceptedAnswer.text), item.name);
+    }
+    assert.ok(sitemap.includes(`<loc>https://polaris-ai.work/${slug}/</loc>`), `${slug} in sitemap`);
+    assert.ok(home.includes(`href="${slug}/"`), `${slug} linked from the homepage`);
+  }
+  assert.ok(sitemap.includes("<loc>https://polaris-ai.work/zh/</loc>"));
 });

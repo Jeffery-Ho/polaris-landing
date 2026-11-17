@@ -2,12 +2,23 @@
 
 > Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.
 
-Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek. It processes conversations locally in the browser and never uploads chat content. The website is published at https://polaris-ai.work/.
+Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek. It processes conversations locally in the browser and never uploads chat content. The website is published at https://polaris-ai.work/ (English) and https://polaris-ai.work/zh/ (Simplified Chinese).
+
+## Facts
+
+- What it is: a browser extension for Chrome, Microsoft Edge and Firefox that adds a Table of Contents, an Outline and edge markers to long AI chat answers.
+- Who it is for: people who use AI chats for research, writing, planning or code and need to find, reread or reuse one part of a long answer.
+- Supported sites: ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, DeepSeek.
+- Chat data: processed locally in the browser; conversation content is not sent to the developer or third parties. Pro license checks use a random installation identifier.
+- Free limits: two supported sites at a time; the Table of Contents covers messages already loaded on the page.
+- Not affiliated with OpenAI, Anthropic, Google or other AI providers, or with other products named "Polaris AI".
 
 ## Install
 
 - [Homepage](https://polaris-ai.work/): Product overview, how it works, features, pricing and installation.
 - [Chrome Web Store](https://chromewebstore.google.com/detail/polaris-ai-chat-navigator/lkdbbnpcfkjdfnopecpbdaeegncdmajb): Official Chrome listing.
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/fiaclpfiiiphgijkinloimjidelcfhgi): Official Edge listing.
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/polaris-ai-chat-navigator/): Official Firefox listing.
 - [GitHub releases](https://github.com/Jeffery-Ho/Polaris-AI-Chat-Navigator/releases/latest): Offline ZIP for manual installation.
 
 ## Pricing
@@ -19,7 +30,11 @@ Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, G
 
 Long conversation mode keeps more earlier messages available for navigation; it does not guarantee every message is available. Retained messages live only in the current page’s memory, are cleared on refresh or when switching chats, and are not written to disk, synced or uploaded. Copy or export available content as Markdown or HTML to pass context to another AI assistant.
 
-The extension supports Chrome, Microsoft Edge and Firefox.
+
+## Use cases
+
+- [ChatGPT table of contents](https://polaris-ai.work/chatgpt-table-of-contents/): Navigating long ChatGPT conversations on chatgpt.com.
+- [Claude conversation navigator](https://polaris-ai.work/claude-conversation-navigator/): Navigating long Claude conversations on claude.ai.
 
 ## Docs
 

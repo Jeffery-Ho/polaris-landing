@@ -61,6 +61,8 @@ public_entries=(
   assets
   blog
   checkout-return
+  chatgpt-table-of-contents
+  claude-conversation-navigator
   contact
   release-notes
   entry
@@ -68,6 +70,7 @@ public_entries=(
   icons
   support
   vendor
+  zh
   index.html
   privacy.html
   terms.html

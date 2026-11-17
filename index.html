@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page-locale="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,9 @@
     <meta name="color-scheme" content="dark light">
     <meta name="description" content="Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more. Local processing. Install from Chrome Web Store or ZIP.">
     <link rel="canonical" href="https://polaris-ai.work/">
+    <link rel="alternate" hreflang="en" href="https://polaris-ai.work/">
+    <link rel="alternate" hreflang="zh-CN" href="https://polaris-ai.work/zh/">
+    <link rel="alternate" hreflang="x-default" href="https://polaris-ai.work/">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/polaris-icon-32.png?v=73794ca8">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Polaris AI">
@@ -129,6 +132,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Polaris for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polaris is for people who use AI chats for research, writing, planning or code and end up with answers too long to scroll through. It helps you find, reread and reuse one part of a long answer without losing your place."
           }
         },
         {
@@ -5954,6 +5965,7 @@
           <h2 class="v2-heading" id="faq-title" data-i18n="faq.title">Frequently asked questions</h2>
           <div class="faq-list">
             <details class="faq-item"><summary data-i18n="faq.what.q">What is Polaris AI?</summary><p data-i18n="faq.what.a">Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.</p></details>
+            <details class="faq-item"><summary data-i18n="faq.who.q">Who is Polaris for?</summary><p data-i18n="faq.who.a">Polaris is for people who use AI chats for research, writing, planning or code and end up with answers too long to scroll through. It helps you find, reread and reuse one part of a long answer without losing your place.</p></details>
             <details class="faq-item" id="platforms"><summary data-i18n="faq.sites.q">Which AI chat sites does it support?</summary><p data-i18n="faq.sites.a">Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.</p></details>
             <details class="faq-item"><summary data-i18n="faq.upload.q">Does Polaris upload my chat content?</summary><p data-i18n="faq.upload.a">No. Polaris reads the answers on the page you have open and builds its navigation locally in your browser. Conversation content is not sent to the developer or to third-party servers. Pro license checks use a random installation identifier, not your chats. See the privacy policy for full details.</p></details>
             <details class="faq-item"><summary data-i18n="faq.zip.q">Can I install Polaris without a browser store?</summary><p data-i18n="faq.zip.a">Yes. Download the ZIP package from this page and unzip it. Open chrome://extensions, turn on Developer mode, click Load unpacked, and select the unzipped Polaris folder. Then refresh your AI chat page.</p></details>
@@ -5997,7 +6009,7 @@
           </div>
           <nav class="footer-nav" aria-labelledby="product-title"><h2 id="product-title" data-i18n="footer.product">Product</h2>
             <ul>
-              <li><a href="#capabilities" data-i18n="footer.how">How it works</a></li><li><a href="#features" data-i18n="footer.features">Features</a></li><li><a href="#platforms" data-i18n="footer.platforms">Supported platforms</a></li><li><a href="#faq" data-i18n="footer.faq">FAQ</a></li><li><a href="release-notes/" data-i18n="footer.releaseNotes">Release notes</a></li>
+              <li><a href="#capabilities" data-i18n="footer.how">How it works</a></li><li><a href="#features" data-i18n="footer.features">Features</a></li><li><a href="#platforms" data-i18n="footer.platforms">Supported platforms</a></li><li><a href="chatgpt-table-of-contents/" data-i18n="footer.chatgpt">Polaris for ChatGPT</a></li><li><a href="claude-conversation-navigator/" data-i18n="footer.claude">Polaris for Claude</a></li><li><a href="#faq" data-i18n="footer.faq">FAQ</a></li><li><a href="release-notes/" data-i18n="footer.releaseNotes">Release notes</a></li>
               <li><a href="#updates" data-i18n="footer.updates">What's new</a></li>
             </ul>
           </nav>
@@ -6200,6 +6212,8 @@
           "footer.faq": "FAQ",
           "faq.what.q": "What is Polaris AI?",
           "faq.what.a": "Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline. Markers sit on the edge of the page so you can preview and jump to any section, and the Outline lets you read one long answer section by section.",
+          "faq.who.q": "Who is Polaris for?",
+          "faq.who.a": "Polaris is for people who use AI chats for research, writing, planning or code and end up with answers too long to scroll through. It helps you find, reread and reuse one part of a long answer without losing your place.",
           "faq.sites.q": "Which AI chat sites does it support?",
           "faq.sites.a": "Polaris works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek.",
           "faq.upload.q": "Does Polaris upload my chat content?",
@@ -6378,6 +6392,8 @@
           "footer.description": "Navigate long AI conversations.",
           "footer.product": "Product",
           "footer.features": "Features",
+          "footer.chatgpt": "Polaris for ChatGPT",
+          "footer.claude": "Polaris for Claude",
           "footer.updates": "What's new",
           "footer.help": "Install & help",
           "footer.chrome": "Install for Chrome",
@@ -6483,6 +6499,8 @@
           "footer.faq": "常见问题",
           "faq.what.q": "什么是 Polaris AI？",
           "faq.what.a": "Polaris 是一款免费的 Chrome 扩展：它能识别 AI 回答里的标题，让你通过页面边缘的标记、目录和大纲，直接跳到任意一节。悬停标记可以预览内容，在大纲里可以逐节阅读一条长回答。",
+          "faq.who.q": "Polaris 适合谁？",
+          "faq.who.a": "适合用 AI 对话做调研、写作、做方案或写代码，回答长到翻不过来的人。它帮你在长回答里找到、重读和复用某一部分，不会迷失位置。",
           "faq.sites.q": "支持哪些 AI 对话网站？",
           "faq.sites.a": "支持 ChatGPT、Claude、Gemini、Grok、豆包、Kimi、通义千问、元宝、点点 AI、Manus 和 DeepSeek。",
           "faq.upload.q": "Polaris 会上传我的对话内容吗？",
@@ -6661,6 +6679,8 @@
           "footer.description": "长篇 AI 对话，一键跳转。",
           "footer.product": "产品",
           "footer.features": "功能介绍",
+          "footer.chatgpt": "ChatGPT 长对话目录",
+          "footer.claude": "Claude 对话导航",
           "footer.updates": "更新记录",
           "footer.help": "安装与帮助",
           "footer.chrome": "安装 Chrome 版",
@@ -6999,7 +7019,10 @@
         document.dispatchEvent(new CustomEvent("polaris:language", { detail: currentLocale }));
       }
 
-      const savedLocale = window.localStorage.getItem(localeStorageKey);
+      // Each language has its own indexable URL; the generated /zh/ page always opens in Chinese.
+      const pageLocale = document.documentElement.dataset.pageLocale === "zh-CN" ? "zh-CN" : "en";
+      const localePaths = Object.freeze({ en: "/", "zh-CN": "/zh/" });
+      const savedLocale = pageLocale === "zh-CN" ? "zh-CN" : window.localStorage.getItem(localeStorageKey);
       const browserLocale = /^zh(?:-|$)/i.test(navigator.language || "") ? "zh-CN" : "en";
       const savedTheme = window.localStorage.getItem(themeStorageKey);
       setTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : currentTheme, false);
@@ -7032,7 +7055,13 @@
         setLanguageMenuOpen(languageToggle.getAttribute("aria-expanded") !== "true");
       });
       languageOptions.forEach((option) => option.addEventListener("click", () => {
-        setLanguage(option.dataset.languageOption);
+        const locale = option.dataset.languageOption;
+        if (locale !== pageLocale && localePaths[locale]) {
+          window.localStorage.setItem(localeStorageKey, locale);
+          window.location.href = `${localePaths[locale]}${window.location.hash}`;
+          return;
+        }
+        setLanguage(locale);
       }));
       themeOptions.forEach((option) => option.addEventListener("click", () => {
         setTheme(option.dataset.themeOption);

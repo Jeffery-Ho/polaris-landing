@@ -37,7 +37,9 @@
     all("[data-language-current]").forEach((node) => { node.textContent = zh ? "简体中文" : "English"; });
     all("[data-language-option]").forEach((option) => option.setAttribute("aria-selected", String(option.dataset.languageOption === locale)));
     const heading = document.querySelector(`[data-legal-locale="${locale}"] h1`);
-    if (heading) document.title = `${heading.textContent} · Polaris AI`;
+    const pageTitle = blocks.find((block) => block.dataset.legalLocale === locale)?.dataset.title;
+    if (pageTitle) document.title = pageTitle;
+    else if (heading) document.title = `${heading.textContent} · Polaris AI`;
     if (persist) write(localeKey, locale);
   }
 
