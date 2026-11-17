@@ -62,7 +62,7 @@ export function siteFooter(p = "") {
       </div>
       <nav class="footer-nav" aria-label="Product"><h2>${t("Product", "产品")}</h2>
         <ul>
-          ${li(`${h}#capabilities`, "How it works", "工作原理")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}${li(`${p}blog/`, "Blog", "博客")}
+          ${li(`${h}#capabilities`, "How it works", "工作原理")}${li(`${h}#features`, "Features", "功能介绍")}${li(`${h}#platforms`, "Supported platforms", "支持平台")}${li(`${h}#faq`, "FAQ", "常见问题")}${li(`${p}release-notes/`, "Release notes", "版本说明")}
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Install &amp; help"><h2>${t("Install &amp; help", "安装与帮助")}</h2>
@@ -100,7 +100,7 @@ export function siteFooter(p = "") {
           </div>
         </div>
       </div>
-      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> by <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
+      <p>Made with <svg class="footer-heart" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M12 21 3.5 12.5a5.3 5.3 0 0 1 7.5-7.5L12 6l1-1a5.3 5.3 0 0 1 7.5 7.5Z"></path></svg><span class="sr-only">love</span> <a href="https://x.com/JefferyHo_" target="_blank" rel="noreferrer">Jeffery Ho</a></p>
     </div>
   </div>
 </footer>
