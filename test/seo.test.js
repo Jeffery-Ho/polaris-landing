@@ -14,7 +14,13 @@ test("homepage meta follows the SEO spec", async () => {
   assert.match(home, /<meta name="description" content="Polaris adds heading markers and one-click jumps to long answers on ChatGPT, Claude, Gemini, Grok, DeepSeek, and more\. Local processing\. Install from Chrome Web Store or ZIP\.">/);
   assert.match(home, /<link rel="canonical" href="https:\/\/polaris-ai\.work\/">/);
   for (const tag of ["og:locale", "og:image:width", "og:image:height", "og:image:alt"]) assert.match(home, new RegExp(`property="${tag}"`));
-  assert.match(home, /name="twitter:image:alt" content="Polaris AI edge markers on a long AI chat answer"/);
+  assert.match(home, /name="twitter:image:alt" content="Polaris AI homepage: Navigate long AI conversations, with the Table of Contents beside a ChatGPT answer"/);
+  assert.match(home, /<meta property="og:image" content="https:\/\/polaris-ai\.work\/assets\/polaris-og-home\.jpg">/);
+  assert.match(home, /<meta name="twitter:image" content="https:\/\/polaris-ai\.work\/assets\/polaris-og-home\.jpg">/);
+  assert.match(home, /<meta property="og:image:width" content="1200">/);
+  assert.match(home, /<meta property="og:image:height" content="630">/);
+  const shareImage = await readFile(new URL("../assets/polaris-og-home.jpg", import.meta.url));
+  assert.equal(shareImage.readUInt16BE(0), 0xffd8);
   assert.match(home, /<link rel="alternate" hreflang="en" href="https:\/\/polaris-ai\.work\/">/);
   assert.match(home, /<link rel="alternate" hreflang="zh-CN" href="https:\/\/polaris-ai\.work\/zh\/">/);
   assert.match(home, /<link rel="alternate" hreflang="x-default" href="https:\/\/polaris-ai\.work\/">/);
@@ -96,6 +102,9 @@ test("zh/index.html is the up-to-date Chinese rendering of the homepage", async 
   assert.equal(zh, buildZh(home), "run node scripts/build-zh.mjs after editing index.html");
   assert.match(zh, /<html lang="zh-CN" data-page-locale="zh-CN">/);
   assert.match(zh, /<link rel="canonical" href="https:\/\/polaris-ai\.work\/zh\/">/);
+  assert.match(zh, /<meta property="og:image" content="https:\/\/polaris-ai\.work\/assets\/polaris-og-home-zh\.jpg">/);
+  assert.match(zh, /<meta name="twitter:image" content="https:\/\/polaris-ai\.work\/assets\/polaris-og-home-zh\.jpg">/);
+  assert.equal((await readFile(new URL("../assets/polaris-og-home-zh.jpg", import.meta.url))).readUInt16BE(0), 0xffd8);
   assert.match(zh, /hreflang="en" href="https:\/\/polaris-ai\.work\/"/);
   assert.match(zh, /hreflang="zh-CN" href="https:\/\/polaris-ai\.work\/zh\/"/);
   assert.match(zh, /<title>[^<]*[\u4e00-\u9fff][^<]*<\/title>/);
