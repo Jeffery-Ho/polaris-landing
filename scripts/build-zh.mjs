@@ -99,6 +99,8 @@ export function buildZh(html) {
     .replace('data-language-option="zh-CN" type="button" role="option" aria-selected="false"', 'data-language-option="zh-CN" type="button" role="option" aria-selected="true"');
   for (const selector of ['name="description"', 'property="og:description"', 'name="twitter:description"']) page = setMeta(page, selector, zh["meta.description"]);
   for (const selector of ['property="og:title"', 'name="twitter:title"']) page = setMeta(page, selector, zh["meta.title"]);
+  for (const selector of ['property="og:image"', 'name="twitter:image"']) page = setMeta(page, selector, "https://polaris-ai.work/assets/polaris-og-home-zh.jpg");
+  for (const selector of ['property="og:image:alt"', 'name="twitter:image:alt"']) page = setMeta(page, selector, "Polaris AI 中文首页：长篇对话一键跳转，ChatGPT 回答旁显示目录");
 
   // Structured data in Chinese: the FAQ mirrors the visible answers; the English HowTo steps are dropped.
   page = page.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (_, open, json, close) => {

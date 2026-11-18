@@ -2,6 +2,8 @@
 
 ## 2026-11-18
 
+- 分享图：首页与 `/zh/` 的 `og:image`、`twitter:image` 原先指向 8 月 27 日旧版支持页的 `polaris-introduction-thumbnail.jpg`（旧界面，字幕有语法错误），Discord 等平台的链接预览因此显示旧图。现改为新版首屏截图：英文 `assets/polaris-og-home.jpg`，中文 `assets/polaris-og-home-zh.jpg`，均为 1200×630，并更新尺寸与 alt 文字。`scripts/build-zh.mjs` 为中文页单独设置分享图。结构化数据和介绍视频的缩略图未改，旧图文件保留。
+
 - 文案：定义句由“免费的 Chrome 扩展”改为“提供免费版的 Chrome 扩展”（英文 `a free Chrome extension` → `a Chrome extension with a free plan`），覆盖首页首屏描述、FAQ、结构化数据、`/zh/` 与 llms.txt；两个落地页的 meta/og 描述同步去掉“Free browser extension”。Pro 为付费功能，原说法易被理解为完全免费。FAQ 中“免费版限 2 个平台、Pro 一次性购买”的说明不变。
 
 ## 2026-11-17
