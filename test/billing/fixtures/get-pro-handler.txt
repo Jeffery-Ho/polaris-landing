@@ -1,0 +1,17 @@
+document.querySelectorAll("[data-web-checkout]").forEach((link) => {
+        const errorLine = document.querySelector("[data-checkout-error]");
+        link.addEventListener("click", async (event) => {
+          if (!supportConfig.billingApiUrl) return;
+          event.preventDefault();
+          if (link.getAttribute("aria-busy") === "true") return;
+          const locale = document.documentElement.lang === "zh-CN" ? "zh-CN" : "en";
+          const strings = translations[locale] || {};
+          const label = link.querySelector("[data-i18n]");
+          const original = label.innerHTML;
+          link.setAttribute("aria-busy", "true");
+          label.textContent = strings["pricing.checkout.loading"] || "Opening checkout…";
+          errorLine.hidden = true;
+          try {
+            await startCheckout(supportConfig.billingApiUrl);
+          } catch (error) {
+            link.removeA
