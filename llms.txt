@@ -1,6 +1,6 @@
 # Polaris AI
 
-> Polaris is a free Chrome extension that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.
+> Polaris is a Chrome extension with a free plan that detects headings in AI chat answers and lets you jump to each section with edge markers, a Table of Contents and an Outline.
 
 Polaris AI (store name "Polaris: AI Chat Navigator") works on ChatGPT, Claude, Gemini, Grok, Doubao, Kimi, Qwen, Yuanbao, Diandian AI, Manus, and DeepSeek. It processes conversations locally in the browser and never uploads chat content. The website is published at https://polaris-ai.work/ (English) and https://polaris-ai.work/zh/ (Simplified Chinese).
 

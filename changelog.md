@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-18
+
+- 文案：定义句由“免费的 Chrome 扩展”改为“提供免费版的 Chrome 扩展”（英文 `a free Chrome extension` → `a Chrome extension with a free plan`），覆盖首页首屏描述、FAQ、结构化数据、`/zh/` 与 llms.txt；两个落地页的 meta/og 描述同步去掉“Free browser extension”。Pro 为付费功能，原说法易被理解为完全免费。FAQ 中“免费版限 2 个平台、Pro 一次性购买”的说明不变。
+
 ## 2026-11-17
 
 - SEO：新增独立中文首页 `/zh/`，由 `scripts/build-zh.mjs` 从首页中文词典生成静态 HTML，拥有中文标题、描述、canonical 与双向 hreflang（含 x-default），结构化 FAQ 为中文；首页语言菜单在 `/` 与 `/zh/` 之间跳转。sitemap 加入 `/zh/` 及 hreflang 备用链接；测试校验生成结果与首页同步。
