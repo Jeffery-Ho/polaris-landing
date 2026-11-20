@@ -77,6 +77,7 @@ public_entries=(
   safety.html
   refund.html
   robots.txt
+  google30243403f461dda3.html
   sitemap.xml
   support-config.js
   llms.txt
