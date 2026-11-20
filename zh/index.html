@@ -112,7 +112,7 @@
           "name": "Pro",
           "price": "12.90",
           "priceCurrency": "USD",
-          "description": "One-time purchase with lifetime access, no subscription. Unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. $12.90 during the first 7 days of the free trial; the regular price after that is $19.99.",
+          "description": "One-time purchase with lifetime access, no subscription. Unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. $12.90 during the first 7 days of the free trial; the regular price after that is $19.99. One license activates up to 3 browsers at a time.",
           "availability": "https://schema.org/InStock",
           "url": "https://polaris-ai.work/#pricing"
         }
@@ -199,10 +199,10 @@
         },
         {
           "@type": "Question",
-          "name": "Pro 能在其他设备上使用吗？",
+          "name": "Pro 可以在几个浏览器上使用？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "可以。在其他设备的 Polaris 里输入同一个许可证即可，不限设备数量。兑换和找回许可证都在 Polaris 设置里。"
+            "text": "最多同时激活 3 个，可与朋友分享。同一浏览器的每个 Profile 单独计算，例如 Dia 的 Work 和 Default 算 2 个。名额用完时，Polaris 会列出已激活的浏览器，选一个停用即可。兑换和找回许可证都在 Polaris 设置里。"
           }
         },
         {
@@ -5814,6 +5814,7 @@
               <ul class="pricing-features">
                 <li data-i18n="pricing.free.platforms">可同时在 2 个平台使用</li>
                 <li data-i18n="pricing.free.toc">目录：在已加载的消息中快速跳转</li>
+                <li data-i18n="pricing.free.browsers">任意浏览器可用，无需许可证</li>
                 <li data-i18n="pricing.plan.outline">大纲：导出 Markdown / HTML，方便换个 AI 助手接着聊</li>
                 <li data-i18n="pricing.plan.local">对话只留在本机，不会上传</li>
                 <li data-i18n="pricing.plan.theme">深浅色模式</li>
@@ -5833,6 +5834,7 @@
               <ul class="pricing-features">
                 <li class="pricing-feature-pro" data-i18n="pricing.pro.platforms">全部已支持平台</li>
                 <li class="pricing-feature-pro" data-i18n="pricing.pro.toc">长对话模式：目录保留更早的消息，适合超长聊天</li>
+                <li class="pricing-feature-pro" data-i18n="pricing.pro.browsers">最多 3 个浏览器，同一浏览器的每个 Profile 单独计算</li>
                 <li data-i18n="pricing.plan.outline">大纲：导出 Markdown / HTML，方便换个 AI 助手接着聊</li>
                 <li data-i18n="pricing.plan.local">对话只留在本机，不会上传</li>
                 <li data-i18n="pricing.plan.theme">深浅色模式</li>
@@ -5861,7 +5863,7 @@
               </div>
             </div>
           </div>
-          <p class="pricing-purchase-note" id="pricing-purchase-note" data-i18n="pricing.purchaseNote">通过 Stripe 安全支付。付款后会立即显示许可证，在任意设备的 Polaris「设置」中兑换即可。</p>
+          <p class="pricing-purchase-note" id="pricing-purchase-note" data-i18n="pricing.purchaseNote">通过 Stripe 安全支付。付款后会立即显示许可证，在 Polaris「设置」中兑换，最多可激活 3 个浏览器。</p>
           <p class="pricing-checkout-error" data-checkout-error role="alert" hidden></p>
         </section>
 
@@ -5921,7 +5923,7 @@
             <details class="faq-item"><summary data-i18n="faq.chapter.q">目录和大纲是什么？</summary><p data-i18n="faq.chapter.a">目录列出回答里的每个标题，点一下就跳到对应位置；大纲把同一条回答按层级展开，可以逐节阅读、搜索、复制，或导出为 Markdown 或 HTML。</p></details>
             <details class="faq-item"><summary data-i18n="faq.free.q">Polaris 免费吗？</summary><p data-i18n="faq.free.a">可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断，解锁全部已支持平台和长对话模式，在超长对话里保留更早的消息、用目录跳转。免费试用前 7 天内购买为 US$12.90（约 ¥93），之后为 US$19.99（约 ¥144）。</p></details>
             <details class="faq-item"><summary data-i18n="faq.browsers.q">支持 Edge 或 Firefox 吗？</summary><p data-i18n="faq.browsers.a">支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。</p></details>
-            <details class="faq-item"><summary data-i18n="faq.devices.q">Pro 能在其他设备上使用吗？</summary><p data-i18n="faq.devices.a">可以。在其他设备的 Polaris 里输入同一个许可证即可，不限设备数量。兑换和找回许可证都在 Polaris 设置里。</p></details>
+            <details class="faq-item"><summary data-i18n="faq.devices.q">Pro 可以在几个浏览器上使用？</summary><p data-i18n="faq.devices.a">最多同时激活 3 个，可与朋友分享。同一浏览器的每个 Profile 单独计算，例如 Dia 的 Work 和 Default 算 2 个。名额用完时，Polaris 会列出已激活的浏览器，选一个停用即可。兑换和找回许可证都在 Polaris 设置里。</p></details>
             <details class="faq-item"><summary data-i18n="faq.renewal.q">Pro 需要续费吗？</summary><p data-i18n="faq.renewal.a">不需要。Pro 只需购买一次，没有订阅或自动续费。</p></details>
           </div>
         </section>
@@ -6175,8 +6177,8 @@
           "faq.free.a": "Yes. Polaris is free to use on two platforms at a time. Pro is a one-time purchase that unlocks every supported platform and Long conversation mode, which keeps earlier messages of very long chats in the table of contents. It costs $12.90 during the first 7 days of the free trial, and $19.99 after that.",
           "faq.browsers.q": "Does it work on Edge or Firefox?",
           "faq.browsers.a": "Yes. Polaris is available for Chrome, Microsoft Edge, and Firefox. Use the install links on this page to open each official store listing.",
-          "faq.devices.q": "Can I use Pro on another device?",
-          "faq.devices.a": "Yes. Enter your license key in Polaris on your other devices. There is no device limit. You can redeem or recover your license from Polaris settings.",
+          "faq.devices.q": "How many browsers can I use Pro on?",
+          "faq.devices.a": "Up to 3 at a time, and you can share your license with friends. Each browser profile counts separately, so Dia’s Work and Default count as 2. When all 3 are in use, Polaris lists them so you can deactivate one. You can redeem or recover your license from Polaris settings.",
           "faq.renewal.q": "Does Pro need renewing?",
           "faq.renewal.a": "No. Pro is a one-time purchase, with no subscription or automatic renewal.",
           "nav.featureGrid": "Features",
@@ -6300,6 +6302,8 @@
           "pricing.free.toc": "TOC: jump within the messages already loaded",
           "pricing.pro.platforms": "Every supported platform",
           "pricing.pro.toc": "Long conversation mode: keep earlier messages in the TOC, built for very long chats",
+          "pricing.free.browsers": "Works in any browser, no license needed",
+          "pricing.pro.browsers": "Up to 3 browsers. Each browser profile counts separately",
           "pricing.plan.outline": "Outline: export Markdown / HTML to keep going with another assistant",
           "pricing.plan.local": "Conversations stay on your device, never uploaded",
           "pricing.plan.theme": "Light and dark mode",
@@ -6310,7 +6314,7 @@
           "pricing.long.notLoaded": "Earlier messages not loaded",
           "pricing.long.freeCount": "Only the latest replies",
           "pricing.long.proCount": "Earlier replies too",
-          "pricing.purchaseNote": "Secure checkout by Stripe. Your license key appears right after payment; redeem it in Polaris → Settings on any device.",
+          "pricing.purchaseNote": "Secure checkout by Stripe. Your license key appears right after payment. Redeem it in Polaris → Settings on up to 3 browsers.",
           "pricing.checkout.loading": "Opening checkout…",
           "pricing.checkout.error": "Checkout is unavailable right now. Try again in a moment.",
           "pricing.checkout.storage": "This browser blocks site storage, so your key could not be shown after payment. Allow storage or use another browser.",
@@ -6462,8 +6466,8 @@
           "faq.free.a": "可以免费使用。免费版可同时在 2 个平台上使用；Pro 一次买断，解锁全部已支持平台和长对话模式，在超长对话里保留更早的消息、用目录跳转。免费试用前 7 天内购买为 US$12.90（约 ¥93），之后为 US$19.99（约 ¥144）。",
           "faq.browsers.q": "支持 Edge 或 Firefox 吗？",
           "faq.browsers.a": "支持。Polaris 提供 Chrome、Microsoft Edge 和 Firefox 版本，可通过本页的安装链接打开各自的官方商店页面。",
-          "faq.devices.q": "Pro 能在其他设备上使用吗？",
-          "faq.devices.a": "可以。在其他设备的 Polaris 里输入同一个许可证即可，不限设备数量。兑换和找回许可证都在 Polaris 设置里。",
+          "faq.devices.q": "Pro 可以在几个浏览器上使用？",
+          "faq.devices.a": "最多同时激活 3 个，可与朋友分享。同一浏览器的每个 Profile 单独计算，例如 Dia 的 Work 和 Default 算 2 个。名额用完时，Polaris 会列出已激活的浏览器，选一个停用即可。兑换和找回许可证都在 Polaris 设置里。",
           "faq.renewal.q": "Pro 需要续费吗？",
           "faq.renewal.a": "不需要。Pro 只需购买一次，没有订阅或自动续费。",
           "nav.featureGrid": "功能",
@@ -6587,6 +6591,8 @@
           "pricing.free.toc": "目录：在已加载的消息中快速跳转",
           "pricing.pro.platforms": "全部已支持平台",
           "pricing.pro.toc": "长对话模式：目录保留更早的消息，适合超长聊天",
+          "pricing.free.browsers": "任意浏览器可用，无需许可证",
+          "pricing.pro.browsers": "最多 3 个浏览器，同一浏览器的每个 Profile 单独计算",
           "pricing.plan.outline": "大纲：导出 Markdown / HTML，方便换个 AI 助手接着聊",
           "pricing.plan.local": "对话只留在本机，不会上传",
           "pricing.plan.theme": "深浅色模式",
@@ -6597,7 +6603,7 @@
           "pricing.long.notLoaded": "更早的消息未加载",
           "pricing.long.freeCount": "仅显示最近的回复",
           "pricing.long.proCount": "更早的回复也能看到",
-          "pricing.purchaseNote": "通过 Stripe 安全支付。付款后会立即显示许可证，在任意设备的 Polaris「设置」中兑换即可。",
+          "pricing.purchaseNote": "通过 Stripe 安全支付。付款后会立即显示许可证，在 Polaris「设置」中兑换，最多可激活 3 个浏览器。",
           "pricing.checkout.loading": "正在打开结账页…",
           "pricing.checkout.error": "暂时无法打开结账页。请稍后重试。",
           "pricing.checkout.storage": "当前浏览器禁止网站存储，付款后将无法显示许可证。请允许存储或换一个浏览器。",
