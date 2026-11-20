@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-20
+
+- 许可名额：扩展 1.6.0 起每份 Pro 许可最多同时激活 3 个浏览器，同一浏览器的每个 Profile 单独计算。首页与 `/zh/` 的定价卡各加一行（Free：任意浏览器可用，无需许可证；Pro：最多 3 个浏览器），购买说明去掉「任意设备兑换」，FAQ「Pro 能在其他设备上使用吗？」改为「Pro 可以在几个浏览器上使用？」并同步结构化数据，Pro offer 描述补充名额，付款返回页的「所有设备」改为 3 个浏览器。
+
 ## 2026-11-18
 
 - 分享图：首页与 `/zh/` 的 `og:image`、`twitter:image` 原先指向 8 月 27 日旧版支持页的 `polaris-introduction-thumbnail.jpg`（旧界面，字幕有语法错误），Discord 等平台的链接预览因此显示旧图。现改为新版首屏截图：英文 `assets/polaris-og-home.jpg`，中文 `assets/polaris-og-home-zh.jpg`，均为 1200×630，并更新尺寸与 alt 文字。`scripts/build-zh.mjs` 为中文页单独设置分享图。结构化数据和介绍视频的缩略图未改，旧图文件保留。
