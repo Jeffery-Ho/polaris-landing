@@ -80,7 +80,7 @@ test("sitemap lists every public page with lastmod and never the /v2/ preview", 
   assert.match(home, /<figure class="hero-browser" data-nosnippet>/, "demo figures stay out of snippets");
 });
 
-test("llms.txt, robots and the introduction video follow the SEO spec", async () => {
+test("llms.txt, robots and structured data follow the SEO spec", async () => {
   const llms = await read("llms.txt");
   assert.match(llms, /^# Polaris AI$/m, "llms.txt opens with the brand");
   assert.match(llms, /\$12\.90/, "llms.txt states the welcome price");
@@ -91,10 +91,11 @@ test("llms.txt, robots and the introduction video follow the SEO spec", async ()
 
   const home = await read("index.html");
   const graph = JSON.parse(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"];
-  const video = graph.find((node) => [].concat(node["@type"]).includes("VideoObject"));
-  assert.ok(video, "VideoObject for the introduction video");
-  assert.equal(video.contentUrl, "https://polaris-ai.work/assets/polaris-introduction.mp4");
-  assert.match(video.duration, /^PT\d+S$/, "video duration is an ISO 8601 duration");
+  assert.ok(
+    !graph.some((node) => [].concat(node["@type"]).includes("VideoObject")),
+    "no VideoObject while the homepage has no <video>"
+  );
+  assert.doesNotMatch(home, /<video/, "add a VideoObject back if a <video> returns");
 });
 
 test("zh/index.html is the up-to-date Chinese rendering of the homepage", async () => {
