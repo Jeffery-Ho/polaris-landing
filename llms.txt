@@ -6,7 +6,7 @@ Polaris also works on the other supported AI chat sites listed below, and is ava
 
 ## Features
 
-- Table of Contents: Polaris automatically generates a table of contents that presents questions, headings, and answer sections as a Marker list in the sidebar. Click a list item to jump to that place in the conversation and move between earlier questions and responses.
+- Table of Contents: automatically generate a table of contents showing questions, headings, and sections in the sidebar. Click an item to jump directly to the corresponding content and navigate between earlier questions and responses.
 - Search: search available headings and sections in the current conversation by keyword and jump to a match. Search does not provide full-text search across all messages, and it does not search across your chat history.
 - Outline: view a response as a hierarchical outline. Expand or collapse chapters, read selected content directly in the sidebar, jump to the corresponding place in the original conversation, and copy individual chapters.
 - Long Conversation Mode: a Pro feature that helps you navigate and read loaded content in a long conversation. It works with conversation content that has been loaded and is available to Polaris. It does not extend ChatGPT's context window or accelerate AI response generation.
