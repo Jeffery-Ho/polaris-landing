@@ -82,7 +82,11 @@ test("sitemap lists every public page with lastmod and never the /v2/ preview", 
 
 test("llms.txt, robots and structured data follow the SEO spec", async () => {
   const llms = await read("llms.txt");
-  assert.match(llms, /^# Polaris: AI Chat Navigator$/m, "llms.txt opens with the brand");
+  assert.match(llms, /^# Polaris: AI Chat Navigator$/m, "llms.txt opens with the product name");
+  assert.match(llms, /^- Table of Contents: automatically generate a table of contents showing questions, headings, and sections in the sidebar\. Click an item to jump directly to the corresponding content and navigate between earlier questions and responses\.$/m, "llms.txt describes the sidebar table of contents");
+  assert.doesNotMatch(llms, /marker/i, "llms.txt does not name a Marker");
+  assert.doesNotMatch(llms, /edge markers?/i, "llms.txt does not describe page-edge markers");
+  assert.doesNotMatch(llms, /hover preview/i, "llms.txt does not describe a hover preview");
   assert.match(llms, /\$12\.90/, "llms.txt states the welcome price");
   assert.match(llms, /https:\/\/polaris-ai\.work\//, "llms.txt links the canonical site");
 
