@@ -1,6 +1,16 @@
 # Changelog
 
+## 2026-11-24
+
+- 官网同步 Polaris `1.6.10(460)`。首页与 `/zh/` 结构化数据 `softwareVersion` 更新为 `1.6.10`；双语更新说明新增 1.6.0「一份许可，最多 3 个浏览器」，共 93 条，保留已有记录的日期。1.6.1 至 1.6.10 为修复版本，扩展未新增更新说明条目。`release-notes.js` 缓存参数随内容更新；版本说明页页脚按当前全站模板重新生成。
+
+## 2026-11-23
+
+- llms.txt 重写：标题改为商店名「Polaris: AI Chat Navigator」，摘要以长 ChatGPT 对话的导航、搜索、阅读与导出为主。「Facts」拆为「Features」与「Scope」：Features 逐项说明目录、搜索（只搜当前对话的标题与段落，不做全文或跨历史搜索）、大纲、长对话模式（Pro，仅作用于已加载内容，不扩展上下文、不加速生成）、复制与导出（Markdown／HTML，未加载的早期消息可能不在其中，附续聊提示）；Scope 保留适用人群、支持平台、免费版限制与隐私说明，原「长对话模式与隐私」段并入其中。非关联声明改为明确不隶属于 OpenAI，也不隶属于其他 AI 厂商。定价段改为指向首页，价格仍写 $12.90／$19.99。SEO 测试的标题断言同步改为 `# Polaris: AI Chat Navigator`。
+
 ## 2026-11-22
+
+- SEO：两个落地页调整标题与描述关键词。`/chatgpt-table-of-contents/` 标题改为「ChatGPT Export and ChatGPT Table of Contents」，描述突出当前对话标题搜索、跳转与 Markdown／HTML 导出，功能区标题改为「How the ChatGPT navigator works」，条目名改为 ChatGPT TOC／ChatGPT chat search／ChatGPT outline。`/claude-conversation-navigator/` 标题改为「Claude Outline and Conversation Navigator」，描述以 Claude outline 分节阅读为主，功能区标题改为「How to navigate a Claude outline」。og 标题与描述、`data-title` 同步；H1 与正文其余内容不变。sitemap 两页 lastmod 更新为 2026-11-22。
 
 - SEO：首页与 `/zh/` 的结构化数据删除 `VideoObject`。首页的 `<video>` 已在首屏改用截图时删掉（526e4e1），但 JSON-LD 仍声明介绍视频，Search Console 会按声明去检查一个页面上并不存在的视频。测试改为：页面没有 `<video>` 时不得出现 `VideoObject`。`assets/polaris-introduction.mp4` 与缩略图文件保留。
 

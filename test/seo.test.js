@@ -82,7 +82,7 @@ test("sitemap lists every public page with lastmod and never the /v2/ preview", 
 
 test("llms.txt, robots and structured data follow the SEO spec", async () => {
   const llms = await read("llms.txt");
-  assert.match(llms, /^# Polaris AI$/m, "llms.txt opens with the brand");
+  assert.match(llms, /^# Polaris: AI Chat Navigator$/m, "llms.txt opens with the brand");
   assert.match(llms, /\$12\.90/, "llms.txt states the welcome price");
   assert.match(llms, /https:\/\/polaris-ai\.work\//, "llms.txt links the canonical site");
 
